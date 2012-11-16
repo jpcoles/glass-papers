@@ -1,0 +1,98 @@
+\documentclass[useAMS,usenatbib]{mn2e}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{aas_macros}
+\usepackage{ifthen}
+\usepackage{color}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Note to publisher:
+%
+% Define \blackandwhite to true to automatically include the black & white
+% figures and change the dark red text color in the table to an appropriate
+% shade of gray.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\blackandwhite{false}
+
+\ifthenelse{\equal{\blackandwhite}{true}}
+{
+  \newcommand{\fig}[1]{f#1_bw}
+  \newcommand{\darkred}[1]{\textcolor[gray]{0.6}{#1}}
+}
+{
+  \newcommand{\fig}[1]{f#1}
+  \newcommand{\darkred}[1]{\textcolor[rgb]{0.75,0,0}{#1}}
+}
+
+% From aastex.cls
+\newcommand\plotone[2]{%
+ \centering
+ \leavevmode
+ \columnwidth=#2\columnwidth
+ \includegraphics[width={\columnwidth}]{#1}%
+}%
+
+\newcommand{\figref}[1]{Figure~\ref{#1}}
+\newcommand{\eqnref}[1]{Eq.~\eqref{#1}}
+\newcommand{\secref}[1]{Section~\ref{#1}}
+\newcommand{\appref}[1]{Appendix~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\mean}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+
+%\renewcommand{\vec}{\mathbf}
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\mat}{\mathbf}
+
+\date{}
+\title[GLASS]{GLASS: An Extensible Free-Form Gravitational Lens Modeling Framework}
+
+\author[Jonathan Coles]%
+{Jonathan Coles\thanks{E-mail: jonathan@physik.uzh.ch}\\%
+Institut f\"ur Theoretische Physik, Universit\"at Z\"urich,
+Winterthurerstr. 190, 8057 Z\"urich, Switzerland}
+
+
+\begin{document}
+
+\maketitle
+
+\label{firstpage}
+
+\begin{abstract}
+GLASS is a software framework for free-form gravitational lens modeling.
+
+\end{abstract}
+\begin{keywords}
+methods: numerical
+\end{keywords}
+
+\section{Introduction}
+\label{introduction}
+
+\section{Framework}
+\label{framework}
+
+\section{Implementation}
+\label{implementation}
+
+
+\section{Conclusions}
+\label{outlook}
+
+\section*{Acknowledgements}
+
+\bibliographystyle{mn2e}
+
+\bibliography{ms}
+
+\bsp
+
+\label{lastpage}
+
+\end{document}
+
