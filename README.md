@@ -6,6 +6,7 @@ Help with Git:
 1. Configure git on your machine, adapting the following
 
 > git config --global user.name "Alan M Turing"
+
 > git config --global user.email amt@universal.machine
 
 Not essential, but good practice.  It's fine to put your real name and
@@ -27,6 +28,7 @@ These two steps need to be done only once per person per machine.
 5. When you want to send your current version to the server:
 
 > git commit -am "short message"
+
 > git push origin master
 
 6. To get current version from the server:
