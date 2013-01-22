@@ -1,0 +1,685 @@
+\documentclass[onecolumn,galley]{mn2e}
+%\documentclass[onecolumn,galley,draft]{mn2e}
+%\usepackage{myaasmacros}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\newcommand{\kpc}{\ensuremath{\mathrm{kpc}}}
+\newcommand{\Msun}{\ensuremath{\mathrm{M}_\odot}}
+\newcommand{\tabref}[1] {Table~\ref{#1}}
+\newcommand{\figref}[1] {Figure~\ref{#1}}
+\newcommand{\eqnref}[1] {Eq.~(\ref{#1})}
+\newcommand{\secref}[1] {Section~\ref{#1}}
+\newcommand{\Rmap}{\ensuremath{R_m}}
+\newcommand{\Rpix}{\ensuremath{R_p}}
+\newcommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
+
+% From aastex.cls
+\newcommand\plotone[1]{%
+ \centering
+ \leavevmode
+ \includegraphics[width={\columnwidth}]{#1}%
+}%
+\newcommand\plottwo[2]{{%
+ \centering
+ \leavevmode
+ \columnwidth=.45\columnwidth
+ \includegraphics[width={\columnwidth}]{#1}%
+ \hfil
+ \includegraphics[width={\columnwidth}]{#2}%
+}}%
+
+
+\title{Limits on constraining galaxy profiles with current and future strong gravitational lensing}
+\author{%
+Jonathan Coles 
+\and 
+Justin Read
+\and 
+Prasenjit Saha 
+}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\begin{abstract}
+We study the effectiveness of a variety of strong lensing scenarios to inform
+the reconstruction of four simulated triaxial halos with stellar and dark
+matter components. We conclude that 
+1) lenses with multiple sources and high redshift contrast perform very well
+2) lenses where the images are already probing the stellar dominated region 
+   of a galaxy can be constrained by an estimate of the stellar mass and
+   suggest the fraction of dark matter
+3) if velocity dispersion measurements are to be used then a sufficiently large aperture 
+   is necessary
+4) lensing can be used to infer the velocity anisotropy.
+We also introduce GLASS, an extensible framework for lens modeling and analysis.
+
+%We attempt to reconstruct the mass profile and distribution of a dark and
+%stellar matter triaxial halo using a variety of strong lens configurations,
+%stellar mass estimates, and stellar velocity dispersions. The lens
+%configurations test quads with small to large image separations (radial
+%sampling), extended source information ranging from point images to Einstein
+%rings (angular sampling), and multiple sources located at the same and
+%differing redshifts (redshift contrast). 
+
+%We conclude that redshift contrast can significantly constrain the mass
+%profiles.  Stellar mass estimates can also lead to better reconstructions by
+%placing lower bounds on the mass distribution in the inner regions of galaxies.
+%Velocity dispersions alone are unlikely to usefully constrain the profile
+%because the profile is highly sensitive to the dispersion measurement.  
+%Combined with other techniques, however, velocity dispersions can help to
+%constrain the range of possible reconstructed solutions. We also introduce
+%GLASS, an extensible framework for lens modeling and analysis.  
+\end{abstract}
+\section{Introduction}
+
+2022 - LSST - ~5000 multiply-imaged galaxies, ~150 AGN or quasars.
+2020 - SKA - 10,000 lenses possibly with central images
+
+
+\subsection{Future} %-----------------------------------------------------------
+    \begin{itemize}
+    \item New satellites will find many new lenses.
+    \item LSST, DES, PanSTARRS?, SKA
+    \item What is the most important data to have?
+    \end{itemize}
+
+\subsection{Present} %----------------------------------------------------------
+    \begin{itemize}
+    \item SLACS, CASTLES, CosmoGrail, CLASS, CFHTLS, SNAP?
+    \end{itemize}
+
+\subsection{Why do we need accurate galaxy models?} %---------------------------
+    \begin{itemize}
+    \item Galaxy formation
+    \item Cusp/Core problem
+    \item Universal halos?
+    \item Adiabatic contraction
+    \item DM fraction
+    \end{itemize}
+
+\subsection{Past work on constraining profiles.} %------------------------------
+    \begin{itemize}
+    \item Much of the early literature used simple SIS and SIE parametric models. Understandable.
+    \item Bayesian model fitting
+    \item Free-form modeling
+    \item Keeton has a good review.
+    \end{itemize}
+
+\subsection{What are the problems?} %------------------------------
+    \begin{itemize}
+    \item Very little data per lens.
+    \item Several well-known degeneracies.
+    \item Velocity dispersions: aperture too small
+    \end{itemize}
+
+\subsection{Goals of the paper} %------------------------------
+    \begin{itemize}
+    \item Perform a parameter study over lens morphologies and quantify what they can tell us about profiles.
+    \end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Theoretical Background}
+
+\subsection{Lensing}
+
+The lensing equation
+%
+\begin{equation}
+\vec\beta = \vec\theta - \frac{D_{LS}}{D_S}\vec\alpha(\vec\theta)
+\label{lensing equation}
+\end{equation}
+%
+maps an observed image position $\vec\theta$ to a source position $\vec\beta$
+via the correction term 
+%
+\begin{equation}
+\vec\alpha(\vec\theta) = \frac{4G}{c^2} \int \Sigma(\vec\theta')\frac{(\vec\theta - \vec\theta')}{\ |\vec\theta - \vec\theta'|^2}d^2\vec\theta'
+\end{equation}
+%
+which accounts for the gravitational lensing effect of an intervening mass. For
+our purposes we make use of the thin mass sheet approximation and assume that
+the lensing mass is infinitely thin compared with the distance between the
+source and the lens $D_{LS}$ and the lens and the observer $D_{L}$. These
+distances are angular diameter distances where $D_* = (c/H_0)d_*$ and $d_*$ is
+a dimensionless number that depends on cosmology.  The lens can then be thought
+of as a projected surface density $\Sigma$ which diverts the path of a photon
+instantaneously through the bending angle $\vec\alpha$.
+
+Since we will later want to model the mass distribution with a computer it will
+be convenient to choose units that make the relevant quantities of order unity.
+We therefore measure lengths in light years, time in years, positions in
+arcseconds, and choose $c=1$ and $4\pi G = N^2$, where $N^2 \equiv 206,265$
+arcsec/rad. The mass unit is then $11.988\ \Msun$. It will also be useful to 
+define a proxy to the Hubble constant $\nu \equiv N^2 H_0$.
+
+The arrival (or travel) time $t$ of a photon depends not only on the geometric
+path it takes, but also on the general relativistic gravitational time dilation
+due to the lens at a redshift of $z_L$.  In its complete form, with all units
+and cosmology included we can write the arrival time as
+%
+\begin{equation}
+N^2ct(\vec\theta) = (1+z_L)\frac{D_{L}D_{S}}{D_{LS}}\frac12 |\vec\theta - \vec\beta|^2 - (1+z_L)\frac{4GD_{L}^2}{c^2}\int \Sigma(\vec\theta') \ln |\vec\theta-\vec\theta'| d^2\vec\theta'
+\label{full arrival time}
+\end{equation}
+%
+The non-standard factor of $D_L^2$ in the second term comes from the fact that $\Sigma$
+has units of \Msun/lyr$^2$. We can clean this up by writing down a dimensionless time
+delay 
+%
+\begin{equation}
+\tau = \left[(1+z_L)D_{L}\right]^{-1}ctN^2 = \left[ (1+z_L) \frac{c}{H_0}d_L\right]^{-1}ctN^2 = \left[ (1+z_L) d_L\right]^{-1}\nu t
+\label{tau}
+\end{equation}
+%
+in terms of our previous definitions. If we
+further define a dimensionless density
+%
+\begin{equation}
+\kappa_\infty = \frac{4\pi G}{c^2}\frac{c}{H_0}d_L\Sigma
+              = \frac{d_L}{\nu}\Sigma
+\end{equation}
+%
+and a lensing potential
+%
+\begin{equation}
+\psi(\vec\theta) = \frac1\pi \int \kappa_\infty(\vec\theta') \ln|\vec\theta - \vec\theta'| d^2\vec\theta'\
+\end{equation}
+%
+we can express \eqnref{full arrival time} very compactly as
+%
+\begin{equation}
+\tau(\vec\theta) = \frac12 \xi |\vec\theta-\vec\beta|^2 - \psi(\vec\theta)
+\label{arrival time}
+\end{equation}
+%
+where $\xi \equiv D_{S}/D_{LS}$. We explicitly write $\kappa_\infty$ to remind ourselves
+that there is no source distance factor involved. This will be useful later when we consider
+multiple sources.
+
+If we think of $\tau$ as a surface then images will be observed where ever
+$\nabla \tau = 0$. In other words, images obey Fermat's principle and appear at
+extremums of the surface. From this we arrive back at \eqnref{lensing
+equation}.
+
+The only observables from \eqnref{arrival time} are the image positions, and
+perhaps the stellar contribution to $\kappa_\infty$.  If the source object is
+variable, however, then the observed light curves of each image will be
+identical, but possibly shifted in time due to the different arrival times.
+The time difference between identical portions of the light curves is called
+the time delay $\Delta t$ between images.  Using \eqnref{tau} the time delay
+$\Delta t_{21}$ between two images $\theta_1$ and $\theta_2$, where $\theta_2$
+arrives after $\theta_1$, is $\Delta t_{21} = \Delta \tau_{21}(1+z_L)d_L /
+\nu$. If $\beta$ and $\kappa_\infty$ were known exactly this would allow one
+to precisely infer the Hubble constant. However, the source position is not
+observable and the mass distribution is highly degenerate.
+
+\subsection{Degeneracies} %-----------------------------------------------------
+
+The steepness degeneracy arbitrarily rescales the arrival time surface. Image
+positions are left alone but the density profile will become shallower or
+steeper. This is particularly bad for inferring the Hubble constant, as the
+lens profile will tend to become steeper for larger values of $H_0$.
+
+Other degeneracies include ring degeneracies, where one is allowed to build
+up a mass distribution as a series of mass rings; the presence of substructure;
+and the effects of merging galaxies. 
+
+Shape degeneracy---a twisting in the mass.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Numerical Methods} 
+
+The lens configurations were generated within the new lens modeling framework
+GLASS, described in Appendix \ref{GLASS Description}. 
+
+With this generated data, or data taken from real observations, GLASS can produce
+an ensemble of possible mass distributions drawn from the space of solutions by
+using a MCMC algorithm.  The technique is similar to that used in PixeLens
+(cite Saha, Coles) but with an improved sampling algorithm.
+
+As we have done in previous work, we imposed several priors on the reconstruction to
+make it more physical, namely,
+%
+\begin{enumerate}
+\item The density must be non-negative everywhere.
+\item The density profile must have a slope $\le 0$. This prevents hollow rings.
+\item The local gradient everywhere must point within $45^{\circ}$ of the center.
+\item Density variations must be smooth.
+\item Image parity.
+\item The density is radially symmetric.
+\end{enumerate}
+%
+Since lensing in this case is highly degenerate, many possible realizations are
+produced. Each run produced an ensemble of 10000 models.  
+
+The quality of a model $M_i$ in an ensemble is judged by computing
+\begin{equation}
+\chi_i^2 = \frac{\sum_j (M_{ij} - G_j)^2}{\sum_j G_j^2}
+\end{equation}
+where $M$ and $G$ are the radial profiles of the model and galaxy, respectively.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Test Data}
+
+\subsection{Four galaxies and their properties} %--------------------------------------------------------------
+
+We consider four different triaxial galaxies, shown in \figref{test galaxies},
+where we have varied the slope index of the stars and the dark matter. We
+explore the cases were the stars follow either a $\gamma_\star=1$ or
+$\gamma_\star=1.5$ profile and where the dark matter profile is cusped or
+cored. The enclosed mass $M(a_\star)= 0.18\e{11}$ at the stellar scale
+radius $a_\star=2$ kpc is fixed for all galaxies in order to resemble B1115. We
+therefore place the galaxy at a redshift $z_L = 0.31$ in a cosmology with
+$H_0^{-1}=13.7$ Gyr, $\Omega_M=0.28$, and $\Omega_\Lambda=0.72$.
+
+\begin{figure}
+\plotone{cmp_simulations.pdf}
+\caption{
+\textbf{(Left)} 
+Three-dimensional density of the galaxies showing the stellar, dark matter,
+and total densities with dotted, dashed, and solid lines, respectively. The
+grey lines show the analytic forms from \eqnref{Dehnen profile}. 
+\textbf{(Middle)} 
+The radially averaged two-dimensional projected density in terms of the
+critical density for lensing. At $z_L=0.31$, $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$.
+\textbf{(Right)}
+The enclosed projected mass.
+}
+\label{test galaxies}
+\end{figure}
+
+%\tabref{source data} summarizes
+%each source and image system and \tabref{source time delays} lists the time
+%delays.
+
+Each galaxy was generated using the tool DEHNEN with the dark matter and stellar
+densities roughly described by Dehnen profiles
+%
+\begin{equation}
+\rho(r) = \frac{M}{4\pi a^3}(3-\alpha){(r/a)^{-\alpha}(1 + r/a)^{\alpha-4}}
+\label{Dehnen profile}
+\end{equation}
+%
+The individual parameters are shown in \tabref{Lens profile params}. 
+
+\begin{table}
+\begin{tabular}{clllllll}
+Galaxy & $\gamma_\star$ & $M_\star$ & $\gamma_\mathrm{DM}$ & $M_\mathrm{DM}$ \\
+\hline
+AA & 1 & 4 & 0.05 & $11^{2.95}$ \\
+AC & 1 & 4 & 1 & $11^2$ \\
+BB & 1.5 & $2^{1.5}$ & 0.16 & $11^{2.84}$ \\
+BC & 1.5 & $2^{1.5}$ & 1 & $11^2$
+\end{tabular}
+\caption{Profile parameters for the four test galaxies. The resulting profiles only roughly follow
+\eqnref{Dehnen profile} because the galaxies are triaxial. Masses are in units of $0.18\e{11}\Msun$. The scale lengths for
+all lenses are $(a_\star,a_\mathrm{DM})=(2,20)$ kpc and by definition
+$M_\star(a_\star) = M_\mathrm{DM}(a_\star) = 1$.}
+\label{Lens profile params}
+\end{table}
+
+
+
+\subsection{Test scenarios} %--------------------------------------------------------------
+
+For each galaxy we constructed ten test scenarios:
+\begin{enumerate}
+\item Two double imaged systems with a single point source,
+\item Two quadruply imaged systems with a single point source,
+\item One extended source, 
+\item A two-source system with one source varying across five redshifts. 
+%will provide a robust estimate of the enclosed mass at
+%several radii, suggesting that given a large enough separation, redshift
+%constrast will provide the most robust constraint on the mass profile of a
+%halo.
+\end{enumerate}
+
+%\tabref{Test configurations} summarizes how each of the configurations is composed.  
+\figref{Test reconstructions} shows the reconstructed lens.
+
+\begin{figure}
+\plotone{AAarrival_surfaces}
+\plotone{BBarrival_surfaces}
+\plotone{BCarrival_surfaces}
+\caption{Average reconstructions of each test case assuming time delays and no central image
+using (from \textbf{top} to \textbf{bottom}) the galaxies AA, (AC MISSING), BB, BC.}
+\label{Test reconstructions}
+\end{figure}
+
+\begin{table}
+\begin{tabular}{lccccc}
+Source name & $z$ & $\beta$ & Image & $\vec\theta$ & $\Delta t$ (days) \\
+\hline
+AASingleSourceR1a & 1.72 & -0.59, 0.10 & A & -2.64, 5.07 & \\
+ & & & B & -3.15, -4.62 & 37.09\\
+ & & & C & -5.72, -0.67 & 33.58\\
+ & & & D & 4.26, -0.20 & 259.75\\
+ & & & E & 0.22, -0.02 & 104.48\\
+AASingleSourceR1b & 1.72 & 0.11, -0.46 & A & 0.49, -5.85 & \\
+ & & & B & 0.87, 4.91 & 228.69\\
+ & & & C & 4.80, 1.57 & 31.83\\
+ & & & D & -4.58, 1.40 & 56.15\\
+ & & & E & -0.09, 0.11 & 180.09\\
+AAExtendedSourceR1a & 1.72 & -0.23, -0.13 & A & -1.08, -5.48 & \\
+ & & & B & -1.26, 5.19 & 66.27\\
+ & & & C & -5.31, 0.49 & 74.72\\
+ & & & D & 4.72, 0.33 & 99.26\\
+ & & & E & 0.04, 0.02 & 174.11\\
+AAExtendedSourceR1b & 1.72 & -0.37, 0.04 & A & -1.73, 5.27 & \\
+ & & & B & -1.93, -5.13 & 14.76\\
+ & & & C & -5.53, -0.27 & 75.45\\
+ & & & D & 4.56, -0.05 & 160.47\\
+ & & & E & 0.09, -0.01 & 147.24\\
+AAExtendedSourceR1c & 1.72 & -0.62, -0.13 & A & -2.84, -5.01 & \\
+ & & & B & -3.47, 4.36 & 60.96\\
+ & & & C & -5.66, 0.92 & 17.14\\
+ & & & D & 4.13, 0.23 & 270.45\\
+ & & & E & 0.40, 0.06 & 83.81\\
+AASingleSourceR2 & 1.50 & 0.11, -0.46 & A & 0.49, -5.66 & \\
+ & & & B & 0.98, 4.67 & 227.84\\
+ & & & C & 4.48, 1.70 & 27.39\\
+ & & & D & -4.34, 1.34 & 54.57\\
+ & & & E & -0.12, 0.21 & 144.98\\
+AASingleSourceR3 & 1.00 & 0.11, -0.46 & A & 0.48, -5.05 & \\
+ & & & B & 0.92, 3.98 & 226.30\\
+ & & & C & 3.70, 1.67 & 19.74\\
+ & & & D & -3.55, 1.20 & 53.34\\
+ & & & E & -0.12, 0.15 & 96.33\\
+AASingleSourceR4 & 0.80 & 0.11, -0.46 & A & 0.39, -4.50 & \\
+ & & & B & 0.93, 3.38 & 223.14\\
+ & & & C & 2.98, 1.69 & 9.75\\
+ & & & D & -2.82, 1.09 & 48.86\\
+ & & & E & -0.15, 0.18 & 52.90\\
+AASingleSourceR5 & 0.72 & 0.11, -0.46 & A & 0.44, -4.22 & \\
+ & & & B & 1.02, 2.94 & 219.75\\
+ & & & C & 2.51, 1.69 & 4.63\\
+ & & & D & -2.36, 1.03 & 44.24\\
+ & & & E & -0.16, 0.20 & 32.56
+\end{tabular}
+\end{table}
+
+
+\subsection{With/without time delays and central image} %--------------------------------------------------------------
+
+We also considered the effect of having time delays or a central image. The
+central image is usually highly demagnified and obscured by the lensing galaxy,
+but in clusters the central image is observable. In this case we can imagine
+the galaxies to be clusters since the problem is scale-free. A recontruction of
+AASingleQuadR1a\_Tm is shown in \figref{AASingleQuadR1a_Tm}. The suffix denotes
+which combination of time delays (T) and central image (M) was used. An
+uppercase letter indicates the feature is turned on, and a lowercase letter
+that it is turned off.
+
+\begin{figure}
+%\plotone{AASingleQuadR1a_Tm.png}
+\caption{The reconstruction of AASingleQuadR1a\_Tm.}
+\end{figure}
+
+%\begin{table}
+%\begin{tabular}{lccccccc}
+%Source name & $z$ & $\beta$ & $A$ (min) & $B$ (min) & $C$ (saddle) & $D$ (saddle) & $E$ (max)\\
+%\hline
+%SingleQuad1 & 2.50 & -0.37,0.08 & -2.40,10.40 & -2.55,-10.26 & -10.93,-0.39 & 10.37,-0.23 & 0.03,-0.01\\
+%SingleQuad2 & 0.40 & 0.08,-0.51 & 0.32,-7.23 & 0.70,6.40 & 6.30,1.74 & -6.22,1.59 & -0.03,0.08\\
+%SingleQuad3 & 0.60 & 0.08,-0.51 & 0.27,-8.86 & 0.74,8.08 & 8.13,1.93 & -8.05,1.72 & -0.03,0.06\\
+%SingleQuad4 & 0.80 & 0.08,-0.51 & 0.36,-9.58 & 0.70,8.82 & 8.92,2.05 & -8.87,1.76 & -0.02,0.05\\
+%SingleQuad5 & 1.00 & 0.08,-0.51 & 0.38,-10.00 & 0.68,9.24 & 9.40,1.99 & -9.34,1.79 & -0.02,0.05\\
+%ExtendedSource0 & 0.40 & 0.20,0.57 & 0.79,7.25 & 1.51,-6.25 & 6.29,-2.07 & -6.12,-1.55 & -0.06,-0.08\\
+%ExtendedSource1 & 0.40 & -0.15,0.17 & -0.64,6.96 & -0.84,-6.66 & -6.67,-0.56 & 6.39,-0.52 & 0.02,-0.03\\
+%ExtendedSource2 & 0.40 & 0.06,-0.33 & 0.24,-7.09 & 0.44,6.56 & 6.47,1.18 & -6.43,0.98 & -0.03,0.05
+%\end{tabular}
+%\caption{Source data.}
+%\label{source data}
+%\end{table}
+%
+%\begin{table}
+%\begin{tabular}{lrrrr}
+%Source name & $\Delta t_{AB}$ & $\Delta t_{BC}$ & $\Delta t_{CD}$ & $\Delta t_{DE}$\\
+%\hline
+%SingleQuad1 & 38.97 & 171.07 & 207.10 & 1314.05\\
+%SingleQuad2 & 335.01 & 97.91 & 50.78 & 623.95\\
+%SingleQuad3 & 312.86 & 122.63 & 47.83 & 951.56\\
+%SingleQuad4 & 303.39 & 128.81 & 46.63 & 1102.50\\
+%SingleQuad5 & 298.27 & 131.32 & 45.70 & 1188.64\\
+%ExtendedSource0 & 360.17 & 62.16 & 115.30 & 588.15\\
+%ExtendedSource1 & 109.28 & 169.77 & 91.20 & 620.78\\
+%ExtendedSource2 & 217.40 & 148.57 & 36.52 & 642.27
+%\end{tabular}
+%\caption{Time delays for each image system.}
+%\label{source time delays}
+%\end{table}
+%
+%\begin{table}
+%\begin{tabular}{ll}
+%\label{test systems}
+%Test name & Source name\\
+%\hline
+%SingleQuad & SingleQuad1\\
+%SingleQuad2 & SingleQuad2\\
+%ExtendedSource & ExtendedSource0 + ExtendedSource1 + ExtendedSource2\\
+%ZContrastDoubleQuad0 & SingleQuad1 + SingleQuad2\\
+%ZContrastDoubleQuad1 & SingleQuad1 + SingleQuad3\\
+%ZContrastDoubleQuad2 & SingleQuad1 + SingleQuad4\\
+%ZContrastDoubleQuad3 & SingleQuad1 + SingleQuad5
+%\end{tabular}
+%\caption{Test configurations}
+%\label{Test configurations}
+%\end{table}
+
+\section{Results} %--------------------------------------------------------------
+
+\begin{figure}
+\plotone{AAZContrastR1R5_Tm.pdf}
+\caption{A typical reconstructed lens. The first panel on the left shows the
+arrival time surface. In this case, there are two sources at different
+redshifts with galaxy AA. The next three panels show the radial density,
+average enclosed density, and enclosed mass profiles, respectively.  The grey
+curve is from the galaxy and the vertical lines show the positions of the
+images for the two sources.}
+\end{figure}
+
+\begin{figure}
+\label{chi2}
+\plottwo{AAchi2_profile.pdf}{AAchi2_profile.pdf} \\
+\plottwo{BBchi2_profile.pdf}{BCchi2_profile.pdf}
+\caption{
+Goodness of fit plots for the reconstruction of each of the four galaxies given
+the different lensing test cases. The $\chi^2$ is computed over the radial $\kappa$
+profile with data points at the median value and the error bars showing the 68\% confidence
+interval.
+}
+\end{figure}
+
+%\begin{figure}
+%\plotone{SingleQuad_TmC.png}
+%\caption{SingleQuad}
+%\label{SingleQuad}
+%\end{figure}
+%
+%\begin{figure}
+%\plotone{SingleQuad2_TmC.png}
+%\caption{SingleQuad2}
+%\label{SingleQuad2}
+%\end{figure}
+%
+%\figref{SingleQuad}
+%\figref{SingleQuad2}
+%
+%\begin{figure}
+%\plotone{ExtendedSource_TmC.png}
+%\caption{ExtendedSource}.
+%\label{ExtendedSource}
+%\end{figure}
+%
+%\figref{ExtendedSource}
+%
+%\begin{figure}
+%\plotone{ZContrastDoubleQuad0_TmC.png}
+%\caption{ZContrastDoubleQuad0}
+%\label{ZContrastDoubleQuad0}
+%\end{figure}
+%
+%\begin{figure}
+%\plotone{ZContrastDoubleQuad1_TmC.png}
+%\caption{ZContrastDoubleQuad1}
+%\label{ZContrastDoubleQuad1}
+%\end{figure}
+%
+%\begin{figure}
+%\plotone{ZContrastDoubleQuad2_TmC.png}
+%\caption{ZContrastDoubleQuad2}
+%\label{ZContrastDoubleQuad2}
+%\end{figure}
+%
+%\begin{figure}
+%\plotone{ZContrastDoubleQuad3_TmC.png}
+%\caption{ZContrastDoubleQuad3}
+%\label{ZContrastDoubleQuad3}
+%\end{figure}
+%
+%\figref{ZContrastDoubleQuad0}
+%\figref{ZContrastDoubleQuad1}
+%\figref{ZContrastDoubleQuad2}
+%\figref{ZContrastDoubleQuad3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stellar mass}
+\begin{itemize}
+\item Assume perfect knowledge of the stellar mass distribution.
+\item Construct a lens system where the images are probing the stellar region.
+\item Add stellar mass as a minimum constraint on the pixels.
+\item Requires more pixels in the middle to correctly and efficiently be resolved
+\item Stellar mass improves the reconstruction. Need to explain how.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Velocity dispersions}
+\begin{itemize}
+\item Can they predict radial profiles?
+\item Can we constrain lensing models from predicted velocity dispersions?
+\item Use a constructed spherical halo G2 following a $\rho \propto r^{-\gamma}$ profile with stellar halo same as G1.
+\item Vary $z$ of the halo, possibly orientation.
+\item Should be able to recover $\gamma$ very well.
+\item Use G1. Show problems with recovering $\gamma$.
+\end{itemize}
+
+\begin{figure}
+\plotone{sigma_beta.pdf}
+\caption{}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{PCA of the models to uncover degeneracies}
+
+%\begin{figure}
+%\plotone{SingleQuad_Tmc_eig.png}
+%\plotone{SingleQuad2_Tmc_eig.png}
+%\plotone{ExtendedSource_Tmc_eig.png}
+%\plotone{ZContrastDoubleQuad0_Tmc_eig.png}
+%\plotone{ZContrastDoubleQuad1_Tmc_eig.png}
+%\plotone{ZContrastDoubleQuad2_Tmc_eig.png}
+%\plotone{ZContrastDoubleQuad3_Tmc_eig.png}
+%\end{figure}
+
+\appendix
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section{Choice of modeling parameters}
+%
+%
+%\begin{itemize}
+%\item \figref{raytracing convergence tests}
+%\item Why do we choose {\texttt maprad}=20 arcsec when generating test cases?
+%We need to enclose most of the mass for the time delays to be stable.  
+%\item Why do we choose {\texttt pixrad}=45 when generating the test cases? We
+%need sufficient resolution for the image positions to be stable.  
+%\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{GLASS - An Extensible Gravitational Lens Modeling Framework}
+\label{GLASS Description}
+\begin{itemize} 
+\item Framework that incorporates lens modeling, analysis, and plotting.
+\item Not limited to just pixels based modeling. Can be used with functional forms like Bessel functions. Not yet implemented.
+\item Allows for post processing and criteria matching on a per model basis.
+\item Input files are python programs but from within the framework that aspect may be ignored.
+
+\item Lens reconstruction. Based on PixeLens. Express data constraints and
+priors as linear equations. Sample the resulting simplex.
+\item Standard data constraints: image positions, time delays, hubble constant, parity, annular density, external shear.
+\item Priors: range of profile steepness, local gradient, smoothness, shared H0, symmetry for doubles.
+\item Local gradient and smoothness are now convergent. Based on physical size rather than number of neighbors.
+
+\item Raytracing. Use a fine grid to sample the 2d function mapping position on
+the image plane to distance from the source on the source plane. From those
+points that are near the source, use a 2d root finder to locate the exact
+positions. Merge nearly identical solutions.
+
+\end{itemize}
+
+\subsection{Raytracing}
+Raytracing is sensitive to the map area and resolution set by $\Rmap$ and
+$\Rpix$.  In the left panel of \figref{raytracing convergence tests} we compare
+the change in time delays as we increase $\Rmap$.  The image system is a quad
+with the central maximum image. When the projected mass begins to fall off the
+time delays stabilize. In the right panel we see the effect of changing the
+resolution of the map.  Increasing the resolution allows for more accurate
+placement of the images and after about $\Rpix=40$ the image positions change
+by less than 0.04 arcsec. The one image that continues to change is near to a
+caustic.  
+
+%\begin{figure}
+%\label{raytracing convergence tests}
+%\plottwo{tdconv_pr45.pdf}{imgpos_conv_mr20.pdf}
+%\caption{(left) Test for predicted time delay convergence as $\Rmap$ changes.
+%$\Rpix=45$. After about $\Rmap=20$ most of the asymmetric mass is in the map.
+%(right) Test for predicted image position $\theta$ convergence as $\Rpix$
+%changes. $\Rmap=20$ arcsec.}
+%\end{figure}
+
+\bibliographystyle{mn2e}
+\bibliography{ms}
+
+\end{document}
+
