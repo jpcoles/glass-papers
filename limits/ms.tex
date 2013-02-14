@@ -45,7 +45,7 @@ Prasenjit Saha
 \begin{document}
 \maketitle
 
-\tableofcontents
+%\tableofcontents
 
 \begin{abstract}
 We show the effectiveness of reconstructing the mass distribution of four mock galaxies using
@@ -120,10 +120,11 @@ observed for a lens. In principle, this determines that mass, but in practice
 this can only place strong constraints on the mass distribution, as it does not
 solve the problem that the exact distribution is highly degenerate. One can
 choose to postpone this problem and simply fit models to the given data.  The
-earliest examples were singular isothermal sphere models (SIS) but have since
-evolved to multi-component models include separate models for the stars and
-dark matter. Other methods that do not ignore this problem use genetic
-algorithms or linear programming to explore the large space of solutions.
+earliest examples were singular isothermal sphere (SIS) or elliptical (SIE)
+models but have since evolved to multi-component models include separate models
+for the stars and dark matter. Other methods that do not ignore this problem
+use genetic algorithms or linear programming to explore the large space of
+solutions.
 
 Worse, though, is when only time delays are known and $H_0$ is to be inferred.
 In this case, one is again free to change the mass and $H_0$ while keeping
@@ -132,48 +133,87 @@ value of $H_0$. However, it has been shown that combining the modeling results
 of several strong lenses with time delays can significantly reduce the allowed
 values and provides a measure to within 10 percent.
 
-\subsection{Future} %-----------------------------------------------------------
-    \begin{itemize}
-    \item New satellites will find many new lenses.
-    \item LSST, DES, PanSTARRS?, SKA
-    \item What is the most important data to have?
-    \end{itemize}
+Despite these difficulties lensing is a direct probe of the gravitating
+mass in a halo and there are a number of open problems in galaxy formation
+that lensing can help address. For instance, the debate remains as to what
+form the inner slope of the density profile takes. Numerical simulations of
+dark matter suggest a cusp, while observations from lensing and stellar dynamics
+suggest cores. This may, however, be only a matter of scale, as both theory
+and observations agree that clusters have cuspy profiles. 
+
+Lensing may also be useful in measuring possible adiabatic contraction of the 
+dark matter halo due to the central stars in a galaxy. For this, one needs
+high resolution mass models of the stellar profile combined with accurate models
+of the total mass. Indeed, with such models, one may also improve the statistics
+of the dark matter fraction in a galaxies over many different mass scales.
+
+These open problems suggest what kind of lensing data will be required in the
+future.  Future surveys will provide many lenses but time delays will require a
+long follow up. Stellar mass maps, however, take a known, fixed observation
+time and can be performed for many lenses. It will be important not only to
+measure the stellar velocity dispersion at an arbitrary radius, but to ensure
+that the measurement is taken at a radius different to the Einstein radius.
+For the radio surveys like SKA it will be important to detect the central image
+of the lens. This can provide mass information all the way to the center of the
+galaxy.
+
+In this paper we perform a parameter study using four mock galaxies that differ
+in their dark matter and stellar profiles. We consider double and quad lensing
+morphologies, time delays, the presence of a central image, red shift contrast
+between multiple sources, and image configuration.  We also consider the
+effects of adding stellar mass models as lower bound constraints on the mass
+distribution.  The modeling and analysis is performed using a new free form
+lens modeling framework called \Glass. 
+
+We first review the basic lensing theory we will need and then describe how
+\Glass is used to generate lensing models. The mock data and how it was
+generated is described in \secref{}. In section{} we discuss the lensing
+configurations in the parameter study and present some example output. Our
+finals results are presented in \secref{}.
 
 
-\subsection{Present} %----------------------------------------------------------
-    \begin{itemize}
-    \item SLACS, CASTLES, CosmoGrail, CLASS, CFHTLS, SNAP?
-    \end{itemize}
-
-\subsection{Why do we need accurate galaxy models?} %---------------------------
-    \begin{itemize}
-    \item Galaxy formation
-    \item Cusp/Core problem
-    \item Universal halos?
-    \item Adiabatic contraction
-    \item DM fraction
-    \end{itemize}
+%\subsection{Future} %-----------------------------------------------------------
+    %\begin{itemize}
+    %\item New satellites will find many new lenses.
+    %\item LSST, DES, PanSTARRS?, SKA
+    %\item What is the most important data to have?
+    %\end{itemize}
 
 
-\subsection{Past work on constraining profiles.} %------------------------------
-    \begin{itemize}
-    \item Much of the early literature used simple SIS and SIE parametric models. Understandable.
-    \item Bayesian model fitting
-    \item Free-form modeling
-    \item Keeton has a good review.
-    \end{itemize}
+%\subsection{Present} %----------------------------------------------------------
+%    \begin{itemize}
+%    \item SLACS, CASTLES, CosmoGrail, CLASS, CFHTLS, SNAP?
+%    \end{itemize}
 
-\subsection{What are the problems?} %------------------------------
-    \begin{itemize}
-    \item Very little data per lens.
-    \item Several well-known degeneracies.
-    \item Velocity dispersions: aperture too small
-    \end{itemize}
+%\subsection{Why do we need accurate galaxy models?} %---------------------------
+    %\begin{itemize}
+    %\item Galaxy formation
+    %\item Cusp/Core problem
+    %\item Universal halos?
+    %\item Adiabatic contraction
+    %\item DM fraction
+    %\end{itemize}
 
-\subsection{Goals of the paper} %------------------------------
-    \begin{itemize}
-    \item Perform a parameter study over lens morphologies and quantify what they can tell us about profiles.
-    \end{itemize}
+
+%\subsection{Past work on constraining profiles.} %------------------------------
+    %\begin{itemize}
+    %\item Much of the early literature used simple SIS and SIE parametric models. Understandable.
+    %\item Bayesian model fitting
+    %\item Free-form modeling
+    %\item Keeton has a good review.
+    %\end{itemize}
+
+%\subsection{What are the problems?} %------------------------------
+    %\begin{itemize}
+    %\item Very little data per lens.
+    %\item Several well-known degeneracies.
+    %\item Velocity dispersions: aperture too small
+    %\end{itemize}
+
+%\subsection{Goals of the paper} %------------------------------
+%    \begin{itemize}
+%    \item Perform a parameter study over lens morphologies and quantify what they can tell us about profiles.
+%    \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
