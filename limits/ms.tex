@@ -1,10 +1,16 @@
 \documentclass[onecolumn,galley]{mn2e}
 %\documentclass[onecolumn,galley,draft]{mn2e}
 %\usepackage{myaasmacros}
+\usepackage{mathrsfs}
 \usepackage{amsmath}
 \usepackage{graphicx}
 
 \newcommand{\Glass}{{\sc Glass}}
+\newcommand{\PixeLens}{{\sc PixeLens}}
+\newcommand{\Rmap}{\ensuremath{R_\mathrm{map}}}
+\newcommand{\Rpix}{\ensuremath{R_\mathrm{pix}}}
+\newcommand{\M}{\ensuremath{\mathscr{M}}}
+\newcommand{\E}{\ensuremath{\mathscr{E}}}
 
 \newcommand{\kpc}{\ensuremath{\mathrm{kpc}}}
 \newcommand{\Msun}{\ensuremath{\mathrm{M}_\odot}}
@@ -12,8 +18,7 @@
 \newcommand{\figref}[1] {Figure~\ref{#1}}
 \newcommand{\eqnref}[1] {Eq.~(\ref{#1})}
 \newcommand{\secref}[1] {Section~\ref{#1}}
-\newcommand{\Rmap}{\ensuremath{R_m}}
-\newcommand{\Rpix}{\ensuremath{R_p}}
+\newcommand{\appref}[1] {Appendix~\ref{#1}}
 \newcommand{\e}[1]{\ensuremath{\times 10^{#1}}}
 \renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
 
@@ -232,7 +237,7 @@ The lensing equation
 \end{equation}
 %
 maps an observed image position $\vec\theta$ to a source position $\vec\beta$
-via the correction term 
+via the correction factor 
 %
 \begin{equation}
 \vec\alpha(\vec\theta) = \frac{4G}{c^2} \int \Sigma(\vec\theta')\frac{(\vec\theta - \vec\theta')}{\ |\vec\theta - \vec\theta'|^2}d^2\vec\theta'
@@ -247,7 +252,7 @@ a dimensionless number that depends on cosmology.  The lens can then be thought
 of as a projected surface density $\Sigma$ which diverts the path of a photon
 instantaneously through the bending angle $\vec\alpha$.
 
-Since we will later want to model the mass distribution with a computer it will
+Since we will later want to model the density distribution with a computer it will
 be convenient to choose units that make the relevant quantities of order unity.
 We therefore measure lengths in light years, time in years, positions in
 arcseconds, and choose $c=1$ and $4\pi G = N^2$, where $N^2 \equiv 206,265$
@@ -285,6 +290,7 @@ and a lensing potential
 %
 \begin{equation}
 \psi(\vec\theta) = \frac1\pi \int \kappa_\infty(\vec\theta') \ln|\vec\theta - \vec\theta'| d^2\vec\theta'\
+\label{lensing potential}
 \end{equation}
 %
 we can express \eqnref{full arrival time} very compactly as
@@ -300,8 +306,7 @@ multiple sources.
 
 If we think of $\tau$ as a surface then images will be observed where ever
 $\nabla \tau = 0$. In other words, images obey Fermat's principle and appear at
-extremums of the surface. From this we arrive back at \eqnref{lensing
-equation}.
+extremums of the surface. Note that $\nabla \tau$ is just \eqnref{lensing equation}.
 
 The only observables from \eqnref{arrival time} are the image positions, and
 perhaps the stellar contribution to $\kappa_\infty$.  If the source object is
@@ -309,11 +314,11 @@ variable, however, then the observed light curves of each image will be
 identical, but possibly shifted in time due to the different arrival times.
 The time difference between identical portions of the light curves is called
 the time delay $\Delta t$ between images.  Using \eqnref{tau} the time delay
-$\Delta t_{21}$ between two images $\theta_1$ and $\theta_2$, where $\theta_2$
-arrives after $\theta_1$, is $\Delta t_{21} = \Delta \tau_{21}(1+z_L)d_L /
+$\Delta t_{21}$ between two images $\vec\theta_1$ and $\vec\theta_2$, where $\vec\theta_2$
+arrives after $\vec\theta_1$, is $\Delta t_{21} = \Delta \tau_{21}(1+z_L)d_L /
 \nu$. If $\beta$ and $\kappa_\infty$ were known exactly this would allow one
 to precisely infer the Hubble constant. However, the source position is not
-observable and the mass distribution is highly degenerate.
+observable and the density distribution is highly degenerate.
 
 \subsection{Degeneracies} %-----------------------------------------------------
 
@@ -323,10 +328,10 @@ steeper. This is particularly bad for inferring the Hubble constant, as the
 lens profile will tend to become steeper for larger values of $H_0$.
 
 Other degeneracies include ring degeneracies, where one is allowed to build
-up a mass distribution as a series of mass rings; the presence of substructure;
+up a density distribution as a series of mass rings; the presence of substructure;
 and the effects of merging galaxies. 
 
-Shape degeneracy---a twisting in the mass.
+Shape degeneracy---a twisting in the density.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -334,34 +339,84 @@ Shape degeneracy---a twisting in the mass.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Numerical Methods} 
 
-The lens configurations were generated within the new lens modeling framework
-GLASS, described in Appendix \ref{GLASS Description}. 
+\subsection{A new lens modeling framework: \Glass}
 
-With this generated data, or data taken from real observations, GLASS can produce
-an ensemble of possible mass distributions drawn from the space of solutions by
-using a MCMC algorithm.  The technique is similar to that used in PixeLens
-(cite Saha, Coles) but with an improved sampling algorithm.
+\Glass\ is an evolution of the concepts employed by the free form modeling tool
+\PixeLens\ but completely rewritten in Python and C. The key improvements are:
+\begin{enumerate}
+  \item A modular framework allows new priors to be added and modified easily;
+  \item The basis functions approximating a model can be changed; 
+  \item Non-linear constraints can be imposed in an automated post-processing step; 
+  \item The central region can be have a higher resolution to capture steep models; 
+  \item Stellar density can be used as an additional constraint.  
+  \item Point or extended mass objects in the field.
+\end{enumerate}
+At its heart lies a new algorithm for sampling high dimensional linear spaces
+that is used to generate lensing models. This algorithm was described and
+tested in \cite{}. \Glass\ is also multi-threaded allowing it to run
+efficiently on many-cored machines.  The software is freely available for
+download. In our tests we will take advantage of each of these new features.
 
-As we have done in previous work, we imposed several priors on the reconstruction to
-make it more physical, namely,
+\subsection{Discrete models}
+
+For this paper we will restrict ourselves to using the pixelated basis set that
+has been employed in previous work and is implemented in \PixeLens. Here we will
+briefly review the main ideas. The algorithm for generating models in \Glass\
+samples a convex polytope in a high dimensional space whose interior points are
+solutions to the lensing equation and satisfy other physically motivated linear
+priors. We must therefore formulate all of our equations as equations linear in the
+unknowns. We describe the density distribution
+$\kappa$ as a set of discrete grid cells or pixels $\kappa_i$.
+In this way, we rewrite the potential (\eqnref{lensing potential}) as
 %
+\begin{equation}
+  \psi(\vec\theta) = \sum_n \kappa_n Q_n(\vec\theta)
+\end{equation}
+%
+where the sum runs over all the pixels and $Q_n$ is the integral of the logarithm
+over pixel $n$. The exact form for $Q$ is described in \appref{Q derivation}.
+The pixels only cover a finite circular area with physical radius $\Rmap$ and 
+pixel radius $\Rpix$. To account for any global shearing outside this region
+from, e.g., a neighboring galaxy, we also add two shearing terms
+%
+\begin{equation}
+\gamma_1(\theta_x^2 - \theta_y^2) + 2\gamma_2\theta_x\theta_y\quad.
+\end{equation}
+%
+We can continue adding terms to account for assumed potentials or potentials
+induced from the presence of other galaxy in the field. If the stellar density
+has been estimated we can use this as a lower bound where the stellar potential
+is a known constant
+%
+\begin{equation}
+  \psi^*(\vec\theta) = \sum_n \kappa^*_n Q_n(\vec\theta)\quad.
+\end{equation}
+%
+We can find the discretized lens equation by simply taking the gradient of the
+above equations. 
+
+The solution space constrained by the lens equation and the arrival times are
+not enough to form a closed volume. We have not imposed any strong constraints
+on the density even so much as to ensure that it is non-negative everywhere. We
+must therefore provide additonal linear constraints so that we generate physical
+models. The explicit implementation for these priors has been explained in. In
+summary, we require that
 \begin{enumerate}
 \item The density must be non-negative everywhere.
-\item The density profile must have a slope $\le 0$. This prevents hollow rings.
+\item The density profile must have a slope everywhere $\le 0$. This prevents hollow rings.
 \item The local gradient everywhere must point within $45^{\circ}$ of the center.
 \item Density variations must be smooth.
-\item Image parity.
-\item The density is radially symmetric.
+\item Image parity is enforced.
+\item The density is radially symmetric. (Optional)
 \end{enumerate}
-%
-Since lensing in this case is highly degenerate, many possible realizations are
-produced. Each run produced an ensemble of 10000 models.  
 
-The quality of a model $M_i$ in an ensemble is judged by computing
-\begin{equation}
-\chi_i^2 = \frac{\sum_j (M_{ij} - G_j)^2}{\sum_j G_j^2}
-\end{equation}
-where $M$ and $G$ are the radial profiles of the model and galaxy, respectively.
+In the simplest form a single model for a lens is a tuple of the form
+$\M = (\vec\kappa, \beta, \gamma_1, \gamma_2)$. A single model represents a 
+single point in the solution space polytope. Using the MCMC sampling strategy
+described in \cite{} we uniformly sample this space. Collectively, the sampled
+models are referred to as an ensemble $\E = \{\M_i\}$, where we typically
+generate 1000 models. We will typically show the ensemble average $|\E|$ in the
+plots to follow.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -369,7 +424,7 @@ where $M$ and $G$ are the radial profiles of the model and galaxy, respectively.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Test Data}
+\section{Mock Galaxy Data}
 
 \subsection{Four galaxies and their properties} %--------------------------------------------------------------
 
@@ -578,6 +633,18 @@ that it is turned off.
 
 \section{Results} %--------------------------------------------------------------
 
+\subsection{Model quality}
+We estimate of the quality of a model $\M_i$ by comparing the recovered
+density profile $\rho_\M(r)$ against the profile of the mock galaxy $\rho_G(r)$.
+In particular, the plots show the RMS quantity
+%
+\begin{equation}
+  \chi_i = 100 \times \sqrt{\frac{\int_r (\rho_{\M_i}(r) - \rho_G(r))^2}{\int_r \rho_G(r)^2}}
+  %\chi_i = \frac{\sum_r (\rho(r)_{\M_i} - \rho(r)_G)^2}{\sum_r \rho(r)_G^2}
+\end{equation}
+
+
+
 \begin{figure}
 \plotone{AAZContrastR1R5_Tm.pdf}
 \caption{A typical reconstructed lens. The first panel on the left shows the
@@ -770,6 +837,39 @@ caustic.
 %(right) Test for predicted image position $\theta$ convergence as $\Rpix$
 %changes. $\Rmap=20$ arcsec.}
 %\end{figure}
+
+\section{Derivation of pixelated density coefficients}
+\label{Q derivation}
+When the lens plane is pixelized we need a discrete form of the integral
+%
+\[\int \kappa(\vec\theta') \ln |\vec\theta-\vec\theta'| d^2\vec\theta' \]
+%
+In particular we want
+%
+\[\sum_n \kappa_n Q_n(\vec\theta - \vec\theta_n)\]
+%
+where $Q_n$ is the logarithm evaluated over the $n$th pixel at position $\vec\theta_n = (x_n, y_n)$. Let the pixel side length be $a$.
+Instead of working with a position vector $\vec\theta$ we work in cartesian coordinates such that
+%
+$|\vec\theta| = r = \sqrt{x^2 + y^2}$. The integral now becomes
+%
+\[Q_n(x,y) = \frac12 \int_{y_-}^{y_+}\int_{x_-}^{x_+} \ln (x'^2+y'^2) dx' dy'\]
+%
+where $x_\pm = x_n \pm (a/2)$ and similarly for $y_\pm$.
+Using the identity
+%
+\[\int \ln(x^2+y^2) dx = x \ln(x^2+y^2) - 2x + 2y\arctan(x/a) \]
+%
+we can express $Q_n$ as the sum of four parts
+%
+\[Q_n(x,y) = \frac12 \left[ \tilde Q_n(x_+,y_+)
+        + \tilde Q_n(x_-,y_-)
+        - \tilde Q_n(x_-,y_+)
+        - \tilde Q_n(x_+,y_-) \right]\]
+%
+where
+%
+\[\tilde Q_n(x,y) = xy(\ln r^2 - 3) + x^2\arctan(y/x) + y^2\arctan(x/y)\]
 
 \bibliographystyle{mn2e}
 \bibliography{ms}
