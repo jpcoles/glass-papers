@@ -11,6 +11,7 @@
 \newcommand{\Rpix}{\ensuremath{R_\mathrm{pix}}}
 \newcommand{\M}{\ensuremath{\mathscr{M}}}
 \newcommand{\E}{\ensuremath{\mathscr{E}}}
+\newcommand{\eps}{\ensuremath{\varepsilon}}
 
 \newcommand{\kpc}{\ensuremath{\mathrm{kpc}}}
 \newcommand{\Msun}{\ensuremath{\mathrm{M}_\odot}}
@@ -424,18 +425,65 @@ plots to follow.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Mock Galaxy Data}
+\subsection{Raytracing}
+\Glass\ can also determine the position of images and time delays from 
+particle-based simulation output given a source position $\vec\beta$. This is
+used to generate the lens configurations used in the parameter study.  The
+particles are first projected onto a very high resolution grid representing the
+lens plane. The centers of each of the grid cells are mapped back onto the
+source plane using \eqnref{lensing equation}. If the location on the source
+plane is within a user specified $\eps_\mathrm{accept}$ of $\vec\beta$ then the
+point on the image plane is accepted and further refined using a root finding
+algorithm until the distance to $\vec\beta$ is nearly zero. If multiple points
+converge to an $\eps_\mathrm{root}$ of each other then only one point is taken.
+Care must be taken that the grid resolution is high enough that the resulting
+image position error is below the equivalent observational error. Time delays
+are the calculated in order from the arrival time at each image (\eqnref{tau}).
 
-\subsection{Four galaxies and their properties} %--------------------------------------------------------------
+\section{Parameter study}
 
-We consider four different triaxial galaxies, shown in \figref{test galaxies},
-where we have varied the slope index of the stars and the dark matter. We
-explore the cases were the stars follow either a $\gamma_\star=1$ or
-$\gamma_\star=1.5$ profile and where the dark matter profile is cusped or
-cored. The enclosed mass $M(a_\star)= 0.18\e{11}$ at the stellar scale
-radius $a_\star=2$ kpc is fixed for all galaxies in order to resemble B1115. We
-therefore place the galaxy at a redshift $z_L = 0.31$ in a cosmology with
-$H_0^{-1}=13.7$ Gyr, $\Omega_M=0.28$, and $\Omega_\Lambda=0.72$.
+\subsection{Mock galaxy data}
+
+The four mock galaxies we consider have been designed to test our 
+recovery procedure on galaxies that have steep and shallow dark matter
+and stellar profiles. The enclosed mass in all cases is fixed at $M(a_\star)=
+0.18\e{11}$ at the scale radius $a_\star=2$ kpc. These values were chosen to
+closely resemble B1115. We therefore also place the galaxy at a redshift of
+$z_L = 0.31$. Throughout, we assume a cosmology where $H_0^{-1}=13.7$ Gyr, $\Omega_M=0.28$,
+and $\Omega_\Lambda=0.72$.
+
+The models were
+first generated as three dimensional particle distributions with the
+tool DEHNEN, where each component follows the profile
+\begin{equation}
+\rho(r) = \frac{M}{4\pi a^3}(3-\gamma){(r/a)^{-\gamma}(1 + r/a)^{\gamma-4}}
+\label{Dehnen profile}
+\end{equation}
+and where $\gamma$ is the profile index and $a$ is the scale radius. The
+four combinations of profile indices are shown in \tabref{Lens profile params}.
+
+\begin{table}
+\begin{tabular}{clllllll}
+Galaxy & $\gamma_\star$ & $M_\star$ & $\gamma_\mathrm{DM}$ & $M_\mathrm{DM}$ \\
+\hline
+AA & 1 & 4 & 0.05 & $11^{2.95}$ \\
+AC & 1 & 4 & 1 & $11^2$ \\
+BB & 1.5 & $2^{1.5}$ & 0.16 & $11^{2.84}$ \\
+BC & 1.5 & $2^{1.5}$ & 1 & $11^2$
+\end{tabular}
+\caption{Profile parameters for the four mock galaxies. The resulting profiles only roughly follow
+\eqnref{Dehnen profile} because the galaxies are triaxial. Masses are in units of $0.18\e{11}\Msun$. The scale lengths for
+all lenses are $(a_\star,a_\mathrm{DM})=(2,20)$ kpc and by definition
+$M_\star(a_\star) = M_\mathrm{DM}(a_\star) = 1$.}
+\label{Lens profile params}
+\end{table}
+
+In \figref{mock galaxies} we show the 3D radial density, 
+the 2D projected density, and the 2D enclosed mass for each
+galaxy. Solid lines represent the total mass, dashed lines the dark 
+matter, and dotted lines the stellar mass. The projected plot has
+been normalized to the critical density 
+$\kappa_\mathrm{crit}\sim 1.8\e{9}$.
 
 \begin{figure}
 \plotone{cmp_simulations.pdf}
@@ -450,39 +498,8 @@ critical density for lensing. At $z_L=0.31$, $\kappa_\mathrm{crit}\sim 1.8\e{9}$
 \textbf{(Right)}
 The enclosed projected mass.
 }
-\label{test galaxies}
+\label{mock galaxies}
 \end{figure}
-
-%\tabref{source data} summarizes
-%each source and image system and \tabref{source time delays} lists the time
-%delays.
-
-Each galaxy was generated using the tool DEHNEN with the dark matter and stellar
-densities roughly described by Dehnen profiles
-%
-\begin{equation}
-\rho(r) = \frac{M}{4\pi a^3}(3-\alpha){(r/a)^{-\alpha}(1 + r/a)^{\alpha-4}}
-\label{Dehnen profile}
-\end{equation}
-%
-The individual parameters are shown in \tabref{Lens profile params}. 
-
-\begin{table}
-\begin{tabular}{clllllll}
-Galaxy & $\gamma_\star$ & $M_\star$ & $\gamma_\mathrm{DM}$ & $M_\mathrm{DM}$ \\
-\hline
-AA & 1 & 4 & 0.05 & $11^{2.95}$ \\
-AC & 1 & 4 & 1 & $11^2$ \\
-BB & 1.5 & $2^{1.5}$ & 0.16 & $11^{2.84}$ \\
-BC & 1.5 & $2^{1.5}$ & 1 & $11^2$
-\end{tabular}
-\caption{Profile parameters for the four test galaxies. The resulting profiles only roughly follow
-\eqnref{Dehnen profile} because the galaxies are triaxial. Masses are in units of $0.18\e{11}\Msun$. The scale lengths for
-all lenses are $(a_\star,a_\mathrm{DM})=(2,20)$ kpc and by definition
-$M_\star(a_\star) = M_\mathrm{DM}(a_\star) = 1$.}
-\label{Lens profile params}
-\end{table}
-
 
 
 \subsection{Test scenarios} %--------------------------------------------------------------
@@ -510,6 +527,8 @@ For each galaxy we constructed ten test scenarios:
 using (from \textbf{top} to \textbf{bottom}) the galaxies AA, (AC MISSING), BB, BC.}
 \label{Test reconstructions}
 \end{figure}
+
+\subsection{Recovery} %--------------------------------------------------------------
 
 \begin{table}
 \begin{tabular}{lccccc}
