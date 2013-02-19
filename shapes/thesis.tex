@@ -1,0 +1,225 @@
+\documentclass[10pt]{article}
+
+\usepackage[margin=0.5in]{geometry}
+\usepackage{multirow}
+\usepackage{lscape}
+
+\usepackage{natbib}
+\usepackage{natbibmnfix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{subfigure}
+
+\usepackage[small]{titlesec} % make section heading small
+
+\newcommand{\apj}{ApJ}
+\newcommand{\apjs}{ApJS}
+\newcommand{\mnras}{MNRAS}
+\newcommand{\aap}{A\&A}
+\newcommand{\araa}{ARA\&A}
+\newcommand{\apjl}{ApJL}
+\newcommand{\aj}{AJ}
+\newcommand{\nat}{Nature}
+
+%%%%%%%%%%% Still to change: Dominiks PhD!
+\title{ALIGNMENT OF LIGHT AND MASS IN LENSING GALAXIES}
+\author{Claudio Bruderer}
+
+\begin{document}
+\maketitle
+
+
+\begin{abstract}
+\noindent Something
+\end{abstract}
+
+
+%\tableofcontents
+
+
+
+\section{Introduction}
+
+\subsection{Context/Background/Motivation}
+\begin{itemize}
+\item Why interesting (lensing can constrain mass distribution (enclosed mass constraint independent from model with only few percent uncertainty e.g. Kochanek 1991?, Wambsganss \& Paczyński 1994?), insights into structure formation)
+\item What is to be expected from theory (dm, alternative gravity)
+\end{itemize}
+
+
+\subsection{Anything done before?}
+\textbf{\cite{1997ApJ...482..604K}}: Look at 17 lenses at redshifts ranging between 0.1 and $\sim1$. Sample consists of mainly passively evolving elliptical galaxies and a few spirals. Claim that generally projected light and dark matter distributions are strongly correlated and are not far out of alignment ($\lesssim10^{\circ}$), except in cases where there are strong external tidal perturbations (although misalignments are not necessary in these cases). 'Dark matter halos can be significantly flatter than the light (e.g., Sackett et al. 1994; Buote \& Canizares 1994, 1996; also see the review by Sackett 1996)'. To reconstruct the mass they fit singular isothermal ellipsoid (SIE) lens models, which immediately give them the shape. Another model they use is a singular isothermal sphere (SIS) and some external tidal perturbation (shear). As already stated in \cite{1998ApJ...509..561K}, these models sometimes give a bad fit. To obtain a good fit, an another independent source of external shear is needed (external tidal perturbation). They also state that it is known that the lenses Q0957 + 561 (Young et al. 1980, Grogin \& Narayan 1996), PG 1115 + 080 (Keeton \& Kochanek 1997, Kundic et al. 1997a, Schechter et al. 1997, Tonry 1998), B1422 + 231 (Hogg \& Blandford 1994, Kormann et al. 1994, Kundic et al 1997b, Tonry 1998) are subject to significant tidal perturbations by a nearby cluster, group or galaxy (also line-of-sight structure) (--> All lying in a environment? Ask Prasenjit).
+
+\textbf{\cite{1998ApJ...509..561K}}: They used SIEs for the reconstruction of 6 lenses. They find that for many lenses a model with two independent shears (e.g. SIE + 1 external shear) gives a much better fit. Additionally, the fits are much better than just trying to fit different radial mass distributions with the same number of degrees of freedom. Numerical simulations generally produce more elliptical and more triaxial dark matter halos than luminous galaxies (e.g. Warren et al. 1992; Dubinski 1992, 1994). They can however only compare 3 galaxies with eachother.
+
+\textbf{\cite{1998PhDT.........6K}}: Not sure whether everything was already covered in previous papers or not. He modelled observed lenses to determine their shapes and finds that the dark matter halos are generally aligned with the luminous part. Exceptions are however lenses with known tidal disruptions, where there can be a misalignment. He concludes that the halos were modified by interactions with the galaxies. He however does not state in the abstract how he modelled the lenses.
+
+\textbf{\cite{2000ApJ...538L.113N}}:
+
+\textbf{\cite{2002sgdh.conf...62K}}:
+
+\textbf{\cite{2005MNRAS.360.1333W}}:
+
+\textbf{\cite{2008MNRAS.383..857F}}:
+
+\textbf{\cite{2011AstRv...6f..43B}}:
+
+\textbf{\cite{2012ApJ...761..170G}}:
+
+\textbf{\cite{2000ApJ...536..584L}}:
+
+
+\subsection{New here}
+\begin{itemize}
+\item Statistics
+\item Free-form (explain advantages of free-form over parametric modelling (\cite{2004AJ....127.2604S}, \cite{2012MNRAS.425.3077L}, \cite{2008ApJ...681..814C}), cite GLASS (\cite{2012MNRAS.425.3077L})
+\item group versus stellar misalignment with dm halo
+\end{itemize}
+
+
+
+\section{Data}
+\begin{itemize}
+\item SPS (Ignacio Ferreras, Dominik, etc. (\cite{2011ApJ...740...97L}))
+\item Bundle information in tables (especially what input data was used for the lenses)
+\end{itemize}
+
+\begin{landscape}
+ \begin{center}
+  \begin{tabular}{l c c c c c c c c c}
+	\hline
+	\multirow{2}{*}{Lens} & \multirow{2}{*}{$z_{L}$} & \multicolumn{2}{c}{Group/Cluster centroid} & & \multicolumn{2}{c}{Other galaxy} & \multirow{2}{*}{Galaxy type} & \multirow{2}{*}{Environment} & \multirow{2}{*}{References}\\ \cline{3-4} \cline{6-7}
+	 & & $\Delta\alpha$ ('') & $\Delta\delta$ ('') & & $\Delta\alpha$ ('') & $\Delta\delta$ ('') & & & \\ \hline \hline
+	Q0047 & 0.48 & $3.6\pm15.6$ & $43.2\pm28.8$ &   & & & Early-type & G(9) & \cite{2011ApJ...726...84W}\\
+	Q0142 & 0.49 & & &   & & & Early-type & - & \cite{2000ApJ...536..584L}\\
+	MG0414 & 0.96 & & &   & $-0.385$ & $1.457$ & Early-type & 1 & \cite{1993AJ....105....1S}\\
+	B0712 & 0.41 & & &   & $47$ & $-91$ & Early-type & 1 & \cite{2002AJ....123..627F}\\
+	HS0818 & 0.39 & & &   & & & see below & 1 & aaaaaaaaa\\%\cite{2000A&A...357L..29H}\\
+	RXJ0911 & 0.77 & $-12.0$ & $-39.8$ &    & & & Early-type & C & \cite{2001ApJ...555....1M}\\
+	BRI0952 & 0.63 & &   & & & & Early-type & - & aaaaaaaaa\\%\cite{2007A&A...465...51E}\\
+	Q0957 & 0.36 & $4.8$ & $2.1$ &   & & & Early-type & C & \cite{1998ApJ...504..661C}\\
+	LBQS1009 & 0.87 & & &   & & & Early-type & - & aaaaaaaaa\\%\cite{2004A&A...428..741F}\\
+	B1030 & 0.60 & & &   & $-9.78$ & $8.54$ & Early-type & 1 & \cite{2000ApJ...536..584L}\\
+	HE1104 & 0.73 & & &   & & & Early-type & - & aaaaaaaaa\\%\cite{2004A&A...428..741F}\\
+	PG1115 & 0.31 & $-10.8\pm21$ & $-3.6\pm15.6$ &   & & & Early-type & G(13) & \cite{2011ApJ...726...84W}\\
+	B1152 & 0.439 & & &   & & & Unknown & - & see below\\
+	B1422 & 0.34 & $61.2\pm25.2$ & $-10.8\pm23.4$ &   & & & Early-type & G(17) & \cite{2011ApJ...726...84W}\\
+	SBS1520 & 0.72 & & &   & & & Early-type & G(4) & see below\\
+	B1600 & 0.41 & $-8.44286$ & $-1.48571$ &   & & & Late-type & G(7) & \cite{2007AJ....134..668A}\\
+	B1608 & 0.63 & $-0.697246$ & $7.96956$ &   & & & Both & G(8) & \cite{2006ApJ...642...30F}\\
+	MG2016 & 1.01 & & &   & & & Early-type & C(69) & \cite{2003MNRAS.344..337T}\\
+	B2045 & 0.87 & & &   & & & Early-type & - & \cite{1999AJ....117..658F}\\
+	HE2149 & 0.60 & $-36.6$ & $14.2$ &   & & & Early-type & G & \cite{2006ApJ...646...85W}\\
+	Q2237 & 0.04 & & &   & & & Late-type & - & see below\\ 
+	\hline
+  \end{tabular}
+ \end{center}
+\end{landscape}
+
+The pixelated stellar mass maps we use here was reconstructed by \cite{leier11phd}. For each pixel the surface brightness was compared with stellar mass-to-light ratios, which were determined by populations synthesis model. Details for this method can be found in \cite{leier11phd}, \cite{2005ApJ...623L...5F}, \cite{2008MNRAS.383..857F}.
+
+Here some comments about the environments of the lenses in the sample.
+
+\textbf{Q0047-2808}: \cite{2011ApJ...726...84W} find a group of 9 members, spectroscopically confirmed. According to \cite{1996MNRAS.278..139W} it is a luminous early-type galaxy.
+
+\textbf{Q0142-100}: The required external shear is comparable to the cosmic LSS-contribution, and it also seems to be a passively evolving early-type galaxy according to \cite{2000ApJ...536..584L} and confirmed by \cite{2007A&A...465...51E}.
+
+\textbf{MG0414+0534}: According to \cite{1999AJ....117.2034T} the lens seems to be a passively evolving early-type galaxy. \cite{1993AJ....105....1S} find a luminous satellite galaxy north-west of the lens. The position data of this object was taken from CASTLES.
+
+\textbf{B0712+472}: According to \cite{2002AJ....123..627F} potentially only one other galaxy 102'' to the south-east at a similar redshift. There is however a group of 10 galaxies at a lower redshift. According to \cite{1998AJ....115..377F} the spectrum is typical for an early-type galaxy.
+
+\textbf{HS0818+1227}: According to \cite{2000A&A...357L..29H} one galaxy, which seems to be at the same redshift, can be found near the lens. In roughly the same direction, two other brighter galaxies can be found a bit farther away. However, no further inquiries were made whether they all belong to the same group or not. There are also a couple of fainter ones, which could potentially be group members. \underline{TO DO}: Get relative position of nearest galaxy! More or less everybody lists HS0818 as an early-type, however noone states a source for their belief.
+
+\textbf{RXJ0911+0551}: According to \cite{2001ApJ...555....1M} the lens lies on the outskirts of a cluster environment. The cluster seems to be rather complex and not spherical, and it possibly is not dynamically relaxed. The X-ray emission analysis yields a temperature of 2.3 keV. There is also a satellite galaxy to the north-west direction (\cite{2000ApJ...544L..35K}). The lens is a almost circular early-type galaxy (\cite{2012A&A...538A..99S}). Time delay: $\Delta t_{BA}=146\pm4$ (\cite{2002ApJ...572L..11H}; CASTLES: BD-delay, here BA-delay).
+
+\textbf{BRI0952-0115}: Lens possibly part of smaller system (of 2 or 3 other galaxies), which is found at a slightly higher redshift, according to \cite{2007A&A...465...51E}. Surely group found in \cite{2006ApJ...641..169M} is at a lower redshift than the lens as the redshift estimate $z=0.41$ was used. \cite{2007A&A...465...51E} however find that the redshift is more likely to be $z=0.632$. In \cite{2000ApJ...536..584L} it is found that required external shear can be explained easily by a cosmic contribution. \cite{2000ApJ...536..584L}, and later on confirmed by \cite{2007A&A...465...51E}, find that it seems to be a typical early-type galaxy. \underline{TO DO}: Why is the such a hugely different redshift estimate in Table 4 of \cite{2006ApJ...641..169M}? Reason: In \cite{2000ApJ...536..584L} this redshift is listed as the lens redshift. --> Correct redshift used in analysis?
+
+\textbf{Q0957+561}: The lens is a cD galaxy lying close to the center of a cluster with a high sprial galaxy-fraction (e.g. \cite{1992MNRAS.254P..27G}, \cite{1994A&A...291..411A}, \cite{1998ApJ...504..661C}). As listed in table 3 of \cite{2000ApJ...542...74K}, the position angles to the center of the cluster of earlier lens reconstructions range between 51.8 deg and 67.8 deg measured north-through-east. Judging 'by hand' from the center of the X-ray emission measured by \cite{1998ApJ...504..661C}, we find $\Delta\alpha=4.8''$ and $\Delta\delta=2.1''$, which corresponds to a position angle of 66.4 deg, consistent with the values listed above. \cite{2012A&A...540A.132S} measure the time delay in the g- and r-band. They find $\Delta t_{BA}=416.5\pm1.0$ in the g-band, $\Delta t_{BA}=420.6\pm1.9$ in the r-band. So, they find a three-day lag between these two bands and the two estimates do not agree at the 2$\sigma$-level. They argue that this effect can be accounted for by the presence of a substructure and chromatic dispersion (light propagation time increases with decreasing wavelength). \underline{TO DO}: Better measure of the cluster center? Time delay?
+
+\textbf{LBQS1009-0252}: \cite{2000ApJ...536..584L} find that it is probably an early-type galaxy. According to \cite{2004A&A...428..741F}, there is no significant galaxy overdensity near the lens.
+
+\textbf{B1030+074}: As noted by \cite{1998MNRAS.300..649X} it appears to have some substructure. \cite{2000ApJ...536..584L} conclude that they are two distinct galaxies. The main one is an red, early-type galaxy. The other component seems to be fitted well by an exponential disk galaxy. They also conclude that no firm statements about the environment can be made. Although there is another galaxy nearby, it is too blue to be an early-type galaxy and thus they cannot estimate its shear contribution. \underline{TO DO}: No error on position of G1 in \cite{2000ApJ...536..584L}?
+
+\textbf{HE1104-1805}: \cite{2000ApJ...536..584L} find that it is probably an early-type galaxy (also \cite{2000A&A...360..853C}). They also seem to find a group environment. \cite{2004A&A...428..741F} however rather think that their photometric redshift measurement indicate that these galaxies are at a higher redshift and rather associated with the source. As it is also listed in \cite{2004A&A...428..741F}, modelling of the lens, parametric and free-form, requires strong external shear. Time delay: $\Delta t_{AB}=162.2^{+6.3}_{-5.9}$ (\cite{2008ApJ...676...80M}; here BA-delay).
+
+\textbf{PG1115+080}: Environments analyzed by \cite{2006ApJ...641..169M} and \cite{2011ApJ...726...84W}. Lying in a small group of 13 members. The lens is an early-type galaxy (\cite{2005ApJ...626...51Y}). \cite{2004ApJ...610..686G} detect X-ray emission from the corresponding group at temperature 0.8 keV. Time delays: \cite{1997ApJ...489...21B} find $\Delta t_{AC}=13.3^{+0.9}_{-1.0}$ and $\Delta t_{BA}=11.7^{+1.5}_{-1.6}$, \cite{2010MNRAS.406.2764T} find however $\Delta t_{AC}=12.0^{+2.4}_{-2.0}$ and $\Delta t_{BA}=4.4^{+3.2}_{-2.4}$ (here actually BA- and CD-delay).
+
+\textbf{B1152+200}: Not much seems to be known about the environment. The lens galaxy type is not known. According to \cite{2000A&A...357..115T} however, its color is consistent with a late-type or an irregular galaxy.
+
+\textbf{B1422+231}: \cite{2006ApJ...641..169M} find totally 16 spectroscopically confirmed member galaxies of the group. Using newer data, \cite{2011ApJ...726...84W} find an additional member. \cite{2004ApJ...610..686G} detect X-ray emission from the corresponding group at temperature 1.0 keV. According to \cite{1996ApJ...462L..53I} the lens is an early-type galaxy. Although there are measured time delays by \cite{2001MNRAS.326.1403P}, they are probably not to trust too much as they deviate quite a bit from theoretical expectations in \cite{2003AJ....126...29R}. An accurate measurement of the time delays probably requires time delay measurements on the scale of hours.
+
+\textbf{SBS1520+530}: There is some uncertainty about the redshift of the galaxy. \cite{2002A&A...391..481B} find that their spectroscopic redshift estimate of the galaxy is consistent with $z=0.71$, which was measured first by \cite{1997A&A...318L..67C}. Both however also measured a system at $z=0.82$. \cite{2002A&A...391..481B} however conclude that it does not seem to be associated with the lens. \cite{2008ApJ...673..778A} find another system at $z=0.76$. They argue that this system is more likely to be the lens, and the foreground system at $z=0.71$ just a local perturber. The data however does not seem to be conclusive. \cite{2008ApJ...673..778A} also find and spectroscopically confirm 3 groups in the line of sight. One is at $z=0.716$, with 5 members and the centroid position: $\alpha=15:21:48.16$, $\delta=52:53:19.5$. Another one at $z=0.758$, with 13 members and $\alpha=12:21:38.22$, $\delta=52:55:23.1$. Another one is at the higher redshift $z=0.818$ with 10 members. Including the lens would change these positions. The lens seems to be an early-type galaxy, possibly with a disc (\cite{2008ApJ...673..778A}). Time delay: $\Delta t_{BA}=125.8\pm2.1$ (\cite{2011A&A...536A..44E}; here also BA-delay). \underline{TO DO}: Dominik has used a lower redshift. Implications for the stellar population synthesis? Redo analysis at a higher redshift.
+
+\textbf{B1600+434}: The lens is a nearly edge-on late-type galaxy (\cite{1997A&A...317L..39J}). No significant X-ray emission was detected from the surrounding group (\cite{2005ApJ...625..633D}). According to \cite{2007AJ....134..668A}, the lens lies in a group with at least seven members, which all seem to be late-type galaxies. The centroid of the group is not luminosity-weighted in the table. Time delay: $\Delta t_{AB}=51\pm2$ (\cite{2000ApJ...544..117B}; here BA-delay). \underline{TO DO}: No error on position estimate in paper? --> What should the error estimate for the centroid be? Add environment image?
+
+\textbf{B1608+656}: The environment and the mass distribution along the line of sight have been analyzed by \cite{2006ApJ...642...30F}. All data points to a galaxy merger, so we could as well talk about 9 group members. A luminosity weighted measure was taken to find the group centroid. No errors are given, but as a comparision the median centroid is listed: $\Delta\alpha = 12.5$, $\Delta\delta = 21.6506$. Along the line of sight, there seem to be four other groups. No significant X-ray emission was detected from the surrounding group (\cite{2005ApJ...625..633D}). According to \cite{2003ApJ...584..100S} the galaxy G1 is an early-type galaxy which disrupted probably a late-type galaxy G2. Time delays: $\Delta t_{AB}=31.5^{+2}_{-1}$, $\Delta t_{CB}=36.0\pm1.5$, $\Delta t_{DB}=77.0^{+2}_{-1}$ (\cite{2002ApJ...581..823F}; here BA-, CA-, DA-delay). \underline{TO DO}: Errors? Add environment image?
+
+\textbf{MG2016+112}: The environments were analyzed by \cite{2003MNRAS.344..337T}. They find a cluster-environment with photometrically 69 probable galaxies. Most galaxies are close to the lens and many lie in a south-east direction. It seems to be a giant elliptical (e.g. \cite{1984Sci...223...46L}, \cite{1986AJ.....91..991S}). \underline{TO DO}: Add environment image?
+
+\textbf{B2045+265}: To the west of the lens, \cite{1999AJ....117..658F} find that there may be galaxies in a group at the same redshift as the lens \cite{2007MNRAS.378..109M} find evidence for a dwarf satellite galaxy, which would be needed to be included in the analysis. Although \cite{1999AJ....117..658F} initially classified the galaxy as a late-type Sa galaxy, \cite{2007MNRAS.378..109M} find that it is more probable to be an elliptical galaxy as the velocity dispersion is higher than the characteristic velocity dispersion. Furthermore, the source redshift is relatively low compared to the lens redshift, which requires the deflector to have a large dark matter halo. The galaxy is well fitted by a de Vaucouleurs profile. \underline{TO DO}: Add environment image? Get position of the group?
+
+\textbf{HE2149-2745}: According to \cite{2007A&A...465...51E} the spectrum is typical for an early-type galaxy. Although initial redshift estimations of \cite{1996A&A...315L.405W} found a probable redshift rang of $\equiv0.2-0.5$ (also see \cite{2000ApJ...543..131K}). \cite{2002A&A...383...71B} find by cross-correlating the lens spectrum with a template spectrum of an elliptical galaxy that the redshift probably lies in the range $0.49\leq z \leq 0.60$. They then conclude that the most likely redshift is $z=0.495\pm0.01$. \cite{2007A&A...465...51E} however find, that it is more likely to be $z=0.603\pm0.001$. This would make the lens part of a group at this redshift found by \cite{2006ApJ...641..169M} of probably 3 other members (kinematically not confirmed). They also find 2 groups at lower redshifts. \cite{2006ApJ...646...85W} calculated a luminosity weighted centroid position. Time delay: $\Delta t_{BA}=103\pm12$ (\cite{2002A&A...383...71B}; here also BA-delay). \underline{TO DO}: Change redshift from 0.50 to 0.60 in the calculations.
+
+\textbf{Q2237+030}: There seems to be no information available on the environment. According to \cite{1988AJ.....95.1331Y} the lens is a barred spiral.
+
+Further information about the sample can be found in \cite{leier11phd}, \cite{2011ApJ...740...97L}, and \cite{2012A&A...538A..99S}.
+
+
+
+\section{Methods}
+\subsection{GLASS}
+\begin{itemize}
+\item Explain GLASS briefly
+\end{itemize}
+
+We use the new free-form lens modelling framework \textit{GLASS} (\cite{2012MNRAS.425.3077L}). As its predecessor \textit{PixeLens} (\cite{2004AJ....127.2604S}), it reconstructs a pixelated mass map of a lens reproducing the image positions perfectly. In this case, the arrival time surface for a source at position $\boldsymbol\theta_{S}$ taking the geometric and Shapiro contributions into account can be calculated using (\cite{1997MNRAS.292..148S})
+\begin{equation}
+\tau(\boldsymbol\theta)=\frac{1}{2}|\boldsymbol\theta |^{2}-\boldsymbol\theta\cdot\boldsymbol\theta_{S}-\displaystyle\sum\limits_{n} \kappa_{n}\psi_{n}(\boldsymbol\theta),
+\end{equation}
+where $\kappa_{n}$ is the surface mass density in the n-th pixel rescaled by the critical density $\Sigma_{crit}$ and $\psi_{n}$ is the contribution to the gravitational potential by this pixel.
+
+According to Fermat's principle, lensed images appear where the arrival time surface takes on extremal values $\nabla\tau(\boldsymbol\theta)=0$. Thus we have to solve the following equation
+\begin{equation}
+\boldsymbol\theta-\boldsymbol\theta_{S}-\displaystyle\sum\limits_{n} \kappa_{n}\alpha_{n}=0,
+\end{equation}
+where $\alpha_{n}$ is the contribution to the bending angle of the n-th pixel. Therefore, to reconstruct the lens, i.e. finding $\{\kappa_{n}\}$, this linear equation has to be solved. Additional constraints on the lens like individual time delays between images and all priors are also linear. The problem is highly underconstrained, so the solution domain is a high-dimensional polytope.
+
+The dimension of the solution space usually exceeds $\gtrsim100$ why sophisticated sampling methods are required. Here \textit{GLASS} and \textit{PixeLens} differ. \cite{2008ApJ...679...17C} and \cite{2012MNRAS.425.3077L} show that \textit{PixeLens} does not produce uncorrelated random samples. They propose a new sampling algorithm. They prove that generic high-dimensional volumes indeed are sampled in a much more uniform way. Models in \textit{GLASS} are generated using a MCMC-method with a Metropolis-Hastings algorithm. A new step $x_{i+1}$ of the Markov chain is accepted with the probability
+\begin{equation}
+\alpha = \mathrm{min}\left(1,\frac{P(x_{i+1})Q(x_{i},x_{i+1})}{P(x_{i})Q(x_{i+1},x_{i})}\right),
+\end{equation}
+where $P(x)$ is the probability distribution samples are drawn from, and $Q(x_{i},x_{i+1})$ is the proposal density. It is special in mass modelling that all the valid mass configurations have the same probability, thus $P$ is a constant $\equiv1$. For Markov chains $Q$ has to be symmetric. It is usually taken to be a multivariate Gaussian $\mathcal{N}(x,\hat{\boldsymbol\Sigma})$, where $\hat{\boldsymbol\Sigma}$ is an estimate of the true covariance matrix $\boldsymbol\Sigma$. In principle it could be estimated by an adaptive chain during the random walk, but then the chain is no longer Markovian as it loses the reversibility property. Therefore, first an initial adaptive burn-in phase is run to get an good estimate $\hat{\boldsymbol\Sigma}$, before the real MCMC random walk. Many models can thus be generated and the solution space sampled. The estimation of the covariance matrix is refined in \textit{GLASS} such that models are much less correlated. Further details and tests of the method can be found in \cite{2012MNRAS.425.3077L} and (((citation needed of Jonathan's fake data paper))).
+
+Priors: Reference cosmology, chosen priors, etc.
+
+
+\subsection{Shape measure}
+\begin{itemize}
+\item Explain shape measure
+\item Link to tests on fake data
+\item Include one plot of fake data test
+\end{itemize}
+
+To get a rough estimate of the shape we use the inverse of the moment of inertia tensor we can compute of the mass map. Its eigenvectors and eigenvalues track the shape of the mass distribution. This seemingly crude measure was tested on fake data.
+
+--- Need to expand ---
+
+
+\section{Results}
+\begin{itemize}
+\item Show some examples (stellar and dm contour plots, image of lens, arrival time surface, included mass)
+\item Show money plots
+\item Comment on a few lenses
+\end{itemize}
+
+
+
+\section{Conclusion}
+
+
+\nocite{*}
+\bibliographystyle{mnras} % this is one type of author-year style
+\bibliography{thesis.bib} % this prints the bibliography section based on the \cite commands
+\end{document}
