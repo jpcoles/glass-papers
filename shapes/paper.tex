@@ -17,12 +17,15 @@
 %
 % --- Data ---
 % - More detailed description how the baryionic mass distribution was measured
+% - More details needed on galaxies in the sample? I don't think so though
 % - ...
 %
 %
 % --- Method ---
 % - Maybe more details on GLASS and how it works (cite Jonathan's upcoming paper)
 % - Plot showing how well the shape informations is recovered when applied to fake data
+% - Citation on why not monotonically decreasing radial density profiles are instable
+% - Generally look through method part
 % - ...
 %
 %
@@ -227,20 +230,17 @@ Further information about the sample can be found in \cite{leier11phd}, \cite{20
 
 
 \section{Method}\label{sec:method}
-\subsection{GLASS}
+\textbf{GLASS}
 \begin{itemize}
 \item Explain GLASS briefly and link to fake data tests
 \end{itemize}
 
 \subsection{Priors and assumptions}
 \begin{itemize}
-\item Explain what priors were chosen to model the lenses
+\item Explain what priors were chosen to model the lenses (Basically always pixrad 12, shear left free for quads, shear limited for doubles to 0.01, local gradient 50 degrees, smoothening prior 2, time delays if known. Exceptions are few. For some quads symmetry prior, for one double 0.01 was not possible therefore chose 0.1.)
 \end{itemize}
 
-Basically always pixrad 12, shear left free for quads, shear limited for doubles to 0.01, local gradient 50 degrees, smoothening prior 2, time delays if known. Exceptions are few. For some quads symmetry prior, for one double 0.01 was not possible therefore chose 0.1.
-
-
-\subsection{Shape measure}
+\textbf{Shape measure}
 \begin{itemize}
 \item Explain shape measure
 \item Link to tests on fake data
@@ -248,7 +248,7 @@ Basically always pixrad 12, shear left free for quads, shear limited for doubles
 \item Illustrate everything with example lens PG1115.
 \end{itemize}
 
-We use the new free-form lens modelling framework \textit{GLASS} \citep{2012MNRAS.425.3077L}. As its predecessor \textit{PixeLens} \citep{2004AJ....127.2604S}, it generates a pixelated mass map of a lens reproducing the image positions perfectly. Using pixels the arrival time surface for a source at position $\boldsymbol\theta_{S}$, taking the geometric and Shapiro contributions into account, can be expressed in terms of the surface mass density $\kappa_{n}$ of the n-th pixel rescaled by the critical density $\Sigma_{crit}$ and the contribution to the gravitational potential by this pixel $\psi_{n}$ \citep{1997MNRAS.292..148S}
+In this work we use the new free-form lens modelling framework \textit{GLASS} \citep{2012MNRAS.425.3077L}. As its predecessor \textit{PixeLens} \citep{2004AJ....127.2604S}, it generates a pixelated mass map of a lens reproducing the image positions perfectly. Using pixels the arrival time surface for a source at position $\boldsymbol\theta_{S}$, taking the geometric and Shapiro contributions to the time delay into account, can be expressed in terms of the surface mass density rescaled by the critical density $\Sigma_{crit}$ of the n-th pixel $\kappa_{n}$ and the contribution to the gravitational potential of this pixel $\psi_{n}$ \citep{1997MNRAS.292..148S}
 \begin{equation}\label{eq:arrival}
 \tau(\boldsymbol\theta)=\frac{1}{2}|\boldsymbol\theta |^{2}-\boldsymbol\theta\cdot\boldsymbol\theta_{S}-\displaystyle\sum\limits_{n} \kappa_{n}\psi_{n}(\boldsymbol\theta).
 \end{equation}
@@ -257,32 +257,32 @@ According to Fermat's principle, lensed images appear where the arrival time sur
 \begin{equation}
 \boldsymbol\theta-\boldsymbol\theta_{S}-\displaystyle\sum\limits_{n} \kappa_{n}\alpha_{n}=0,
 \end{equation}
-where $\alpha_{n}$ is the contribution to the bending angle of the n-th pixel. For pixels, $\alpha_{n}$ and also $\psi_{n}$ can be described by analytic formulae \citep{1997MNRAS.292..148S}. Reconstructing the lens, i.e. describing the surface mass density in every pixel, reduces thus to finding sets of coefficients $\left\{\kappa_{n}\right\}$ of these functions. As the number of pixels sets the resolution, this problem is however highly underconstrained. The number of pixels is typically $\gtrsim100$. The solution to this is noticing that the equation is linear in $\kappa_{n}$. Additional constraints on the lens such as individual time delays between images and their order and all the priors we impose are also linear. The solution space is thus a high-dimensional polytope.
+where $\alpha_{n}$ is the contribution to the bending angle of the n-th pixel. For pixels, $\alpha_{n}$ and $\psi_{n}$ can be described by analytic formulae \citep{1997MNRAS.292..148S}. Reconstructing the lens, i.e. describing the surface mass density in every pixel, reduces thus to finding sets of coefficients $\left\{\kappa_{n}\right\}$ of these functions. As the number of pixels, which sets the resolution, is by far larger than the number of constraint equations in free-form modelling, this problem is highly underconstrained. The number of pixels is typically $\gtrsim 100$. We note that the equation is linear in $\kappa_{n}$. Also additional constraints on the lens such as individual time delays between images and their order and other priors we impose are linear. The volume of allowed solution is thus a high-dimensional polytope.
 
-A difficulty in mass modelling is the nonuniqueness of solutions. They are not only not unique, every configuration which fulfils the equation is also equally probable. Therefore, this polytope needs to be sampled in a uniform way to analyze the full range of solutions. has Due to the high dimensionality, sophisticated sampling methods of such volumes are required. Here \textit{GLASS} and \textit{PixeLens} differ in the method they use. \cite{2008ApJ...679...17C} and \cite{2012MNRAS.425.3077L} show that \textit{PixeLens} does not produce uncorrelated random samples. They propose a new sampling algorithm. They prove that generic high-dimensional polytopes indeed are sampled in a much more uniform way. Models in \textit{GLASS} are generated using a MCMC-method with a Metropolis-Hastings algorithm. A new step $x_{i+1}$ of the Markov chain is accepted with the probability
+A fundamental difficulty in mass modelling is the non-uniqueness of solutions. They are not only not unique, every configuration which fulfils the equation is also equally probable. Therefore, this polytope needs to be sampled in a uniform way to analyze the full range of solutions. Due to the high dimensionality, sophisticated sampling methods of such volumes are required. \textit{GLASS} and \textit{PixeLens} differ in the method they use to sample such spaces. \cite{2008ApJ...679...17C} and \cite{2012MNRAS.425.3077L} show that \textit{PixeLens} does not produce uncorrelated random samples. They propose therefore a new sampling algorithm. They prove that generic high-dimensional polytopes indeed are sampled in a much more uniform way. Models in \textit{GLASS} are generated using a MCMC-method with a Metropolis-Hastings algorithm. A new step $x_{i+1}$ of the Markov chain is accepted with the probability
 \begin{equation}
  \alpha = \mathrm{min}\left(1,\frac{P(x_{i+1})Q(x_{i},x_{i+1})}{P(x_{i})Q(x_{i+1},x_{i})}\right),
 \end{equation}
-where $P(x)$ is the probability distribution samples are drawn from, and $Q(x_{i},x_{i+1})$ is the proposal density. It is special in mass modelling that all the valid mass configurations have the same probability, thus $P$ is a constant $\equiv1$. For Markov chains $Q$ has to be symmetric. It is usually taken to be a multivariate Gaussian $\mathcal{N}(x,\hat{\boldsymbol\Sigma})$, where $\hat{\boldsymbol\Sigma}$ is an estimate of the true covariance matrix $\boldsymbol\Sigma$. In principle it could be estimated by an adaptive chain during the random walk, but then the chain is no longer Markovian as it loses the reversibility property. Therefore, first an initial adaptive burn-in phase is run to get an good estimate $\hat{\boldsymbol\Sigma}$, before the real MCMC random walk. Many models can thus be generated and the solution space sampled. The estimation of the covariance matrix is refined in \textit{GLASS} such that models are much less correlated. Further details and tests of the method can be found in \cite{2012MNRAS.425.3077L}.
+where $P(x)$ is the probability distribution samples are drawn from and $Q(x_{i},x_{i+1})$ is the proposal density. As mentioned, all the valid mass configurations have the same probability, thus $P$ is a constant $\equiv1$. $Q$ has to be symmetric for Markov chains. It is usually taken to be a multivariate Gaussian $\mathcal{N}(x,\hat{\boldsymbol\Sigma})$, where $\hat{\boldsymbol\Sigma}$ is an estimate of the true covariance matrix $\boldsymbol\Sigma$. In principle it could be estimated by an adaptive chain during the random walk, but then the chain is no longer Markovian as it loses the reversibility property. Therefore, first an initial adaptive burn-in phase is run to get an good estimate $\hat{\boldsymbol\Sigma}$, before the real MCMC random walk. In this way, a large ensemble of models can be generated. The estimation of the covariance matrix is refined in \textit{GLASS} such that models are much less correlated. Further details and tests of the method can be found in \cite{2012MNRAS.425.3077L}.
 
-\subsection{Priors and assumptions}
-We use different priors and assumptions to eliminate unphysical mass reconstructions of the lens. First of all, the densities $\kappa_{n}$ need to be always positive. The density must always increase towards the center, why we chose to require the local density gradient in every pixel except the central one to point within an angle of $50^{\circ}$ towards the center. Also, the radial density profile has to decrease monotonically.
+\textbf{Priors and assumptions}
+We use different priors and assumptions to eliminate unphysical mass reconstructions of the lens. First of all, the densities $\kappa_{n}$ need to be positive. As mass distributions with positive radial gradients are instable (CITATION NEEDED!), the density must always increase towards the center. Therefore, we require the local density gradient in every pixel except the central one to point towards the center within an angle of $50^{\circ}$. The radial density profile decreases monotonically, as required.
 
 To avoid large fluctuations in the density, we choose to add a smoothing prior. The density in any pixel except the central one is at most twice the average density of its neighboring pixels. If there is reason to expect an invariant distribution under a rotation by $180^{\circ}$ (e.g. for doubles), we impose such a symmetry prior.
 
-We also choose to include external shear. Thus, there is an additional term
+We also choose to include an additional external shear
 \begin{equation}
-  \gamma_{1}\left(\theta_{x}^{2}-\theta_{y}^{2}\right)+2\gamma_{2}\theta_{x}\theta_{y}
+  \gamma_{1}\left(\theta_{x}^{2}-\theta_{y}^{2}\right)+2\gamma_{2}\theta_{x}\theta_{y},
 \end{equation}
-in (\ref{eq:arrival}) and the subsequent equations. We allow $\gamma_{1}$ and $\gamma_{2}$ to vary, while fixing the maximum absolute value of the shear parameters. For doubles we fix the absolute value to be at most $10^{-2}$ (resp. $10^{-1}$ if no model could be generated for lower values).
+which is added to (\ref{eq:arrival}) and the subsequent equations. We allow $\gamma_{1}$ and $\gamma_{2}$ to vary while fixing the maximum absolute value of the shear parameters. For doubles we fix the absolute value to be at most $10^{-2}$ (resp. $10^{-1}$ if no model could be generated for lower values ---> find out which galaxy and write this in more detail).
 
-We further assume that we know the positions of the images and the lens perfectly. As the range of possible models is much larger than the errors on these quantities \citep{2006ApJ...650L..17S}, this assumption is justified. We also fix a time order of the images. Furthermore, we chose a flat concordance cosmology with $\Omega_{m}=0.28$, $\Omega_{\Lambda}=0.72$, and $H_{0}^{-1}=13.7$.
+We further assume that the lens and image positions are perfectly known. As the range of possible models is much larger than the errors on these quantities, this assumption is justified \citep{2006ApJ...650L..17S}. We also fix a time order of the images. Furthermore, we choose a flat concordance cosmology with $\Omega_{m}=0.28$, $\Omega_{\Lambda}=0.72$, and $H_{0}^{-1}=13.7$.
 
-\subsection{Shape measure}
+\textbf{Shape measure}
 
-To get a rough estimate of the shape of the surface mass distribution we use the inverse of the moment of inertia tensor of the mass map. Its eigenvectors and eigenvalues track the shape of the mass distribution. There are thus two quantities which define the shape, the ratio of the eigenvalues $\lambda_{1}/\lambda_{2}$, which describes the ellipticity, and the angle of the semi-major axis $\theta$. This seemingly crude measure was tested on fake data and found to be working well.
+To get a rough estimate of the shape of the surface mass distribution we use the inverse of the moment of inertia tensor of the mass map. Its eigenvectors and eigenvalues track the shape of the mass distribution. Thus, the shape is defined by two quantities; the ratio of the eigenvalues $\lambda_{1}/\lambda_{2}$, which describes the ellipticity, and the angle of the semi-major axis $\theta$. This seemingly crude measure was tested on fake data and found to be working well. (INPUT HERE FAKE DATA TEST)
 
-Figure \ref{fig:exampleplots} shows example plots of the reconstruction of the lens \textit{PG1115}. They illustrate this shape measure. In this case, there is a significant misalignment between the two mass distributions. Also the uncertainties on the angle estimate are shown. Errors are purely statistical. Figure \ref{fig:exampleplots} also shows the arrival time surface and total, dark, and baryonic mass distributions.
+Figure \ref{fig:1115rec} shows example plots of the reconstruction of the lens \textit{PG1115} illustrating this shape measure. In this lens system, there is a significant misalignment between the two mass distributions. 1$\sigma$- and 2$\sigma$-uncertainties on the angle estimates are shown. These errors are purely statistical, estimated by the ensemble of models. Figure \ref{fig:1115rec} also shows the arrival time surface and total, dark, and baryonic mass distributions.
 
 
 \section{Results}\label{sec:results}
@@ -330,15 +330,15 @@ In general an external shear of $\left|\gamma_{i}\right|\lesssim10^{-1}$ is requ
 
 The masses $M_{dm}$ and $M_{tot}=M_{dm}+M_{stellar}$ we define in this analysis, are always the mass included up to the radius of the outermost image. Our mass modelling shows that \textit{BRI0952} \textit{B1608}, and \textit{Q2237} seem to have a significant amount of the total mass in baryonic mass. This can be explained for \textit{Q2237} and \textit{B1608}. Due to the galaxy merger, the outermost image for the lens \textit{B1608} includes mainly the central parts of the two galaxies. In \textit{Q2237} only the inner parts of the lens, where the baryonic mass dominates, are probed. Also the two very massive, very dark matter dominated lenses \textit{Q0957} and \textit{MG2016} should be mentioned. \textit{Q0957} is a cD-galaxy and \textit{MG2016} a giant elliptical, so this result was to be expected.
 
-Surprisingly, the shape measure we define yields results that are constrained quite well, as can be seen in Figures \ref{fig:exampleplots}, \ref{fig:47}-\ref{fig:2237}. The errors, which are purely statistical, on the ellipticities and the angles of the semi-major axis do not dominate the result. Lenses with almost spherical halos, i.e. $\lambda_{1}/\lambda_{2}\sim1$, should however be treated with caution.
+Surprisingly, the shape measure we define yields results that are constrained quite well, as can be seen in Figures \ref{fig:1115rec}, \ref{fig:47}-\ref{fig:2237}. The errors, which are purely statistical, on the ellipticities and the angles of the semi-major axis do not dominate the result. Lenses with almost spherical halos, i.e. $\lambda_{1}/\lambda_{2}\sim1$, should however be treated with caution.
 
-As mentioned in Section \ref{sec:data}, there are different time delay estimates for \textit{PG1115}. We find that the results do not change much when changing the time delays. As can be seen in Figure \ref{fig:exampleplots} resp. Figure \ref{fig:tsvetkova} and Figure \ref{fig:barkana}, the dark matter distribution is a bit more spherical with the time delays from \cite{2010MNRAS.406.2764T} and the uncertainty on the angle of the semi-major axis grows. The misalignment we see is thus not affected by different time delays.
+As mentioned in Section \ref{sec:data}, there are different time delay estimates for \textit{PG1115}. We find that the results do not change much when changing the time delays. As can be seen in Figure \ref{fig:1115rec} resp. Figure \ref{fig:tsvetkova} and Figure \ref{fig:barkana}, the dark matter distribution is a bit more spherical with the time delays from \cite{2010MNRAS.406.2764T} and the uncertainty on the angle of the semi-major axis grows. The misalignment we see is thus not affected by different time delays.
 
 The dark matter distribution in \textit{SBS1520} shows a very interesting behaviour. As can be seen in Figure \ref{fig:1520}, the dark matter seems to follow the baryonic mass distribution. Further out however, the dark matter distribution is rotated slightly. There is a significant misalignment between the dark matter distribution and the baryonic distribution. Without the central part, the misalignment would be even larger. This behaviour could be due to the potential disc \cite{2008ApJ...673..778A}, or caused by the many structures on the line of sight.
 
 
 \subsection{Misalignments between stellar and dark matter distributions}
-Figure \ref{fig:misalignment} shows the differences between the angles of the stellar and the dark matter semi-major axes versus the ratio of the included dark matter and total mass. For lenses with a significant stellar component inside the outermost image radius, the distributions seem to be rather aligned. It seems that if the luminous mass is comparable to the dark matter mass, then the distributions align. For a smaller stellar contribution this is not necessarily the case. The scatter increases and there can be significant misalignments, which can be seen especially clearly in the systems \textit{PG1115} (Figures \ref{fig:exampleplots} or \ref{fig:tsvetkova})) and \textit{RXJ0911} (Figure \ref{fig:911}). While alignments between the distributions are preferred, they do not seem to be a necessary condition.
+Figure \ref{fig:misalignment} shows the differences between the angles of the stellar and the dark matter semi-major axes versus the ratio of the included dark matter and total mass. For lenses with a significant stellar component inside the outermost image radius, the distributions seem to be rather aligned. It seems that if the luminous mass is comparable to the dark matter mass, then the distributions align. For a smaller stellar contribution this is not necessarily the case. The scatter increases and there can be significant misalignments, which can be seen especially clearly in the systems \textit{PG1115} (Figures \ref{fig:1115rec} or \ref{fig:tsvetkova})) and \textit{RXJ0911} (Figure \ref{fig:911}). While alignments between the distributions are preferred, they do not seem to be a necessary condition.
 
 The environment might also play a role. Red are the systems, which are isolated or no group resp. cluster environment has been found, green the ones in such an environment. The misaligned systems are mainly the lenses with a known environment. Therefore, this misalignment could be caused by the external effects.
 
