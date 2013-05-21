@@ -120,7 +120,7 @@ In Section \ref{sec:data} we present the lens sample and important properties of
 
 \begin{table*}
  \begin{center}
-  \begin{tabular}{l c c l | l c c l}
+  \begin{tabular}{l c c l || l c c l}
    Lens & $z_{L}$ & $z_{S}$ & Type & Lens & $z_{L}$ & $z_{S}$ & Type\\ \hline \hline
    Q0047 & 0.48 & 3.60 & Quad & HE1104 & 0.73 & 2.32 & Double\\
    Q0142 & 0.49 & 2.72 & Double & PG1115 & 0.31 & 1.72 & Quad\\
@@ -306,11 +306,23 @@ Figure \ref{fig:1115rec} shows example plots of the reconstruction of the lens \
 \end{figure*}
 
 \begin{figure*}
+ \begin{center}%\hspace{-7mm}\hspace{0.8\textwidth}
+  \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_a.eps}
+  \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_b.eps}
+  \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_c.eps}\\
+  \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_d.eps}
+  \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_h.eps}\\
+  \caption{Same as Figure \ref{fig:1115rec} but using time delay estimates from \cite{1997ApJ...489...21B}.}
+  \label{fig:barkana}
+ \end{center}
+\end{figure*}
+
+\begin{figure*}
  \begin{center}
  \includegraphics[height=0.49\textwidth]{Figures/b.eps}
  \includegraphics[height=0.49\textwidth]{Figures/d.eps}
  \includegraphics[height=0.49\textwidth]{Figures/e.eps}\\
- \caption{Plots of stellar and dark matter misalignments, ellipticities and composed plot.}
+ \caption{Plots of stellar and dark matter misalignments, ellipticities of the baryonic mass and dark matter distribution and a plot showing the ellipticity of the dark matter halo against the misalignment. Red symbols mark isolated objects or such without environment information, green symbols mark objects with at least one companion galaxy. In the second plot, stars denote the ellipticitie of the baryonic mass distribution, squares the ones of the dark matter halo.}
  \label{fig:moneyplots}
  \end{center}
 \end{figure*}
@@ -318,38 +330,49 @@ Figure \ref{fig:1115rec} shows example plots of the reconstruction of the lens \
 \begin{figure}
  \begin{center}
  \includegraphics[height=\linewidth]{Figures/g.eps}
- \caption{Plots of stellar and dark matter misalignments, ellipticities and composed plot.}
+ \caption{Misalignment of the dark matter halo and the direction of the centroid of the environment.}
  \label{fig:environmentmisalign}
  \end{center}
 \end{figure}
 
 
-For every lens a total number of 10000 models were generated. This number we've chosen gives reasonable statistics, while not being computationally too expensive.
+For every lens 10000 models were generated. This number allows for reasonable statistics, while not being computationally too expensive. In general an external shear of $\left|\gamma_{i}\right| \lesssim 10^{-1}$ is required to model quads. \textit{RXJ0911} and \textit{MG2016} however, need a significantly larger external shear of $\left|\gamma_{i}\right|\sim2\cdot10^{-1}$. This probably can be attributed to the cluster environments. As mentioned, the shear was limited to be $\left|\gamma_{i}\right| < 10^{-1}$ for doubles. The masses $M_{dm}$ and $M_{tot}=M_{dm}+M_{stellar}$ are always the masses included up to the radius of the outermost image.
 
-In general an external shear of $\left|\gamma_{i}\right|\lesssim10^{-1}$ is required to model the lenses. \textit{RXJ0911}, \textit{B1608}, and \textit{MG2016} however need a significantly larger external shear of $\left|\gamma_{i}\right|\sim2\cdot10^{-1}$. This probably can be attributed to the cluster environment resp. the merging process in the system \textit{B1608}, which makes it hard to model. Furthermore, an external shear of at most $\left|\gamma_{i}\right|\lesssim10^{-1}$ is needed to be assumed to model \textit{SBS1520}.
+%Our mass modelling shows that \textit{BRI0952} and \textit{Q2237} seem to have a rather large amount of mass in baryonic mass (e.g. Figure \ref{fig:moneyplots}). Also the two very massive, very dark matter dominated lenses \textit{Q0957} and \textit{MG2016} should be mentioned. \textit{Q0957} is a cD-galaxy and \textit{MG2016} a giant elliptical, so this result was to be expected.
+%This can be explained for \textit{Q2237}. In \textit{Q2237} only the inner parts of the lens, where the baryonic mass dominates, are probed. 
 
-The masses $M_{dm}$ and $M_{tot}=M_{dm}+M_{stellar}$ we define in this analysis, are always the mass included up to the radius of the outermost image. Our mass modelling shows that \textit{BRI0952} \textit{B1608}, and \textit{Q2237} seem to have a significant amount of the total mass in baryonic mass. This can be explained for \textit{Q2237} and \textit{B1608}. Due to the galaxy merger, the outermost image for the lens \textit{B1608} includes mainly the central parts of the two galaxies. In \textit{Q2237} only the inner parts of the lens, where the baryonic mass dominates, are probed. Also the two very massive, very dark matter dominated lenses \textit{Q0957} and \textit{MG2016} should be mentioned. \textit{Q0957} is a cD-galaxy and \textit{MG2016} a giant elliptical, so this result was to be expected.
+Surprisingly, the shape measure we define yields are well-constrained results, as can be seen in Figures \ref{fig:1115rec} and \ref{fig:moneyplots}. The errors, which are purely statistical, on the ellipticities and the angles of the semi-major axis do not dominate the result. Lenses with almost spherical halos, i.e. $\lambda_{1}/\lambda_{2}\sim1$, should however be treated with caution.
 
-Surprisingly, the shape measure we define yields results that are constrained quite well, as can be seen in Figures \ref{fig:1115rec}, \ref{fig:47}-\ref{fig:2237}. The errors, which are purely statistical, on the ellipticities and the angles of the semi-major axis do not dominate the result. Lenses with almost spherical halos, i.e. $\lambda_{1}/\lambda_{2}\sim1$, should however be treated with caution.
+As mentioned in Section \ref{sec:data}, there are different time delay estimates for \textit{PG1115}. We find that the results do not change much when using different estimates. As can be seen in Figure \ref{fig:1115rec} resp. Figure \ref{fig:barkana}, the dark matter distribution is a bit more spherical with the time delays from \cite{2010MNRAS.406.2764T} and the uncertainty on the angle of the semi-major axis grows. The misalignment we see is thus not affected by different time delays.
 
-As mentioned in Section \ref{sec:data}, there are different time delay estimates for \textit{PG1115}. We find that the results do not change much when changing the time delays. As can be seen in Figure \ref{fig:1115rec} resp. Figure \ref{fig:tsvetkova} and Figure \ref{fig:barkana}, the dark matter distribution is a bit more spherical with the time delays from \cite{2010MNRAS.406.2764T} and the uncertainty on the angle of the semi-major axis grows. The misalignment we see is thus not affected by different time delays.
-
-The dark matter distribution in \textit{SBS1520} shows a very interesting behaviour. As can be seen in Figure \ref{fig:1520}, the dark matter seems to follow the baryonic mass distribution. Further out however, the dark matter distribution is rotated slightly. There is a significant misalignment between the dark matter distribution and the baryonic distribution. Without the central part, the misalignment would be even larger. This behaviour could be due to the potential disc \cite{2008ApJ...673..778A}, or caused by the many structures on the line of sight.
+% The dark matter distribution in \textit{SBS1520} shows a very interesting behaviour. As can be seen in Figure \ref{fig:1520}, the dark matter seems to follow the baryonic mass distribution. Further out however, the dark matter distribution is rotated slightly. There is a significant misalignment between the dark matter distribution and the baryonic distribution. Without the central part, the misalignment would be even larger. This behaviour could be due to the potential disc \cite{2008ApJ...673..778A}, or caused by the many structures on the line of sight.
 
 
-\subsection{Misalignments between stellar and dark matter distributions}
+
+
+
+
+
+
+
+
+
+
+
+
+\textbf{Misalignments between stellar and dark matter distributions}
 Figure \ref{fig:misalignment} shows the differences between the angles of the stellar and the dark matter semi-major axes versus the ratio of the included dark matter and total mass. For lenses with a significant stellar component inside the outermost image radius, the distributions seem to be rather aligned. It seems that if the luminous mass is comparable to the dark matter mass, then the distributions align. For a smaller stellar contribution this is not necessarily the case. The scatter increases and there can be significant misalignments, which can be seen especially clearly in the systems \textit{PG1115} (Figures \ref{fig:1115rec} or \ref{fig:tsvetkova})) and \textit{RXJ0911} (Figure \ref{fig:911}). While alignments between the distributions are preferred, they do not seem to be a necessary condition.
 
 The environment might also play a role. Red are the systems, which are isolated or no group resp. cluster environment has been found, green the ones in such an environment. The misaligned systems are mainly the lenses with a known environment. Therefore, this misalignment could be caused by the external effects.
 
 
-\subsection{Ellipticities of stellar and dark matter distributions}
+\textbf{Ellipticities of stellar and dark matter distributions}
 The ellipticities of the distributions versus the mass ratio are shown in Figure \ref{fig:ellipticities}. We see, that every dark matter halo has a lower ellipticity $\lambda_{1}/\lambda_{2}$ and is thus closer to sphericity than the luminous galaxy. The systems \textit{HE1104} (Figure \ref{fig:1104}) and \textit{MG2016} (Figure \ref{fig:2016}) show especially large differences. It is not clear what could cause these
 
 Figure \ref{fig:misalignmentellipticities} shows the misalignment versus the ellipticity of the dark matter halo. There seem to be five different regions. Almost spherical halos with good alignment of the semi-major axes, almost spherical halos with good alignment of semi-major and semi-minor axes (maximum misalignment between the semi-major axes), more elliptical, alligned halos, a seemingly 'forbidden' region for misalignments in between, and the upper right triangle, i.e. larger ellipticities and misalignments, which also seems forbidden. Understanding Figure \ref{fig:misalignmentellipticities} is certainly not trivial. Alignment with the semi-minor axis might be a stable configuration for almost spherical halos, while slightly smaller misalignments are unstable. There also seem to be some outliers as \textit{PG1115}, \textit{SBS1520}, and \textit{HE2149}.
 
 
-\subsection{Misalignments between the dark matter distributions and environment}
+\textbf{Misalignments between the dark matter distributions and environment}
 Figure \ref{fig:environment} shows the misalignment between the direction to the group or cluster centroid resp. the companion galaxy with the dark matter halo. Although the error bars are huge, we immediately see that three lenses are basically aligned with the environment. The four other systems show slight misalignment. Having a closer look at these lenses shows however that at least two of them might in fact be aligned. For \textit{RXJ0911} and \textit{HE2149} there are no errors on the estimates of the centroid. Otherwise they would probably agree very well. \textit{Q0047} does not seem to be aligned with the direction of the group centroid. This could be due to the fact that the lens itself is quite far away from the centroid. The halo of \textit{B1030} is almost spherical, so the apparent misalignment could maybe be explained. It is also the only lens with only one companion galaxy. It is possible that in this case the effect of the environment is not strong enough. We however certainly lack data to make any claims for the systems with just one companion galaxy. Then, there is also \textit{MG2016}, which is not shown here, as the centroid was not measured in this cluster. There is however a high galaxy density towards the south-east, where also the cluster centroid probably lies. Judging from Figure \ref{fig:2016}, the halo seems to be aligned with the cluster centroid.
 
 We conclude that lenses in groups or cluster are maybe aligned with the centroid. However, as we lack the statistics and as the errors on the centroid positions are huge, this claim might be disproved. It is not possible at this point to make a similar statement for lenses with just one companion galaxy.
