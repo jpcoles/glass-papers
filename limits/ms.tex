@@ -490,7 +490,7 @@ tool DEHNEN-TOOL. Each component follows the profile
 \end{equation}
 where $\gamma$ is the profile index and $a$ is the scale radius.  In the
 case $\gamma=1$ this is the Hernquist profile.  The four combinations of
-profile indices are shown in \tabref{Lens profile params}.  Note that two of
+profile indices are shown in \tabref{mock galaxy params}.  Note that two of
 the galaxies have $\gamma_\mathrm{DM}=1$. While we know from simulations that a
 more accurate approximation would be an NFW or Einasto profile we are not
 probing the outer regions of the halo where the difference would be most
@@ -509,7 +509,7 @@ BC & 1.5 & $2^{1.5}$ & 1 & $11^2$ & 10 kpc &
 \eqnref{Dehnen profile} because the galaxies are triaxial. Masses are in units of $1.8\e{10}\Msun$. The scale lengths for
 all lenses are $(a_\star,a_\mathrm{DM})=(2,20)$ kpc and by definition
 $M_\star(a_\star) = M_\mathrm{DM}(a_\star) = 1$.}
-\label{Lens profile params}
+\label{mock galaxy params}
 \end{table}
 
 
@@ -590,7 +590,7 @@ The cumulative mass.}
 \end{figure}
 
 The main results from modeling these different configuration are shown black in
-\figref{Test reconstructions}. Each subplot corresponds to a different galaxy and
+\figref{main results}. Each subplot corresponds to a different galaxy and
 the vertical axis shows the range of quality.  The quality of a
 model $\M_i$ by comparing the recovered density profile $\rho_\M(r)$ against
 the profile of the mock galaxy $\rho_G(r)$.  In particular, the plots show the
@@ -601,6 +601,19 @@ RMS quantity
   %\chi_i = \frac{\sum_r (\rho(r)_{\M_i} - \rho(r)_G)^2}{\sum_r \rho(r)_G^2}
 \end{equation}
 %
+
+\begin{figure}
+\plottwo{AAchi2_profile.pdf}{BBchi2_profile.pdf}
+\plottwo{ACchi2_profile.pdf}{BCchi2_profile.pdf}
+\caption{The main results showing the quality of model recovery. Each panel corresponds to 
+the named mock galaxy, whose parameters are listed in \tabref{mock galaxy params}. Within
+each panel are six groups of results for each of six lens morphologies. Each morphology
+considered the presence of time delays and a central image. The black markers are for tests
+that did not include the stellar mass as a lower bound constraint, while the red markers
+indicate where the stellar mass has been given.}
+\label{main results}
+\end{figure}
+
 \begin{figure}
 %\plotone{AAarrival_surfaces}
 %\plotone{BBarrival_surfaces}
@@ -612,7 +625,7 @@ images that share a common source. In the case of the extended image systems the
 is at the same redshift, while the redshift is varied between the systems in the 
 ZConstrast cases. Grey circles are a visual aid to help determine radial separation
 between images. The axes are measure in arcseconds.}
-\label{Test reconstructions}
+\label{reconstruction}
 \end{figure}
 
 The morphological complexity increases from left to right within each plot. As
@@ -810,14 +823,7 @@ lensing can be used to place constraints on the velocity anisotropy.}
 %\label{Test configurations}
 %\end{table}
 
-%\section{Results} %--------------------------------------------------------------
-
-
-
-%\begin{figure}
-%\plottwo{AAchi2_profile.pdf}{BBchi2_profile.pdf}
-%\plottwo{ACchi2_profile.pdf}{BCchi2_profile.pdf}
-%\end{figure}
+\section{Results} %--------------------------------------------------------------
 
 %\subsection{Model quality}
 
