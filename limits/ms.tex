@@ -40,6 +40,16 @@
  \hfil
  \includegraphics[width={\columnwidth}]{#2}%
 }}%
+\newcommand\plotthree[3]{{%
+ \centering
+ \leavevmode
+ \columnwidth=.30\columnwidth
+ \includegraphics[width={\columnwidth}]{#1}%
+ \hfil
+ \includegraphics[width={\columnwidth}]{#2}%
+ \hfil
+ \includegraphics[width={\columnwidth}]{#3}%
+}}%
 
 
 %\title{Limits on constraining galaxy profiles with current and future strong gravitational lensing}
@@ -363,15 +373,77 @@ observable and the density distribution is highly degenerate.
 
 \Glass\ is an evolution of the concepts employed by the free form modeling tool
 \PixeLens\ but completely rewritten in Python and C. The key improvements are:
+%
 \begin{enumerate}
+  \setcounter{enumi}{0}
   \item A modular framework allows new priors to be added and modified easily.
-  \item The basis functions approximating a model can be changed. 
-  \item Non-linear constraints can be imposed in an automated post-processing step. 
-  \item The central region can be have a higher resolution to capture steep models. 
-  \item Stellar density can be used as an additional constraint.  
-  \item Point or extended mass objects can be placed in the field.
-  \item Additional levels of pixel refinement.
 \end{enumerate}
+%
+Each prior is a simple function that adds linear constraints that operate on either
+a single lens object or the entire ensemble of objects. \Glass\ comes with a number
+of useful priors, but a user can write their own in the input file.
+%
+\begin{enumerate}
+  \setcounter{enumi}{1}
+  \item The basis functions approximating a model can be changed. 
+\end{enumerate}
+%
+\Glass\ currently describes the lens mass as a collection of pixels, but the code
+has been designed to support alternative methods. In particular, it is planned
+to develop a module using Bessel functions. This will require a new set of 
+priors that operate on these functions.
+%
+\begin{enumerate}
+  \setcounter{enumi}{2}
+  \item Non-linear constraints can be imposed in an automated post-processing step. 
+\end{enumerate}
+%
+Once \Glass\ has generated an ensemble of models given the linear contraints, any number
+of post processing functions can be applied. Not only can these functions be used to
+derive new quanities from the mass models, they can also be used as a filter to 
+accept or reject a model based on some non-linear constraint. The plotting functions
+within \Glass\ will correctly display models that have been accepted or rejected.
+%
+\begin{enumerate}
+  \setcounter{enumi}{3}
+  \item The central region can be have a higher resolution to capture steep models. 
+\end{enumerate}
+%
+By default, the mass distribution of the lens is described by uniform grid. However,
+in the central region of a lensing galaxy where the mass profile may rise steeply,
+a higher resolution can be specified that only applies to the inner pixels. These
+pixels are subdivided into a smaller grid.
+%
+\begin{enumerate}
+  \setcounter{enumi}{4}
+  \item Stellar density can be used as an additional constraint.  
+\end{enumerate}
+%
+The mass in inner regions of galaxies is often dominanted by the stellar component
+which one can estimate using standard mass-to-light models. This data can be added
+to the potential as described later in \secref{stellar mass}. By using the stellar
+mass one can place a lower bound on the mass and help constrain the inner most
+mass profile.
+%
+\begin{enumerate}
+  \setcounter{enumi}{5}
+  \item Point or extended mass objects can be placed in the field.
+\end{enumerate}
+%
+\PixeLens only allows for a shear term to be added to the potential (as shown
+later in \eqnref{shear}) to account for mass external to model region. This
+is useful to capture the gross effects of a distant neighbour. \Glass\ also
+has a shear term but additional allows for additional analytic potentials to
+be included. This can be used to model substructure or multiple neighbors close
+to the main lens. The substructure may have only a small effect if the lens is
+a single galaxy, but if the lens is group then a potential can be added for
+each of the galaxies.
+%
+\begin{enumerate}
+  \setcounter{enumi}{5}
+  \item A new uniform sampling algorithm for high dimensional spaces.
+\end{enumerate}
+%
 At the heart of \Glass\ lies a new algorithm for sampling the high dimensional
 linear space that represents the modeling solution space. This algorithm was
 described and tested in \cite{}. \Glass\ is also multi-threaded allowing it to
@@ -410,6 +482,7 @@ shearing outside this region from, e.g., a neighboring galaxy, we also add to
 \eqnref{discrete potential} two shearing terms
 %
 \begin{equation}
+\label{shear}
 \gamma_1(\theta_x^2 - \theta_y^2) + 2\gamma_2\theta_x\theta_y\quad.
 \end{equation}
 %
@@ -508,21 +581,21 @@ BC & 1.5 & $2^{1.5}$ & 1 & $11^2$ & 10 kpc &
 \caption{Profile parameters for the four mock galaxies. The resulting profiles only roughly follow
 \eqnref{Dehnen profile} because the galaxies are triaxial. Masses are in units of $1.8\e{10}\Msun$. The scale lengths for
 all lenses are $(a_\star,a_\mathrm{DM})=(2,20)$ kpc and by definition
-$M_\star(a_\star) = M_\mathrm{DM}(a_\star) = 1$.}
+$M_\star(a_\star) = M_\mathrm{DM}(a_\star) = 1$. $\Rmap$ is the 2d projected radius used to generate the lens configurations.}
 \label{mock galaxy params}
 \end{table}
 
 
 \begin{figure}
-\plotone{cmp_simulations.pdf}
+\plotthree{MockGalProfile-a.pdf} {MockGalProfile-b.pdf} {MockGalProfile-c.pdf}
 \caption{
 \textbf{(Left)} 
 Three-dimensional density of the galaxies showing the stellar, dark matter,
 and total densities with dotted, dashed, and solid lines, respectively. The
 grey lines show the analytic forms from \eqnref{Dehnen profile}. 
 \textbf{(Middle)} 
-The radially averaged two-dimensional projected density in terms of the
-critical density for lensing. At $z_L=0.31$, $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$.
+The radially averaged two-dimensional projected density.
+The critical density for lensing at $z_L=0.31$ is $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$.
 \textbf{(Right)}
 The enclosed projected mass.
 }
@@ -639,6 +712,7 @@ the double is poorest. However, the addition of an arc is sufficient to correct
 this.
 
 \subsection{Stellar mass}
+\label{stellar mass}
 
 The previous tests have been conducted to show that \Glass\ performs as expected.
 Here, we present a novel constraint that can significantly improve the models. 
