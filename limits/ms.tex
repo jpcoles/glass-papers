@@ -398,9 +398,9 @@ priors that operate on these functions.
   \item Non-linear constraints can be imposed in an automated post-processing step. 
 \end{enumerate}
 %
-Once \Glass\ has generated an ensemble of models given the linear contraints, any number
+Once \Glass\ has generated an ensemble of models given the linear constraints, any number
 of post processing functions can be applied. Not only can these functions be used to
-derive new quanities from the mass models, they can also be used as a filter to 
+derive new quantities from the mass models, they can also be used as a filter to 
 accept or reject a model based on some non-linear constraint. The plotting functions
 within \Glass\ will correctly display models that have been accepted or rejected.
 %
@@ -419,7 +419,7 @@ pixels are subdivided into a smaller grid.
   \item Stellar density can be used as an additional constraint.  
 \end{enumerate}
 %
-The mass in inner regions of galaxies is often dominanted by the stellar component
+The mass in inner regions of galaxies is often dominated by the stellar component
 which one can estimate using standard mass-to-light models. This data can be added
 to the potential as described later in \secref{stellar mass}. By using the stellar
 mass one can place a lower bound on the mass and help constrain the inner most
@@ -486,10 +486,15 @@ shearing outside this region from, e.g., a neighboring galaxy, we also add to
 \gamma_1(\theta_x^2 - \theta_y^2) + 2\gamma_2\theta_x\theta_y\quad.
 \end{equation}
 %
-We can continue adding terms to account for assumed potentials or potentials
-induced from the presence of other galaxy in the field. If the stellar density
-has been estimated we can use this as a lower bound where the stellar potential
-is a known constant of the form \eqnref{discrete potential}.
+We can continue adding terms to account for other potentials. For instance,
+we may want to impose a base potential over the field, or add potentials
+from the presence of other galaxies in the field. \Glass\
+already includes potentials for a point mass or an exponential form, but custom
+potentials are straightforward to add and can be included directly in the input file.
+If the stellar density has been estimated we can use this as a lower bound
+where the stellar potential is a known constant of the form \eqnref{discrete
+potential}.
+
 %
 %\begin{equation}
   %\psi^*(\vec\theta) = \sum_n \kappa^*_n Q_n(\vec\theta)\quad.
@@ -499,9 +504,9 @@ is a known constant of the form \eqnref{discrete potential}.
 Unfortunately, the lens equation and the arrival times alone are not enough to form a
 closed volume in the solution space. We have not imposed any strong constraints
 on the density even so much as to ensure that it is non-negative everywhere. We
-must therefore provide additonal linear constraints so that we only sample
+must therefore provide additional linear constraints so that we only sample
 physical models. The explicit implementation for these priors has been
-explained in \cite{}, be can be summarized as
+explained in \cite{}, but can be summarized as
 \begin{enumerate}
 \item The density must be non-negative everywhere.
 \item The density profile must have a slope everywhere $\le 0$. This prevents hollow rings.
@@ -531,17 +536,21 @@ follow.
 particle-based simulation output given a source position $\vec\beta$. This is
 used to generate the lens configurations used in the parameter study.  The
 particles are first projected onto a very high resolution grid representing the
-lens plane. The centers of each of the grid cells are mapped back onto the
-source plane using \eqnref{lensing equation}. If the location on the source
-plane is within a user specified $\eps_\mathrm{accept}$ of $\vec\beta$ then the
-point on the image plane is accepted and further refined using a root finding
-algorithm until the distance to $\vec\beta$ is nearly zero. If multiple points
-converge to an $\eps_\mathrm{root}$ of each other then only one point is taken.
-Care must be taken that the grid resolution is high enough that the resulting
-image position error is below the equivalent observational error. Time delays
-are then calculated in order from the arrival time at each image (\eqnref{tau}).
+lens plane. The centers $\vec\theta_i$ of each of the grid cells are mapped
+back onto the source plane using \eqnref{lensing equation}. If the location on
+the source plane $\vec\beta_i$ is within a user specified
+$\eps_\mathrm{accept}$ of $\vec\beta$ then $\vec\theta_i$ is 
+accepted and further refined using a root finding algorithm until the distance
+to $\vec\beta$ is nearly zero. If multiple points converge to an
+$\eps_\mathrm{root}$ of each other then only one point is taken.  Care must be
+taken that the grid resolution is high enough that the resulting image position
+error is below the equivalent observational error. Time delays are then
+calculated in order from the arrival time at each image (\eqnref{tau}).
 
 \section{Parameter study}
+
+We now present a study of four mock galaxies with known analytic forms to
+confirm that \Glass is able to correclty recover the mass profile.
 
 \subsection{Mock galaxy data}
 
@@ -588,6 +597,7 @@ $M_\star(a_\star) = M_\mathrm{DM}(a_\star) = 1$. $\Rmap$ is the 2d projected rad
 
 \begin{figure}
 \plotthree{MockGalProfile-a.pdf} {MockGalProfile-b.pdf} {MockGalProfile-c.pdf}
+%\plotone{MockGalProfile-a.pdf} \plotone{MockGalProfile-b.pdf} \plotone{MockGalProfile-c.pdf}
 \caption{
 \textbf{(Left)} 
 Three-dimensional density of the galaxies showing the stellar, dark matter,
@@ -616,7 +626,7 @@ described in \secref{Raytracing} to construct 12 lensing scenarios:
 \begin{enumerate}
 \item One double and one extended double.
 \item One quad and one extended quad.
-\item Three 2-source quads with varying redshift contrast.
+\item Two 2-source quads with varying redshift contrast.
 \end{enumerate}
 
 The extended configurations use extra sources to generate extra images that
@@ -677,6 +687,7 @@ RMS quantity
 
 \begin{figure}
 \plottwo{AAchi2_profile.pdf}{BBchi2_profile.pdf}
+
 \plottwo{ACchi2_profile.pdf}{BCchi2_profile.pdf}
 \caption{The main results showing the quality of model recovery. Each panel corresponds to 
 the named mock galaxy, whose parameters are listed in \tabref{mock galaxy params}. Within
