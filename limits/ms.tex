@@ -654,7 +654,6 @@ profile is due to the cut off in mass in the lensing map. This is of little
 importance, though, as there is no lensing information there.
 
 \begin{figure}
-%\plotone{AAZContrastR1R5_Tm.pdf}
 \plotthree{BCQuadR1a_TmS-a.pdf}{BCQuadR1a_TmS-b.pdf}{BCQuadR1a_TmS-c.pdf}
 \caption{A typical reconstructed lens. Here we present a single quad lens from 
 the BC mock galaxy.
@@ -699,8 +698,6 @@ indicate where the stellar mass has been given.}
 \end{figure}
 
 \begin{figure}
-%\plotone{AAarrival_surfaces}
-%\plotone{BBarrival_surfaces}
 \plotone{BCarrival_surfaces}
 \caption{The lens configurations for the six test cases using the BC mock galaxy. Here,
 the central image is shown, although not all tests include it. The central image belongs
@@ -783,64 +780,6 @@ lensing can be used to place constraints on the velocity anisotropy.}
 %\item Use G1. Show problems with recovering $\gamma$.
 %\end{itemize}
 
-%\tabref{Test configurations} summarizes how each of the configurations is composed.  
-%\figref{Test reconstructions} shows the reconstructed lens.
-
-%\subsection{Recovery} %--------------------------------------------------------------
-
-%\begin{table}
-%\begin{tabular}{lccccc}
-%Source name & $z$ & $\beta$ & Image & $\vec\theta$ & $\Delta t$ (days) \\
-%\hline
-%AASingleSourceR1a & 1.72 & -0.59, 0.10 & A & -2.64, 5.07 & \\
-% & & & B & -3.15, -4.62 & 37.09\\
-% & & & C & -5.72, -0.67 & 33.58\\
-% & & & D & 4.26, -0.20 & 259.75\\
-% & & & E & 0.22, -0.02 & 104.48\\
-%AASingleSourceR1b & 1.72 & 0.11, -0.46 & A & 0.49, -5.85 & \\
-% & & & B & 0.87, 4.91 & 228.69\\
-% & & & C & 4.80, 1.57 & 31.83\\
-% & & & D & -4.58, 1.40 & 56.15\\
-% & & & E & -0.09, 0.11 & 180.09\\
-%AAExtendedSourceR1a & 1.72 & -0.23, -0.13 & A & -1.08, -5.48 & \\
-% & & & B & -1.26, 5.19 & 66.27\\
-% & & & C & -5.31, 0.49 & 74.72\\
-% & & & D & 4.72, 0.33 & 99.26\\
-% & & & E & 0.04, 0.02 & 174.11\\
-%AAExtendedSourceR1b & 1.72 & -0.37, 0.04 & A & -1.73, 5.27 & \\
-% & & & B & -1.93, -5.13 & 14.76\\
-% & & & C & -5.53, -0.27 & 75.45\\
-% & & & D & 4.56, -0.05 & 160.47\\
-% & & & E & 0.09, -0.01 & 147.24\\
-%AAExtendedSourceR1c & 1.72 & -0.62, -0.13 & A & -2.84, -5.01 & \\
-% & & & B & -3.47, 4.36 & 60.96\\
-% & & & C & -5.66, 0.92 & 17.14\\
-% & & & D & 4.13, 0.23 & 270.45\\
-% & & & E & 0.40, 0.06 & 83.81\\
-%AASingleSourceR2 & 1.50 & 0.11, -0.46 & A & 0.49, -5.66 & \\
-% & & & B & 0.98, 4.67 & 227.84\\
-% & & & C & 4.48, 1.70 & 27.39\\
-% & & & D & -4.34, 1.34 & 54.57\\
-% & & & E & -0.12, 0.21 & 144.98\\
-%AASingleSourceR3 & 1.00 & 0.11, -0.46 & A & 0.48, -5.05 & \\
-% & & & B & 0.92, 3.98 & 226.30\\
-% & & & C & 3.70, 1.67 & 19.74\\
-% & & & D & -3.55, 1.20 & 53.34\\
-% & & & E & -0.12, 0.15 & 96.33\\
-%AASingleSourceR4 & 0.80 & 0.11, -0.46 & A & 0.39, -4.50 & \\
-% & & & B & 0.93, 3.38 & 223.14\\
-% & & & C & 2.98, 1.69 & 9.75\\
-% & & & D & -2.82, 1.09 & 48.86\\
-% & & & E & -0.15, 0.18 & 52.90\\
-%AASingleSourceR5 & 0.72 & 0.11, -0.46 & A & 0.44, -4.22 & \\
-% & & & B & 1.02, 2.94 & 219.75\\
-% & & & C & 2.51, 1.69 & 4.63\\
-% & & & D & -2.36, 1.03 & 44.24\\
-% & & & E & -0.16, 0.20 & 32.56
-%\end{tabular}
-%\end{table}
-
-
 %\subsection{With/without time delays and central image} %--------------------------------------------------------------
 
 %We also considered the effect of having time delays or a central image. The
@@ -852,209 +791,15 @@ lensing can be used to place constraints on the velocity anisotropy.}
 %uppercase letter indicates the feature is turned on, and a lowercase letter
 %that it is turned off.
 
-%\begin{figure}
-%\plotone{AASingleQuadR1a_Tm.png}
-%\caption{The reconstruction of AASingleQuadR1a\_Tm.}
-%\end{figure}
-
-%\begin{table}
-%\begin{tabular}{lccccccc}
-%Source name & $z$ & $\beta$ & $A$ (min) & $B$ (min) & $C$ (saddle) & $D$ (saddle) & $E$ (max)\\
-%\hline
-%SingleQuad1 & 2.50 & -0.37,0.08 & -2.40,10.40 & -2.55,-10.26 & -10.93,-0.39 & 10.37,-0.23 & 0.03,-0.01\\
-%SingleQuad2 & 0.40 & 0.08,-0.51 & 0.32,-7.23 & 0.70,6.40 & 6.30,1.74 & -6.22,1.59 & -0.03,0.08\\
-%SingleQuad3 & 0.60 & 0.08,-0.51 & 0.27,-8.86 & 0.74,8.08 & 8.13,1.93 & -8.05,1.72 & -0.03,0.06\\
-%SingleQuad4 & 0.80 & 0.08,-0.51 & 0.36,-9.58 & 0.70,8.82 & 8.92,2.05 & -8.87,1.76 & -0.02,0.05\\
-%SingleQuad5 & 1.00 & 0.08,-0.51 & 0.38,-10.00 & 0.68,9.24 & 9.40,1.99 & -9.34,1.79 & -0.02,0.05\\
-%ExtendedSource0 & 0.40 & 0.20,0.57 & 0.79,7.25 & 1.51,-6.25 & 6.29,-2.07 & -6.12,-1.55 & -0.06,-0.08\\
-%ExtendedSource1 & 0.40 & -0.15,0.17 & -0.64,6.96 & -0.84,-6.66 & -6.67,-0.56 & 6.39,-0.52 & 0.02,-0.03\\
-%ExtendedSource2 & 0.40 & 0.06,-0.33 & 0.24,-7.09 & 0.44,6.56 & 6.47,1.18 & -6.43,0.98 & -0.03,0.05
-%\end{tabular}
-%\caption{Source data.}
-%\label{source data}
-%\end{table}
-%
-%\begin{table}
-%\begin{tabular}{lrrrr}
-%Source name & $\Delta t_{AB}$ & $\Delta t_{BC}$ & $\Delta t_{CD}$ & $\Delta t_{DE}$\\
-%\hline
-%SingleQuad1 & 38.97 & 171.07 & 207.10 & 1314.05\\
-%SingleQuad2 & 335.01 & 97.91 & 50.78 & 623.95\\
-%SingleQuad3 & 312.86 & 122.63 & 47.83 & 951.56\\
-%SingleQuad4 & 303.39 & 128.81 & 46.63 & 1102.50\\
-%SingleQuad5 & 298.27 & 131.32 & 45.70 & 1188.64\\
-%ExtendedSource0 & 360.17 & 62.16 & 115.30 & 588.15\\
-%ExtendedSource1 & 109.28 & 169.77 & 91.20 & 620.78\\
-%ExtendedSource2 & 217.40 & 148.57 & 36.52 & 642.27
-%\end{tabular}
-%\caption{Time delays for each image system.}
-%\label{source time delays}
-%\end{table}
-%
-%\begin{table}
-%\begin{tabular}{ll}
-%\label{test systems}
-%Test name & Source name\\
-%\hline
-%SingleQuad & SingleQuad1\\
-%SingleQuad2 & SingleQuad2\\
-%ExtendedSource & ExtendedSource0 + ExtendedSource1 + ExtendedSource2\\
-%ZContrastDoubleQuad0 & SingleQuad1 + SingleQuad2\\
-%ZContrastDoubleQuad1 & SingleQuad1 + SingleQuad3\\
-%ZContrastDoubleQuad2 & SingleQuad1 + SingleQuad4\\
-%ZContrastDoubleQuad3 & SingleQuad1 + SingleQuad5
-%\end{tabular}
-%\caption{Test configurations}
-%\label{Test configurations}
-%\end{table}
-
 \section{Results} %--------------------------------------------------------------
-
-%\subsection{Model quality}
 
 %\subsection{Shape fitting}
 
 %\subsection{Using principle component analysis to find new degeneracies}
 
-%\begin{figure}
-%\label{chi2}
-%\plottwo{AAchi2_profile.pdf}{AAchi2_profile.pdf} \\
-%\plottwo{BBchi2_profile.pdf}{BCchi2_profile.pdf}
-%\caption{
-%Goodness of fit plots for the reconstruction of each of the four galaxies given
-%the different lensing test cases. The $\chi^2$ is computed over the radial $\kappa$
-%profile with data points at the median value and the error bars showing the 68\% confidence
-%interval.
-%}
-%\end{figure}
-
-%\begin{figure}
-%\plotone{SingleQuad_TmC.png}
-%\caption{SingleQuad}
-%\label{SingleQuad}
-%\end{figure}
-%
-%\begin{figure}
-%\plotone{SingleQuad2_TmC.png}
-%\caption{SingleQuad2}
-%\label{SingleQuad2}
-%\end{figure}
-%
-%\figref{SingleQuad}
-%\figref{SingleQuad2}
-%
-%\begin{figure}
-%\plotone{ExtendedSource_TmC.png}
-%\caption{ExtendedSource}.
-%\label{ExtendedSource}
-%\end{figure}
-%
-%\figref{ExtendedSource}
-%
-%\begin{figure}
-%\plotone{ZContrastDoubleQuad0_TmC.png}
-%\caption{ZContrastDoubleQuad0}
-%\label{ZContrastDoubleQuad0}
-%\end{figure}
-%
-%\begin{figure}
-%\plotone{ZContrastDoubleQuad1_TmC.png}
-%\caption{ZContrastDoubleQuad1}
-%\label{ZContrastDoubleQuad1}
-%\end{figure}
-%
-%\begin{figure}
-%\plotone{ZContrastDoubleQuad2_TmC.png}
-%\caption{ZContrastDoubleQuad2}
-%\label{ZContrastDoubleQuad2}
-%\end{figure}
-%
-%\begin{figure}
-%\plotone{ZContrastDoubleQuad3_TmC.png}
-%\caption{ZContrastDoubleQuad3}
-%\label{ZContrastDoubleQuad3}
-%\end{figure}
-%
-%\figref{ZContrastDoubleQuad0}
-%\figref{ZContrastDoubleQuad1}
-%\figref{ZContrastDoubleQuad2}
-%\figref{ZContrastDoubleQuad3}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\subsection{Aperture}
-
-%\begin{figure}
-%\plotone{sigma_beta.pdf}
-%\caption{}
-%\end{figure}
-
 \section{Discussion} %--------------------------------------------------------------
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%\begin{figure}
-%\plotone{SingleQuad_Tmc_eig.png}
-%\plotone{SingleQuad2_Tmc_eig.png}
-%\plotone{ExtendedSource_Tmc_eig.png}
-%\plotone{ZContrastDoubleQuad0_Tmc_eig.png}
-%\plotone{ZContrastDoubleQuad1_Tmc_eig.png}
-%\plotone{ZContrastDoubleQuad2_Tmc_eig.png}
-%\plotone{ZContrastDoubleQuad3_Tmc_eig.png}
-%\end{figure}
-
 \appendix
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\section{Choice of modeling parameters}
-%
-%
-%\begin{itemize}
-%\item \figref{raytracing convergence tests}
-%\item Why do we choose {\texttt maprad}=20 arcsec when generating test cases?
-%We need to enclose most of the mass for the time delays to be stable.  
-%\item Why do we choose {\texttt pixrad}=45 when generating the test cases? We
-%need sufficient resolution for the image positions to be stable.  
-%\end{itemize}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\section{GLASS - An Extensible Gravitational Lens Modeling Framework}
-%\label{GLASS Description}
-%\begin{itemize} 
-%\item Framework that incorporates lens modeling, analysis, and plotting.
-%\item Not limited to just pixels based modeling. Can be used with functional forms like Bessel functions. Not yet implemented.
-%\item Allows for post processing and criteria matching on a per model basis.
-%\item Input files are python programs but from within the framework that aspect may be ignored.
-%
-%\item Lens reconstruction. Based on PixeLens. Express data constraints and
-%priors as linear equations. Sample the resulting simplex.
-%\item Standard data constraints: image positions, time delays, hubble constant, parity, annular density, external shear.
-%\item Priors: range of profile steepness, local gradient, smoothness, shared H0, symmetry for doubles.
-%\item Local gradient and smoothness are now convergent. Based on physical size rather than number of neighbors.
-%
-%\item Raytracing. Use a fine grid to sample the 2d function mapping position on
-%the image plane to distance from the source on the source plane. From those
-%points that are near the source, use a 2d root finder to locate the exact
-%positions. Merge nearly identical solutions.
-
-%\end{itemize}
 
 \section{Raytracing convergence test}
 Raytracing is sensitive to the map area and resolution set by $\Rmap$ and
