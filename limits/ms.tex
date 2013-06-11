@@ -1,4 +1,4 @@
-\documentclass[onecolumn,galley]{mn2e}
+\documentclass[galley]{mn2e}
 %\documentclass[twocolumn,galley]{mn2e}
 %\documentclass[onecolumn,galley,draft]{mn2e}
 %\usepackage{myaasmacros}
@@ -53,7 +53,7 @@
 
 
 %\title{Limits on constraining galaxy profiles with current and future strong gravitational lensing}
-\title[GLASS]{Lens Recovery with GLASS: An Extensible Free-Form Gravitational Lens Modeling Framework}
+\title[\Glass]{Gravitational Lens Recovery with \Glass: Illustrating the power of free-form lens modelling}
 \author{%
 Jonathan P. Coles 
 \and 
@@ -68,131 +68,45 @@ Prasenjit Saha
 %\tableofcontents
 
 \begin{abstract}
-We show the effectiveness of reconstructing the mass distribution of four mock galaxies using
-a range of strong gravitational lensing assumptions. In particular, we study
-the affects of the lens morphology (double or quad) with and without a central
-image, angular image distribution, and red shift contrast between two sources.
-The lens modeling is performed using a new free-form framework called \Glass.
-We conclude that \dots
-%1) Time delays are unnecessary with strong red shift contrast,
-%2)
-
-
-
-%We study the effectiveness of a variety of strong lensing scenarios to inform
-%the reconstruction of four simulated triaxial halos with stellar and dark
-%matter components. We conclude that 
-%1) lenses with multiple sources and high redshift contrast perform very well
-%2) lenses where the images are already probing the stellar dominated region 
-%   of a galaxy can be constrained by an estimate of the stellar mass and
-%   suggest the fraction of dark matter
-%3) if velocity dispersion measurements are to be used then a sufficiently large aperture 
-%   is necessary
-%4) lensing can be used to infer the velocity anisotropy.
-%We also introduce GLASS, an extensible framework for lens modeling and analysis.
-
-%We attempt to reconstruct the mass profile and distribution of a dark and
-%stellar matter triaxial halo using a variety of strong lens configurations,
-%stellar mass estimates, and stellar velocity dispersions. The lens
-%configurations test quads with small to large image separations (radial
-%sampling), extended source information ranging from point images to Einstein
-%rings (angular sampling), and multiple sources located at the same and
-%differing redshifts (redshift contrast). 
-
-%We conclude that redshift contrast can significantly constrain the mass
-%profiles.  Stellar mass estimates can also lead to better reconstructions by
-%placing lower bounds on the mass distribution in the inner regions of galaxies.
-%Velocity dispersions alone are unlikely to usefully constrain the profile
-%because the profile is highly sensitive to the dispersion measurement.  
-%Combined with other techniques, however, velocity dispersions can help to
-%constrain the range of possible reconstructed solutions. We also introduce
-%GLASS, an extensible framework for lens modeling and analysis.  
+{\bf JR. Does \Glass\ stand for something?}\\
+We introduce a new free-form gravitational lens modelling tool \Glass\ that builds on an earlier code \PixeLens. Like \PixeLens, we use a grid of mass pixels to model the lens, searching through many models consistent with the data to marginalise over model uncertainties. However, \Glass\ improves on \PixeLens\ in a number of important respects: (i) it uses a significantly improved sampling strategy that is both faster and results in significantly smaller errors; (ii) it is built on a fully modular framework that can support different basis functions; (iii) non-linear constraints can be applied in post-processing (for example, filters to remove models with spurious additional images or models inconsistent with stellar dynamics data are already implemented); (iv) the stellar mass (if known) can be applied as a prior; and (v) adaptive resolution can be used in regions of interest. We apply \Glass\ to a suite of dynamically realistic mock N-body data to determine what quality of data are required to  measure the circularly averaged mass profile of a lens and its shape. We find that for pure lens data, multiple sources with wide redshift separation give the strongest constraints as this breaks the well-known mass-sheet or steepness degeneracy. However, a single quad with time delays also performs well. Folding in additional constraints from stellar population synthesis modelling provides powerful additional constraints for galaxy lenses where the stars dominate the central potential, providing similarly good constraints from a single double without time delays as a quad with time delays in the absence of stellar mass constraints. Stellar kinematic data is only useful for probing the mass profile within the half light radius $r_{1/2}$ of the stars provided data are available for $r \gg r_{1/2}$ since this is required to integrate out the unknown velocity anisotropy $\beta(r)$. On the other hand, if the lensing data already probe the mass profile over the region $r \sim r_{1/2}$, then stellar kinematic data can be used to probe $\beta(r)$ -- an interesting dynamic quantity in its own right. Where information on the mass distribution from lensing and other probes becomes redundant, this opens up the possibility of using strong lensing to probe cosmology. We will study this, and present the first results from \Glass\ applied to real data, in forthcoming papers.
 \end{abstract}
 
 \section{Introduction}
 
-To date only about 400 strong lenses are known, but within the next ten years
-new surveys will discover thousands of gravitational lenses. The SKA estimates
-that after its start in 2020 about 10,000 lenses will be found. The LSST
-expects to find about 5,000 multiply-imaged galaxies and about 150 AGNs or
-quasar lenses after 2022.
+Since the discovery of the first gravitational lens (CITE), lensing has become an increasingly important probe of the distribution of mass in the Universe (CITE). Strong lensing in particular provides a powerful probe of the mass distribution at the heart of galaxies and galaxy clusters given good enough data (CITE). This in turn provides valuable constraints on the nature of dark matter (CITE), on cosmological models (CITE), and on galaxy formation models (CITE). To date, some $\sim$400 strong lenses are known (CITE), but with the advent of large ground and space based surveys, this number is set to explode, with thousands of lenses expected to be discovered over the next ten years (CITE).
 
-A typical lens, where only the measured observables are the image positions,
-can been used to estimate the total mass of a galaxy including parts of the
-dark matter halo. The enclosed mass inside the Einstein radius is simple to
-calculate and quite robust given the observed image positions. The exact mass
-distribution is more difficult to determine, however, as there are typically
-not enough constraints on the mass profile. The known degeneracies have been
-discussed at length in the literature. At the very least, one would like to
-have a measure of the enclosed mass at two distinct radii to be able
-to properly distinguish between analytic mass models. 
-%This would break the steepness degeneracy, also known as the mass sheet degeneracy.
+The majority of lens modelling efforts to date have focussed on `parametric' modelling, where simple theoretically motived models are fit using maximum likelihood methods to the data (CITE). This is useful in that a simple model provides valuable physical insight (CITE). However, as data quality improves and the questions we ask of these data become more refined, it is important to re-asses the impact of our model assumptions. `Non-parameteric' methods -- that assume many more parameters than the available data constraints -- are invaluable in this respect. In non-parametric mass modelling, the lens inversion problem is deliberately chosen to be under-constrained (CITE). Instead of finding one `best-fit' model, we must search for many models consistent with the data, exploring degeneracies between different but plausible mass models. This latter word -- {\it plausible} -- encodes the key hidden gremlin in non-parametric methods: constraints extra to the available data are typically required on the solution space in order to make it finite -- priors (CITE). However, even rather restrictive priors are far less restrictive than the implicit constraints inherent in parametric mass modelling. The key advantages of non-parametric modelling are that we can: (i) explore model degeneracies and marginalise over them; and (ii) we can determine what type and quality of data (including addition non-lensing data) are required to measure parameters of interest.
 
-Lensing is not the only technique that can measure enclosed mass. The enclosed
-mass can also be estimated from stellar velocity dispersions. If the radius
-from this measurement is sufficiently different from the Einstein radius, then
-combining this measurement with lensing provides the necessary constraint.
-Another solution is to find a galaxy that is lensing two sources. The images
-from each source provide an enclosed mass. The extent to which the radii
-differ is dependent upon the redshifts of the two sources: the larger the
-redshift difference the larger the radial separation.
+In this paper, we present a new free-form or `non-parametric' strong lens modelling framework \Glass\ that builds on an earlier code \PixeLens (CITE). Like \PixeLens, we use a grid of mass pixels to model the lens, searching through many models consistent with the data to marginalise over model uncertainties. However, \Glass\ improves on \PixeLens\ in a number of important respects:
 
-Lensing is known to be sensitive to cosmology and, in principle, can be used to
-estimate such quantities as the Hubble constant $H_0$ when the lens has
-measurable time delays. However, due to strong degeneracies such as the
-steepness degeneracy there is often little one can learn from a single lens. 
-In this case, one is free to change the mass and $H_0$ while keeping
-all observables fixed. A single lens can say almost nothing about the actual
-value of $H_0$. However, it has been shown that combining modeling results
-of several strong lenses with time delays can significantly reduce the allowed
-values and provides a measure to within 10 percent \cite{}.
+\begin{enumerate} 
+\item it uses a significantly improved sampling strategy that is both faster and results in significantly smaller errors;
+\item it is built on a fully modular framework that can support different basis functions;
+\item non-linear constraints can be applied in post-processing (for example, filters to remove models with spurious additional images or models inconsistent with stellar dynamics data are already implemented);
+\item the stellar mass (if known) can be applied as a prior; and
+\item adaptive resolution can be used in regions of interest. 
+\end{enumerate}
 
-If one assumes a Hubble constant $H_0$ and time delays have been observed for a
-lens this will break the steepness degeneracy but will not help in
-constraining the mass profile at two radii.  One can choose to postpone this
-problem and simply fit models to the given data.  The earliest examples were
-singular isothermal sphere (SIS) or elliptical (SIE) models but have since
-evolved to multi-component models include separate models for the stars and
-dark matter. Other methods that do not ignore this problem use genetic
-algorithms or linear programming to explore the large space of solutions.
+We apply \Glass\ to a suite of dynamically realistic mock N-body data to determine what quality of data from strong lensing, stellar populations synthesis models and/or stellar kinematics are required to measure the circularly averaged mass profile of a lens and its shape. We will consider using strong lensing as a cosmological probe, and present the first results from \Glass\ applied to real data, in forthcoming papers.
 
-Despite such difficulties lensing is a direct probe of the gravitating mass in
-a halo and there are a number of open problems in galaxy formation that lensing
-can help address. For instance, the debate remains as to what form the inner
-slope of the density profile takes. Numerical simulations of dark matter
-suggest a cusp, while observations from lensing and stellar dynamics suggest
-cores. This may, however, be only a matter of scale, as both theory and
-observations agree that clusters have cuspy profiles. 
+%(The SKA estimates that after its start in 2020 about 10,000 lenses will be found. The LSST expects to find about 5,000 multiply-imaged galaxies and about 150 AGNs or quasar lenses after 2022.)
 
-Lensing may also be useful in measuring possible adiabatic contraction of the 
-dark matter halo due to the central stars in a galaxy. For this, one needs
-high resolution mass models of the stellar profile combined with accurate models
-of the total mass. Indeed, with such models, one may also improve the statistics
-of the dark matter fraction in a galaxies over many different mass scales.
+%A typical lens, where only the measured observables are the image positions, can been used to estimate the total mass of a galaxy including parts of the dark matter halo. The enclosed mass inside the Einstein radius is simple to calculate and quite robust given the observed image positions. The exact mass distribution is more difficult to determine, however, as there are typically not enough constraints on the mass profile. The known degeneracies have been discussed at length in the literature. At the very least, one would like to have a measure of the enclosed mass at two distinct radii to be able to properly distinguish between analytic mass models. This would break the steepness degeneracy, also known as the mass sheet degeneracy.
 
-These open problems suggest what kind of lensing data will be required in the
-future.  Future surveys will provide many lenses but time delays will require a
-long follow up. Stellar mass maps, however, take a known, fixed observation
-time and can be performed for many lenses. It will be important not only to
-measure the stellar velocity dispersion at an arbitrary radius, but to ensure
-that the measurement is taken at a radius different to the Einstein radius.
-For the radio surveys like SKA it will be important to detect the central image
-of the lens. This can provide mass information all the way to the center of the
-galaxy.
+%Lensing is not the only technique that can measure enclosed mass. The enclosed mass can also be estimated from stellar velocity dispersions. If the radius from this measurement is sufficiently different from the Einstein radius, then combining this measurement with lensing provides the necessary constraint. Another solution is to find a galaxy that is lensing two sources. The images from each source provide an enclosed mass. The extent to which the radii differ is dependent upon the redshifts of the two sources: the larger the redshift difference the larger the radial separation.
 
-In this paper we perform a parameter study using four mock galaxies that differ
-in their dark matter and stellar profiles. We consider double and quad lensing
-morphologies, time delays, the presence of a central image, red shift contrast
-between multiple sources, and image configuration.  We also consider the
-effects of adding stellar mass models as lower bound constraints on the mass
-distribution.  The modeling and analysis is performed using a new free form
-lens modeling framework called \Glass. 
+%Lensing is known to be sensitive to cosmology and, in principle, can be used to estimate such quantities as the Hubble constant $H_0$ when the lens has measurable time delays. However, due to strong degeneracies such as the steepness degeneracy there is often little one can learn from a single lens. In this case, one is free to change the mass and $H_0$ while keeping all observables fixed. A single lens can say almost nothing about the actual value of $H_0$. However, it has been shown that combining modeling results of several strong lenses with time delays can significantly reduce the allowed values and provides a measure to within 10 percent \cite{}.
 
-We first review the basic lensing theory we will need and then describe how
-\Glass is used to generate lensing models. The mock data and how it was
-generated is described in \secref{}. In section{} we discuss the lensing
-configurations in the parameter study and present some example output. Our
-finals results are presented in \secref{}.
+%If one assumes a Hubble constant $H_0$ and time delays have been observed for a lens this will break the steepness degeneracy but will not help in constraining the mass profile at two radii.  One can choose to postpone this problem and simply fit models to the given data.  The earliest examples were singular isothermal sphere (SIS) or elliptical (SIE) models but have since evolved to multi-component models include separate models for the stars and dark matter. Other methods that do not ignore this problem use genetic algorithms or linear programming to explore the large space of solutions.
+
+%Despite such difficulties lensing is a direct probe of the gravitating mass in a halo and there are a number of open problems in galaxy formation that lensing can help address. For instance, the debate remains as to what form the inner slope of the density profile takes. Numerical simulations of dark matter suggest a cusp, while observations from lensing and stellar dynamics suggest cores. This may, however, be only a matter of scale, as both theory and observations agree that clusters have cuspy profiles. 
+
+%Lensing may also be useful in measuring possible adiabatic contraction of the dark matter halo due to the central stars in a galaxy. For this, one needs high resolution mass models of the stellar profile combined with accurate models of the total mass. Indeed, with such models, one may also improve the statistics of the dark matter fraction in a galaxies over many different mass scales.
+
+%These open problems suggest what kind of lensing data will be required in thefuture.  Future surveys will provide many lenses but time delays will require a long follow up. Stellar mass maps, however, take a known, fixed observation time and can be performed for many lenses. It will be important not only to measure the stellar velocity dispersion at an arbitrary radius, but to ensure that the measurement is taken at a radius different to the Einstein radius. For the radio surveys like SKA it will be important to detect the central image of the lens. This can provide mass information all the way to the center of the galaxy.
+
+This paper is organised as follows. We first review the basic lensing theory we will need and then describe how \Glass\ is used to generate lensing models. The mock data and how it was generated is described in \secref{}. In section{} we discuss the lensing configurations in the parameter study and present some example output. Our finals results are presented in \secref{}.
 
 
 %\subsection{Future} %-----------------------------------------------------------
