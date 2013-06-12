@@ -55,7 +55,7 @@
 }}%
 
 
-\title[\Glass]{Gravitational Lens Recovery with \Glass: Illustrating the power of non-parametric lens modelling}
+\title[\Glass]{Gravitational Lens Recovery with \Glass: How to measure the mass profile and shape of a lens}
 \author{%
 Jonathan P. Coles 
 \and 
@@ -69,12 +69,16 @@ Prasenjit Saha
 
 \begin{abstract}
 {\bf JR. Does \Glass\ stand for something?}\\
-We introduce a new non-parametric gravitational lens modelling tool \Glass\ that builds on an earlier code \PixeLens. Like \PixeLens, we use a grid of mass pixels to model the lens, searching through many models consistent with the data to marginalise over model uncertainties. However, \Glass\ improves on \PixeLens\ in a number of important respects: (i) it uses a significantly improved sampling strategy that is both faster and results in significantly smaller errors; (ii) it is built on a fully modular framework that can support different basis functions; (iii) non-linear constraints can be applied in post-processing (for example, filters to remove models with spurious additional images or models inconsistent with stellar dynamics data are already implemented); (iv) the stellar mass (if known) can be applied as a prior; and (v) adaptive resolution can be used in regions of interest. We apply \Glass\ to a suite of dynamically realistic mock N-body data to determine what quality of data -- from lensing, stellar kinematics and/or stellar masses -- are required to measure the circularly averaged mass profile of a lens and its shape. Our key findings are as follows: (i) for pure lens data, multiple sources with wide redshift separation give the strongest constraints as this breaks the well-known mass-sheet or steepness degeneracy; (ii) a single quad with time delays also performs well, giving a good recovery of both the mass profile and its shape; (iii) stellar masses -- for lenses where the stars dominate the central potential -- can also break the steepness degeneracy, giving a recovery almost as good as having time delay data or multiple source redshifts; (iv) stellar kinematics are similarly powerful if the data extend beyond the half light radius of the stars $r \gg r_{1/2}$ (required to integrate out the effect of the unknown velocity anisotropy, $\beta(r)$); and (v) if the lensing data already probe the mass profile over the region $r \sim r_{1/2}$, then stellar kinematic data can be used to probe $\beta(r)$ -- an interesting dynamic quantity in its own right. Where information on the mass distribution from lensing and other probes becomes redundant, this opens up the possibility of using strong lensing to constrain cosmological models. We will study this, and present the first results from \Glass\ applied to real data, in forthcoming papers.
+We introduce a new non-parametric gravitational lens modelling tool: \Glass. \Glass\ uses an adaptive grid of mass pixels to model the lens, searching through hundreds of thousands of models to marginalise over model uncertainties. It is built on a fully modular framework that can support different basis functions, while non-lensing data constraints -- for example stellar mass estimates from stellar population synthesis modelling, or stellar kinematic data -- can also be applied. As a first application, we apply \Glass\ to a suite of dynamically realistic mock N-body data to determine what quality of data -- strong lensing, stellar kinematics, and/or stellar masses -- are required to measure the circularly averaged mass profile of a lens and its shape. Our key findings are as follows: (i) for pure lens data, multiple sources with wide redshift separation give the strongest constraints as this breaks the well-known mass-sheet or steepness degeneracy; (ii) a single quad with time delays also performs well, giving a good recovery of both the mass profile and its shape; (iii) stellar masses -- for lenses where the stars dominate the central potential -- can also break the steepness degeneracy, giving a recovery almost as good as having time delay data or multiple source redshifts; (iv) stellar kinematics are similarly powerful if the data extend beyond the half light radius of the stars $r \gg r_{1/2}$ (required to integrate out the effect of the unknown velocity anisotropy, $\beta(r)$); and (v) if the lensing data already probe the mass profile over the region $r \sim r_{1/2}$, then stellar kinematic data can be used to probe $\beta(r)$ -- an interesting dynamic quantity in its own right. Where information on the mass distribution from lensing and other probes becomes redundant, this opens up the possibility of using strong lensing to constrain cosmological models. We will study this, and present the first results from \Glass\ applied to real data, in forthcoming papers.
 \end{abstract}
+
+%(Linear constraints are applied simultaneously with the lens constraints; non-linear constraints are applied in post-processing, with models accepted or rejected based on their likelihood.) 
+%These are quantities of key interest for probing the dark matter distribution in galaxies and galaxy clusters to test galaxy formation models and cosmology.
 
 \section{Introduction}\label{sec:intro} %-----------------------------------------------------
 
 {\bf JR. Lots of references missing here. Need to be added. But this should get us started.}\\
+{\bf JR. I updated the abstract to lower the emphasis on non-parametric modelling and the connection with PixeLens. I will perform similar edits on the introduction too (c.f. comment from Prasenjit.} 
 
 Since the discovery of the first gravitational lens \citep{1979Natur.279..381W}, lensing has become an increasingly important probe of the distribution of mass in the Universe \citep{1937ApJ....86..217Z,2012arXiv1206.1225A}. Strong lensing in particular provides a powerful probe of the mass distribution at the heart of galaxies and galaxy clusters given good enough data \citep{2010CQGra..27w3001B,2007ApJ...667..645R,2006ApJ...652L...5S,2009ApJ...690..154S}. This in turn provides valuable constraints on the nature of dark matter \citep{2006ApJ...652L...5S,2013ApJ...765...25N}, on cosmological models \citep{2010Sci...329..924J, 2008ApJ...679...17C}, and on galaxy formation models \citep{2012MNRAS.424..104L}. To date, some $\sim$400 strong lenses are known\footnote{{\tt http://admin.masterlens.org/}.}, but with the advent of large ground and space based surveys, this number is set to explode, with thousands of lenses expected to be discovered over the next ten years \citep{2012arXiv1206.1225A, 2010AAS...21540115M, 2004NewAR..48.1085K}.
 
@@ -201,9 +205,13 @@ observable and the density distribution is highly degenerate.
 \subsection{Degeneracies}\label{sec:degen} %-----------------------------------------------------
 
 The trouble with solving the lens equation for the mass distribution is that the solutions are non-unique and degenerate -- many different solutions can give a statistically good reproduction of the data. To see why this is, it is instructive to simplify equation \ref{eqn:lens_equation} for a circularly symmetric lens: 
-
-
-
+%
+\begin{equation}
+\vec\beta = \vec\theta - \frac{\theta_E^2}{|\vec\theta|^2}\vec\theta
+\label{eqn:lens_equation_circ}
+\end{equation}
+%
+where $\theta_E^2 = \frac{D_{LS}}{D_S D_L} \frac{4 GM}{c^2}$ is the Einstein radius. 
 
 \begin{itemize}
   \item Steepness
