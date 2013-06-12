@@ -114,13 +114,13 @@ The lens equation:
 \end{equation}
 %
 maps an observed image position $\vec\theta$ to a source position $\vec\beta$
-via the correction factor:
+via the correction factor \citep[e.g.][]{1992grle.book.....S}:
 %
 \begin{equation}
 \vec\alpha(\vec\theta) = \frac{4GD_L}{c^2} \int \Sigma(\vec\theta')\frac{(\vec\theta - \vec\theta')}{\ |\vec\theta - \vec\theta'|^2}d^2\vec\theta'
 \end{equation}
 %
-which accounts for the gravitational lensing effect of an intervening mass \citep[e.g.][]{1992grle.book.....S}. For
+which accounts for the gravitational lensing effect of an intervening mass (where $G$ is Newton's gravitational constant, and $c$ is the speed of light). For
 our purposes we make use of the thin mass sheet approximation and assume that
 the lensing mass is infinitely thin compared with the distance between the
 source and the lens $D_{LS}$ and the lens and the observer $D_{L}$. These are angular diameter distances where $D_* = (c/H_0)d_*$ and $d_*$ is
@@ -209,31 +209,19 @@ observable and the density distribution is highly degenerate.
 The trouble with solving the lens equation for the mass distribution is that the solutions are non-unique and degenerate -- many different solutions can give a statistically good reproduction of the data. To see why this is, it is instructive to simplify equation \ref{eqn:lens_equation} for a circularly symmetric lens: 
 %
 \begin{equation}
-\vec\beta = \vec\theta - \frac{\theta_E^2}{|\vec\theta|^2}\vec\theta
+\vec\beta = \vec\theta - \frac{\theta_E^2}{\theta^2}\vec\theta
 \label{eqn:lens_equation_circ}
 \end{equation}
 %
-where $\theta_E^2 = \frac{D_{LS}}{D_S D_L} \frac{4 GM}{c^2}$ is the Einstein radius. 
+where $\theta = |\vec\theta|$, $\theta_E^2 = \frac{D_{LS}}{D_S D_L} \frac{4 GM(<\theta)}{c^2}$ is the Einstein radius, and $M(<\theta)$ is the mass enclosed within the images. 
 
-\begin{itemize}
-  \item Steepness
-  \item Shape
-  \item $H_0$
-  \item Rings
-  \item Cosmology
-\end{itemize}
-
-
-
-\subsection{The utility of stellar mass estimates} 
-
-\subsection{Adding stellar kinematic constraints} 
+For sources on-axis (\vec\beta\ = \vec0), the images split into a degenerate Einstein ring with $\theta = \theta_E$. Even in this situation of maximal information (since the source position $\vec\beta$ cannot typically be known), there is a trivial degeneracy between $M(<\theta_E)$ and the angular diameter distances that depend on cosmological parameters (most strongly on the Hubble constant, $D_{L,S} \propto 1/H_0$). For fixed cosmology, a single source splitting into images in the most ideal situation gives us only an enclosed mass. This `steepness' degeneracy (also known as the mass-sheet degeneracy) generalises to the non-circularly symmetric case (CITES). Thus, to measure the mass profile of a lens, we require more information. This can come in the form of another source at different redshift that has its own Einstein radius, giving $M(<\theta_E')$. Or it can come in the form of additional constraints like time delay data between the images, stellar mass estimates from stellar populations synthesis modelling (CITE), stellar kinematics (CITE), or similar. However, even with further information, higher order degeneracies remain. XXX showed that there is a monopole degeneracy that allows additional mass to be deposited in-between images without any optical effect, while YYY find twisting degeneracies exist if ZZZ. These higher order degeneracies have a larger effect on shape measurement than the mass profile but remain largely uncharacterised in the literature. In \S\ref{sec:results}, we will use \Glass\ to determine how well such degeneracies can be broken by data of ever-increasing quality to measure the mass profile and shape of a lens.
 
 \section{Numerical Methods}\label{sec:glass}
 
-\subsection{A new lens modeling framework: \Glass}
+\subsection{A new lens modelling framework: \Glass}
 
-\Glass\ is an evolution of the concepts employed by the free form modeling tool
+\Glass\ is an evolution of the concepts employed by the free form modelling tool
 \PixeLens\ but completely rewritten in Python and C. The key improvements are:
 %
 \begin{enumerate}
@@ -307,7 +295,7 @@ each of the galaxies.
 \end{enumerate}
 %
 At the heart of \Glass\ lies a new algorithm for sampling the high dimensional
-linear space that represents the modeling solution space. This algorithm was
+linear space that represents the modelling solution space. This algorithm was
 described and tested in \cite{}. \Glass\ is also multi-threaded allowing it to
 run efficiently on many-cored machines.  The software is freely available for
 download. One interesting aspect is that the input files are themselves Python
@@ -618,7 +606,7 @@ over a range of aperture sizes for the BC Quad with time delays and stellar
 mass. The stellar half mass radius is plotted in yellow and the Einstein radius
 in black. For this configuration the two radii are well separated. This plot
 demonstrates that the velocity anisotropy can be inferred by combining lens
-modeling and independent velocity dispersion measurements. The lens breaks
+modelling and independent velocity dispersion measurements. The lens breaks
 the anisotropy degeneracy at a given aperture.
 
 \begin{figure}
