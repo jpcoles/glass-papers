@@ -7,6 +7,8 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 
+\def\newblock{\hskip .11em plus .33em minus .07em}
+
 \newcommand{\Glass}{{\sc Glass}}
 \newcommand{\PixeLens}{{\sc PixeLens}}
 \newcommand{\Rmap}{\ensuremath{R_\mathrm{map}}}
@@ -53,7 +55,7 @@
 }}%
 
 
-\title[\Glass]{Gravitational Lens Recovery with \Glass: Illustrating the power of free-form lens modelling}
+\title[\Glass]{Gravitational Lens Recovery with \Glass: Illustrating the power of non-parametric lens modelling}
 \author{%
 Jonathan P. Coles 
 \and 
@@ -67,19 +69,20 @@ Prasenjit Saha
 
 \begin{abstract}
 {\bf JR. Does \Glass\ stand for something?}\\
-We introduce a new free-form gravitational lens modelling tool \Glass\ that builds on an earlier code \PixeLens. Like \PixeLens, we use a grid of mass pixels to model the lens, searching through many models consistent with the data to marginalise over model uncertainties. However, \Glass\ improves on \PixeLens\ in a number of important respects: (i) it uses a significantly improved sampling strategy that is both faster and results in significantly smaller errors; (ii) it is built on a fully modular framework that can support different basis functions; (iii) non-linear constraints can be applied in post-processing (for example, filters to remove models with spurious additional images or models inconsistent with stellar dynamics data are already implemented); (iv) the stellar mass (if known) can be applied as a prior; and (v) adaptive resolution can be used in regions of interest. We apply \Glass\ to a suite of dynamically realistic mock N-body data to determine what quality of data -- from lensing, stellar kinematics and/or stellar masses -- are required to measure the circularly averaged mass profile of a lens and its shape. Our key findings are as follows: (i) for pure lens data, multiple sources with wide redshift separation give the strongest constraints as this breaks the well-known mass-sheet or steepness degeneracy; (ii) a single quad with time delays also performs well, giving a good recovery of both the mass profile and its shape; (iii) stellar masses -- for lenses where the stars dominate the central potential -- can also break the steepness degeneracy, giving a recovery almost as good as having time delay data or multiple source redshifts; (iv) stellar kinematics are similarly powerful if the data extend beyond the half light radius of the stars $r \gg r_{1/2}$ (required to integrate out the effect of the unknown velocity anisotropy, $\beta(r)$); and (v) if the lensing data already probe the mass profile over the region $r \sim r_{1/2}$, then stellar kinematic data can be used to probe $\beta(r)$ -- an interesting dynamic quantity in its own right. Where information on the mass distribution from lensing and other probes becomes redundant, this opens up the possibility of using strong lensing to constrain cosmological models. We will study this, and present the first results from \Glass\ applied to real data, in forthcoming papers.
+We introduce a new non-parametric gravitational lens modelling tool \Glass\ that builds on an earlier code \PixeLens. Like \PixeLens, we use a grid of mass pixels to model the lens, searching through many models consistent with the data to marginalise over model uncertainties. However, \Glass\ improves on \PixeLens\ in a number of important respects: (i) it uses a significantly improved sampling strategy that is both faster and results in significantly smaller errors; (ii) it is built on a fully modular framework that can support different basis functions; (iii) non-linear constraints can be applied in post-processing (for example, filters to remove models with spurious additional images or models inconsistent with stellar dynamics data are already implemented); (iv) the stellar mass (if known) can be applied as a prior; and (v) adaptive resolution can be used in regions of interest. We apply \Glass\ to a suite of dynamically realistic mock N-body data to determine what quality of data -- from lensing, stellar kinematics and/or stellar masses -- are required to measure the circularly averaged mass profile of a lens and its shape. Our key findings are as follows: (i) for pure lens data, multiple sources with wide redshift separation give the strongest constraints as this breaks the well-known mass-sheet or steepness degeneracy; (ii) a single quad with time delays also performs well, giving a good recovery of both the mass profile and its shape; (iii) stellar masses -- for lenses where the stars dominate the central potential -- can also break the steepness degeneracy, giving a recovery almost as good as having time delay data or multiple source redshifts; (iv) stellar kinematics are similarly powerful if the data extend beyond the half light radius of the stars $r \gg r_{1/2}$ (required to integrate out the effect of the unknown velocity anisotropy, $\beta(r)$); and (v) if the lensing data already probe the mass profile over the region $r \sim r_{1/2}$, then stellar kinematic data can be used to probe $\beta(r)$ -- an interesting dynamic quantity in its own right. Where information on the mass distribution from lensing and other probes becomes redundant, this opens up the possibility of using strong lensing to constrain cosmological models. We will study this, and present the first results from \Glass\ applied to real data, in forthcoming papers.
 \end{abstract}
 
-\section{Introduction}\label{sec:intro}
+\section{Introduction}\label{sec:intro} %-----------------------------------------------------
+
 {\bf JR. Lots of references missing here. Need to be added. But this should get us started.}\\
 
 Since the discovery of the first gravitational lens \citep{1979Natur.279..381W}, lensing has become an increasingly important probe of the distribution of mass in the Universe \citep{1937ApJ....86..217Z,2012arXiv1206.1225A}. Strong lensing in particular provides a powerful probe of the mass distribution at the heart of galaxies and galaxy clusters given good enough data \citep{2010CQGra..27w3001B,2007ApJ...667..645R,2006ApJ...652L...5S,2009ApJ...690..154S}. This in turn provides valuable constraints on the nature of dark matter \citep{2006ApJ...652L...5S,2013ApJ...765...25N}, on cosmological models \citep{2010Sci...329..924J, 2008ApJ...679...17C}, and on galaxy formation models \citep{2012MNRAS.424..104L}. To date, some $\sim$400 strong lenses are known\footnote{{\tt http://admin.masterlens.org/}.}, but with the advent of large ground and space based surveys, this number is set to explode, with thousands of lenses expected to be discovered over the next ten years \citep{2012arXiv1206.1225A, 2010AAS...21540115M, 2004NewAR..48.1085K}.
 
-The majority of lens modelling efforts to date have focussed on `parametric' modelling, where simple theoretically motived models are fit using maximum likelihood methods to the data \citep{2011A&ARv..19...47K, 1993A&A...273..367K, 2010GReGr..42.2151K}. This is useful in that a simple model provides valuable physical insight. However, as data quality improves and the questions we ask of these data become more refined, it is important to re-asses the impact of our model assumptions. `Non-parameteric' methods -- that assume many more parameters than the available data constraints -- are invaluable in this respect. In non-parametric mass modelling, the lens inversion problem is deliberately chosen to be under-constrained \citep{1997MNRAS.292..148S,2005MNRAS.360..477D,2010ApJ...723.1678C,2006MNRAS.367.1209L,2013arXiv1304.2393S}. Instead of finding one `best-fit' model, we must search for many models consistent with the data, exploring degeneracies between different but plausible\footnotemark\ mass models \citep{2000AJ....120.1654S,2006ApJ...653..936S,2008MNRAS.386..307L}. The key advantages of non-parametric modelling are that we can: (i) explore model degeneracies and marginalise over them; and (ii) we can determine what type and quality of data (including data from stellar population synthesis modelling, stellar kinematics, or other indepedent probes of the mass) are required to measure parameters of interest.
+The majority of lens modelling efforts to date have focussed on `parametric' modelling, where simple theoretically motived models are fit using maximum likelihood methods to the data \citep{2011A&ARv..19...47K, 1993A&A...273..367K, 2010GReGr..42.2151K}. This is useful in that a simple model provides valuable physical insight. However, as data quality improves and the questions we ask of these data become more refined, it is important to re-asses the impact of our model assumptions. `Non-parameteric' methods -- that assume many more parameters than the available data constraints -- are invaluable in this respect. In non-parametric mass modelling, the lens inversion problem is deliberately chosen to be under-constrained \citep{1997MNRAS.292..148S,2005MNRAS.360..477D,2010ApJ...723.1678C,2006MNRAS.367.1209L,2013arXiv1304.2393S}. Instead of finding one `best-fit' model, we must then search for many models consistent with the data, exploring degeneracies between different but plausible\footnotemark\ mass models \citep{2000AJ....120.1654S,2006ApJ...653..936S,2008MNRAS.386..307L}. The key advantages of non-parametric modelling are that we can: (i) explore model degeneracies and marginalise over them; and (ii) we can determine what type and quality of data (including data from stellar population synthesis modelling, stellar kinematics, or other indepedent probes of the mass) are required to measure parameters of interest.
 
 \footnotetext{The word {\it plausible} encodes the key hidden gremlin in non-parametric methods: constraints extra to the available data (priors) are typically required on the solution space in order to make it finite. However, even rather restrictive priors are far less restrictive than the implicit constraints inherent in parametric mass modelling.}
 
-In this paper, we present a new free-form or `non-parametric' strong lens modelling framework \Glass\ that builds on an earlier code \PixeLens\ \citep{1997MNRAS.292..148S,2008ApJ...679...17C}. Like \PixeLens, we use a grid of mass pixels to model the lens, searching through many models consistent with the data to marginalise over model uncertainties. However, \Glass\ improves on \PixeLens\ in a number of important respects:
+In this paper, we present a new non-parametric strong lens modelling framework \Glass\ that builds on an earlier code \PixeLens\ \citep{1997MNRAS.292..148S,2008ApJ...679...17C}. Like \PixeLens, we use a grid of mass pixels to model the lens, searching through many models consistent with the data to marginalise over model uncertainties. However, \Glass\ improves on \PixeLens\ in a number of important respects:
 
 \begin{enumerate} 
 \item it uses a significantly improved sampling strategy that is both faster and results in significantly smaller errors \citep{2012MNRAS.425.3077L};
@@ -93,38 +96,28 @@ We apply \Glass\ to a suite of dynamically realistic mock N-body data to determi
 
 This paper is organised as follows. In \S\ref{sec:theory}, we review the basic lensing, stellar population synthesis, and Jeans mass modelling theory we will need. We present some simple back-of-the-envelope calculations that illustrate what type and quality of data we are likely to need to measure mass profiles and shapes. In \S\ref{sec:glass}, we describe the \Glass\ lens inversion algorithm and its stellar kinematic post-processing module. In \S\ref{sec:mockdata}, we describe our mock N-body data and our ray tracing algorithm used to generate the images. In \S\ref{sec:results}, we present our results from applying \Glass\ to these mock data. Finally, in \S\ref{sec:conclusions} we present our conclusions. 
 
-\section{Theoretical Background}\label{sec:theory}
+\section{Theoretical Background}\label{sec:theory} %-----------------------------------------------------
 
-\subsection{What can we learn from strong lensing data?} 
+\subsection{Lensing basics}\label{sec:lensing_basic} %-----------------------------------------------------
 
-\subsection{The utility of stellar mass estimates} 
-
-\subsection{Adding stellar kinematic constraints} 
-
-
-
-
-\subsection{Lensing}
-
-The lensing equation
+The lens equation:
 %
 \begin{equation}
 \vec\beta = \vec\theta - \frac{D_{LS}}{D_S}\vec\alpha(\vec\theta)
-\label{lensing equation}
+\label{eqn:lens_equation}
 \end{equation}
 %
 maps an observed image position $\vec\theta$ to a source position $\vec\beta$
-via the correction factor 
+via the correction factor:
 %
 \begin{equation}
 \vec\alpha(\vec\theta) = \frac{4GD_L}{c^2} \int \Sigma(\vec\theta')\frac{(\vec\theta - \vec\theta')}{\ |\vec\theta - \vec\theta'|^2}d^2\vec\theta'
 \end{equation}
 %
-which accounts for the gravitational lensing effect of an intervening mass. For
+which accounts for the gravitational lensing effect of an intervening mass \citep[e.g.][]{1992grle.book.....S}. For
 our purposes we make use of the thin mass sheet approximation and assume that
 the lensing mass is infinitely thin compared with the distance between the
-source and the lens $D_{LS}$ and the lens and the observer $D_{L}$. These
-distances are angular diameter distances where $D_* = (c/H_0)d_*$ and $d_*$ is
+source and the lens $D_{LS}$ and the lens and the observer $D_{L}$. These are angular diameter distances where $D_* = (c/H_0)d_*$ and $d_*$ is
 a dimensionless number that depends on cosmology.  The lens can then be thought
 of as a projected surface density $\Sigma$ which diverts the path of a photon
 instantaneously through the bending angle $\vec\alpha$.
@@ -136,41 +129,46 @@ arcseconds, and choose $c=1$ and $4\pi G = N^2$, where $N^2 \equiv 206,265$
 arcsec/rad. The mass unit is then $11.988\ \Msun$. It will also be useful to 
 define a proxy to the Hubble constant $\nu \equiv N^2 H_0$.
 
-The arrival (or travel) time $t$ of a photon depends not only on the geometric
+One way to understand the lens equation is via Fermat's principle. We can think of light as travelling only 
+along extremum paths; lensed images only occur at the extrema of a virtual photon {\it arrival time surface} 
+\citep{1986ApJ...310..568B}. The arrival (or travel) time $t$ of a virtual photon depends not only on the geometric
 path it takes, but also on the general relativistic gravitational time dilation
 due to the lens at a redshift of $z_L$.  In its complete form, with all units
-and cosmology included we can write the arrival time as
+and cosmology included we can write the arrival time as \citep{1986ApJ...310..568B}:
 %
-\begin{equation}
-N^2ct(\vec\theta) = (1+z_L)\frac{D_{L}D_{S}}{D_{LS}}\frac12 |\vec\theta - \vec\beta|^2 - (1+z_L)\frac{4GD_{L}^2}{c^2}\int \Sigma(\vec\theta') \ln |\vec\theta-\vec\theta'| d^2\vec\theta'
-\label{full arrival time}
-\end{equation}
+\begin{eqnarray}
+N^2ct(\vec\theta) & = & (1+z_L)\frac{D_{L}D_{S}}{D_{LS}}\frac12 |\vec\theta - \vec\beta|^2 \nonumber \\
+& & - (1+z_L)\frac{4GD_{L}^2}{c^2}\int \Sigma(\vec\theta') \ln |\vec\theta-\vec\theta'| d^2\vec\theta'
+\label{eqn:full_arrival_time}
+\end{eqnarray}
 %
-The non-standard factor of $D_L^2$ in the second term comes from the fact that $\Sigma$
+where the factor of $D_L^2$ in the second term comes from the fact that $\Sigma$
 has units of \Msun/lyr$^2$. We can clean this up by writing down a dimensionless time
-delay 
+delay:
 %
-\begin{equation}
-\tau = \left[(1+z_L)D_{L}\right]^{-1}ctN^2 = \left[ (1+z_L) \frac{c}{H_0}d_L\right]^{-1}ctN^2 = \left[ (1+z_L) d_L\right]^{-1}\nu t
+\begin{eqnarray}
+\tau & = & \left[(1+z_L)D_{L}\right]^{-1}ctN^2 \nonumber \\
+& = & \left[ (1+z_L) \frac{c}{H_0}d_L\right]^{-1}ctN^2 \nonumber \\
+& = & \left[ (1+z_L) d_L\right]^{-1}\nu t
 \label{tau}
-\end{equation}
+\end{eqnarray}
 %
 in terms of our previous definitions. If we
-further define a dimensionless density
+further define a dimensionless density:
 %
 \begin{equation}
 \kappa_\infty = \frac{4\pi G}{c^2}\frac{c}{H_0}d_L\Sigma
               = \frac{d_L}{\nu}\Sigma
 \end{equation}
 %
-and a lensing potential
+and a lensing potential:
 %
 \begin{equation}
 \psi(\vec\theta) = \frac1\pi \int \kappa_\infty(\vec\theta') \ln|\vec\theta - \vec\theta'| d^2\vec\theta'\
 \label{lensing potential}
 \end{equation}
 %
-we can express \eqnref{full arrival time} very compactly as
+we can express \eqnref{eqn:full_arrival_time} very compactly as:
 %
 \begin{equation}
 \tau(\vec\theta) = \frac12 \xi |\vec\theta-\vec\beta|^2 - \psi(\vec\theta)
@@ -181,9 +179,9 @@ where $\xi \equiv D_{S}/D_{LS}$. We explicitly write $\kappa_\infty$ to remind o
 that there is no source distance factor involved. This will be useful later when we consider
 multiple sources.
 
-If we think of $\tau$ as a surface then images will be observed where ever
+If we think of $\tau$ as a surface then images will be observed wherever
 $\nabla \tau = 0$. In other words, images obey Fermat's principle and appear at
-extremums of the surface. Note that $\nabla \tau$ is just \eqnref{lensing equation} or
+extremums of the surface. Note that $\nabla \tau$ is just equation \ref{eqn:lens_equation} or:
 \begin{equation}
   \xi \vec\beta = \xi \vec\theta - \frac 1\pi\int \kappa_\infty\frac{(\vec\theta - \vec\theta')}{\ |\vec\theta - \vec\theta'|^2}d^2\vec\theta'
 \end{equation}
@@ -200,7 +198,12 @@ arrives after $\vec\theta_1$, is $\Delta t_{21} = \Delta \tau_{21}(1+z_L)d_L /
 to precisely infer the Hubble constant. However, the source position is not
 observable and the density distribution is highly degenerate.
 
-\subsection{Degeneracies} %-----------------------------------------------------
+\subsection{Degeneracies}\label{sec:degen} %-----------------------------------------------------
+
+The trouble with solving the lens equation for the mass distribution is that the solutions are non-unique and degenerate -- many different solutions can give a statistically good reproduction of the data. To see why this is, it is instructive to simplify equation \ref{eqn:lens_equation} for a circularly symmetric lens: 
+
+
+
 
 \begin{itemize}
   \item Steepness
@@ -210,22 +213,12 @@ observable and the density distribution is highly degenerate.
   \item Cosmology
 \end{itemize}
 
-%
-%The steepness degeneracy arbitrarily rescales the arrival time surface. Image
-%positions are left alone but the density profile will become shallower or
-%steeper. This is particularly bad for inferring the Hubble constant, as the
-%lens profile will tend to become steeper for larger values of $H_0$.
-%
-%Other degeneracies include ring degeneracies, where one is allowed to build
-%up a density distribution as a series of mass rings; the presence of substructure;
-%and the effects of merging galaxies. 
-%
-%Shape degeneracy---a twisting in the density.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{The utility of stellar mass estimates} 
+
+\subsection{Adding stellar kinematic constraints} 
+
 \section{Numerical Methods}\label{sec:glass}
 
 \subsection{A new lens modeling framework: \Glass}
@@ -318,7 +311,7 @@ For this paper we will restrict ourselves to using the pixelated basis set that
 has been employed in previous work and is implemented in \PixeLens. Here we
 will briefly review the main ideas. The algorithm for generating models in
 \Glass\ samples a convex polytope in a high dimensional space whose interior
-points are solutions to the lensing equation and satisfy other physically
+points are solutions to the lens equation and satisfy other physically
 motivated linear priors (the sampling algorithm in \Glass\ is not the same as
 employed in \PixeLens).  We therefore formulate all of our equations as
 equations linear in the unknowns. We describe the density distribution $\kappa$
@@ -396,7 +389,7 @@ particle-based simulation output given a source position $\vec\beta$. This is
 used to generate the lens configurations used in the parameter study.  The
 particles are first projected onto a very high resolution grid representing the
 lens plane. The centers $\vec\theta_i$ of each of the grid cells are mapped
-back onto the source plane using \eqnref{lensing equation}. If the location on
+back onto the source plane using \eqnref{eqn:lens_equation}. If the location on
 the source plane $\vec\beta_i$ is within a user specified
 $\eps_\mathrm{accept}$ of $\vec\beta$ then $\vec\theta_i$ is 
 accepted and further refined using a root finding algorithm until the distance
@@ -406,12 +399,12 @@ taken that the grid resolution is high enough that the resulting image position
 error is below the equivalent observational error. Time delays are then
 calculated in order from the arrival time at each image (\eqnref{tau}).
 
-\section{Parameter study}
+\section{The mock data}\label{sec:mockdata}
 
 We now present a study of four mock galaxies with known analytic forms to
 confirm that \Glass is able to correclty recover the mass profile.
 
-\subsection{Mock galaxy data}
+\subsection{Setting up the triaxial N-body mocks}
 
 The four mock galaxies we consider have been designed to test our recovery
 procedure. They are two component models where the dark matter and stellar
@@ -453,7 +446,6 @@ $M_\star(a_\star) = M_\mathrm{DM}(a_\star) = 1$. $\Rmap$ is the 2d projected rad
 \label{mock galaxy params}
 \end{table}
 
-
 \begin{figure}
 \plotthree{MockGalProfile-a.pdf} {MockGalProfile-b.pdf} {MockGalProfile-c.pdf}
 %\plotone{MockGalProfile-a.pdf} \plotone{MockGalProfile-b.pdf} \plotone{MockGalProfile-c.pdf}
@@ -492,13 +484,15 @@ The extended configurations use extra sources to generate extra images that
 simulate an arc. \figref{config ex.} shows the configuration for the extended
 quad.
 
-Each of these configurations were modeled with and without time delays and with
+Each of these configurations were modelled with and without time delays and with
 and without a central image. We assumed for all our tests that the lensing mass
 was radially symmetric. By construction, this is known to be true and this is
 most often the case with real galaxies, unless there is an obvious observed
 asymmetry. The central pixel was refined into a further nine pixels to capture
 any steep rise in the profile. Two of the four mock galaxies have a steeply rising
 inner profile.
+
+\section{Results}\label{sec:results}
 
 \figref{reconstruction} shows a typical reconstruction of a
 lens. The far left plot shows the ensemble average arrival time surface with
@@ -530,7 +524,7 @@ The cumulative mass.}
 \label{reconstruction}
 \end{figure}
 
-The main results from modeling these different configuration are shown black in
+The main results from modelling these different configuration are shown black in
 \figref{main results}. Each subplot corresponds to a different galaxy and
 the vertical axis shows the range of quality.  The quality of a
 model $\M_i$ by comparing the recovered density profile $\rho_\M(r)$ against
@@ -650,13 +644,7 @@ lensing can be used to place constraints on the velocity anisotropy.}
 %uppercase letter indicates the feature is turned on, and a lowercase letter
 %that it is turned off.
 
-\section{Results} %--------------------------------------------------------------
-
-%\subsection{Shape fitting}
-
-%\subsection{Using principle component analysis to find new degeneracies}
-
-\section{Discussion}
+\section{Conclusions}\label{sec:conclusions}
 
 extensible framework                                                       
 
