@@ -68,7 +68,6 @@ Prasenjit Saha
 
 \begin{abstract}
 We use a new non-parametric gravitational -- \Glass -- to determine what quality of data (strong lensing, stellar kinematics, and/or stellar masses) are required to measure the circularly averaged mass profile of a lens and its shape. \Glass\ uses an under-constrained adaptive grid of mass pixels to model the lens, searching through thousands of models to marginalise over model uncertainties. Our key findings are as follows: (i) for pure lens data, multiple sources with wide redshift separation give the strongest constraints as this breaks the well-known mass-sheet or steepness degeneracy; (ii) a single quad with time delays also performs well, giving a good recovery of both the mass profile and its shape; (iii) stellar masses -- for lenses where the stars dominate the central potential -- can also break the steepness degeneracy, giving a recovery almost as good as having time delay data or multiple source redshifts; (iv) stellar kinematics are similarly powerful if the data extend beyond the half light radius of the stars $r \gg r_{1/2}$ (required to integrate out the effect of the unknown velocity anisotropy, $\beta(r)$); and (v) if the lensing data already probe the mass profile over the region $r \sim r_{1/2}$, then stellar kinematic data can be used to probe $\beta(r)$ -- an interesting dynamic quantity in its own right. Where information on the mass distribution from lensing and other probes becomes redundant, this opens up the possibility of using strong lensing to constrain cosmological models. We will study this, and present the first results from \Glass\ applied to real data, in forthcoming papers.
-{\bf JR. Need to highlight also the shape recovery results here.} 
 \end{abstract}
 
 %(Linear constraints are applied simultaneously with the lens constraints; non-linear constraints are applied in post-processing, with models accepted or rejected based on their likelihood.) 
@@ -243,38 +242,47 @@ where $\theta = |\vec\theta|$, $\theta_E^2 = \frac{D_{LS}}{D_S D_L} \frac{4 GM(<
 
 For on-axis sources (\vec\beta\ = \vec0), the images split into a degenerate Einstein ring with $\theta = \theta_E$. Even in this situation of maximal information (since the source position $\vec\beta$ cannot typically be known), there is a trivial degeneracy between $M(<\theta_E)$ and the angular diameter distance. For fixed cosmology and in the most ideal situation, a single source splitting into images gives us only an enclosed mass. This `steepness' degeneracy (also known as the mass-sheet degeneracy) generalises to the non-circularly symmetric case \citep{1985ApJ...289L...1F,2000AJ....120.1654S}. Thus, to measure the mass profile of a lens, we require more information. This can come in the form of sources at different redshifts -- since each has its own Einstein radius, each constrains a different enclosed mass $M(<\theta_E')$. Or it can come in the form of additional constraints like time delay data between the images, stellar mass estimates from stellar populations synthesis modelling \citep{2008MNRAS.383..857F}, stellar kinematics \citep{2002MNRAS.337L...6T}, or similar. However, even with further information, higher order degeneracies remain. \citet{2008MNRAS.386..307L} showed that there is a monopole degeneracy that allows additional mass to be deposited in-between images without any optical effect, while \citep{2006ApJ...653..936S} find twisting/shape degeneracies that are sensitive to the time delays. Further degeneracies enter also if there is a strong {\it external} field acting on the lens -- for example from a larger group or cluster environment within which the lens sits \citep[e.g.][]{1996ApJ...468...17B}; this {\it shear term} can, in principle, however, be constrained by data \citep[e.g.][]{2002ApJ...578...25K}. In \secref{sec:results}, we will use \Glass\ to determine how well such degeneracies can be broken by data of ever-increasing quality to measure the mass profile and shape of a lens. We assume throughout that the shear is negligible. 
 
+{\bf Is ``Schneider's degeneracy" something new? Should we cite it here? -- {\tt http://adsabs.harvard.edu/abs/2013arXiv1306.4675S}} 
+
 \subsection{Stellar population synthesis modelling} 
 
-GOT TO HERE.
+For many galaxy lenses, the central potential is dominated by the visible matter. In this situation, constraints on the stellar mass distribution are invaluable. \citep{2008MNRAS.383..857F} demonstrate that with just photometric data in XXX bands, and an assumed initial mass function for the stars, they are able to reliably constrain the stellar mass to XXX\% accuracy. This gives a constraint on the full lensing mass map: 
 
-\subsection{Stellar kinematics} 
+\begin{equation} 
+M(\vec\theta) > M_*(\vec\theta)
+\end{equation} 
+where $M_*$ is the stellar mass (see also similar work by ZZZZZ). Given the above work, we assume from here on that the stellar mass for our mock N-body data can be reliably determined and used as a lower-bound constraint on our lens models. 
+
+{\bf JR. Prasenjit: you know more than me about this. Can you fill in the XXX's? We should probably also say a bit more about Ignacio's methodology and why the errors are so good etc etc.}
+
+\subsection{Stellar kinematics}\label{sec:kinematics} 
+
+Another useful constraint follows from the velocity of stars within the lensing galaxy. Assuming spherical symmetry, stars obey the projected Jeans equations \citep[e.g.][]{2008gady.book.....B}: 
+
+\begin{equation}
+\sigma_p^2(R) = \frac{2}{I(R)}\int_R^\infty dr\nu(r)f(r)\frac{GM(r)}{r}
+\label{eqn:sphericaljeans}
+\end{equation}
+where $\sigma_p$ is the projected velocity dispersion of the stars as a function of projected radius $R$; $I(R)$ is the surface density of the stars; $\nu(r)$ is the three dimensional stellar density; $f(r)$ is a function that depends only on the velocity anisotropy $\beta(r) = 1 - \sigma_t^2/\sigma_r^2$, where $\sigma_{t,r}$ are the tangential and radial velocity dispersions respectively:
+
+\begin{equation}
+f(r) = XXX;
+\end{equation} 
+$G$ is Newton's gravitational constant; and $M(r)$ is the mass profile that we would like to measure. 
+
+It is immediately clear from \eqnref{eqn:sphericaljeans} that, even assuming spherical symmetry, we have a degeneracy between the enclosed mass profile $M(r)$ and the velocity anisotropy $\beta(r)$. This can be understood intuitively since $\beta(r)$ measures the relative importance of radial versus circular orbits and is intrinsically difficult to constrain given only one component of the velocity vector for each star. Nonetheless, $\beta(r)$ can be constrained given sufficiently many stars, since radial Doppler velocities sample eccentric orbits as $r\rightarrow 0$ and tangential orbits as $r\rightarrow \infty$ (CITES). It can also be estimated if an independent measure of $M(r)$ is available -- for example coming from strong lensing. Finally, we may integrate out the effect of unknown $\beta(r)$ by performing a luminosity weighted average over all radii: 
+
+\begin{equation}
+\overline{\sigma} = \frac{\int_0^\infty I(R) \sigma_p^2(R) 2\pi R dR}{\int_0^\infty I(R) 2\pi R dR}
+\label{eqn:virialaverage}
+\end{equation} 
+This produces a single robust measure of the mass $\overline{\sigma}$ that is independent of $\beta(r)$, provided that the stellar system is in a dynamic quasi-equilibrium that obeys the virial theorem (CITES). In practice, we need not perform the above integral to infinity (this is impractical for real data since the surface brightness at large $R$ will eventually fall below the detection limit). Rather, we should see \eqnref{eqn:virialaverage} as a means to understand why fitting the projected velocity dispersion profile of stars gives us a single robust mass measure that is independent of $\beta(r)$ at some critical radius, typically $\sim$ the half light radius of the stellar distribution ($r_{1/2}$; CITES). 
+
+We describe our numerical solution of \eqnref{eqn:sphericaljeans} in \S\ref{sec:glasskinematics} and present tests applied to mock data in \S\ref{sec:results}. 
 
 \section{Numerical Methods}\label{sec:glass}
 
 \subsection{A new lens modelling framework: \Glass}
-
-\Glass\ uses an adaptive grid of mass pixels
-to model the lens, generating thousands of models to marginalise over
-uncertainties. It shares some heritage with an earlier code, \PixeLens\
-\citep{1997MNRAS.292..148S,2008ApJ...679...17C}, but differs in several
-important respects: 
-
-\begin{enumerate} 
-\item it uses a significantly improved sampling strategy that is both faster and results in significantly smaller errors \citep{2012MNRAS.425.3077L};
-\item it is built on a fully modular framework that can support different basis functions;
-\item non-linear constraints can be applied in post-processing (for example, filters to remove models with spurious additional images or models inconsistent with stellar dynamics data are already implemented);
-\item the stellar mass (if known) can be applied as a prior; and
-\item adaptive resolution can be used in regions of interest. 
-\end{enumerate}
-
-This new functionality allows us to include non-lensing data constraints. Linear constraints -- like the stellar
-mass -- are applied simultaneously with the strong lensing constraints;
-non-linear constraints are applied in a post-processing step, where models are
-rejected using a likelihood analysis. This latter was prohibitively expensive
-with \PixeLens\ as only up to $\sim$1000 models could be generated in a
-reasonable time. With \Glass, we can routinely generate hundreds of thousands
-of models such that we can afford to discard some if they are inconsistent with
-independent data.
 
 \Glass\ is an evolution of the concepts employed by the free form modelling tool
 \PixeLens\ but completely rewritten in Python and C. The key improvements are:
@@ -317,7 +325,7 @@ within \Glass\ will correctly display models that have been accepted or rejected
 By default, the mass distribution of the lens is described by uniform grid. However,
 in the central region of a lensing galaxy where the mass profile may rise steeply,
 a higher resolution can be specified that only applies to the inner pixels. These
-pixels are subdivided into a smaller grid.
+pixels are subdivided into a smaller grid. {\bf JR. I think Jonathan is now applying this by default. Is that right Jonathan?} 
 %
 \begin{enumerate}
   \setcounter{enumi}{4}
@@ -351,15 +359,35 @@ each of the galaxies.
 %
 At the heart of \Glass\ lies a new algorithm for sampling the high dimensional
 linear space that represents the modelling solution space. This algorithm was
-described and tested in \cite{}. \Glass\ is also multi-threaded allowing it to
+described and tested in \cite{2012MNRAS.425.3077L}. \Glass\ is also multi-threaded allowing it to
 run efficiently on many-cored machines.  The software is freely available for
 download. One interesting aspect is that the input files are themselves Python
 programs. This allows a large amount of sophistication in setting up a lens at
 runtime and also allows \Glass\ to be used as an external library from another
 user written program.
 
-\subsection{Discrete models}
+%\Glass\ uses an adaptive grid of mass pixels
+%to model the lens, generating thousands of models to marginalise over
+%uncertainties. It shares some heritage with an earlier code, \PixeLens\
+%\citep{1997MNRAS.292..148S,2008ApJ...679...17C}, but differs in several
+%important respects: 
+%\begin{enumerate} 
+%\item it uses a significantly improved sampling strategy that is both faster and results in significantly smaller errors \citep{2012MNRAS.425.3077L};
+%\item it is built on a fully modular framework that can support different basis functions;
+%\item non-linear constraints can be applied in post-processing (for example, filters to remove models with spurious additional images or models inconsistent with stellar dynamics data are already implemented);
+%\item the stellar mass (if known) can be applied as a prior; and
+%\item adaptive resolution can be used in regions of interest. 
+%\end{enumerate}
+%This new functionality allows us to include non-lensing data constraints. Linear constraints -- like the stellar
+%mass -- are applied simultaneously with the strong lensing constraints;
+%non-linear constraints are applied in a post-processing step, where models are
+%rejected using a likelihood analysis. This latter was prohibitively expensive
+%with \PixeLens\ as only up to $\sim$1000 models could be generated in a
+%reasonable time. With \Glass, we can routinely generate hundreds of thousands
+%of models such that we can afford to discard some if they are inconsistent with
+%independent data.
 
+\subsection{Discrete models}\label{sec:discrete}
 For this paper we will restrict ourselves to using the pixelated basis set that
 has been employed in previous work and is implemented in \PixeLens. Here we
 will briefly review the main ideas. The algorithm for generating models in
@@ -429,20 +457,7 @@ to as an ensemble $\E = \{\M_i\}$, where we usually generate $\sim$1000 models. 
 will typically show the ensemble average $\Eavg$ in the plots to
 follow.
 
-\subsection{Removing models with extra images}
-
-
-
-\subsection{A post-processing module for stellar kinematics}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Raytracing}
-\label{Raytracing}
+\subsection{Raytracing}\label{Raytracing}
 \Glass\ can also determine the position of images and time delays from 
 particle-based simulation output given a source position $\vec\beta$. This is
 used to generate the lens configurations used in the parameter study.  The
@@ -458,10 +473,35 @@ taken that the grid resolution is high enough that the resulting image position
 error is below the equivalent observational error. Time delays are then
 calculated in order from the arrival time at each image (\eqnref{tau}).
 
+\subsection{Removing models with extra images}\label{sec:glassextraimages} 
+While linear constraints can be applied on-the-fly in \Glass, non-linear constraints must be applied in post-processing. Models that are inconsistent with such constraints must then be statistically discarded via a likelihood analysis. An example of such a non-linear constraint is the spurious presence of unobserved images. This `null-space' prior was first proposed and explored by \citet{2006MNRAS.367.1209L} and found to be extremely powerful. We find that our gradient prior in \Glass\ (see \S\ref{sec:discrete}), performs much of the same function as \citeauthor{2006MNRAS.367.1209L}'s null-space prior, but some models can still rarely turn up spurious images. We reject these in a post-processing step, where we sweep through the model ensemble applying the ray tracing algorithm described in \ref{Raytracing}. Models are accepted or rejected according to the criteria: 
+
+\begin{equation}
+XXX
+\end{equation} 
+Typically, this results in a rejection rate of XXX\%. 
+
+\subsection{A post-processing module for stellar kinematics}\label{sec:glasskinematics} 
+Similarly to the null-space constraint (\S\ref{sec:glassextraimages}), stellar kinematic constraints constitute a non-linear prior on the mass map and must be applied in post-processing. We sweep through the model ensemble performing an Abel deprojection to determine $M(r)$ from the projected surface density assuming spherical symmetry \citep[e.g.][]{2008gady.book.....B}: 
+
+\begin{equation} 
+M(r) = XXX
+\end{equation} 
+This de-projection algorithm was tested on triaxial figures in \citet{2006ApJ...652L...5S}. They found that for triaxialities typical of our current cosmology, the method works extremely well unless the triaxial figure is projected directly along the line of sight such that we see the galaxy or galaxy cluster `down the barrel'. Such a situation is unlikely, but in any case avoidable since the resultant figure appears spherical in projection. This leads to the seemingly counter-intuitive result that the kinematic constraints -- that rely on the above de-projection -- are most secure for systems that do not appear spherical in projection (unless independent data can confirm the three dimensional shape is indeed very round). 
+
+We use the deprojected mass to numerically solve equation \ref{eqn:sphericaljeans} for constant $\beta(r)$, assuming either $\beta(r) = 1$ or $\beta(r) = 0$ at all radii to bracket the two extremum situations. Where the data are good enough, these two may be distinguished giving dynamical information about $\beta(r)$. In more typical situations, however, we seek to simply marginalise over the effect of $\beta(r)$, using the stellar kinematics as a robust measure of $M(r_{1/2})$ (see \S\ref{sec:kinematics}). 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{The mock data}\label{sec:mockdata}
 
-We now present a study of four mock galaxies with known analytic forms to
-confirm that \Glass is able to correclty recover the mass profile.
+We now present a study of four mock galaxies with known analytic forms. These are used to
+verify that \Glass\ is able to correctly recover the mass profile, and -- more importantly -- to determine what type and quality of data best constrain the mass profile and shape of a lens. 
+
+GOT TO HERE. 
 
 \subsection{Setting up the triaxial N-body mocks}
 
