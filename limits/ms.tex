@@ -132,8 +132,7 @@ need. We present some simple back-of-the-envelope calculations that illustrate
 what type and quality of data we are likely to need to measure mass profiles
 and shapes. In \secref{sec:glass}, we describe the \Glass\ lens inversion
 algorithm and its stellar kinematic post-processing module. In
-\secref{sec:mockdata}, we describe our mock N-body data and our ray tracing
-algorithm used to generate the images. In \secref{sec:results}, we present our
+\secref{sec:mockdata}, we describe our mock N-body data. In \secref{sec:results}, we present our
 results from applying \Glass\ to these mock data. Finally, in
 \secref{sec:conclusions} we present our conclusions. 
 
@@ -170,7 +169,7 @@ will be convenient to choose units that make the relevant quantities of order
 unity.  We therefore measure lengths in light years, time in years, positions
 in arcseconds, and choose $c=1$ and $4\pi G = N^2$, where $N^2 \equiv 206,265$
 arcsec/rad. The mass unit is then $11.988\ \Msun$. It will also be useful to
-define a proxy to the Hubble constant $\nu \equiv N^2 H_0$.
+define a proxy to the Hubble constant $\zeta \equiv N^2 H_0$.
 
 One way to understand the lens equation is via Fermat's principle. We can think of light as travelling only 
 along extremum paths where lensed images occur \citep{1986ApJ...310..568B}. Such paths occur at the extrema of the photon {\it arrival time surface} $t(\vec\theta)$ that depends on the geometric path the photon takes and the general relativistic gravitational time dilation
@@ -188,7 +187,7 @@ has units of \Msun/lyr$^2$. We can clean this up by writing down a dimensionless
 delay:
 %
 \begin{equation}
-\tau = \left[ (1+z_L) d_L\right]^{-1}\nu t
+\tau = \left[ (1+z_L) d_L\right]^{-1}\zeta t
 \label{tau}
 \end{equation}
 %
@@ -197,7 +196,7 @@ further define a dimensionless density:
 %
 \begin{equation}
 \kappa_\infty = \frac{4\pi G}{c^2}\frac{c}{H_0}d_L\Sigma
-              = \frac{d_L}{\nu}\Sigma
+              = \frac{d_L}{\zeta}\Sigma
 \end{equation}
 %
 and a lensing potential:
@@ -225,13 +224,13 @@ The time difference between identical portions of the light curves is called
 the time delay $\Delta t$ between images.  Using \eqnref{tau} the time delay
 $\Delta t_{21}$ between two images $\vec\theta_1$ and $\vec\theta_2$, where $\vec\theta_2$
 arrives after $\vec\theta_1$, is $\Delta t_{21} = \Delta \tau_{21}(1+z_L)d_L /
-\nu$. If $\beta$ and $\kappa_\infty$ could be known exactly this would allow one
+\zeta$. If $\beta$ and $\kappa_\infty$ could be known exactly this would allow one
 to precisely infer the angular diameter distance to the lens and thus -- via a cosmological model -- the Hubble constant. However, the source position is not
 observable and the density distribution is highly degenerate.
 
 \subsection{Degeneracies}\label{sec:degen} %-----------------------------------------------------
 
-The trouble with solving the lens equation for the mass distribution is that the solutions are not unique. To see why this is, it is instructive to simplify \eqnref{eqn:lens_equation} for a circularly symmetric lens: 
+The trouble with solving the lens equation for the mass distribution is that the solutions are not unique. To see why, it is instructive to simplify \eqnref{eqn:lens_equation} for a circularly symmetric lens: 
 %
 \begin{equation}
 \vec\beta = \vec\theta - \frac{\theta_E^2}{\theta^2}\vec\theta
@@ -240,7 +239,7 @@ The trouble with solving the lens equation for the mass distribution is that the
 %
 where $\theta = |\vec\theta|$, $\theta_E^2 = \frac{D_{LS}}{D_S D_L} \frac{4 GM(<\theta)}{c^2}$ is the Einstein radius, and $M(<\theta)$ is the mass enclosed within the images. 
 
-For on-axis sources (\vec\beta\ = \vec0), the images split into a degenerate Einstein ring with $\theta = \theta_E$. Even in this situation of maximal information (since the source position $\vec\beta$ cannot typically be known), there is a trivial degeneracy between $M(<\theta_E)$ and the angular diameter distance. For fixed cosmology and in the most ideal situation, a single source splitting into images gives us only an enclosed mass. This `steepness' degeneracy (also known as the mass-sheet degeneracy) generalises to the non-circularly symmetric case \citep{1985ApJ...289L...1F,2000AJ....120.1654S}. Thus, to measure the mass profile of a lens, we require more information. This can come in the form of sources at different redshifts -- since each has its own Einstein radius, each constrains a different enclosed mass $M(<\theta_E')$. Or it can come in the form of additional constraints like time delay data between the images, stellar mass estimates from stellar populations synthesis modelling \citep{2008MNRAS.383..857F}, stellar kinematics \citep{2002MNRAS.337L...6T}, or similar. However, even with further information, higher order degeneracies remain. \citet{2008MNRAS.386..307L} showed that there is a monopole degeneracy that allows additional mass to be deposited in-between images without any optical effect, while \citep{2006ApJ...653..936S} find twisting/shape degeneracies that are sensitive to the time delays. Further degeneracies enter also if there is a strong {\it external} field acting on the lens -- for example from a larger group or cluster environment within which the lens sits \citep[e.g.][]{1996ApJ...468...17B}; this {\it shear term} can, in principle, however, be constrained by data \citep[e.g.][]{2002ApJ...578...25K}. In \secref{sec:results}, we will use \Glass\ to determine how well such degeneracies can be broken by data of ever-increasing quality to measure the mass profile and shape of a lens. We assume throughout that the shear is negligible. 
+For on-axis sources (\vec\beta\ = \vec0), the images split into a degenerate Einstein ring with $\theta = \theta_E$. Even in this situation of maximal information (since the source position $\vec\beta$ cannot typically be known), there is a trivial degeneracy between $M(<\theta_E)$ and the angular diameter distance. For fixed cosmology and in the most ideal situation, a single source splitting into images gives us only an enclosed mass. This `steepness' degeneracy (also known as the mass-sheet degeneracy) generalises to the non-circularly symmetric case \citep{1985ApJ...289L...1F,2000AJ....120.1654S}. Thus, to measure the mass profile of a lens, we require more information. This can come in the form of sources at different redshifts -- since each has its own Einstein radius, each constrains a different enclosed mass $M(<\theta_E')$. Or it can come in the form of additional constraints like time delay data between the images, stellar mass estimates from stellar populations synthesis modelling \citep{2008MNRAS.383..857F}, stellar kinematics \citep{2002MNRAS.337L...6T}, or similar. However, even with further information, higher order degeneracies remain. \citet{2008MNRAS.386..307L} showed that there is a monopole degeneracy that allows additional mass to be deposited in-between images without any optical effect, while \citep{2006ApJ...653..936S} find twisting/shape degeneracies that are sensitive to the time delays. Further degeneracies enter also if there is a strong {\it external} field acting on the lens -- for example from a larger group or cluster environment within which the lens sits \citep[e.g.][]{1996ApJ...468...17B}. However, this {\it shear term} can be constrained by data \citep[e.g.][]{2002ApJ...578...25K}. In \secref{sec:results}, we will use \Glass\ to determine how well such degeneracies can be broken by data of ever-increasing quality to measure the mass profile and shape of a lens. We assume throughout that the shear is negligible. 
 
 {\bf Is ``Schneider's degeneracy" something new? Should we cite it here? -- {\tt http://adsabs.harvard.edu/abs/2013arXiv1306.4675S}} 
 
@@ -260,23 +259,21 @@ where $M_*$ is the stellar mass (see also similar work by ZZZZZ). Given the abov
 Another useful constraint follows from the velocity of stars within the lensing galaxy. Assuming spherical symmetry, stars obey the projected Jeans equations \citep[e.g.][]{2008gady.book.....B}: 
 
 \begin{equation}
-\sigma_p^2(R) = \frac{2}{I(R)}\int_R^\infty dr\nu(r)f(r)\frac{GM(r)}{r}
+\sigma_p^2(R) = \frac{2}{I(R)}\int_R^\infty dr \left(1-\beta \frac{R^2}{r^2}\right) \frac{\nu \sigma_r^2 r}{\sqrt{r^2 - R^2}};
 \label{eqn:sphericaljeans}
 \end{equation}
-where $\sigma_p$ is the projected velocity dispersion of the stars as a function of projected radius $R$; $I(R)$ is the surface density of the stars; $\nu(r)$ is the three dimensional stellar density; $f(r)$ is a function that depends only on the velocity anisotropy $\beta(r) = 1 - \sigma_t^2/\sigma_r^2$, where $\sigma_{t,r}$ are the tangential and radial velocity dispersions respectively:
-
-\begin{equation}
-f(r) = XXX;
+\begin{equation} 
+\sigma_r^2(r) = \frac{r^{-2\beta}}{\nu}\int_r^\infty r'^{2\beta} \nu \frac{GM(r')}{r'^2}dr'
 \end{equation} 
-$G$ is Newton's gravitational constant; and $M(r)$ is the mass profile that we would like to measure. 
+where $\sigma_p$ is the projected velocity dispersion of the stars as a function of projected radius $R$; $I(R)$ is the surface density of the stars; $\nu(r)$ is the three dimensional stellar density; $\sigma_{r,t}(r)$ are the radial and tangential velocity dispersions, respectively; $\beta(r) = 1 - \sigma_t^2/\sigma_r^2 = \mathrm{const.}$ is the velocity anisotropy (here assumed to be constant); $G$ is Newton's gravitational constant; and $M(r)$ is the mass profile that we would like to measure. 
 
-It is immediately clear from \eqnref{eqn:sphericaljeans} that, even assuming spherical symmetry, we have a degeneracy between the enclosed mass profile $M(r)$ and the velocity anisotropy $\beta(r)$. This can be understood intuitively since $\beta(r)$ measures the relative importance of radial versus circular orbits and is intrinsically difficult to constrain given only one component of the velocity vector for each star. Nonetheless, $\beta(r)$ can be constrained given sufficiently many stars, since radial Doppler velocities sample eccentric orbits as $r\rightarrow 0$ and tangential orbits as $r\rightarrow \infty$ (CITES). It can also be estimated if an independent measure of $M(r)$ is available -- for example coming from strong lensing. Finally, we may integrate out the effect of unknown $\beta(r)$ by performing a luminosity weighted average over all radii: 
+It is immediately clear from \eqnref{eqn:sphericaljeans} that, even assuming spherical symmetry, we have a degeneracy between the enclosed mass profile $M(r)$ and the velocity anisotropy $\beta(r)$. This can be understood intuitively since $\beta(r)$ measures the relative importance of radial versus circular orbits and is intrinsically difficult to constrain given only one component of the velocity vector for each star. Nonetheless, $\beta(r)$ can be constrained given sufficiently many stars, since radial Doppler velocities sample eccentric orbits as $r\rightarrow 0$ and tangential orbits as $r\rightarrow \infty$ \citep[e.g.][]{2002MNRAS.330..778W}. It can also be estimated if an independent measure of $M(r)$ is available -- for example coming from strong lensing. Finally, we may integrate out the effect of unknown $\beta(r)$ by performing a luminosity weighted average over all radii: 
 
 \begin{equation}
-\overline{\sigma} = \frac{\int_0^\infty I(R) \sigma_p^2(R) 2\pi R dR}{\int_0^\infty I(R) 2\pi R dR}
+\overline{\sigma} = \frac{\int_0^{a_p} I(R) \sigma_p^2(R) 2\pi R dR}{\int_0^{a_p} I(R) 2\pi R dR}
 \label{eqn:virialaverage}
 \end{equation} 
-This produces a single robust measure of the mass $\overline{\sigma}$ that is independent of $\beta(r)$, provided that the stellar system is in a dynamic quasi-equilibrium that obeys the virial theorem (CITES). In practice, we need not perform the above integral to infinity (this is impractical for real data since the surface brightness at large $R$ will eventually fall below the detection limit). Rather, we should see \eqnref{eqn:virialaverage} as a means to understand why fitting the projected velocity dispersion profile of stars gives us a single robust mass measure that is independent of $\beta(r)$ at some critical radius, typically $\sim$ the half light radius of the stellar distribution ($r_{1/2}$; CITES). 
+where $a_p$ is the `aperture' over which the integral is performed. Ideally we should take $a_p \rightarrow \infty$, however this is not practical for real data where the surface brightness of the stars falls off rapidly with $a_p$. In practice, $a_p > 2r_{1/2}$, where $r_{1/2}$ is the half light radius of the stars, appears to be sufficient (see \S\ref{sec:results}). The above average produces a single robust measure of the mass $\overline{\sigma}$ that is independent of $\beta(r)$, provided that the stellar system is in a dynamic quasi-equilibrium that obeys the virial theorem \citep{2009ApJ...704.1274W,2010MNRAS.406.1220W,2012ApJ...754L..39A}. (Such an averaging procedure was first used in a combined lensing/stellar kinematic analysis in \citealt{2002MNRAS.337L...6T}.)
 
 We describe our numerical solution of \eqnref{eqn:sphericaljeans} in \S\ref{sec:glasskinematics} and present tests applied to mock data in \S\ref{sec:results}. 
 
@@ -481,12 +478,15 @@ XXX
 \end{equation} 
 Typically, this results in a rejection rate of XXX\%. 
 
-\subsection{A post-processing module for stellar kinematics}\label{sec:glasskinematics} 
-Similarly to the null-space constraint (\S\ref{sec:glassextraimages}), stellar kinematic constraints constitute a non-linear prior on the mass map and must be applied in post-processing. We sweep through the model ensemble performing an Abel deprojection to determine $M(r)$ from the projected surface density assuming spherical symmetry \citep[e.g.][]{2008gady.book.....B}: 
+{\bf JR. Jonathan to fill in this section.} 
 
-\begin{equation} 
-M(r) = XXX
-\end{equation} 
+\subsection{A post-processing module for stellar kinematics}\label{sec:glasskinematics} 
+Similarly to the null-space constraint (\S\ref{sec:glassextraimages}), stellar kinematic constraints constitute a non-linear prior on the mass map and must be applied in post-processing. We sweep through the model ensemble performing an Abel deprojection to determine $M(r)$ from the projected surface density assuming spherical symmetry \citep[e.g.][]{2008gady.book.....B,2008MNRAS.390.1647B}: 
+
+\begin{eqnarray} 
+M(r) & = & \frac{\zeta}{d_L} \left[2\pi\int_0^r R\kappa_\infty(R)dR - \right. \nonumber \\
+& & \left. 4\int_r^\infty R\kappa_\infty(R)f\left(\frac{R}{r}\right)dR\right]
+\end{eqnarray} 
 This de-projection algorithm was tested on triaxial figures in \citet{2006ApJ...652L...5S}. They found that for triaxialities typical of our current cosmology, the method works extremely well unless the triaxial figure is projected directly along the line of sight such that we see the galaxy or galaxy cluster `down the barrel'. Such a situation is unlikely, but in any case avoidable since the resultant figure appears spherical in projection. This leads to the seemingly counter-intuitive result that the kinematic constraints -- that rely on the above de-projection -- are most secure for systems that do not appear spherical in projection (unless independent data can confirm the three dimensional shape is indeed very round). 
 
 We use the deprojected mass to numerically solve equation \ref{eqn:sphericaljeans} for constant $\beta(r)$, assuming either $\beta(r) = 1$ or $\beta(r) = 0$ at all radii to bracket the two extremum situations. Where the data are good enough, these two may be distinguished giving dynamical information about $\beta(r)$. In more typical situations, however, we seek to simply marginalise over the effect of $\beta(r)$, using the stellar kinematics as a robust measure of $M(r_{1/2})$ (see \S\ref{sec:kinematics}). 
@@ -498,175 +498,76 @@ We use the deprojected mass to numerically solve equation \ref{eqn:sphericaljean
 
 \section{The mock data}\label{sec:mockdata}
 
-We now present a study of four mock galaxies with known analytic forms. These are used to
-verify that \Glass\ is able to correctly recover the mass profile, and -- more importantly -- to determine what type and quality of data best constrain the mass profile and shape of a lens. 
-
-GOT TO HERE. 
+We now present a study of four mock galaxies with known analytic forms. These are used to verify that \Glass\ is able to correctly recover the mass profile, and -- more importantly -- to determine what type and quality of data best constrain the mass profile and shape of a lens.
 
 \subsection{Setting up the triaxial N-body mocks}
 
-The four mock galaxies we consider have been designed to test our recovery
-procedure. They are two component models where the dark matter and stellar
-profiles are allowed to be steep and shallow.  The enclosed mass in all cases
-is fixed at $M(a_\star)= 1.8\e{10}$ at the scale radius $a_\star=2$ kpc. These
-values were chosen to closely resemble B1115. We therefore place the galaxy at
+We generate four two-component mock galaxies, where the dark matter and stellar
+profiles are allowed to be both steep and shallow.  The enclosed mass in all cases
+is fixed at $M(a_\star)= 1.8\e{10}$\,M$_\odot$ at the scale radius $a_\star=2$\,kpc. These
+values were chosen to closely resemble the lensing galaxy B1115 \citep{1980Natur.285..641W}. We place the galaxy at
 a redshift of $z_L = 0.31$ for lensing.  Throughout, we assume a cosmology
 where $H_0^{-1}=13.7$ Gyr, $\Omega_M=0.28$, and $\Omega_\Lambda=0.72$. The
 critical density is $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$.
 
-The galaxies were
-first generated as three dimensional particle distributions with the
-tool DEHNEN-TOOL. Each component follows the profile
+The galaxies were generated as three dimensional particle distributions as in \citet{2009MNRAS.395.1079D}. Each component follows the profile:
 \begin{equation}
-\rho(r) = \frac{M}{4\pi a^3}(3-\gamma){(r/a)^{-\gamma}(1 + r/a)^{\gamma-4}}
+\rho(m) = \frac{M}{4\pi a^3}(3-\gamma){(m/a)^{-\gamma}(1 + m/a)^{\gamma-4}}
 \label{Dehnen profile}
 \end{equation}
-where $\gamma$ is the profile index and $a$ is the scale radius.  In the
-case $\gamma=1$ this is the Hernquist profile.  The four combinations of
-profile indices are shown in \tabref{mock galaxy params}.  Note that two of
-the galaxies have $\gamma_\mathrm{DM}=1$. While we know from simulations that a
-more accurate approximation would be an NFW or Einasto profile we are not
-probing the outer regions of the halo where the difference would be most
-extreme.  The Hernquist profile is easier to generate as it has finite mass.
+where $m^2 = (x/a)^2 + (y/b)^2 + (z/c)^2$, with $[a,b,c] = ???$; $\gamma$ is the central density profile index; and $a$ is the scale radius. In the
+case $\gamma=1$ (and in the limit of spherical symmetry), this is the Hernquist profile \citep{1990ApJ...356..359H}.  The four combinations of
+profile indices are shown in \tabref{mock galaxy params}. {\bf JR. Need to add explanation of triaxial parameters here. Is the above density equation correct in fact?} 
 
 \begin{table}
 \begin{tabular}{cllllllll}
 Galaxy & $\gamma_\star$ & $M_\star$ & $\gamma_\mathrm{DM}$ & $M_\mathrm{DM}$ & $\Rmap$ & Notes\\
 \hline
-AA & 1 & 4 & 0.05 & $11^{2.95}$ & 50 kpc & \\
-AC & 1 & 4 & 1 & $11^2$ & 50 kpc & \\
-BB & 1.5 & $2^{1.5}$ & 0.16 & $11^{2.84}$ & 50 kpc & \\
-BC & 1.5 & $2^{1.5}$ & 1 & $11^2$ & 10 kpc & 
+AA & 1 & 4 & 0.05 & $11^{2.95}$ & 50 kpc & DM; shallow\\
+AC & 1 & 4 & 1 & $11^2$ & 50 kpc & DM; cuspy\\
+BB & 1.5 & $2^{1.5}$ & 0.16 & $11^{2.84}$ & 50 kpc &  Star; shallow\\
+BC & 1.5 & $2^{1.5}$ & 1 & $11^2$ & 10 kpc & Star; cuspy
 \end{tabular}
-\caption{Profile parameters for the four mock galaxies. The resulting profiles only roughly follow
-\eqnref{Dehnen profile} because the galaxies are triaxial. Masses are in units of $1.8\e{10}\Msun$. The scale lengths for
-all lenses are $(a_\star,a_\mathrm{DM})=(2,20)$ kpc and by definition
-$M_\star(a_\star) = M_\mathrm{DM}(a_\star) = 1$. $\Rmap$ is the 2d projected radius used to generate the lens configurations.}
+\caption{Profile parameters for the four mock galaxies. Masses are in units of $1.8\e{10}\Msun$. The scale lengths for
+all lenses are $(a_\star,a_\mathrm{DM})=(2,20)$\,kpc. $\Rmap$ is the 2D projected radius used to generate the lens configurations. In the notes column we describe the mock as DM or star dominated with a shallow or cuspy central dark matter density profile.}
 \label{mock galaxy params}
 \end{table}
 
-\begin{figure}
-\plotthree{MockGalProfile-a.pdf} {MockGalProfile-b.pdf} {MockGalProfile-c.pdf}
-%\plotone{MockGalProfile-a.pdf} \plotone{MockGalProfile-b.pdf} \plotone{MockGalProfile-c.pdf}
-\caption{
-\textbf{(Left)} 
-Three-dimensional density of the galaxies showing the stellar, dark matter,
-and total densities with dotted, dashed, and solid lines, respectively. The
-grey lines show the analytic forms from \eqnref{Dehnen profile}. 
-\textbf{(Middle)} 
+\begin{figure*}
+\includegraphics[width=0.33\textwidth]{MockGalProfile-a.pdf} 
+\includegraphics[width=0.33\textwidth]{MockGalProfile-b.pdf} 
+\includegraphics[width=0.33\textwidth]{MockGalProfile-c.pdf}
+\caption{{\bf JR. Cut the analytic profiles from this Figure. All fonts and labels should be larger. Left panel should start at 0.7kpc.}
+\textbf{Left:} 
+Density averaged in spherical shells of the four galaxy mocks: AA, AC, BB and BC, showing the stellar (dotted), dark matter (dashed),
+and total (solid) densities, respectively. Notice that the stars in models BB and BC contribute significantly to the central potential. 
+\textbf{Middle:} 
 The radially averaged two-dimensional projected density.
-The critical density for lensing at $z_L=0.31$ is $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$.
-\textbf{(Right)}
+The critical density for lensing at $z_L=0.31$, $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$, is marked by the horizontal line. 
+\textbf{Right:}
 The enclosed projected mass.
 }
 \label{mock galaxies}
-\end{figure}
+\end{figure*}
 
-In \figref{mock galaxies} we show the 3D radial density, 
+In \figref{mock galaxies}, we show the 3D radial density, 
 the 2D projected density, and the 2D enclosed mass for each
-galaxy. Solid lines represent the total mass, dashed lines the dark 
-matter, and dotted lines the stellar mass. The projected plot has
-been normalized to the critical density.
+galaxy.
 
-\subsection{Lens configurations} %--------------------------------------------------------------
+\subsection{Lens configurations}\label{sec:lensconfig} %--------------------------------------------------------------
 
 For each of the four galaxies, we used the raytracing feature of \Glass\
-described in \secref{Raytracing} to construct 12 lensing scenarios:
+described in \secref{Raytracing} to construct 12 lensing scenarios {\bf JR. We have 12 lensing scenarios, but only 6 panels in Figure 2. Is this number correct?}:
 
 \begin{enumerate}
-\item One double and one extended double.
-\item One quad and one extended quad.
-\item Two 2-source quads with varying redshift contrast.
+\item one double and one extended double;
+\item one quad and one extended quad;
+\item two 2-source quads with varying redshift contrast.
 \end{enumerate}
+The `extended' configurations use multiple point sources at the same redshift to simulate an extended source (that will produce an arc-like image). \figref{arrival surfaces} shows the configuration for the extended quad, along with the other cases. 
 
-The extended configurations use extra sources to generate extra images that
-simulate an arc. \figref{config ex.} shows the configuration for the extended
-quad.
-
-Each of these configurations were modelled with and without time delays and with
-and without a central image. We assumed for all our tests that the lensing mass
-was radially symmetric. By construction, this is known to be true and this is
-most often the case with real galaxies, unless there is an obvious observed
-asymmetry. The central pixel was refined into a further nine pixels to capture
-any steep rise in the profile. Two of the four mock galaxies have a steeply rising
-inner profile.
-
-\section{Results}\label{sec:results}
-
-\figref{reconstruction} shows a typical reconstruction of a
-lens. The far left plot shows the ensemble average arrival time surface with
-image marked as circles and the inferred source position as a diamond. The
-center plot shows the radial density profile. The error bars cover the full
-range of models generated by \Glass. The true density profile from the mock
-data is also plotted for comparison. The vertical lines mark the radial
-position of the images. The final plot on the right is of the enclosed mass. As
-expected the error bars are smallest in the region of the images where the most
-information about the lens is present. The dip in the profile at the end of the
-profile is due to the cut off in mass in the lensing map. This is of little
-importance, though, as there is no lensing information there.
-
-\begin{figure}
-\plotthree{BCQuadR1a_TmS-a.pdf}{BCQuadR1a_TmS-b.pdf}{BCQuadR1a_TmS-c.pdf}
-\caption{A typical reconstructed lens. Here we present a single quad lens from 
-the BC mock galaxy.
-\textbf{(Left)}
-The arrival time surface. 
-\textbf{(Middle)}
-The surface density. The magenta curve represents the dark matter component,
-the yellow curve the stellar component, and the blue curve is the sum of the two.
-The black curve comes from the original mass model used to create the lens.
-The green vertical lines mark the radial positions of the images. The higher
-resolution feature of \Glass\ has been used on the central pixel allowing the
-steep profile to be captured.
-\textbf{(Right)}
-The cumulative mass.}
-\label{reconstruction}
-\end{figure}
-
-The main results from modelling these different configuration are shown black in
-\figref{main results}. Each subplot corresponds to a different galaxy and
-the vertical axis shows the range of quality.  The quality of a
-model $\M_i$ by comparing the recovered density profile $\rho_\M(r)$ against
-the profile of the mock galaxy $\rho_G(r)$.  In particular, the plots show the
-RMS quantity
-%
-\begin{equation}
-  \chi_i = 100 \times \sqrt{\frac{\int_r (\rho_{\M_i}(r) - \rho_G(r))^2}{\int_r \rho_G(r)^2}}
-  %\chi_i = \frac{\sum_r (\rho(r)_{\M_i} - \rho(r)_G)^2}{\sum_r \rho(r)_G^2}
-\end{equation}
-%
-
-\begin{figure}
-\plottwo{AAchi2_profile-full.pdf}{BBchi2_profile-full.pdf}
-
-\plottwo{ACchi2_profile-full.pdf}{BCchi2_profile-full.pdf}
-\caption{The main results showing the quality of model recovery. Each panel corresponds to 
-the named mock galaxy, whose parameters are listed in \tabref{mock galaxy params}. Within
-each panel are six groups of results for each of six lens morphologies. Each morphology
-considered the presence of time delays and a central image. The black markers are for tests
-that did not include the stellar mass as a lower bound constraint, while the red markers
-indicate where the stellar mass has been given.}
-\label{main results}
-\end{figure}
-
-\begin{figure}
-\plottwo{AAchi2_profile.pdf}{BBchi2_profile.pdf}
-
-\plottwo{ACchi2_profile.pdf}{BCchi2_profile.pdf}
-\caption{Profile $\chi$ with $1\sigma$ error bars.}
-\label{main results}
-\end{figure}
-
-\begin{figure}
-\plottwo{AAchi2-full.pdf}{BBchi2-full.pdf}
-
-\plottwo{ACchi2-full.pdf}{BCchi2-full.pdf}
-\caption{Pixel-wise $\chi$.}
-\label{main results}
-\end{figure}
-
-\begin{figure}
-\plotone{BCarrival_surfaces}
+\begin{figure*}
+\includegraphics[width=0.85\textwidth]{BCarrival_surfaces}
 \caption{The lens configurations for the six test cases using the BC mock galaxy. Here,
 the central image is shown, although not all tests include it. The central image belongs
 to only one set of images to avoid overconstraining the models. Similar colors group
@@ -675,14 +576,89 @@ is at the same redshift, while the redshift is varied between the systems in the
 ZConstrast cases. Grey circles are a visual aid to help determine radial separation
 between images. The axes are measure in arcseconds.}
 \label{arrival surfaces}
-\end{figure}
+\end{figure*}
 
-The morphological complexity increases from left to right within each plot. As
+Each of these configurations were modelled with and without time delays and with
+and without a central image. (The central image is typically highly demagnified. For galaxy lenses it is very difficult to find since it lies along the sight line to the bright lensing galaxy; in clusters, however, such images have been seen (CITES)). We assumed for all our tests that the lensing mass
+was radially symmetric ({\bf JR. Need to better-define this symmetry here.}. For our mock data, this is known to be true; it is
+most often the case with real galaxies, unless there is an obvious observed
+asymmetry. The central pixel was refined into a further nine pixels to capture
+any steep rise in the profile. Two of the four mock galaxies have a steeply rising
+inner profile. {\bf JR. What happens if we don't assume this symmetry? We ought to add an appendix showing this for one example case.}
+
+\section{Results}\label{sec:results}
+\figref{reconstruction} shows a typical reconstruction of a
+lens. The far left plot shows the ensemble average arrival time surface with
+image marked as circles and the inferred source position as a diamond. The
+center plot shows the radial density profile. The error bars cover the full
+range of models generated by \Glass {\bf JR. Why do this? Surely 1 or 2 sigma errors make more sense? I've deleted the ``full ensemble" results and kept the $1\sigma$ ones instead.}. The true density profile from the mock
+data is also plotted for comparison. The vertical lines mark the radial
+position of the images. The final plot on the right is of the enclosed mass. As
+expected, the error bars are smallest in the region of the images where the most
+information about the lens is present. The dip in the profile at the end of the
+profile is due to the cut off in mass in the lensing map. This is of little
+importance, though, as there is no lensing information there.
+
+\begin{figure*}
+\includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-a.pdf}
+\includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-b.pdf}
+\includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-c.pdf}
+\caption{
+{\bf JR. Need to homogenise plot dimensions here. Larger fonts as in Figure 1 are also required.} 
+A typical reconstructed lens. Here we present results for a single quad image lensed by the BC mock galaxy.
+\textbf{Left:}
+The arrival time surface. 
+\textbf{Middle:}
+The surface density. The magenta curve represents the dark matter component,
+the yellow curve the stellar component, and the blue curve is the sum of the two.
+The black curve comes from the original mass model used to create the lens.
+The green vertical lines mark the radial positions of the images. The higher
+resolution feature of \Glass\ has been used on the central pixel allowing the
+steep profile to be captured.
+\textbf{Right:}
+The cumulative mass.}
+\label{reconstruction}
+\end{figure*}
+
+The main results from modelling these different configuration are shown in black in
+\figref{main results}. Each subplot corresponds to a different galaxy and
+the vertical axis shows the range of `quality' of recovery, defined as: 
+%
+\begin{equation}
+  \chi_i \equiv 100 \times \sqrt{\frac{\int_r (\rho_{\M_i}(r) - \rho_G(r))^2}{\int_r \rho_G(r)^2}}
+  %\chi_i = \frac{\sum_r (\rho(r)_{\M_i} - \rho(r)_G)^2}{\sum_r \rho(r)_G^2}
+\end{equation}
+where $\rho_{\M_i}(r)$ is the recovered density profile for a mock model $\M_i$; and $\rho_G(r)$ is the true density profile. 
+
+\begin{figure*}
+\includegraphics[width=0.49\textwidth]{AAchi2_profile.pdf}
+\includegraphics[width=0.49\textwidth]{BBchi2_profile.pdf}\\
+\includegraphics[width=0.49\textwidth]{ACchi2_profile.pdf}
+\includegraphics[width=0.49\textwidth]{BCchi2_profile.pdf}
+\caption{The main results showing the quality of model recovery. Each panel corresponds to 
+the named mock galaxy, whose parameters are listed in \tabref{mock galaxy params}. Within
+each panel are six groups of results for each of six lens morphologies. Each morphology
+considered the presence of time delays and a central image. The black markers are for tests
+that did not include the stellar mass as a lower bound constraint, while the red markers
+indicate where the stellar mass has been given. Error bars show the $1\sigma$ equivalent interval sampled from the model ensemble.}
+\label{main results}
+\end{figure*}
+
+\begin{figure*}
+\includegraphics[width=0.49\textwidth]{AAchi2-full.pdf}
+\includegraphics[width=0.49\textwidth]{BBchi2-full.pdf}\\
+\includegraphics[width=0.49\textwidth]{ACchi2-full.pdf}
+\includegraphics[width=0.49\textwidth]{BCchi2-full.pdf}
+\caption{{\bf JR. This should be also with $1\sigma$ errors. Also need to do this plot for Claudio's shape measure.} Pixel-wise $\chi$.}
+\label{main results pixel-wise}
+\end{figure*}
+
+The abundance of strong lensing data increases from left to right within each plot. As
 a result, there is a general trend for the reconstruction quality to increase
 (and for $\chi$ to decrease). By adding more measurable information to each
 configuration the quality can also be affected. When both time delays and a
 central image are present the quality is highest. A double is known to provide
-very little constraint on the mass distribution. This is particular evident in
+very little constraint on the mass distribution. This is particularly evident in
 galaxies AC and BC where the mass profile is steepest and the reconstruction of
 the double is poorest. However, the addition of an arc is sufficient to correct
 this.
@@ -690,52 +666,38 @@ this.
 \subsection{Stellar mass}
 \label{stellar mass}
 
-The previous tests have been conducted to show that \Glass\ performs as expected.
-Here, we present a novel constraint that can significantly improve the models. 
-The stellar mass distribution is a lower bound on the total mass and in the
-central region of a galaxy is also the dominant component. It can therefore be
-used to constrain the innermost profile. We took the stellar mass directly from
+The stellar mass distribution gives a lower bound on the total mass. Where the stars dominate the central potential, it can provide a powerful constraint extra to the strong lensing data. We took the stellar mass directly from
 the generated galaxies and projected the particles onto the pixels. \Glass\
 also offers an option to interpolate any map of stellar mass (e.g., from an
 observation) onto the pixels. The linear constraint is added to \Glass\ by
 writing $\kappa_n = \kappa_{dm,n} + \kappa_{s,n}$ as the sum of the
 dark matter and stellar mass components in the potential (\eqnref{discrete
 potential}). Since each $\kappa_{s,n}$ is just a constant we do not add new,
-separate equations for each pixel. 
+separate equations for each pixel. Although we assume a perfect recovery of the stellar mass here, it is straightforward to add errors as the stellar mass constraint remains linear: $\kappa_n = \kappa_{dm,n} + \epsilon \kappa_{s,n}$, where $\epsilon \sim 1$ is an additional error parameter. 
 
 With the stellar mass lower bound, the improvement of the reconstruction
 quality shown in \figref{main results} is quite dramatic for the
 steepest mock galaxies (AC and BC). This is because these models are dominated
-by stars in the inner region. The other two galaxies are unaffected because the
-models were already well modeled by the dark matter alone.
+by stars in the inner region. By contrast, the other two galaxies -- where the stars contribute negligibly to the potential -- are unaffected.
 
-\subsection{Velocity anisotropy}
+\subsection{Stellar kinematics}\label{sec:results_stellar_kinematics}
 
-In addition to the lens model aspects, \Glass\ can also run post processing
-routines to analyze each model as it is produced. We have developed a number of
-routines for fitting analytic models to the lensing mass profiles. One in
-particular deprojects the 2d profile assuming a Hernquist profile for the
-light. By fixing the velocity anisotropy $\beta$ we can determine the velocity
-dispersion of the model. Of course, the true velocity dispersion is known for
-the mock galaxies and we can compare our method to those measurements.  In
-\figref{sigma-beta} we plot the recovered velocity dispersion for $\beta=0$ and $\beta=1$
-over a range of aperture sizes for the BC Quad with time delays and stellar
-mass. The stellar half mass radius is plotted in yellow and the Einstein radius
-in black. For this configuration the two radii are well separated. This plot
-demonstrates that the velocity anisotropy can be inferred by combining lens
-modelling and independent velocity dispersion measurements. The lens breaks
-the anisotropy degeneracy at a given aperture.
+As outlined in \S\ref{sec:glass}, \Glass\ can also run post processing
+routines on the model ensemble which can be used to apply non-linear constraints. As an example, we consider here constraints from stellar kinematics. The models in the \Glass\ ensemble are processed as described in \S\ref{sec:glasskinematics}. To illustrate the power of stellar kinematic constraints, in
+\figref{sigma-beta}, we plot the projected velocity dispersion calculated for one model model (extracted from the full ensemble) of the BC Quad with time delays and stellar mass (left), and the mean projected velocity dispersion (\eqnref{eqn:virialaverage}) as a function of the upper limit of the averaging integral (the aperture size), $a_p$ (right). In both cases, we calculate curves for two extrema velocity anisotropies: $\beta=0$ (green) and $\beta=1$ (red). Over-plotted is the correct answer for the BC model (black). The stellar half mass radius (yellow) Einstein radius (black) are marked by vertical lines. For this configuration, these two radii are well-separated.
 
-\begin{figure}
-\plotone{BCQuadR1a_TmS-sb.pdf}
-\caption{Estimated velocity dispersion as a function of the aperture size. The
-single quad lens model for the BC mock galaxy was deprojected and the mass
-profile fit assuming a Hernquist profile for the light. The top curve (blue)
-assumes a velocity anisotropy $\beta=1$, while the lower curve (green)
-assumes $\beta=0$. Given an independent estimate of the velocity dispersion,
-lensing can be used to place constraints on the velocity anisotropy.}
+Without even sweeping through the model ensemble and formally accepting/rejecting models, \figref{sigma-beta} already illustrates what we can hope to obtain from stellar kinematics. The most robust constraints follow if we can integrate out the effect of $\beta$ (right panel), since this is difficult to measure. For large enough aperture size ($a_p > 2r_{1/2}$), the average projected dispersion converges on a single well defined value independently of $\beta$. Since this converged value follows from the virial theorem, it is also rather insensitive to the shape of the potential \citep{2012ApJ...754L..39A}: it constitutes a robust constraint on the lensing potential. On the other hand, if the mass profile is well-constrained already at $r \sim r_{1/2}$, then we can use stellar kinematics to probe $\beta$. This can be seen in the left panel of \figref{sigma-beta}. Here we see that for a well-constrained mass model, the $\beta = 1$ curve lies significantly off from the true answer that has $\beta(r) \sim 0$. 
+
+We now consider formally accepting/rejecting models from the full ensemble. We consider two regimes of interest: a model with a double where the mass profile is poorly constrained (XXX), and a model where the mass profile is very well constrained by the lens data (YYY). In the former case, we use $\overline{\sigma}(2 r_{1/2})$ to probe the mass independently of $\beta(r)$. We accept/reject models assuming a Gaussian error on measured $\overline{\sigma}(2 r_{1/2})$ of $\pm 10$\,km/s (similarly to the data quality presented for example in \citealt{2002MNRAS.337L...6T}). The results are shown in \figref{main results}, blue data points. In the latter case, we ask whether the data favour $\beta = 0$ or $\beta = 1$ by obtaining a $\chi^2$ goodness of fit measure between the true and modelled $\sigma_p(R)$. We accept/reject models from the ensemble above. The results for $\beta$ are shown in Figure ZZZ. 
+
+The results for stellar kinematics match our expectations from \S\ref{sec:kinematics}. Where the lens data already constrain the mass distribution at $r \sim r_{1/2}$, stellar kinematics provide valuable information about the velocity anisotropy of the stars, $\beta$ (see Figure ZZZ). Where the lens data poorly constrain the mass distribution at $r_{1/2}$, we may `integrate out' the effect of unknown $\beta$ to obtain a robust measure of $M(r_{1/2})$ from the stellar kinematics. This latter is robust to both uncertainties in $\beta(r)$ and to our assumption of spherical symmetry in the kinematic models \citep{2012ApJ...754L..39A}. Finally, we note that there is a third interesting case. If the lens models well-constrain $M(r_{1/2})$ and stellar kinematics are available, then these can be used to probe cosmological models (see \S\ref{sec:theory}). We explore this in more detail in a separate publication. 
+
+\begin{figure*}
+\includegraphics[width=0.49\textwidth]{BCQuadR1a_TmS-sb.pdf}
+\includegraphics[width=0.49\textwidth]{BCQuadR1a_TmS-sb.pdf}
+\caption{{\bf Left:} {\bf JR. Jonathan to add.} The projected velocity dispersion calculated for one model model (extracted from the full ensemble) of the BC Quad with time delays and stellar mass. {\bf Right:} The mean projected velocity dispersion (\eqnref{eqn:virialaverage}) as a function of the upper limit of the averaging integral (the aperture size), $a_p$. In both cases, we calculate curves for two extrema velocity anisotropies: $\beta=0$ (green) and $\beta=1$ (red). Over-plotted is the correct answer for the BC model (black) {\bf JR. Jonathan to add}. The stellar half mass radius (yellow) Einstein radius (black) are marked by vertical lines. For this configuration, these two radii are well-separated.}
 \label{sigma-beta}
-\end{figure}
+\end{figure*}
 
 %\subsection{Velocity dispersions}
 %
@@ -761,13 +723,37 @@ lensing can be used to place constraints on the velocity anisotropy.}
 
 \section{Conclusions}\label{sec:conclusions}
 
-extensible framework                                                       
+{\bf JR. ACTION ITEMS.
 
-accurate reconstructions through better sampling                           
+\begin{enumerate} 
 
-where stellar mass significant, including it greatly improves accuracy 
+\item More references to be added to the introduction. Lots of work remains to be cited. Were we really the first to test lensing on N-body mocks? Perhaps for strong lensing, but certainly not for weak. 
 
-breaking the vdisp/anisotropy degeneracy.
+\item Understand ``Schneider's degeneracy". Add reference/commentary accordingly. 
+
+\item Prasenjit to write/finish section on stellar population synthesis modelling.
+
+\item Jonathan to complete \S\ref{sec:glass}. Emphasise need for central adaptive grid. Add appendix showing convergence as Pixrad is increased. 
+
+\item Jonathan to write section \S\ref{sec:glassextraimages} on removing models with extra images. 
+
+\item Clarify amount of triaxiality (and the analytic density profile) in \S\ref{sec:mockdata}. 
+
+\item Clarify number of lens configurations in \S\ref{sec:lensconfig}.
+
+\item Add appendix showing how ``radial symmetry" prior affects results. Clarify meaning of this prior with a nice figure showing the symmetry. 
+
+\item Show results for $1\sigma$ and $2\sigma$ rather than full \Glass\ ensemble. Add results for Claudio's shape measure. Discuss shape throughout results section and mention more explicitly in abstract and conclusions -- what quality of data do we need to robustly constrain the shape?
+
+\item Add example plot of the projected density and recovered projected density (c.f. plots Jonathan made for my ERC proposal). 
+
+\item Tidy up figures and other small items as detailed throughout -- see {\tt {\bf JR ... }}. 
+
+\item Add accept/reject results for stellar kinematics (two figures) as detailed in \S\ref{sec:results_stellar_kinematics}. 
+
+\end{enumerate} 
+}
+
 
 \appendix
 
@@ -823,6 +809,9 @@ we can express $Q_n$ as the sum of four parts
 where
 %
 \[\tilde Q_n(x,y) = xy(\ln r^2 - 3) + x^2\arctan(y/x) + y^2\arctan(x/y)\]
+
+\section{Pixel resolution convergence test}
+{\bf JR. Need to add an appendix showing convergence with increasing Pixrad.} 
 
 \bibliographystyle{mn2e}
 \bibliography{ms}
