@@ -28,6 +28,8 @@
 \newcommand{\e}[1]{\ensuremath{\times 10^{#1}}}
 \renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
 
+\def\Sigmacrit{\Sigma_{\rm crit}}
+
 % From aastex.cls
 \newcommand\plotone[1]{%
  \centering
@@ -74,37 +76,147 @@ We use a new non-parametric gravitational -- \Glass -- to determine what quality
 %These are quantities of key interest for probing the dark matter distribution in galaxies and galaxy clusters to test galaxy formation models and cosmology.
 
 \section{Introduction}\label{sec:intro} %-----------------------------------------------------
-Since the discovery of the first gravitational lens
-\citep{1979Natur.279..381W}, lensing has become an increasingly important probe
-of the distribution of mass in the Universe
-\citep{1937ApJ....86..217Z,2012arXiv1206.1225A}. Strong lensing in particular 
-provides a powerful probe of the mass distribution at the heart of galaxies and
-galaxy clusters \citep{2010CQGra..27w3001B,2007ApJ...667..645R,2006ApJ...652L...5S,2009ApJ...690..154S}, giving valuable constraints on the nature of dark matter \citep{2006ApJ...652L...5S,2013ApJ...765...25N}, cosmology 
-\citep{2010Sci...329..924J, 2008ApJ...679...17C}, and galaxy formation \citep{2012MNRAS.424..104L}. To date, some $\sim$400 strong lenses are
-known\footnote{{\tt http://admin.masterlens.org/}.}, but with the advent of
-large ground and space based surveys, many thousands of lenses are expected to
-be discovered over the next ten years \citep{2012arXiv1206.1225A,
-2010AAS...21540115M, 2004NewAR..48.1085K}.
 
-The majority of lens modelling efforts to date have focussed on `parametric'
-modelling, where simple theoretically motived models are fit using maximum
-likelihood methods to the data \citep{2011A&ARv..19...47K, 1993A&A...273..367K,
-2010GReGr..42.2151K}. This is useful in that a simple model provides valuable
-physical insight. However, as data quality improves and the questions we ask of
-these data become more refined, it is important to re-asses the impact of our
-model assumptions. `Non-parameteric' methods -- that assume many more
-parameters than the available data constraints -- are invaluable in this
-respect \citep{1997MNRAS.292..148S,2005MNRAS.360..477D,2010ApJ...723.1678C,2006MNRAS.367.1209L,2013arXiv1304.2393S}. Here, the lens inversion problem is
-deliberately chosen to be under-constrained.
-Instead of finding one `best-fit' model, we must search for many models
-consistent with the data, exploring degeneracies between different but
-plausible\footnotemark\ mass models
-\citep{2000AJ....120.1654S,2006ApJ...653..936S,2008MNRAS.386..307L}. The key
-advantages of non-parametric modelling are that we can: (i) explore model
-degeneracies and marginalise over them; and (ii) we can determine what type and
-quality of data are required to measure parameters of interest. 
+Strong gravitational lenses are rare.  The reason is that the line of
+sight to a light source in the universe rarely goes through a region
+such that the projected density in its sky neighbourhood exceeds the
+critical density to produce multiple images.  To date, some $\sim400$
+strong lenses are known,\footnote{See {\tt http://www.masterlens.org}
+  for a catalogue.}  but this number is expected to increase to
+several thousand over the next ten years.  The optimism derives from
+new and upcoming surveys, both
+ground-based\footnote{http://pan-starrs.ifa.hawaii.edu}$^{\rm,}$\footnote{http://www.darkenergysurvey.org}
+and spacecraft,\footnote{http://www.euclid-ec.org} together with a
+community of citizen-science volunteers examining the image data for
+candidates.\footnote{http://spacewarps.org}
 
-\footnotetext{Constraints extra to the available data are typically required on the solution space in order to make it finite. Such constraints -- priors -- are typically chosen to eliminate theoretically implausible solutions (an extreme example might be if all of the mass lies in one corner of the lens model space, or if the mass fluctuates wildly on the smallest scales probed). Such priors are typically far less restrictive than the implicit constraints inherent in parametric mass modelling.}
+Since lensing depends only on gravity, strong lenses are a rather
+unique window on dark matter, and indirectly on the cosmological model
+as well, and hence the thousands of to-be-discovered lenses are
+eagerly awaited \citep{2010CQGra..27w3001B,2012arXiv1206.1225A}.
+Extracting results from lensing, however, will require modelling, and
+it is towards that goal that the present work is directed.
+
+To see why lens modelling is of crucial importance, let us recall the
+essential quantities that appear in lensing.  First we have the
+distances: let $D_L$, $D_S$, $D_{LS}$ be the angular-diameter
+distances to the lens, source, and from lens to source; there are all
+strictly $\propto c/H_0$.  Typically
+\begin{equation}
+D_L \approx z \frac c{H_0}\ \hbox{and}\ \frac{D_S}{D_{LS}} \sim 1.
+\end{equation}
+The critical density for multiple images is
+\begin{equation}
+\Sigmacrit = \frac{c^2 D_L}{4\pi G} \frac{D_S}{D_{LS}}
+\end{equation}
+in mass per steradian.  The separation between the lensed images is of
+order the Einstein radius $\theta_E$.  The image separation is related
+to the mass by
+\begin{equation}
+\theta_E \sim \frac{R_G}{D_L} \frac{D_{LS}}{D_S}
+\end{equation}
+where $R_G$ is the gravitational radius $GM/c^2$.  If the source is a
+quasar or otherwise rapidly variable, a time delay is the variability
+will be present
+\begin{equation}
+\Delta t \sim R_G/c \,.
+\end{equation}
+So in principle, one can not only measure the mass of the lens, one
+can use the dependence on the cosmology-dependent $D$ factors to
+extract the cosmological model and all its parameters.
+\cite{1937ApJ....86..217Z} drew attention to the former, and
+\cite{1964MNRAS.128..307R,1966MNRAS.132..101R} pointed out the latter,
+all long before lenses were discovered.  The difficulty became
+apparent soon after the discovery of the first lens by
+\cite{1979Natur.279..381W}.  In the first ever paper on lens
+modelling, \cite{1981ApJ...244..736Y} found that many plausible mass
+distributions could reproduce the data.
+
+% Simple parametric models are usually robust on qualitative features,
+% but other aspects can be very model-dependent
+% \citep[cf.~][]{2003AJ....125.2769S}.  For example, for lensed
+% quasars, there may be several models all providing excellent fits to
+% the image data but disagreeing on the expected time delays, but they
+% almost always agree about the {\em order\/} of time delays. Thus, a
+% simple model provides valuable physical insight, but as data quality
+% improves and the questions we ask of these data become more refined,
+% it is important to re-assess the impact of our model assumptions.
+% The key advantages of non-parametric modelling are that we can: (i)
+% explore model degeneracies and marginalise over them; and (ii) we
+% can determine what type and quality of data are required to measure
+% parameters of interest.
+
+\cite{1981ApJ...244..736Y} were remarkably prescient about the
+subsequent development of lens modelling.  First, the introduced the
+technique of choosing a parametric form for the lensing mass and then
+fitting for the parameters, which is still the most common strategy
+\citep[see for example][]{2010GReGr..42.2151K,2011A&ARv..19...47K}.
+Second, they pointed out the non-uniqueness of lens models, or lensing
+degeneracies.  Third, they suggested combining lensing data with
+stellar kinematics and X-rays, to reduce the effect of the
+degeneracies.  Later work, as well as following up these suggestions,
+has introduced some ideas.  Four of these are important in the present
+work.
+\begin{itemize}
+\item In free-form models, there is no specified parametric form for
+  the mass distribution.  There are still assumptions (or priors) on
+  the mass distribution, such as smoothness or being centrally
+  concentrated
+  \citep{1997MNRAS.292..148S,2005MNRAS.360..477D,2010ApJ...723.1678C}
+  but these are much less restrictive than parametric forms.
+  \cite{2006MNRAS.367.1209L} implemented a particular elegant prior,
+  which is that the mass distribution must be non-negative and no
+  extra images are produced.  Free-form are at present most common for
+  cluster lenses\citep{2009ApJ...690..154S,2013arXiv1304.2393S}.
+\item Model ensembles, exploring a diverse range of possible mass
+  distributions that nonetheless all fit the data, are a way of
+  cambating the non-uniqueness of models.  Model ensembles are
+  possible in parametric models \citep{1999AJ....118...14B} but are
+  more common in free-form models
+  \citep{2000AJ....119..439W,2009ApJ...690..154S,2012MNRAS.425.3077L}.
+\item Stellar kinematics has played a role in many modelling
+  techniques.  The underlying reason is the virial theorem, which
+  relates the line of sight velocity dispersion to the Einstein radius
+  as
+\begin{equation}
+  \frac{\langle v^2_{\rm los}\rangle}{c^2} \approx
+  \frac{\theta_E}{4\pi} \frac{D_S}{D_{LS}}
+\end{equation}
+  with the relation becoming exact for isothermal lenses.  The use of
+  two-dimensional kinematics by \cite{2011MNRAS.415.2215B} is
+  especially interesting.
+\item The stellar mass in a lens can be inferred from photometry and
+  compared with the total mass
+  \citep{2005ApJ...623L...5F,2008MNRAS.383..857F,2011ApJ...740...97L}.
+  Since the inferred stellar mass does depend on the assumed IMF,
+  lenses in which stellar mass dominates can be used to derive upper
+  bounds on the stellar $M/L$ \cite{2010MNRAS.409L..30F}. Lower bounds
+  on stellar $M/L$ have also been claimed \citep{2013MNRAS.428.3183D}
+  but these require upper-bound assumptions about the dark-matter
+  profile.
+\item Testing modelling strategies to see how well they recover
+  simulated lenses is increasingly recognized as essential.  Simple
+  blind tests have appeared in earlier work \citep[for example, Figure
+    2 in][]{2000AJ....119..439W}, but more recently, test against
+  dynamically simulated galaxies are favoured
+  \citep{2007ApJ...667..645R,2009MNRAS.393.1114B}.
+\end{itemize}
+There are also more modelling ideas in the literature.  One is to use
+X-ray intensity and temperature profiles as a mass constraint
+\citep[such as in][]{2013ApJ...765...25N}.  Another idea is to model
+multiple lenses simultaneously, with one or more cosmological
+parameters variable but shared between the lenses.  This strategy has
+been used to constrain $H_0$ from time delays
+\citep{2006ApJ...652L...5S,2008ApJ...679...17C,2010ApJ...712.1378P}.
+In principle, cosmological parameters could be constrained even from a
+single lens.  Some models have attempted this, starting from a prior
+based on the values and uncertainties from CMB fluctuations
+\citep{2010Sci...329..924J,2013arXiv1306.4732S}, but tests using
+simulated lenses are desirable.
+
+
+
+
 
 In this paper, we use a new non-parametric strong lens modelling framework -- 
 \Glass\ -- to determine what combination of lensing, stellar mass, and
@@ -244,6 +356,8 @@ For on-axis sources (\vec\beta\ = \vec0), the images split into a degenerate Ein
 {\bf Is ``Schneider's degeneracy" something new? Should we cite it here? -- {\tt http://adsabs.harvard.edu/abs/2013arXiv1306.4675S}} 
 
 \subsection{Stellar population synthesis modelling} 
+
+
 
 For many galaxy lenses, the central potential is dominated by the visible matter. In this situation, constraints on the stellar mass distribution are invaluable. \citep{2008MNRAS.383..857F} demonstrate that with just photometric data in XXX bands, and an assumed initial mass function for the stars, they are able to reliably constrain the stellar mass to XXX\% accuracy. This gives a constraint on the full lensing mass map: 
 
