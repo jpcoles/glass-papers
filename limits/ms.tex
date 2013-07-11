@@ -166,8 +166,14 @@ work.
   but these are much less restrictive than parametric forms.
   \cite{2006MNRAS.367.1209L} implemented a particular elegant prior,
   which is that the mass distribution must be non-negative and no
-  extra images are produced.  Free-form are at present most common for
-  cluster lenses\citep{2009ApJ...690..154S,2013arXiv1304.2393S}.
+  extra images are produced.  Free-form are more commonly used with
+  cluster lenses\citep{2009ApJ...690..154S,2013arXiv1304.2393S}, but
+  can be used with galaxy lenses as well, where their less restrictive
+  assumptions can be important.  For example, in time-delay galaxy
+  lenses parametric models led to tensions with the Hubble parameter
+  $H_0$ \citep[e.g.][]{2002astro.ph..4043K,2002ApJ...578...25K}, but
+  the less restrictive assumptions of free-form models resolved these
+  tensions \citep{2007ApJ...667..645R}.
 \item Model ensembles, exploring a diverse range of possible mass
   distributions that nonetheless all fit the data, are a way of
   cambating the non-uniqueness of models.  Model ensembles are
@@ -180,7 +186,7 @@ work.
   as
 \begin{equation}
   \frac{\langle v^2_{\rm los}\rangle}{c^2} \approx
-  \frac{\theta_E}{4\pi} \frac{D_S}{D_{LS}}
+  \frac{\theta_E}{6\pi} \frac{D_S}{D_{LS}}
 \end{equation}
   with the relation becoming exact for isothermal lenses.  The use of
   two-dimensional kinematics by \cite{2011MNRAS.415.2215B} is
@@ -209,44 +215,53 @@ parameters variable but shared between the lenses.  This strategy has
 been used to constrain $H_0$ from time delays
 \citep{2006ApJ...652L...5S,2008ApJ...679...17C,2010ApJ...712.1378P}.
 In principle, cosmological parameters could be constrained even from a
-single lens.  Some models have attempted this, starting from a prior
-based on the values and uncertainties from CMB fluctuations
-\citep{2010Sci...329..924J,2013arXiv1306.4732S}, but tests using
+single lens.  Some models have attempted this
+\citep{2010Sci...329..924J,2013arXiv1306.4732S} starting from a prior
+based on the values and uncertainties from the CMB, but tests using
 simulated lenses are desirable.
 
+In this paper, we use a new program --- \Glass\ --- to determine what
+combination of lensing, stellar mass, and stellar kinematic
+constraints best constrain the projected mass profile and shape of a
+gravitational lens.  The compute-intensive core of \Glass\ is a
+parallel implementation of the high-dimensional sampling algorithm
+from \cite{2012MNRAS.425.3077L}.  Around that core, \Glass\ has
+extensible code (in software terminology, a framework) in Python,
+encoding the lens equation, a basis and priors for the mass
+distribution, and various post-processing modules.  \Glass\ is
+described in \secref{sec:glass}.  In \secref{sec:theory} before that
+we review the elements of lensing theory, stellar population
+synthesis, and stellar dynamics we will need.
+
+In \secref{sec:mockdata}, we describe our mock data.
+
+In \secref{sec:results}, we present our results from applying \Glass\ to
+these mock data.
+
+
+\cite{2007ApJ...667..645R} were the first to test the recovery of
+strong lensing surface density profiles using mock data generated from
+N-body models {\bf JR. Is this true?}. They found that when including
+time delays, circularly averaged surface density distributions can
+sufficiently well-recovered to make interesting comparisons with
+theoretical models Cosmological parameters, however, are more
+sensitive. Since then, several groups have used N-body mock data to
+explore the fidelity of strong lensing reconstructions
+\citep{2007MNRAS.380.1729L}. We expand on these earlier works
+by considering not only the recovery of the circularly averaged
+surface density profile of a lens, but also its shape, higher order
+measures of the mass recovery (a pixel-by-pixel comparison), and the
+utility of wrapping in constraints from stellar mass estimates and/or
+stellar kinematics.
 
 
 
 
-In this paper, we use a new non-parametric strong lens modelling framework -- 
-\Glass\ -- to determine what combination of lensing, stellar mass, and
-stellar kinematic constraints best constrain the projected mass profile and
-shape of a gravitational lens. Some significant work has already proceeded in this direction in the literature.
-\citet{2007ApJ...667..645R} were the first to test the recovery of strong
-lensing surface density profiles using mock data generated from N-body models
-{\bf JR. Is this true?}. They found that when including time delays, circularly
-averaged surface density distributions can sufficiently well-recovered to make
-interesting comparisons with theoretical models\footnote{Cosmological
-parameters, however, are more sensitive. \citet{2007ApJ...667..645R} found that
-over-restrictive model assumptions can lead to significant bias on the Hubble
-parameter, $H_0$, for example, explaining earlier tensions reported in the
-literature \citep[e.g.][]{2002ApJ...578...25K,2002astro.ph..4043K}.}. Since then, several groups
-have used N-body mock data to explore the fidelity of strong lensing
-reconstructions \citep{2007MNRAS.380.1729L, CITES}. We expand on these earlier
-works by considering not only the recovery of the circularly averaged surface density profile
-of a lens, but also its shape, higher order measures of the mass recovery (a
-pixel-by-pixel comparison), and the utility of wrapping in
-constraints from stellar mass estimates and/or stellar kinematics.
 
-This paper is organised as follows. In \secref{sec:theory}, we review the basic
-lensing, stellar population synthesis, and Jeans mass modelling theory we will
-need. We present some simple back-of-the-envelope calculations that illustrate
-what type and quality of data we are likely to need to measure mass profiles
-and shapes. In \secref{sec:glass}, we describe the \Glass\ lens inversion
-algorithm and its stellar kinematic post-processing module. In
-\secref{sec:mockdata}, we describe our mock N-body data. In \secref{sec:results}, we present our
-results from applying \Glass\ to these mock data. Finally, in
-\secref{sec:conclusions} we present our conclusions. 
+
+
+
+
 
 \section{Theoretical Background}\label{sec:theory} %-----------------------------------------------------
 
