@@ -217,8 +217,9 @@ been used to constrain $H_0$ from time delays
 In principle, cosmological parameters could be constrained even from a
 single lens.  Some models have attempted this
 \citep{2010Sci...329..924J,2013arXiv1306.4732S} starting from a prior
-based on the values and uncertainties from the CMB, but tests using
-simulated lenses are desirable.
+based on the values and uncertainties from the CMB; tests of this
+technique simulated lenses are still awaited, in order to see how far
+the results depend on the model assumptions.
 
 In this paper, we use a new program --- \Glass\ --- to determine what
 combination of lensing, stellar mass, and stellar kinematic
@@ -237,24 +238,6 @@ In \secref{sec:mockdata}, we describe our mock data.
 
 In \secref{sec:results}, we present our results from applying \Glass\ to
 these mock data.
-
-
-\cite{2007ApJ...667..645R} were the first to test the recovery of
-strong lensing surface density profiles using mock data generated from
-N-body models {\bf JR. Is this true?}. They found that when including
-time delays, circularly averaged surface density distributions can
-sufficiently well-recovered to make interesting comparisons with
-theoretical models Cosmological parameters, however, are more
-sensitive. Since then, several groups have used N-body mock data to
-explore the fidelity of strong lensing reconstructions
-\citep{2007MNRAS.380.1729L}. We expand on these earlier works
-by considering not only the recovery of the circularly averaged
-surface density profile of a lens, but also its shape, higher order
-measures of the mass recovery (a pixel-by-pixel comparison), and the
-utility of wrapping in constraints from stellar mass estimates and/or
-stellar kinematics.
-
-
 
 
 
@@ -370,18 +353,37 @@ For on-axis sources (\vec\beta\ = \vec0), the images split into a degenerate Ein
 
 {\bf Is ``Schneider's degeneracy" something new? Should we cite it here? -- {\tt http://adsabs.harvard.edu/abs/2013arXiv1306.4675S}} 
 
-\subsection{Stellar population synthesis modelling} 
+\subsection{Stellar populations} 
 
+For many galaxy lenses, the gravitational potential in the inner
+region is dominated by the stellar mass.  Steller mass can be
+estimated by combining photometry and colours with models of the
+stellar populations.  Such estimates are reasonably robust, even if
+the star-formation history is very uncertain: given a
+stellar-population model \citep[such as][]{2003MNRAS.344.1000B} and an
+initial mass function (IMF), the stellar mass can be inferred to 0.1
+to 0.2 dex using just two photometric bands \citep[see e.g., Figure~1
+  in][]{2008MNRAS.383..857F}.  By comparing the lensing-mass and
+stellar-mass profiles in elliptical galaxies, it is possible to
+extract the radial dependence of the baryonic vs dark-matter fraction
+\citep{2005ApJ...623L...5F,2008MNRAS.383..857F,2011ApJ...740...97L}.
 
-
-For many galaxy lenses, the central potential is dominated by the visible matter. In this situation, constraints on the stellar mass distribution are invaluable. \citep{2008MNRAS.383..857F} demonstrate that with just photometric data in XXX bands, and an assumed initial mass function for the stars, they are able to reliably constrain the stellar mass to XXX\% accuracy. This gives a constraint on the full lensing mass map: 
-
+The major uncertainty at present in the stellar mass is probably the
+IMF.  In the lensing galaxy of the Einstein Cross, the IMF cannot be
+much more bottom-heavy than \cite{2003PASP..115..763C}, because
+otherwise the stellar mass would exceed the lensing mass
+\cite{2010MNRAS.409L..30F}.  More massive galaxies, however, do appear
+to have more of their stellar mass in low-mass stars.  This is
+indicated by molecular spectral features characteristic of low mass
+stars
+\citep{2004ApJ...614L.101C,2012ApJ...747...69C,2013MNRAS.429L..15F}.
+The \cite{2003PASP..115..763C} would, however, still provide a robust
+lower limit on the stellar mass.  Hence, also a limit on the total
+mass.  Accordingly, \Glass\ allows a constraint of the form
 \begin{equation} 
-M(\vec\theta) > M_*(\vec\theta)
+M(\vec\theta) \geq M_{\rm stel}(\vec\theta)
 \end{equation} 
-where $M_*$ is the stellar mass (see also similar work by ZZZZZ). Given the above work, we assume from here on that the stellar mass for our mock N-body data can be reliably determined and used as a lower-bound constraint on our lens models. 
-
-{\bf JR. Prasenjit: you know more than me about this. Can you fill in the XXX's? We should probably also say a bit more about Ignacio's methodology and why the errors are so good etc etc.}
+on the total mass.
 
 \subsection{Stellar kinematics}\label{sec:kinematics} 
 
@@ -856,11 +858,7 @@ The results for stellar kinematics match our expectations from \S\ref{sec:kinema
 
 \begin{enumerate} 
 
-\item More references to be added to the introduction. Lots of work remains to be cited. Were we really the first to test lensing on N-body mocks? Perhaps for strong lensing, but certainly not for weak. 
-
 \item Understand ``Schneider's degeneracy". Add reference/commentary accordingly. 
-
-\item Prasenjit to write/finish section on stellar population synthesis modelling.
 
 \item Jonathan to complete \S\ref{sec:glass}. Emphasise need for central adaptive grid. Add appendix showing convergence as Pixrad is increased. 
 
@@ -946,4 +944,22 @@ where
 \bibliography{ms}
 
 \end{document}
+
+\cite{2007ApJ...667..645R} were the first to test the recovery of
+strong lensing surface density profiles using mock data generated from
+N-body models {\bf JR. Is this true?}. They found that when including
+time delays, circularly averaged surface density distributions can
+sufficiently well-recovered to make interesting comparisons with
+theoretical models Cosmological parameters, however, are more
+sensitive. Since then, several groups have used N-body mock data to
+explore the fidelity of strong lensing reconstructions
+\citep{2007MNRAS.380.1729L}. We expand on these earlier works
+by considering not only the recovery of the circularly averaged
+surface density profile of a lens, but also its shape, higher order
+measures of the mass recovery (a pixel-by-pixel comparison), and the
+utility of wrapping in constraints from stellar mass estimates and/or
+stellar kinematics.
+
+
+
 
