@@ -167,7 +167,7 @@ work.
   \cite{2006MNRAS.367.1209L} implemented a particular elegant prior,
   which is that the mass distribution must be non-negative and no
   extra images are produced.  Free-form are more commonly used with
-  cluster lenses\citep{2009ApJ...690..154S,2013arXiv1304.2393S}, but
+  cluster lenses \citep{2009ApJ...690..154S,2013arXiv1304.2393S}, but
   can be used with galaxy lenses as well, where their less restrictive
   assumptions can be important.  For example, in time-delay galaxy
   lenses parametric models led to tensions with the Hubble parameter
@@ -240,51 +240,87 @@ In \secref{sec:results}, we present our results from applying \Glass\ to
 these mock data.
 
 
+\section{Formulation}\label{sec:theory}
 
+\subsection{Lensing essentials}\label{sec:lensing_basic}
 
+We follow \cite{1986ApJ...310..568B} with minor differences in notation
+notation.
 
-
-
-
-\section{Theoretical Background}\label{sec:theory} %-----------------------------------------------------
-
-\subsection{Lensing basics}\label{sec:lensing_basic} %-----------------------------------------------------
-
-The lens equation:
-%
+The lens equation
 \begin{equation}
-\vec\beta = \vec\theta - \frac{D_{LS}}{D_S}\vec\alpha(\vec\theta)
+\begin{aligned}
+\vec\beta &= \vec\theta - \frac{D_{LS}}{D_S}\vec\alpha(\vec\theta) \\
+\vec\alpha(\vec\theta) &= \frac{4G}{c^2D_L} \int \Sigma(\vec\theta')
+                          \frac{(\vec\theta - \vec\theta')}
+                          {\ |\vec\theta - \vec\theta'|^2} \, d^2\vec\theta'
+\end{aligned}
 \label{eqn:lens_equation}
 \end{equation}
-%
-maps an observed image position $\vec\theta$ to a source position $\vec\beta$
-via the correction factor \citep[e.g.][]{1992grle.book.....S}:
-%
-\begin{equation}
-\vec\alpha(\vec\theta) = \frac{4GD_L}{c^2} \int \Sigma(\vec\theta')\frac{(\vec\theta - \vec\theta')}{\ |\vec\theta - \vec\theta'|^2}d^2\vec\theta'
-\end{equation}
-%
+maps an observed image position $\vec\theta$ to a source position $\vec\beta$.
+The $D$ factors are angular diameter distances, as in the previous section.
+The lens can then be thought of as a projected surface density
+$\Sigma$ which diverts the path of a photon instantaneously through
+the bending angle $\vec\alpha$.  
+
+
 which accounts for the gravitational lensing effect of an intervening mass
 (where $G$ is Newton's gravitational constant, and $c$ is the speed of light).
 For our purposes we make use of the thin mass sheet approximation and assume
 that the lensing mass is infinitely thin compared with the distance between the
 source and the lens $D_{LS}$ and the lens and the observer $D_{L}$. These are
 angular diameter distances where $D_* = (c/H_0)d_*$, $H_0$ is the Hubble constant, and $d_*$ is a
-dimensionless number that depends on cosmology.  The lens can then be thought
-of as a projected surface density $\Sigma$ which diverts the path of a photon
-instantaneously through the bending angle $\vec\alpha$.
+dimensionless number that depends on cosmology.
 
-Since we will later want to model the density distribution with a computer it
-will be convenient to choose units that make the relevant quantities of order
-unity.  We therefore measure lengths in light years, time in years, positions
-in arcseconds, and choose $c=1$ and $4\pi G = N^2$, where $N^2 \equiv 206,265$
-arcsec/rad. The mass unit is then $11.988\ \Msun$. It will also be useful to
-define a proxy to the Hubble constant $\zeta \equiv N^2 H_0$.
+\begin{equation}
+D_{LS} = \frac c{H_0} \frac{1+z_S}{1+z_L} \int_{z_L}^{z_S}
+                      \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
+\end{equation}
 
-One way to understand the lens equation is via Fermat's principle. We can think of light as travelling only 
-along extremum paths where lensed images occur \citep{1986ApJ...310..568B}. Such paths occur at the extrema of the photon {\it arrival time surface} $t(\vec\theta)$ that depends on the geometric path the photon takes and the general relativistic gravitational time dilation
-due to a thin lens at redshift $z_L$. In its complete form, with all units
-and cosmology included, we have \citep{1986ApJ...310..568B}:
+One way to understand the lens equation is via Fermat's principle. We
+can think of light as travelling only along extremum paths where
+lensed images occur. Such paths occur at
+the extrema of the photon {\it arrival time\/} $t(\vec\theta)$
+that depends on the geometric path the photon takes and the general
+relativistic gravitational time dilation due to a thin lens at
+redshift $z_L$.
+\begin{equation}
+\begin{aligned}
+\frac{ct(\vec\theta)}{(1+z_L)D_{L}}
+&= {\textstyle\frac12} |\vec\theta - \vec\beta|^2
+   \times \frac{D_{S}}{D_{LS}} \\
+&- \frac{4GD_L}{c^2}
+   \int \Sigma(\vec\theta') \ln |\vec\theta-\vec\theta'| \, d^2\vec\theta'
+\label{full arrival time}
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\kappa(\vec\theta) \equiv \frac{4\pi GD_L}{c^2} \Sigma (\vec\theta)
+\end{equation}
+
+\begin{equation}
+\kappa \sim \frac{z_L\,\Sigma}{10\rm\,kg\,m^{-2}}
+\end{equation}
+
+\begin{equation}
+\tau(\vec\theta) = {\textstyle\frac12} |\vec\theta - \vec\beta|^2
+                   \times \frac{D_{S}}{D_{LS}}
+                 - \frac1\pi \int \kappa (\vec\theta')
+                   \ln|\vec\theta - \vec\theta'| d^2\vec\theta'\
+\label{arrival time}
+\end{equation}
+The scaled arrival time $\tau$ is like a solid angle.  It is of order
+the area (in steradians) of the full lensing system --- the expression
+$\sim|\vec\theta - \vec\beta|^2$ is of order the image-separation
+squared, and the other terms are of similar size.  For this reason, is
+convenient to measure $\tau$ in arcsec$^{2}$.
+
+
+
+
+, with all units
+and cosmology included, we have 
 %
 \begin{eqnarray}
 N^2ct(\vec\theta) & = & (1+z_L)\frac{D_{L}D_{S}}{D_{LS}}\frac12 |\vec\theta - \vec\beta|^2 \nonumber \\
@@ -312,16 +348,13 @@ further define a dimensionless density:
 and a lensing potential:
 %
 \begin{equation}
-\psi(\vec\theta) = \frac1\pi \int \kappa_\infty(\vec\theta') \ln|\vec\theta - \vec\theta'| d^2\vec\theta'\
+\psi(\vec\theta) = 
 \label{lensing potential}
 \end{equation}
 %
 we can express \eqnref{eqn:full_arrival_time} very compactly as:
 %
-\begin{equation}
-\tau(\vec\theta) = \frac12 \xi |\vec\theta-\vec\beta|^2 - \psi(\vec\theta)
-\label{arrival time}
-\end{equation}
+
 %
 where $\xi \equiv D_{S}/D_{LS}$. We explicitly write $\kappa_\infty$ to remind ourselves
 that there is no source distance factor involved. This will be useful later when we consider
@@ -337,6 +370,14 @@ arrives after $\vec\theta_1$, is $\Delta t_{21} = \Delta \tau_{21}(1+z_L)d_L /
 \zeta$. If $\beta$ and $\kappa_\infty$ could be known exactly this would allow one
 to precisely infer the angular diameter distance to the lens and thus -- via a cosmological model -- the Hubble constant. However, the source position is not
 observable and the density distribution is highly degenerate.
+
+Degeneracy first formally noted by \cite{1985ApJ...289L...1F}.  Most
+important is mass sheet.  But in fact, there are infinitely many
+\citep{2000AJ....120.1654S}.
+Also shape degeneracies \citep{2006ApJ...653..936S,2013arXiv1306.4675S}
+Suppressed by redshift contrast
+\citep{1998AJ....116.1541A,2009ApJ...690..154S}
+but not completely \citep{2008MNRAS.386..307L}.
 
 \subsection{Degeneracies}\label{sec:degen} %-----------------------------------------------------
 
