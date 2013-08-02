@@ -28,8 +28,6 @@
 \newcommand{\e}[1]{\ensuremath{\times 10^{#1}}}
 \renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
 
-\def\Sigmacrit{\Sigma_{\rm crit}}
-
 % From aastex.cls
 \newcommand\plotone[1]{%
  \centering
@@ -105,13 +103,14 @@ strictly $\propto c/H_0$.  Typically
 \begin{equation}
 D_L \approx z \frac c{H_0}\ \hbox{and}\ \frac{D_S}{D_{LS}} \sim 1.
 \end{equation}
-The critical density for multiple images is
+For multiple images the sky-projected density must exceed the critical
+density of $D_S/D_{LS}$ times
 \begin{equation}
-\Sigmacrit = \frac{c^2 D_L}{4\pi G} \frac{D_S}{D_{LS}}
+\Sigma_L = \frac{c^2}{4\pi G D_L} \sim \frac{1\rm\,kg\,m^{-2}}{z_L}
 \end{equation}
-in mass per steradian.  The separation between the lensed images is of
-order the Einstein radius $\theta_E$.  The image separation is related
-to the mass by
+in some region.  The separation between the lensed images is of order
+the Einstein radius $\theta_E$.  The image separation is related to
+the mass by
 \begin{equation}
 \theta_E \sim \frac{R_G}{D_L} \frac{D_{LS}}{D_S}
 \end{equation}
@@ -257,26 +256,15 @@ The lens equation
 \end{aligned}
 \label{eqn:lens_equation}
 \end{equation}
-maps an observed image position $\vec\theta$ to a source position $\vec\beta$.
-The $D$ factors are angular diameter distances, as in the previous section.
-The lens can then be thought of as a projected surface density
-$\Sigma$ which diverts the path of a photon instantaneously through
-the bending angle $\vec\alpha$.  
-
-
-which accounts for the gravitational lensing effect of an intervening mass
-(where $G$ is Newton's gravitational constant, and $c$ is the speed of light).
-For our purposes we make use of the thin mass sheet approximation and assume
-that the lensing mass is infinitely thin compared with the distance between the
-source and the lens $D_{LS}$ and the lens and the observer $D_{L}$. These are
-angular diameter distances where $D_* = (c/H_0)d_*$, $H_0$ is the Hubble constant, and $d_*$ is a
-dimensionless number that depends on cosmology.
-
+maps an observed image position $\vec\theta$ to a source position
+$\vec\beta$.  The lens can then be thought of as a projected surface
+density $\Sigma$ which diverts the path of a photon instantaneously
+through the bending angle $\vec\alpha$.  The $D$ factors are angular
+diameter distances, as in the previous section.
 \begin{equation}
 D_{LS} = \frac c{H_0} \frac{1+z_S}{1+z_L} \int_{z_L}^{z_S}
                       \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
 \end{equation}
-
 One way to understand the lens equation is via Fermat's principle. We
 can think of light as travelling only along extremum paths where
 lensed images occur. Such paths occur at
@@ -294,20 +282,17 @@ redshift $z_L$.
 \label{full arrival time}
 \end{aligned}
 \end{equation}
-
+The time here has been scaled to make it dimensionless.  We can make
+the density dimensionless as well, by introducing
 \begin{equation}
-\kappa(\vec\theta) \equiv \frac{4\pi GD_L}{c^2} \Sigma (\vec\theta)
+\kappa(\vec\theta) \equiv \frac{\Sigma(\vec\theta)}{\Sigma_L}
 \end{equation}
-
-\begin{equation}
-\kappa \sim \frac{z_L\,\Sigma}{10\rm\,kg\,m^{-2}}
-\end{equation}
-
+and hence rewrite \eqnref{full arrival time} as
 \begin{equation}
 \tau(\vec\theta) = {\textstyle\frac12} |\vec\theta - \vec\beta|^2
                    \times \frac{D_{S}}{D_{LS}}
                  - \frac1\pi \int \kappa (\vec\theta')
-                   \ln|\vec\theta - \vec\theta'| d^2\vec\theta'\
+                   \ln|\vec\theta - \vec\theta'| d^2\vec\theta'
 \label{arrival time}
 \end{equation}
 The scaled arrival time $\tau$ is like a solid angle.  It is of order
@@ -316,59 +301,22 @@ $\sim|\vec\theta - \vec\beta|^2$ is of order the image-separation
 squared, and the other terms are of similar size.  For this reason, is
 convenient to measure $\tau$ in arcsec$^{2}$.
 
+The arrival-time surface $\tau(\theta)$ is a theoretical construct for
+understanding lensing observables, and not an observable in its own
+right.
 
-
-
-, with all units
-and cosmology included, we have 
-%
-\begin{eqnarray}
-N^2ct(\vec\theta) & = & (1+z_L)\frac{D_{L}D_{S}}{D_{LS}}\frac12 |\vec\theta - \vec\beta|^2 \nonumber \\
-& & - (1+z_L)\frac{4GD_{L}^2}{c^2}\int \Sigma(\vec\theta') \ln |\vec\theta-\vec\theta'| d^2\vec\theta'
-\label{eqn:full_arrival_time}
-\end{eqnarray}
-%
-where the factor of $D_L^2$ in the second term comes from the fact that $\Sigma$
-has units of \Msun/lyr$^2$. We can clean this up by writing down a dimensionless time
-delay:
-%
-\begin{equation}
-\tau = \left[ (1+z_L) d_L\right]^{-1}\zeta t
-\label{tau}
-\end{equation}
-%
-in terms of our previous definitions. If we
-further define a dimensionless density:
-%
-\begin{equation}
-\kappa_\infty = \frac{4\pi G}{c^2}\frac{c}{H_0}d_L\Sigma
-              = \frac{d_L}{\zeta}\Sigma
-\end{equation}
-%
-and a lensing potential:
-%
-\begin{equation}
-\psi(\vec\theta) = 
-\label{lensing potential}
-\end{equation}
-%
-we can express \eqnref{eqn:full_arrival_time} very compactly as:
-%
-
-%
-where $\xi \equiv D_{S}/D_{LS}$. We explicitly write $\kappa_\infty$ to remind ourselves
-that there is no source distance factor involved. This will be useful later when we consider
-multiple sources. Notice that the constraint $\nabla \tau = 0$ -- i.e. extrema in the arrival time surface -- recovers the lens equation (\eqnref{eqn:lens_equation}).
-
-The only lensing observables from \eqnref{arrival time} are the image positions. However,  if the source object is
-variable then the observed light curves of each image will be
-identical but shifted in time due to the different photon path lengths.
-The time difference between identical portions of the light curves is called
-the time delay $\Delta t$ between images.  Using \eqnref{tau} the time delay
-$\Delta t_{21}$ between two images $\vec\theta_1$ and $\vec\theta_2$, where $\vec\theta_2$
-arrives after $\vec\theta_1$, is $\Delta t_{21} = \Delta \tau_{21}(1+z_L)d_L /
-\zeta$. If $\beta$ and $\kappa_\infty$ could be known exactly this would allow one
-to precisely infer the angular diameter distance to the lens and thus -- via a cosmological model -- the Hubble constant. However, the source position is not
+The only lensing observables from \eqnref{arrival time} are the image
+positions. However, if the source object is variable then the observed
+light curves of each image will be identical but shifted in time due
+to the different photon path lengths.  The time difference between
+identical portions of the light curves is called the time delay
+$\Delta t$ between images.  Using \eqnref{tau} the time delay $\Delta
+t_{21}$ between two images $\vec\theta_1$ and $\vec\theta_2$, where
+$\vec\theta_2$ arrives after $\vec\theta_1$, is $\Delta t_{21} =
+\Delta \tau_{21}(1+z_L)d_L / \zeta$. If $\beta$ and $\kappa_\infty$
+could be known exactly this would allow one to precisely infer the
+angular diameter distance to the lens and thus -- via a cosmological
+model -- the Hubble constant. However, the source position is not
 observable and the density distribution is highly degenerate.
 
 Degeneracy first formally noted by \cite{1985ApJ...289L...1F}.  Most
@@ -795,12 +743,18 @@ The cumulative mass.}
 The main results from modelling these different configuration are shown in black in
 \figref{main results}. Each subplot corresponds to a different galaxy and
 the vertical axis shows the range of `quality' of recovery, defined as: 
-%
 \begin{equation}
-  \chi_i \equiv 100 \times \sqrt{\frac{\int_r (\rho_{\M_i}(r) - \rho_G(r))^2}{\int_r \rho_G(r)^2}}
-  %\chi_i = \frac{\sum_r (\rho(r)_{\M_i} - \rho(r)_G)^2}{\sum_r \rho(r)_G^2}
+\chi^2 = \frac
+       {\Big\langle \int \left|\Delta\Sigma(\vec{\theta})\right|^2 \,
+        d^2 \vec{\theta} \Big\rangle}
+       {\int \Sigma^2(\vec{\theta}) \; d^2 \vec{\theta}}
 \end{equation}
-where $\rho_{\M_i}(r)$ is the recovered density profile for a mock model $\M_i$; and $\rho_G(r)$ is the true density profile. 
+where the angle brackets denote averages over the model ensemble.
+%\begin{equation}
+%  \chi_i \equiv 100 \times \sqrt{\frac{\int_r (\rho_{\M_i}(r) - \rho_G(r))^2}{\int_r \rho_G(r)^2}}
+%\chi_i = \frac{\sum_r (\rho(r)_{\M_i} - \rho(r)_G)^2}{\sum_r \rho(r)_G^2}
+%\end{equation}
+%where $\rho_{\M_i}(r)$ is the recovered density profile for a mock model $\M_i$; and $\rho_G(r)$ is the true density profile. 
 
 \begin{figure*}
 \includegraphics[width=0.49\textwidth]{AAchi2_profile.pdf}
