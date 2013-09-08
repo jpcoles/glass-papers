@@ -767,7 +767,7 @@ The cumulative mass.}
 The main results from modelling these different configuration are shown in black in
 \figref{main results}. Each subplot corresponds to a different galaxy and
 the vertical axis shows the range of `quality' of recovery, defined as: 
-\begin{equation}
+\begin{equation} \label{badness}
 \chi^2 = \frac
        {\Big\langle \int \left|\Delta\Sigma(\vec{\theta})\right|^2 \,
         d^2 \vec{\theta} \Big\rangle}
@@ -873,43 +873,45 @@ The results for stellar kinematics match our expectations from \S\ref{sec:kinema
 
 \section{Conclusions}\label{sec:conclusions}
 
-{\bf JR. ACTION ITEMS.
+Various action items.
 
-\begin{enumerate} 
+\subsection{Goodness of recovery}
 
-\item Jonathan to complete \S\ref{sec:glass}. Emphasise need for central adaptive grid. Add appendix showing convergence as Pixrad is increased. 
+\begin{enumerate}
 
-\item Jonathan to write section \S\ref{sec:glassextraimages} on removing models with extra images. 
+\item Change variable $\chi$ to something else ($f$?) to avoid
+  confusion with $\chi^2$.
 
-\item Clarify amount of triaxiality (and the analytic density profile) in \S\ref{sec:mockdata}. 
+\item Correct equation \eqref{badness} to describe what is actually
+  calculated.
 
-\item Clarify number of lens configurations in \S\ref{sec:lensconfig}.
+\item Show results for $1\sigma$ and $2\sigma$ rather than full
+  \Glass\ ensemble.
 
-\item Add appendix showing how ``radial symmetry" prior affects results. Clarify meaning of this prior with a nice figure showing the symmetry. 
+\item Add results for Claudio's shape measure. Discuss shape
+  throughout results section and mention more explicitly in abstract
+  and conclusions -- what quality of data do we need to robustly
+  constrain the shape?
 
-\item Show results for $1\sigma$ and $2\sigma$ rather than full \Glass\ ensemble. Add results for Claudio's shape measure. Discuss shape throughout results section and mention more explicitly in abstract and conclusions -- what quality of data do we need to robustly constrain the shape?
-
-\item Add example plot of the projected density and recovered projected density (c.f. plots Jonathan made for my ERC proposal). 
-
-\item Tidy up figures and other small items as detailed throughout -- see {\tt {\bf JR ... }}. 
-
-\item Add accept/reject results for stellar kinematics (two figures) as detailed in \S\ref{sec:results_stellar_kinematics}. 
-
-\item Change variable chi to something else ($f$?) to avoid confusion
-  with $\chi^2$.
-
-\item Replace equation 20 with what you are actually doing when
-  calculating $chi$ (now $f$).
-
-\item Add plot of $chi$ ($f$) for $lambda_1/lambda_2$ and theta shape
-  parameters (c.f. what Claudio is doing).
+\item Add plot of $\chi$ ($f$) for $lambda_1/lambda_2$ and shape
+  parameters (cf. what Claudio is doing).
 
 \item Check that you and Claudio average to the same projected radius
   (one pixel past outermost image) when calculating
   $lambda_1/lambda_2$ and $\theta$.
 
+\end{enumerate}
+
+\subsection{Kinematics}
+
+\begin{enumerate}
+
+\item Add example plot of the projected density and recovered
+  projected density (cf. plots Jonathan made for Justin's ERC
+  proposal).
+
 \item Calculate aperture averaged $\sigma$ to 2 (or 3 you decide) half
-  light radii assuming $beta = 0$ for a model (double) where the mass
+  light radii assuming $\beta = 0$ for a model (double) where the mass
   is poorly constrained by strong lensing. Accept/reject models from
   the ensemble $\Longrightarrow$ what we learn from combined lensing
   kinematics.
@@ -922,8 +924,40 @@ The results for stellar kinematics match our expectations from \S\ref{sec:kinema
   coloured bands from the lensing model ensemble assuming $\beta = 0$
   or $\beta = 1$.
 
-\end{enumerate} 
-}
+\item Add accept/reject results for stellar kinematics (two figures)
+  as detailed in \S\ref{sec:results_stellar_kinematics}.
+
+\end{enumerate}
+
+\subsection{Other}
+
+\begin{enumerate}
+
+\item Tidy up figures and other small items as detailed throughout --
+  see {\bf JR ... }
+
+\item Add appendix showing how inversion symmetry in the prior affects
+  results. Clarify meaning of this prior with a nice figure showing
+  the symmetry.
+
+\item Complete \S\ref{sec:glass}. Emphasise need for central adaptive
+  grid. Add appendix showing convergence as Pixrad is increased.
+
+\end{enumerate}
+
+\subsection{Clarifications in text}
+
+\begin{enumerate} 
+
+\item Write section \S\ref{sec:glassextraimages} on removing models
+  with extra images.
+
+\item Clarify amount of triaxiality (and the analytic density profile)
+  in \S\ref{sec:mockdata}.
+
+\item Clarify number of lens configurations in \S\ref{sec:lensconfig}.
+
+\end{enumerate}
 
 
 \appendix
