@@ -711,16 +711,20 @@ case $\gamma=1$ (and in the limit of spherical symmetry), this is the Hernquist 
 profile indices are shown in \tabref{mock galaxy params}. {\bf JR. Need to add explanation of triaxial parameters here. Is the above density equation correct in fact?} 
 
 \begin{table}
-\begin{tabular}{cllllllll}
-Galaxy & $\gamma_\star$ & $M_\star$ & $\gamma_\mathrm{DM}$ & $M_\mathrm{DM}$ & $\Rmap$ & Notes\\
+\begin{tabular}{llllllll}
+Galaxy & $\gamma_\star$ & $M_\star$ & $\gamma_\mathrm{DM}$ & $M_\mathrm{DM}$ & $\Rmap$ \\
 \hline
-AA & 1 & 4 & 0.05 & $11^{2.95}$ & 50 kpc & DM; shallow\\
-AC & 1 & 4 & 1 & $11^2$ & 50 kpc & DM; cuspy\\
-BB & 1.5 & $2^{1.5}$ & 0.16 & $11^{2.84}$ & 50 kpc &  Star; shallow\\
-BC & 1.5 & $2^{1.5}$ & 1 & $11^2$ & 10 kpc & Star; cuspy
+DMdom/DMshallow & 1 & 4 & 0.05 & $11^{2.95}$ & 50 kpc\\ % AA
+DMdom/DMcuspy & 1 & 4 & 1 & $11^2$ & 50 kpc \\ % AC
+Sdom/DMshallow & 1.5 & $2^{1.5}$ & 0.16 & $11^{2.84}$ & 50 kpc \\ % BB
+Sdom/DMcuspy & 1.5 & $2^{1.5}$ & 1 & $11^2$ & 10 kpc %BC
 \end{tabular}
-\caption{Profile parameters for the four mock galaxies. Masses are in units of $1.8\e{10}\Msun$. The scale lengths for
-all lenses are $(a_\star,a_\mathrm{DM})=(2,20)$\,kpc. $\Rmap$ is the 2D projected radius used to generate the lens configurations. In the notes column we describe the mock as DM or star dominated with a shallow or cuspy central dark matter density profile.}
+\caption{Profile parameters for the four mock galaxies. The name indicates whether 
+  the galaxy is centrally dark matter or stellar dominated with a shallow or cuspy 
+  dark matter density profile.  Masses are in units of
+  $1.8\e{10}\Msun$. The scale lengths for all lenses are
+  $(a_\star,a_\mathrm{DM})=(2,20)$\,kpc. $\Rmap$ is the 2D projected radius
+used to generate the lens configurations.}
 \label{mock galaxy params}
 \end{table}
 
@@ -1121,10 +1125,12 @@ Using the identity
 %
 we can express $Q_n$ as the sum of four parts
 %
-\[Q_n(x,y) = \frac12 \left[ \tilde Q_n(x_+,y_+)
-        + \tilde Q_n(x_-,y_-)
-        - \tilde Q_n(x_-,y_+)
-        - \tilde Q_n(x_+,y_-) \right]\]
+\begin{align*}
+Q_n(x,y) = \frac12 [\tilde Q_n(x_+,y_+)
+                  + \tilde Q_n(x_-,y_-) & 
+\\                - \tilde Q_n(x_-,y_+)
+                  - \tilde Q_n(x_+,y_-) ]
+\end{align*}
 %
 where
 %
