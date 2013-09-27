@@ -901,15 +901,63 @@ by stars in the inner region. By contrast, the other two galaxies -- where the s
 
 \subsection{Stellar kinematics}\label{sec:results_stellar_kinematics}
 
-As outlined in \S\ref{sec:glass}, \Glass\ can also run post processing
-routines on the model ensemble which can be used to apply non-linear constraints. As an example, we consider here constraints from stellar kinematics. The models in the \Glass\ ensemble are processed as described in \S\ref{sec:glasskinematics}. To illustrate the power of stellar kinematic constraints, in
-\figref{sigma-beta}, we plot the projected velocity dispersion calculated for one model model (extracted from the full ensemble) of the BC Quad with time delays and stellar mass (left), and the mean projected velocity dispersion (\eqnref{eqn:virialaverage}) as a function of the upper limit of the averaging integral (the aperture size), $a_p$ (right). In both cases, we calculate curves for two extrema velocity anisotropies: $\beta=0$ (green) and $\beta=1$ (red). Over-plotted is the correct answer for the BC model (black). The stellar half mass radius (yellow) Einstein radius (black) are marked by vertical lines. For this configuration, these two radii are well-separated.
+As outlined in \S\ref{sec:glass}, \Glass\ can also run post processing routines
+on the model ensemble which can be used to apply non-linear constraints. As an
+example, we consider here constraints from stellar kinematics. The models in
+the \Glass\ ensemble are processed as described in \S\ref{sec:glasskinematics}.
+To illustrate the power of stellar kinematic constraints, in
+\figref{sigma-beta}, we plot the projected velocity dispersion calculated for
+one model model (extracted from the full ensemble) of the BC Quad with time
+delays and stellar mass (left), and the mean projected velocity dispersion
+(\eqnref{eqn:virialaverage}) as a function of the upper limit of the averaging
+integral (the aperture size), $a_p$ (right). In both cases, we calculate curves
+for two extrema velocity anisotropies: $\beta=0$ (green) and $\beta=1$ (red).
+Over-plotted is the correct answer for the BC model (black). The stellar half
+mass radius (yellow) Einstein radius (black) are marked by vertical lines. For
+this configuration, these two radii are well-separated.
 
-Without even sweeping through the model ensemble and formally accepting/rejecting models, \figref{sigma-beta} already illustrates what we can hope to obtain from stellar kinematics. The most robust constraints follow if we can integrate out the effect of $\beta$ (right panel), since this is difficult to measure. For large enough aperture size ($a_p > 2r_{1/2}$), the average projected dispersion converges on a single well defined value independently of $\beta$. Since this converged value follows from the virial theorem, it is also rather insensitive to the shape of the potential \citep{2012ApJ...754L..39A}: it constitutes a robust constraint on the lensing potential. On the other hand, if the mass profile is well-constrained already at $r \sim r_{1/2}$, then we can use stellar kinematics to probe $\beta$. This can be seen in the left panel of \figref{sigma-beta}. Here we see that for a well-constrained mass model, the $\beta = 1$ curve lies significantly off from the true answer that has $\beta(r) \sim 0$. 
+Without even sweeping through the model ensemble and formally
+accepting/rejecting models, \figref{sigma-beta} already illustrates what we can
+hope to obtain from stellar kinematics. The most robust constraints follow if
+we can integrate out the effect of $\beta$ (right panel), since this is
+difficult to measure. For large enough aperture size ($a_p > 2r_{1/2}$), the
+average projected dispersion converges on a single well defined value
+independently of $\beta$. Since this converged value follows from the virial
+theorem, it is also rather insensitive to the shape of the potential
+\citep{2012ApJ...754L..39A}: it constitutes a robust constraint on the lensing
+potential. On the other hand, if the mass profile is well-constrained already
+at $r \sim r_{1/2}$, then we can use stellar kinematics to probe $\beta$. This
+can be seen in the left panel of \figref{sigma-beta}. Here we see that for a
+well-constrained mass model, the $\beta = 1$ curve lies significantly off from
+the true answer that has $\beta(r) \sim 0$. 
 
-We now consider formally accepting/rejecting models from the full ensemble. We consider two regimes of interest: a model with a double where the mass profile is poorly constrained (XXX), and a model where the mass profile is very well constrained by the lens data (YYY). In the former case, we use $\overline{\sigma}(2 r_{1/2})$ to probe the mass independently of $\beta(r)$. We accept/reject models assuming a Gaussian error on measured $\overline{\sigma}(2 r_{1/2})$ of $\pm 10$\,km/s (similarly to the data quality presented for example in \citealt{2002MNRAS.337L...6T}). The results are shown in \figref{main results}, blue data points. In the latter case, we ask whether the data favour $\beta = 0$ or $\beta = 1$ by obtaining a $\chi^2$ goodness of fit measure between the true and modelled $\sigma_p(R)$. We accept/reject models from the ensemble above. The results for $\beta$ are shown in Figure ZZZ. 
+We now consider formally accepting/rejecting models from the full ensemble. We
+consider two regimes of interest: a model with a double where the mass profile
+is poorly constrained (XXX), and a model where the mass profile is very well
+constrained by the lens data (YYY). In the former case, we use
+$\overline{\sigma}(2 r_{1/2})$ to probe the mass independently of $\beta(r)$.
+We accept/reject models assuming a Gaussian error on measured
+$\overline{\sigma}(2 r_{1/2})$ of $\pm 10$\,km/s (similarly to the data quality
+presented for example in \citealt{2002MNRAS.337L...6T}). The results are shown
+in \figref{main results}, blue data points. In the latter case, we ask whether
+the data favour $\beta = 0$ or $\beta = 1$ by obtaining a $\chi^2$ goodness of
+fit measure between the true and modelled $\sigma_p(R)$. We accept/reject
+models from the ensemble above. The results for $\beta$ are shown in Figure
+ZZZ. 
 
-The results for stellar kinematics match our expectations from \S\ref{sec:kinematics}. Where the lens data already constrain the mass distribution at $r \sim r_{1/2}$, stellar kinematics provide valuable information about the velocity anisotropy of the stars, $\beta$ (see Figure ZZZ). Where the lens data poorly constrain the mass distribution at $r_{1/2}$, we may `integrate out' the effect of unknown $\beta$ to obtain a robust measure of $M(r_{1/2})$ from the stellar kinematics. This latter is robust to both uncertainties in $\beta(r)$ and to our assumption of spherical symmetry in the kinematic models \citep{2012ApJ...754L..39A}. Finally, we note that there is a third interesting case. If the lens models well-constrain $M(r_{1/2})$ and stellar kinematics are available, then these can be used to probe cosmological models (see \S\ref{sec:theory}). We explore this in more detail in a separate publication. 
+The results for stellar kinematics match our expectations from
+\S\ref{sec:kinematics}. Where the lens data already constrain the mass
+distribution at $r \sim r_{1/2}$, stellar kinematics provide valuable
+information about the velocity anisotropy of the stars, $\beta$ (see Figure
+ZZZ). Where the lens data poorly constrain the mass distribution at $r_{1/2}$,
+we may `integrate out' the effect of unknown $\beta$ to obtain a robust measure
+of $M(r_{1/2})$ from the stellar kinematics. This latter is robust to both
+uncertainties in $\beta(r)$ and to our assumption of spherical symmetry in the
+kinematic models \citep{2012ApJ...754L..39A}. Finally, we note that there is a
+third interesting case. If the lens models well-constrain $M(r_{1/2})$ and
+stellar kinematics are available, then these can be used to probe cosmological
+models (see \S\ref{sec:theory}). We explore this in more detail in a separate
+publication. 
 
 \begin{figure*}
 \includegraphics[width=0.49\textwidth]{BCQuadR1a_TmS-sb.pdf}
