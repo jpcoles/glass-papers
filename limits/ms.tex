@@ -5,6 +5,7 @@
 \usepackage{mathrsfs}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{ulem} % Only necessary for striking out TODO items see \sout
 
 \def\newblock{\hskip .11em plus .33em minus .07em}
 
@@ -426,16 +427,29 @@ We describe our numerical solution of \eqnref{eqn:sphericaljeans} in \S\ref{sec:
 \subsection{A new lens modelling framework: \Glass}
 
 \Glass\ is an evolution of the concepts employed by the free form modelling tool
-\PixeLens\ but completely rewritten in Python and C. The key improvements are:
+\PixeLens\ but completely rewritten in Python and C. 
+The most compute intensive
+portion was written in C but Python was chosen because of its flexibility as a 
+language and for its large scientific library support. The flexibility allows 
+\Glass\ to have quite sophisticated behavior while at the same time simplfying the 
+user experience and reducing the overall development time. One of the striking
+features is that the input file to \Glass\ is itself a Python program.
+Understanding Python is not necessary, however, to use \Glass\ but this allows
+a user to build the analysis of a model directly into the input file. \Glass\
+may also be used as an external library to other Python programs.  The software
+is freely available for download or from the author. 
+
+The key scientific and technical improvements are:
 %
 \begin{enumerate}
   \setcounter{enumi}{0}
-  \item A modular framework allows new priors to be added and modified easily.
+  \item A modular framework that allows new priors to be added and modified easily.
 \end{enumerate}
 %
 Each prior is a simple function that adds linear constraints that operate on either
 a single lens object or the entire ensemble of objects. \Glass\ comes with a number
-of useful priors, but a user can write their own in the input file.
+of useful priors, the default ones will be described later, but a user can
+write their own directly in the input file, or by modifying the source code.
 %
 \begin{enumerate}
   \setcounter{enumi}{1}
@@ -443,8 +457,8 @@ of useful priors, but a user can write their own in the input file.
 \end{enumerate}
 %
 \Glass\ currently describes the lens mass as a collection of pixels, but the code
-has been designed to support alternative methods. In particular, it is planned
-to develop a module using Bessel functions. This will require a new set of 
+has been designed to support alternative methods. In particular, there are future
+plans to develop a module using Bessel functions. This will require a new set of 
 priors that operate on these functions.
 %
 \begin{enumerate}
@@ -463,10 +477,12 @@ within \Glass\ will correctly display models that have been accepted or rejected
   \item The central region can be have a higher resolution to capture steep models. 
 \end{enumerate}
 %
-By default, the mass distribution of the lens is described by uniform grid. However,
-in the central region of a lensing galaxy where the mass profile may rise steeply,
-a higher resolution can be specified that only applies to the inner pixels. These
-pixels are subdivided into a smaller grid. {\bf JR. I think Jonathan is now applying this by default. Is that right Jonathan?} 
+With the default basis set of pixels, the mass distribution of the lens is
+described by uniform grid. However, in the central region of a lensing galaxy
+where the mass profile may rise steeply, the center pixel uses a higher
+resolution. This allows the density to increase smoothly but still allow for
+a large degree of freedom within the inner region without allowing the density
+to be arbitrarily high. 
 %
 \begin{enumerate}
   \setcounter{enumi}{4}
@@ -487,11 +503,13 @@ mass profile.
 \PixeLens\ only allows for a shear term to be added to the potential (as shown
 later in \eqnref{shear}) to account for mass external to model region. This
 is useful to capture the gross effects of a distant neighbour. \Glass\ also
-has a shear term but additional allows for additional analytic potentials to
+has a shear term but in addition allows for analytic potentials to
 be included. This can be used to model substructure or multiple neighbors close
 to the main lens. The substructure may have only a small effect if the lens is
-a single galaxy, but if the lens is group then a potential can be added for
-each of the galaxies.
+a single galaxy, but if the lens is a group then a potential can be added for
+each of the galaxies. A few standard functions are already included in \Glass\
+including those for a point mass, a power law distribution, or an isothermal (a
+particular case of the power law).
 %
 \begin{enumerate}
   \setcounter{enumi}{5}
@@ -500,12 +518,8 @@ each of the galaxies.
 %
 At the heart of \Glass\ lies a new algorithm for sampling the high dimensional
 linear space that represents the modelling solution space. This algorithm was
-described and tested in \cite{2012MNRAS.425.3077L}. \Glass\ is also multi-threaded allowing it to
-run efficiently on many-cored machines.  The software is freely available for
-download. One interesting aspect is that the input files are themselves Python
-programs. This allows a large amount of sophistication in setting up a lens at
-runtime and also allows \Glass\ to be used as an external library from another
-user written program.
+described and tested in \cite{2012MNRAS.425.3077L}. This algorithm is 
+multi-threaded allowing it to run efficiently on many-cored machines.  
 
 %\Glass\ uses an adaptive grid of mass pixels
 %to model the lens, generating thousands of models to marginalise over
@@ -527,6 +541,15 @@ user written program.
 %reasonable time. With \Glass, we can routinely generate hundreds of thousands
 %of models such that we can afford to discard some if they are inconsistent with
 %independent data.
+
+\subsection{Analysis Tools}\label{sec:tools}
+\Glass\ is not only a modeling tool but also an analysis engine. \Glass\
+provides many functions for viewing and manipulating the computed models.
+These functions can either be called from a program written by the user or 
+by using the program \textsc{viewstate.py} included with \Glass. There is
+also a tools, \textsc{lenspick.py} for creating a lens, either from an $N$-body
+simulation file, or from an analytic form. To load the simluation data, \Glass\
+uses \textsc{PynBody} and can thus load any file supported by that tool.
 
 \subsection{Discrete models}\label{sec:discrete}
 For this paper we will restrict ourselves to using the pixelated basis set that
@@ -583,12 +606,19 @@ physical models. The explicit implementation for these priors has been
 explained in \cite{}, but can be summarized as
 \begin{enumerate}
 \item The density must be non-negative everywhere.
-\item The density profile must have a slope everywhere $\le 0$. This prevents hollow rings.
+\item The density profile must have a slope everywhere $\le 0$.
 \item The local gradient everywhere must point within $45^{\circ}$ of the center.
 \item Density variations must be smooth.
 \item Image parity is enforced.
 \item The density is radially symmetric. (Optional)
 \end{enumerate}
+
+Prior (ii) is necessary to prevent rings from forming where the inner region is
+less dense. This would be unusual for a galaxy or a cluster. Prior (vi)
+enforces a radial symmetry that requires radially opposed pixels (i.e., on
+opposite sides of the center) to be equal. This prior is particularly important
+for modelling doubles which must be symmetric. If a lens is suspected to be
+symmetric this can also significantly improve the modelling time for quads.
 
 In the simplest form, a single model for a lens is a tuple $\M = (\vec\kappa,
 \beta, \gamma_1, \gamma_2)$. A single model represents a single point in the
@@ -615,7 +645,19 @@ error is below the equivalent observational error. Time delays are then
 calculated in order from the arrival time at each image (\eqnref{tau}).
 
 \subsection{Removing models with extra images}\label{sec:glassextraimages} 
-While linear constraints can be applied on-the-fly in \Glass, non-linear constraints must be applied in post-processing. Models that are inconsistent with such constraints must then be statistically discarded via a likelihood analysis. An example of such a non-linear constraint is the spurious presence of unobserved images. This `null-space' prior was first proposed and explored by \citet{2006MNRAS.367.1209L} and found to be extremely powerful. We find that our gradient prior in \Glass\ (see \S\ref{sec:discrete}), performs much of the same function as \citeauthor{2006MNRAS.367.1209L}'s null-space prior, but some models can still rarely turn up spurious images. We reject these in a post-processing step, where we sweep through the model ensemble applying the ray tracing algorithm described in \ref{Raytracing}. Models are accepted or rejected according to the criteria: 
+While linear constraints are applied in \Glass\ by the nature of the sampling
+algorithm, non-linear constraints must be applied in post-processing. Models
+that are inconsistent with such constraints must then be statistically
+discarded via a likelihood analysis. An example of such a non-linear constraint
+is the spurious presence of unobserved images. This `null-space' prior was
+first proposed and explored by \citet{2006MNRAS.367.1209L} and found to be
+extremely powerful. We find that our gradient prior in \Glass\ (see
+\S\ref{sec:discrete}), performs much of the same function as
+\citeauthor{2006MNRAS.367.1209L}'s null-space prior, but some models can still
+rarely turn up spurious images. We reject these in a post-processing step,
+where we sweep through the model ensemble applying the ray tracing algorithm
+described in \ref{Raytracing}. Models are accepted or rejected according to the
+criteria: 
 
 \begin{equation}
 XXX
@@ -625,7 +667,12 @@ Typically, this results in a rejection rate of XXX\%.
 {\bf JR. Jonathan to fill in this section.} 
 
 \subsection{A post-processing module for stellar kinematics}\label{sec:glasskinematics} 
-Similarly to the null-space constraint (\S\ref{sec:glassextraimages}), stellar kinematic constraints constitute a non-linear prior on the mass map and must be applied in post-processing. We sweep through the model ensemble performing an Abel deprojection to determine $M(r)$ from the projected surface density assuming spherical symmetry \citep[e.g.][]{2008gady.book.....B,2008MNRAS.390.1647B}: 
+Similarly to the null-space constraint (\S\ref{sec:glassextraimages}), stellar
+kinematic constraints constitute a non-linear prior on the mass map and must be
+applied in post-processing. We sweep through the model ensemble performing an
+Abel deprojection to determine $M(r)$ from the projected surface density
+assuming spherical symmetry
+\citep[e.g.][]{2008gady.book.....B,2008MNRAS.390.1647B}: 
 
 \begin{eqnarray} 
 M(r) & = & \frac{\zeta}{d_L} \left[2\pi\int_0^r R\kappa_\infty(R)dR - \right. \nonumber \\
@@ -683,8 +730,8 @@ all lenses are $(a_\star,a_\mathrm{DM})=(2,20)$\,kpc. $\Rmap$ is the 2D projecte
 \includegraphics[width=0.33\textwidth]{MockGalProfile-c.pdf}
 \caption{{\bf JR. Cut the analytic profiles from this Figure. All fonts and labels should be larger. Left panel should start at 0.7kpc.}
 \textbf{Left:} 
-Density averaged in spherical shells of the four galaxy mocks: AA, AC, BB and BC, showing the stellar (dotted), dark matter (dashed),
-and total (solid) densities, respectively. Notice that the stars in models BB and BC contribute significantly to the central potential. 
+Spherically averaged density profiles of the four mock galaxies showing the stellar (dotted), dark matter (dashed),
+and total (solid) densities. Notice that the stars in models Sdom/DMshallow and Sdom/DMcuspy contribute significantly to the central potential. 
 \textbf{Middle:} 
 The radially averaged two-dimensional projected density.
 The critical density for lensing at $z_L=0.31$, $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$, is marked by the horizontal line. 
@@ -701,14 +748,17 @@ galaxy.
 \subsection{Lens configurations}\label{sec:lensconfig} %--------------------------------------------------------------
 
 For each of the four galaxies, we used the raytracing feature of \Glass\
-described in \secref{Raytracing} to construct 12 lensing scenarios {\bf JR. We have 12 lensing scenarios, but only 6 panels in Figure 2. Is this number correct?}:
+described in \secref{Raytracing} to construct 6 basic lensing morphologies:
 
 \begin{enumerate}
 \item one double and one extended double;
 \item one quad and one extended quad;
 \item two 2-source quads with varying redshift contrast.
 \end{enumerate}
-The `extended' configurations use multiple point sources at the same redshift to simulate an extended source (that will produce an arc-like image). \figref{arrival surfaces} shows the configuration for the extended quad, along with the other cases. 
+The `extended' configurations use multiple point sources at the same redshift
+to simulate an extended source that will produces an arc-like image.
+\figref{arrival surfaces} shows the configuration for the extended quad, along
+with the other cases. 
 
 \begin{figure*}
 \includegraphics[width=0.85\textwidth]{BCarrival_surfaces}
@@ -722,34 +772,41 @@ between images. The axes are measure in arcseconds.}
 \label{arrival surfaces}
 \end{figure*}
 
-Each of these configurations were modelled with and without time delays and with
-and without a central image. (The central image is typically highly demagnified. For galaxy lenses it is very difficult to find since it lies along the sight line to the bright lensing galaxy; in clusters, however, such images have been seen (CITES)). We assumed for all our tests that the lensing mass
-was radially symmetric ({\bf JR. Need to better-define this symmetry here.}. For our mock data, this is known to be true; it is
-most often the case with real galaxies, unless there is an obvious observed
-asymmetry. The central pixel was refined into a further nine pixels to capture
-any steep rise in the profile. Two of the four mock galaxies have a steeply rising
-inner profile. {\bf JR. What happens if we don't assume this symmetry? We ought to add an appendix showing this for one example case.}
+Each of these configurations were modelled with and without time delays and
+with and without a central image, for a total of 24 test cases. (The central
+image is typically highly demagnified. For galaxy lenses it is very difficult
+to find since it lies along the sight line to the bright lensing galaxy; in
+clusters, however, such images have been seen (CITES)). We assumed for all our
+tests that the lensing mass was radially symmetric (Prior vi):
+For our mock data, this is known to be
+true; it is most often the case with real galaxies, unless there is an obvious
+observed asymmetry. The central pixel was refined into a further nine pixels to
+capture any steep rise in the profile.  Two of the four mock galaxies have a
+steeply rising inner profile. {\bf JR.  What happens if we don't assume this
+symmetry? We ought to add an appendix showing this for one example case.}
 
 \section{Results}\label{sec:results}
 \figref{reconstruction} shows a typical reconstruction of a
 lens. The far left plot shows the ensemble average arrival time surface with
 image marked as circles and the inferred source position as a diamond. The
 center plot shows the radial density profile. The error bars cover the full
-range of models generated by \Glass {\bf JR. Why do this? Surely 1 or 2 sigma errors make more sense? I've deleted the ``full ensemble" results and kept the $1\sigma$ ones instead.}. The true density profile from the mock
-data is also plotted for comparison. The vertical lines mark the radial
-position of the images. The final plot on the right is of the enclosed mass. As
-expected, the error bars are smallest in the region of the images where the most
-information about the lens is present. The dip in the profile at the end of the
-profile is due to the cut off in mass in the lensing map. This is of little
-importance, though, as there is no lensing information there.
+range of models generated by \Glass {\bf JR. Why do this? Surely 1 or 2 sigma
+errors make more sense? I've deleted the ``full ensemble'' results and kept the
+$1\sigma$ ones instead.}. The true density profile from the mock data is also
+plotted for comparison. The vertical lines mark the radial position of the
+images. The final plot on the right is of the enclosed mass. As expected, the
+error bars are smallest in the region of the images where the most information
+about the lens is present. The dip in the profile at the end of the profile is
+due to the cut off in mass in the lensing map. This is of little importance,
+though, as there is no lensing information there.
 
 \begin{figure*}
 \includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-a.pdf}
 \includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-b.pdf}
 \includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-c.pdf}
 \caption{
-{\bf JR. Need to homogenise plot dimensions here. Larger fonts as in Figure 1 are also required.} 
-A typical reconstructed lens. Here we present results for a single quad image lensed by the BC mock galaxy.
+  \sout{{\bf JR. Need to homogenise plot dimensions here. Larger fonts as in Figure 1 are also required.} }
+A typical reconstructed lens. Here we present results for a single quad image lensed by the Sdom/DMcuspy mock galaxy.
 \textbf{Left:}
 The arrival time surface. 
 \textbf{Middle:}
@@ -760,20 +817,27 @@ The green vertical lines mark the radial positions of the images. The higher
 resolution feature of \Glass\ has been used on the central pixel allowing the
 steep profile to be captured.
 \textbf{Right:}
-The cumulative mass.}
+The cumulative mass. The error bars on both plots are $1\sigma$.}
 \label{reconstruction}
 \end{figure*}
 
-The main results from modelling these different configuration are shown in black in
-\figref{main results}. Each subplot corresponds to a different galaxy and
-the vertical axis shows the range of `quality' of recovery, defined as: 
+The main results from modelling these different configurations are shown in black in
+\figref{main results} and \figref{main results pixel-wise}. Each subplot corresponds to a different galaxy and
+the vertical axis shows the range of `quality' of recovery. In \figref{main results}, this quality is
+defined over radial bins of mass as
+%
 \begin{equation} \label{badness}
-\chi^2 = \frac
-       {\Big\langle \int \left|\Delta\Sigma(\vec{\theta})\right|^2 \,
-        d^2 \vec{\theta} \Big\rangle}
-       {\int \Sigma^2(\vec{\theta}) \; d^2 \vec{\theta}}
+  f_r = \frac {\int \left|\Delta M(r)\right|\; dr } {\int M(r)\; dr}
 \end{equation}
-where the angle brackets denote averages over the model ensemble.
+%
+while in \figref{main results pixel-wise} the quality is defined over all the pixels
+%
+\begin{equation} \label{badness}
+f_\theta = \frac
+       {\int \left|\Delta M(\vec\theta)\right| \; d \vec{\theta} }
+       {\int M(\vec\theta) \; d \vec\theta}
+\end{equation}
+In both cases, the delta difference is between a single recovered model and the known mock galaxy.
 %\begin{equation}
 %  \chi_i \equiv 100 \times \sqrt{\frac{\int_r (\rho_{\M_i}(r) - \rho_G(r))^2}{\int_r \rho_G(r)^2}}
 %\chi_i = \frac{\sum_r (\rho(r)_{\M_i} - \rho(r)_G)^2}{\sum_r \rho(r)_G^2}
@@ -781,31 +845,32 @@ where the angle brackets denote averages over the model ensemble.
 %where $\rho_{\M_i}(r)$ is the recovered density profile for a mock model $\M_i$; and $\rho_G(r)$ is the true density profile. 
 
 \begin{figure*}
-\includegraphics[width=0.49\textwidth]{AAchi2_profile.pdf}
-\includegraphics[width=0.49\textwidth]{BBchi2_profile.pdf}\\
-\includegraphics[width=0.49\textwidth]{ACchi2_profile.pdf}
-\includegraphics[width=0.49\textwidth]{BCchi2_profile.pdf}
+\includegraphics[width=0.49\textwidth]{AAferror_profile-1sig.pdf}
+\includegraphics[width=0.49\textwidth]{BBferror_profile-1sig.pdf}\\
+\includegraphics[width=0.49\textwidth]{ACferror_profile-1sig.pdf}
+\includegraphics[width=0.49\textwidth]{BCferror_profile-1sig.pdf}
 \caption{The main results showing the quality of model recovery. Each panel corresponds to 
 the named mock galaxy, whose parameters are listed in \tabref{mock galaxy params}. Within
 each panel are six groups of results for each of six lens morphologies. Each morphology
-considered the presence of time delays and a central image. The black markers are for tests
+considered the presence of time delays (T/t) and a central image (M/m). The black markers are for tests
 that did not include the stellar mass as a lower bound constraint, while the red markers
 indicate where the stellar mass has been given. Error bars show the $1\sigma$ equivalent interval sampled from the model ensemble.}
 \label{main results}
 \end{figure*}
 
 \begin{figure*}
-\includegraphics[width=0.49\textwidth]{AAchi2-full.pdf}
-\includegraphics[width=0.49\textwidth]{BBchi2-full.pdf}\\
-\includegraphics[width=0.49\textwidth]{ACchi2-full.pdf}
-\includegraphics[width=0.49\textwidth]{BCchi2-full.pdf}
-\caption{{\bf JR. This should be also with $1\sigma$ errors. Also need to do this plot for Claudio's shape measure.} Pixel-wise $\chi$.}
+\includegraphics[width=0.49\textwidth]{AAferror-1sig.pdf}
+\includegraphics[width=0.49\textwidth]{BBferror-1sig.pdf}\\
+\includegraphics[width=0.49\textwidth]{ACferror-1sig.pdf}
+\includegraphics[width=0.49\textwidth]{BCferror-1sig.pdf}
+\caption{ {\bf JR. \sout{ This should be also with $1\sigma$ errors.} Also need to do this plot for Claudio's shape measure.} \sout{Pixel-wise $\chi$.}
+The fractional error for the pixel-wise recovery of all models. The colors and labels are the same as in \figref{main results}. Error bars show the $1\sigma$ equivalent interval sampled from the model ensemble.}
 \label{main results pixel-wise}
 \end{figure*}
 
 The abundance of strong lensing data increases from left to right within each plot. As
 a result, there is a general trend for the reconstruction quality to increase
-(and for $\chi$ to decrease). By adding more measurable information to each
+(and for $f$ to decrease). By adding more measurable information to each
 configuration the quality can also be affected. When both time delays and a
 central image are present the quality is highest. A double is known to provide
 very little constraint on the mass distribution. This is particularly evident in
@@ -879,14 +944,11 @@ Various action items.
 
 \begin{enumerate}
 
-\item Change variable $\chi$ to something else ($f$?) to avoid
-  confusion with $\chi^2$.
+  \item \sout{Change variable $\chi$ to something else ($f$?) to avoid confusion with $\chi^2$.}
 
-\item Correct equation \eqref{badness} to describe what is actually
-  calculated.
+  \item \sout{Correct equation \eqref{badness} to describe what is actually calculated.}
 
-\item Show results for $1\sigma$ and $2\sigma$ rather than full
-  \Glass\ ensemble.
+  \item \sout{Show results for $1\sigma$ and $2\sigma$ rather than full \Glass\ ensemble.}
 
 \item Add results for Claudio's shape measure. Discuss shape
   throughout results section and mention more explicitly in abstract
@@ -962,6 +1024,59 @@ Various action items.
 
 \appendix
 
+\section{Implementation Details}
+
+Since we want to model the density distribution with a computer it
+is convenient to choose units that make the relevant quantities of order
+unity.  We therefore measure lengths in light years, time in years, positions
+in arcseconds, and choose $c=1$ and $4\pi G = N^2$, where $N^2 \equiv 206,265$
+arcsec/rad. The mass unit is then $11.988\ \Msun$. It will also be useful to
+define a proxy to the Hubble constant $\zeta \equiv N^2 H_0$. We now 
+express the equations from \secref{sec:theory} in terms of these new units
+and introduce some other useful quantities.
+
+The lens equation in its complete form becomes:
+%
+\begin{eqnarray}
+N^2ct(\vec\theta) & = & (1+z_L)\frac{D_{L}D_{S}}{D_{LS}}\frac12 |\vec\theta - \vec\beta|^2 \nonumber \\
+& & - (1+z_L)\frac{4GD_{L}^2}{c^2}\int \Sigma(\vec\theta') \ln |\vec\theta-\vec\theta'| d^2\vec\theta'
+\label{eqn:full_arrival_time}
+\end{eqnarray}
+%
+where the factor of $D_L^2$ in the second term comes from the fact that $\Sigma$
+has units of \Msun/lyr$^2$. We can clean this up by writing down a dimensionless time
+delay:
+%
+\begin{equation}
+\tau = \left[ (1+z_L) d_L\right]^{-1}\zeta t
+\label{tau}
+\end{equation}
+%
+in terms of our previous definitions. If we
+further define a dimensionless density:
+%
+\begin{equation}
+\kappa_\infty = \frac{4\pi G}{c^2}\frac{c}{H_0}d_L\Sigma
+              = \frac{d_L}{\zeta}\Sigma
+\end{equation}
+%
+and a lensing potential:
+%
+\begin{equation}
+\psi(\vec\theta) = \frac1\pi \int \kappa_\infty(\vec\theta') \ln|\vec\theta - \vec\theta'| d^2\vec\theta'\
+\label{lensing potential}
+\end{equation}
+%
+we can express \eqnref{eqn:full_arrival_time} very compactly as:
+%
+\begin{equation}
+\tau(\vec\theta) = \frac12 \xi |\vec\theta-\vec\beta|^2 - \psi(\vec\theta)
+\label{arrival time}
+\end{equation}
+We explicitly write $\kappa_\infty$ to remind ourselves
+that there is no source distance factor involved. This is useful when we
+consider multiple sources.
+
 \section{Raytracing convergence test}
 Raytracing is sensitive to the map area and resolution set by $\Rmap$ and
 $\Rpix$.  In the left panel of \figref{raytracing convergence tests} we compare
@@ -993,7 +1108,7 @@ In particular we want
 \[\sum_n \kappa_n Q_n(\vec\theta)\]
 %
 where $Q_n$ is the logarithm evaluated over the $n$th pixel at position $\vec\theta_n = (x_n, y_n)$. Let the pixel side length be $a$.
-Instead of working with a position vector $\vec\theta$ we work in cartesian coordinates such that
+Instead of working with a position vector $\vec\theta$ we work in cartesian coordinates where 
 %
 $|\vec\theta| = r = \sqrt{x^2 + y^2}$. The integral now becomes
 %
