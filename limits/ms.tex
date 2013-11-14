@@ -694,12 +694,20 @@ We now present a study of four mock galaxies with known analytic forms. These ar
 \subsection{Setting up the triaxial N-body mocks}
 
 We generate four two-component mock galaxies, where the dark matter and stellar
-profiles are allowed to be both steep and shallow.  The enclosed mass in all cases
-is fixed at $M(a_\star)= 1.8\e{10}$\,M$_\odot$ at the scale radius $a_\star=2$\,kpc. These
+profiles are allowed to be both steep and shallow.  
+%The enclosed mass in all cases
+%is fixed at $M(a_\star)= 1.8\e{10}$\,M$_\odot$ at the scale radius $a_\star=2$\,kpc. 
+The enclosed mass of the stars and dark matter are both fixed to be 
+$M_{*,\mathrm{DM}} = 1.8 \times 10^{10}$\,M$_\odot$ at the stellar scale radius 
+$a_* = 2$\,kpc, such that the stars and dark matter contribute equally to the total
+mass at $a_*$. The dark matter scale length is fixed for all models at $a_\mathrm{DM}
+= 20$\,kpc.
+These
 values were chosen to closely resemble the lensing galaxy B1115 \citep{1980Natur.285..641W}. We place the galaxy at
 a redshift of $z_L = 0.31$ for lensing.  Throughout, we assume a cosmology
 where $H_0^{-1}=13.7$ Gyr, $\Omega_M=0.28$, and $\Omega_\Lambda=0.72$. The
 critical density is $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$.
+
 
 The galaxies were generated as three dimensional particle distributions as in
 \citet{2009MNRAS.395.1079D}. Each component follows the profile:
@@ -850,7 +858,7 @@ distribution for each of the test configurations with (red) and without stellar 
 In \figref{main results}, the error is defined over radial bins of mass as
 %
 \begin{equation} \label{badness}
-  f_R = \frac {\sum_r \left|M_p(r) - \tilde M_p(r)\right| } {\sum \tilde M_p(r)}
+  f_R = \frac {\sum_i \left|M_p(i) - \tilde M_p(i)\right| } {\sum \tilde M_p(i)}
 \end{equation}
 %
 where $M_p$ is the mass in a radial bin and $\tilde M_p$ is the mass from the mock galaxy.
