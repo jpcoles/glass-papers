@@ -603,7 +603,7 @@ closed volume in the solution space. We have not imposed any strong constraints
 on the density even so much as to ensure that it is non-negative everywhere. We
 must therefore provide additional linear constraints so that we only sample
 physical models. The explicit implementation for these priors has been
-explained in \cite{}, but can be summarized as
+explained in \cite{2008ApJ...679...17C}, but can be summarized as
 \begin{enumerate}
 \item The density must be non-negative everywhere.
 \item The density profile must have a slope everywhere $\le 0$.
@@ -622,7 +622,7 @@ symmetric this can also significantly improve the modelling time for quads.
 
 In the simplest form, a single model for a lens is a tuple $\M = (\vec\kappa,
 \beta, \gamma_1, \gamma_2)$. A single model represents a single point in the
-solution space polytope. Using the MCMC sampling strategy described in \cite{}
+solution space polytope. Using the MCMC sampling strategy described in \cite{2012MNRAS.425.3077L}
 we uniformly sample this space. Collectively, the sampled models are referred
 to as an ensemble $\E = \{\M_i\}$, where we usually generate $\sim$1000 models. We
 will typically show the ensemble average $\Eavg$ in the plots to
@@ -701,14 +701,22 @@ a redshift of $z_L = 0.31$ for lensing.  Throughout, we assume a cosmology
 where $H_0^{-1}=13.7$ Gyr, $\Omega_M=0.28$, and $\Omega_\Lambda=0.72$. The
 critical density is $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$.
 
-The galaxies were generated as three dimensional particle distributions as in \citet{2009MNRAS.395.1079D}. Each component follows the profile:
-\begin{equation}
-\rho(m) = \frac{M}{4\pi a^3}(3-\gamma){(m/a)^{-\gamma}(1 + m/a)^{\gamma-4}}
-\label{Dehnen profile}
-\end{equation}
-where $m^2 = (x/a)^2 + (y/b)^2 + (z/c)^2$, with $[a,b,c] = ???$; $\gamma$ is the central density profile index; and $a$ is the scale radius. In the
-case $\gamma=1$ (and in the limit of spherical symmetry), this is the Hernquist profile \citep{1990ApJ...356..359H}.  The four combinations of
-profile indices are shown in \tabref{mock galaxy params}. {\bf JR. Need to add explanation of triaxial parameters here. Is the above density equation correct in fact?} 
+The galaxies were generated as three dimensional particle distributions as in
+\citet{2009MNRAS.395.1079D}. Each component follows the profile:
+%
+\begin{equation} 
+  \rho(r) = \frac{M}{4\pi a^3}(3-\gamma){(r/a)^{-\gamma}(1 + r/a)^{\gamma-4}} 
+  \label{Dehnen profile} 
+\end{equation} 
+%
+where $a$ is the component scale radius mentioned in \tabref{mock galaxy params},
+$r^2 = (x/\lambda_1)^2 + (y/\lambda_2)^2 + (z/\lambda_3)^2$, and the axis
+ratios are $\lambda_1:\lambda_2:\lambda_3 = 6:4:3$.
+In the case where the central density profile index
+$\gamma$ is unity (and in the limit of spherical symmetry), this is the Hernquist
+profile \citep{1990ApJ...356..359H}.  The four combinations of profile indices
+are shown in \tabref{mock galaxy params}. {\bf JR. Need to add explanation of
+triaxial parameters here. Is the above density equation correct in fact?} 
 
 \begin{table}
 \begin{tabular}{llllllll}
@@ -829,8 +837,9 @@ The cumulative mass. The error bars on both plots are $1\sigma$.}
 \begin{figure*}
 \includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-kappa-a.pdf}
 \includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-kappa-b.pdf}
-\caption{ {\bf (Left)} Mock data distribution on coarse grid for Sdom/DMcuspy. {\bf (Right)} Recover ensemble average kappa distribution.
-XXX: Mention log scale and 0== critical density.}
+\caption{ The mock data distribution for Sdom/DMcuspy on a coarse grid (left)
+  and a typical recovered ensemble average $\kappa$ distribution. The contours are
+  logarithmic values, where level 0 corresponds to the critical density.}
 \label{2d mass reconstruction}
 \end{figure*}
 
