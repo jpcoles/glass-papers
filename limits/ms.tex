@@ -46,7 +46,7 @@
 \newcommand\plotthree[3]{{%
  \centering
  \leavevmode
- \columnwidth=.30\columnwidth
+ \columnwidth=.30\textwidth
  \includegraphics[width={\columnwidth}]{#1}%
  \hfil
  \includegraphics[width={\columnwidth}]{#2}%
@@ -898,6 +898,21 @@ The fractional error for the pixel-wise recovery of all models. The colors and l
 \label{main results pixel-wise}
 \end{figure*}
 
+\begin{figure*}
+\plotthree{AAExtendedDoubleR1_TmS-shape-hist-11.pdf} {AAferror_shape-1sig.pdf} {BBferror_shape-1sig.pdf}\\
+\plotthree{BCZContrastR1R3_TmS-shape-hist-212.pdf} {ACferror_shape-1sig.pdf} {BCferror_shape-1sig.pdf}
+\caption{ The two plots in the left most column show sample distributions of
+  $s=\lambda_1/\lambda_2$, the ratio of the largest to smallest principal axes.
+  The upper (poor) plot is from the DMdom/DMshallow galaxy, while the lower (good) plot is
+  from the Sdom/DMcuspy galaxy. The black vertical lines mark the $1\sigma$
+  region and the vertical blue line is the value of $s$ for the corresponding
+  mock galaxy. The remain four plots are similar to those in \figref{main
+  results pixel-wise} and show the fractional error of $s$ over all the models,
+with respect to the mock galaxies.}
+
+\label{main results pixel-wise}
+\end{figure*}
+
 The abundance of strong lensing data increases from left to right within each plot. As
 a result, there is a general trend for the reconstruction quality to increase
 (and for $f$ to decrease). By adding more measurable information to each
@@ -1198,12 +1213,6 @@ $\Rpix=45$. After about $\Rmap=20$ most of the asymmetric mass is in the map.
 (right) Test for predicted image position $\theta$ convergence as $\Rpix$
 changes. $\Rmap=20$ arcsec.}
 \label{raytracing convergence tests}
-\end{figure}
-
-\begin{figure}
-\plotone{BCZContrastR1R3_TmS_shape.pdf}
-\caption{}
-\label{}
 \end{figure}
 
 \section{Derivation of pixelated density coefficients}
