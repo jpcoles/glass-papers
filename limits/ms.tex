@@ -229,10 +229,10 @@ parallel implementation of the high-dimensional sampling algorithm
 from \cite{2012MNRAS.425.3077L}.  Around that core, \Glass\ has
 extensible code (in software terminology, a framework) in Python,
 encoding the lens equation, a basis and priors for the mass
-distribution, and various post-processing modules.  \Glass\ is
-described in \secref{sec:glass}.  In \secref{sec:theory} before that
-we review the elements of lensing theory, stellar population
-synthesis, and stellar dynamics we will need.
+distribution, and various post-processing and visualisation modules.  \Glass\
+is described in \secref{sec:glass}.  In \secref{sec:theory} before that we
+review the elements of lensing theory, stellar population synthesis, and
+stellar dynamics we will need.
 
 In \secref{sec:mockdata}, we describe our mock data.
 
@@ -244,8 +244,7 @@ these mock data.
 
 \subsection{Lensing essentials}\label{sec:lensing_basic}
 
-We follow \cite{1986ApJ...310..568B} with minor differences in notation
-notation.
+We follow \cite{1986ApJ...310..568B} with minor differences in notation.
 
 The lens equation
 \begin{equation}
@@ -260,8 +259,9 @@ The lens equation
 maps an observed image position $\vec\theta$ to a source position
 $\vec\beta$.  The lens can then be thought of as a projected surface
 density $\Sigma$ which diverts the path of a photon instantaneously
-through the bending angle $\vec\alpha$.  The $D$ factors are angular
-diameter distances, as in the previous section.
+through the bending angle $\vec\alpha$.  The $D$ factors, as in the previous section, are angular
+diameter distances, which depend on the particular choice of cosmological
+parameters $\Omega$:
 \begin{equation}
 D_{LS} = \frac c{H_0} \frac{1+z_S}{1+z_L} \int_{z_L}^{z_S}
                       \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
@@ -691,7 +691,7 @@ We use the deprojected mass to numerically solve equation \ref{eqn:sphericaljean
 
 We now present a study of four mock galaxies with known analytic forms. These are used to verify that \Glass\ is able to correctly recover the mass profile, and -- more importantly -- to determine what type and quality of data best constrain the mass profile and shape of a lens.
 
-\subsection{Setting up the triaxial N-body mocks}
+\subsection{The triaxial N-body mock galaxies}
 
 We generate four two-component mock galaxies, where the dark matter and stellar
 profiles are allowed to be both steep and shallow.  
@@ -730,10 +730,10 @@ triaxial parameters here. Is the above density equation correct in fact?}
 \begin{tabular}{llllllll}
 Galaxy & $\gamma_\star$ & $M_\star$ & $\gamma_\mathrm{DM}$ & $M_\mathrm{DM}$ & $\Rmap$ \\
 \hline
-DMdom/DMshallow & 1 & 4 & 0.05 & $11^{2.95}$ & 50 kpc\\ % AA
-DMdom/DMcuspy & 1 & 4 & 1 & $11^2$ & 50 kpc \\ % AC
-Sdom/DMshallow & 1.5 & $2^{1.5}$ & 0.16 & $11^{2.84}$ & 50 kpc \\ % BB
-Sdom/DMcuspy & 1.5 & $2^{1.5}$ & 1 & $11^2$ & 10 kpc %BC
+DM-ctr,DM-core & 1 & 4 & 0.05 & $11^{2.95}$ & 50 kpc\\ % AA
+DM-ctr,DM-cusp & 1 & 4 & 1 & $11^2$ & 50 kpc \\ % AC
+S-ctr,DMcore & 1.5 & $2^{1.5}$ & 0.16 & $11^{2.84}$ & 50 kpc \\ % BB
+S-ctr,DMcusp & 1.5 & $2^{1.5}$ & 1 & $11^2$ & 10 kpc %BC
 \end{tabular}
 \caption{Profile parameters for the four mock galaxies. The name indicates whether 
   the galaxy is centrally dark matter or stellar dominated with a shallow or cuspy 
@@ -800,7 +800,7 @@ clusters, however, such images have been seen (CITES)). We assumed for all our
 tests that the lensing mass was radially symmetric (Prior vi):
 For our mock data, this is known to be
 true; it is most often the case with real galaxies, unless there is an obvious
-observed asymmetry. The central pixel was refined into a further nine pixels to
+observed asymmetry. The central pixel was refined into a further 25 pixels to
 capture any steep rise in the profile.  Two of the four mock galaxies have a
 steeply rising inner profile. {\bf JR.  What happens if we don't assume this
 symmetry? We ought to add an appendix showing this for one example case.}
@@ -1162,35 +1162,37 @@ N^2ct(\vec\theta) & = & (1+z_L)\frac{D_{L}D_{S}}{D_{LS}}\frac12 |\vec\theta - \v
 \end{eqnarray}
 %
 where the factor of $D_L^2$ in the second term comes from the fact that $\Sigma$
-has units of \Msun/lyr$^2$. We can clean this up by writing down a dimensionless time
-delay:
+has units of \Msun/lyr$^2$. We can clean this up by first writing down a dimensionless time
+delay
 %
 \begin{equation}
 \tau = \left[ (1+z_L) d_L\right]^{-1}\zeta t
 \label{tau}
 \end{equation}
 %
-in terms of our previous definitions. If we
-further define a dimensionless density:
+in terms of our previous definitions and defining $D_L \equiv (c/H_0)d_L$. We
+further define a dimensionless density
 %
 \begin{equation}
 \kappa_\infty = \frac{4\pi G}{c^2}\frac{c}{H_0}d_L\Sigma
               = \frac{d_L}{\zeta}\Sigma
 \end{equation}
 %
-and a lensing potential:
+and a lensing potential
 %
 \begin{equation}
 \psi(\vec\theta) = \frac1\pi \int \kappa_\infty(\vec\theta') \ln|\vec\theta - \vec\theta'| d^2\vec\theta'\
 \label{lensing potential}
 \end{equation}
 %
-we can express \eqnref{eqn:full_arrival_time} very compactly as:
+Now we can express \eqnref{eqn:full_arrival_time} very compactly as
 %
 \begin{equation}
 \tau(\vec\theta) = \frac12 \xi |\vec\theta-\vec\beta|^2 - \psi(\vec\theta)
 \label{arrival time}
 \end{equation}
+%
+where $\xi=d_S / d_{LS}$.
 We explicitly write $\kappa_\infty$ to remind ourselves
 that there is no source distance factor involved. This is useful when we
 consider multiple sources.
