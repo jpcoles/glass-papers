@@ -599,7 +599,7 @@ motivated linear priors (the sampling algorithm in \Glass\ is \emph{not} the sam
 employed in \PixeLens).  We therefore formulate all of our equations as
 equations linear in the unknowns. We describe the density distribution $\kappa$
 as a set of discrete grid cells or pixels $\kappa_i$ and rewrite the potential
-(\eqnref{lensing potential}) as
+\eqnrefp{lensing potential} as
 %
 \begin{equation}
   \psi(\vec\theta) = \sum_n \kappa_n Q_n(\vec\theta)
@@ -678,7 +678,7 @@ to $\vec\beta$ is nearly zero. If multiple points converge to an
 $\eps_\mathrm{root}$ of each other then only one point is taken.  Care must be
 taken that the grid resolution is high enough that the resulting image position
 error is below the equivalent observational error. Time delays are then
-calculated in order of the arrival time at each image (\eqnref{tau}).
+calculated in order of the arrival time at each image \eqnrefp{tau}.
 
 \subsection{Removing models with extra images}\label{sec:glassextraimages} 
 While linear constraints are applied in \Glass\ by the nature of the sampling
@@ -1005,8 +1005,8 @@ the generated galaxies and projected the particles onto the pixels. \Glass\
 also offers an option to interpolate any map of stellar mass (e.g., from an
 observation) onto the pixels. The linear constraint is added to \Glass\ by
 writing $\kappa_n = \kappa_{dm,n} + \kappa_{s,n}$ as the sum of the
-dark matter and stellar mass components in the potential (\eqnref{discrete
-potential}). Since each $\kappa_{s,n}$ is just a constant we do not add new,
+dark matter and stellar mass components in the potential \eqnrefp{discrete
+potential}. Since each $\kappa_{s,n}$ is just a constant we do not add new,
 separate equations for each pixel. Although we assume a perfect recovery of the stellar mass here, it is straightforward to add errors as the stellar mass constraint remains linear: $\kappa_n = \kappa_{dm,n} + \epsilon \kappa_{s,n}$, where $\epsilon \sim 1$ is an additional error parameter. 
 
 With the stellar mass lower bound, the improvement of the reconstruction
@@ -1024,7 +1024,7 @@ To illustrate the power of stellar kinematic constraints, in
 \figref{sigma-beta}, we plot the projected velocity dispersion calculated for
 one model model (extracted from the full ensemble) of the BC Quad with time
 delays and stellar mass (left), and the mean projected velocity dispersion
-(\eqnref{eqn:virialaverage}) as a function of the upper limit of the averaging
+\eqnrefp{eqn:virialaverage} as a function of the upper limit of the averaging
 integral (the aperture size), $a_p$ (right). In both cases, we calculate curves
 for two extrema velocity anisotropies: $\beta=0$ (green) and $\beta=1$ (red).
 Over-plotted is the correct answer for the BC model (black). The stellar half
