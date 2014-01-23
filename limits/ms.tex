@@ -33,10 +33,10 @@
 \newcommand{\e}[1]{\ensuremath{\times 10^{#1}}}
 \renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
 
-\newcommand{\mockAA}{{\sc Ssteep-DMshallow}}
-\newcommand{\mockAC}{{\sc Ssteep-DMsteep}}
-\newcommand{\mockBB}{{\sc Ssteep-DMshallow}}
-\newcommand{\mockBC}{{\sc Ssteep-DMsteep}}
+\newcommand{\mockAA}{{\sc star1.0-dmCore}}
+\newcommand{\mockAC}{{\sc star1.0-dmCusp}}
+\newcommand{\mockBB}{{\sc star1.5-dmCore}}
+\newcommand{\mockBC}{{\sc star1.5-dmCusp}}
 
 % From aastex.cls
 \newcommand\plotone[1]{%
@@ -902,12 +902,10 @@ cut off in mass in the lensing map. This is of little importance, though, as
 there is no lensing information there.
 
 \begin{figure*}
-  \includegraphics[width=0.35\textwidth]{AAQuadR1a_TmS-a.pdf}\hspace{-2em}
-  \includegraphics[width=0.35\textwidth]{AAQuadR1a_TmS-b.pdf}\hspace{-2em}
-  \includegraphics[width=0.35\textwidth]{AAQuadR1a_TmS-c.pdf}\\\vspace{-1em}
-  \includegraphics[width=0.35\textwidth]{BCQuadR1a_TmS-a.pdf}\hspace{-2em}
-  \includegraphics[width=0.35\textwidth]{BCQuadR1a_TmS-b.pdf}\hspace{-2em}
-  \includegraphics[width=0.35\textwidth]{BCQuadR1a_TmS-c.pdf}
+  \plotthree{BCExtendedDoubleR1_tms-a.pdf} {BCExtendedDoubleR1_tms-b.pdf} {BCExtendedDoubleR1_tms-c.pdf}
+  \plotthree{BCExtendedDoubleR1_tmS-a-1.pdf} {BCExtendedDoubleR1_tmS-b-1.pdf} {BCExtendedDoubleR1_tmS-c-1.pdf}
+  \plotthree{BCQuadR1a_Tms-a.pdf} {BCQuadR1a_Tms-b.pdf} {BCQuadR1a_Tms-c.pdf}
+  \plotthree{AAQuadR1a_Tms-a.pdf} {AAQuadR1a_Tms-b.pdf} {AAQuadR1a_Tms-c.pdf}
 \caption{
   \hilight{Larger fonts. Do we need both examples?}
 Two typical reconstructed lens. Here we present results for a single quad image lensed by the \mockBC{} (upper) and \mockAC{} (lower) mock galaxies.
@@ -919,7 +917,7 @@ position across the entire ensemble.
 The surface density. The magenta curve represents the dark matter component,
 the yellow curve the stellar component, and the blue curve is the sum of the two.
 The black curve comes from the original mass model used to create the lens.
-The green vertical lines mark the radial positions of the images. The higher
+The vertical lines mark the radial positions of the images. The higher
 resolution feature of \Glass\ has been used on the central pixel allowing the
 steep profile to be captured.
 \textbf{Right:}
@@ -965,7 +963,7 @@ f_\theta = \frac {\sum_{\vec\theta} \left|M(\vec\theta) - \tilde M(\vec\theta)\r
 \includegraphics[width=0.49\textwidth]{BBferror_profile-1sig.pdf}\\
 \includegraphics[width=0.49\textwidth]{ACferror_profile-1sig.pdf}
 \includegraphics[width=0.49\textwidth]{BCferror_profile-1sig.pdf}
-\caption{\hilight{Add names to plots}. Our main results showing the quality of model recovery \eqnrefp{ferror R} for all our test cases. 
+\caption{Our main results showing the quality of model recovery \eqnrefp{ferror R} for all our test cases. 
 Within
 each panel are six groups of results for each of six lens morphologies. Each morphology
 considered the presence of time delays (T,t) and a central image (M,m). The black markers are for tests
@@ -979,7 +977,7 @@ indicate where the stellar mass has been included. Error bars show the $1\sigma$
 \includegraphics[width=0.49\textwidth]{BBferror-1sig.pdf}\\
 \includegraphics[width=0.49\textwidth]{ACferror-1sig.pdf}
 \includegraphics[width=0.49\textwidth]{BCferror-1sig.pdf}
-\caption{\hilight{Add names to plots.} Similar to \figref{main results}, we show here the fractional error
+\caption{Similar to \figref{main results}, we show here the fractional error
 for the pixel-wise recovery \eqnrefp{ferror theta} of all models. The colors and labels are the same
 as before. Error bars show the $1\sigma$ interval of the model ensemble.}
 \label{main results pixel-wise}
