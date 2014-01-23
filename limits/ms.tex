@@ -82,7 +82,28 @@ $^3$Institute of Physics, University of Zurich, 190 Winterthurerstrasse, 8057, Z
 \maketitle
 
 \begin{abstract}
-We use a new non-parametric gravitational modelling tool---\Glass---to determine what quality of data (strong lensing, stellar kinematics, and/or stellar masses) are required to measure the circularly averaged mass profile of a lens and its shape. \Glass\ uses an under-constrained adaptive grid of mass pixels to model the lens, searching through thousands of models to marginalise over model uncertainties. Our key findings are as follows: (i) for pure lens data, multiple sources with wide redshift separation give the strongest constraints as this breaks the well-known mass-sheet or steepness degeneracy; (ii) a single quad with time delays also performs well, giving a good recovery of both the mass profile and its shape; (iii) stellar masses -- for lenses where the stars dominate the central potential -- can also break the steepness degeneracy, giving a recovery almost as good as having time delay data or multiple source redshifts; (iv) stellar kinematics are similarly powerful if the data extend beyond the half light radius of the stars $r \gg r_{1/2}$ (required to integrate out the effect of the unknown velocity anisotropy, $\beta(r)$); and (v) if the lensing data already probe the mass profile over the region $r \sim r_{1/2}$, then stellar kinematic data can be used to probe $\beta(r)$ -- an interesting dynamic quantity in its own right. Where information on the mass distribution from lensing and other probes becomes redundant, this opens up the possibility of using strong lensing to constrain cosmological models. We will study this, and present the first results from \Glass\ applied to real data, in forthcoming papers.
+We use a new non-parametric gravitational modelling tool---\Glass---to
+determine what quality of data (strong lensing, stellar kinematics, and/or
+stellar masses) are required to measure the circularly averaged mass profile of
+a lens and its shape. \Glass\ uses an under-constrained adaptive grid of mass
+pixels to model the lens, searching through thousands of models to marginalise
+over model uncertainties. Our key findings are as follows: (i) for pure lens
+data, multiple sources with wide redshift separation give the strongest
+constraints as this breaks the well-known mass-sheet or steepness degeneracy;
+(ii) a single quad with time delays also performs well, giving a good recovery
+of both the mass profile and its shape; (iii) stellar masses -- for lenses
+where the stars dominate the central potential -- can also break the steepness
+degeneracy, giving a recovery almost as good as having time delay data or
+multiple source redshifts; (iv) stellar kinematics are similarly powerful if
+the data extend beyond the half light radius of the stars $r \gg r_{1/2}$
+(required to integrate out the effect of the unknown velocity anisotropy,
+$\beta(r)$); and (v) if the lensing data already probe the mass profile over
+the region $r \sim r_{1/2}$, then stellar kinematic data can be used to probe
+$\beta(r)$ -- an interesting dynamic quantity in its own right. Where
+information on the mass distribution from lensing and other probes becomes
+redundant, this opens up the possibility of using strong lensing to constrain
+cosmological models. We will study this, and present the first results from
+\Glass\ applied to real data, in forthcoming papers.
 \end{abstract}
 
 %(Linear constraints are applied simultaneously with the lens constraints; non-linear constraints are applied in post-processing, with models accepted or rejected based on their likelihood.) 
@@ -628,7 +649,7 @@ already includes potentials for a point mass or an exponential form, but custom
 potentials are straightforward to add and can be included directly in the input file.
 If the stellar density $\kappa_s$ has been estimated we can use this as a lower bound
 where the stellar potential is a known constant of the form \eqnref{discrete
-potential}, e.g., $\kappa_n = \kappa_\mathrm{DM} + \kappa_s$ for a two-component model.
+potential}, e.g., $\kappa_n = \kappa_{\mathrm{dm},n} + \kappa_{s,n}$ for a two-component model.
 
 %
 %\begin{equation}
@@ -715,9 +736,24 @@ assuming spherical symmetry
 M(r) & = & \frac{\zeta}{d_L} \left[2\pi\int_0^r R\kappa_\infty(R)dR - \right. \nonumber \\
 & & \left. 4\int_r^\infty R\kappa_\infty(R)f\left(\frac{R}{r}\right)dR\right]
 \end{eqnarray} 
-This de-projection algorithm was tested on triaxial figures in \citet{2006ApJ...652L...5S}. They found that for triaxialities typical of our current cosmology, the method works extremely well unless the triaxial figure is projected directly along the line of sight such that we see the galaxy or galaxy cluster `down the barrel'. Such a situation is unlikely, but in any case avoidable since the resultant figure appears spherical in projection. This leads to the seemingly counter-intuitive result that the kinematic constraints -- that rely on the above de-projection -- are most secure for systems that do not appear spherical in projection (unless independent data can confirm the three dimensional shape is indeed very round). 
+This de-projection algorithm was tested on triaxial figures in
+\citet{2006ApJ...652L...5S}. They found that for triaxialities typical of our
+current cosmology, the method works extremely well unless the triaxial figure
+is projected directly along the line of sight such that we see the galaxy or
+galaxy cluster `down the barrel'. Such a situation is unlikely, but in any case
+avoidable since the resultant figure appears spherical in projection. This
+leads to the seemingly counter-intuitive result that the kinematic constraints
+-- that rely on the above de-projection -- are most secure for systems that do
+not appear spherical in projection (unless independent data can confirm the
+three dimensional shape is indeed very round). 
 
-We use the deprojected mass to numerically solve equation \ref{eqn:sphericaljeans} for constant $\beta(r)$, assuming either $\beta(r) = 1$ or $\beta(r) = 0$ at all radii to bracket the two extremum situations. Where the data are good enough, these two may be distinguished giving dynamical information about $\beta(r)$. In more typical situations, however, we seek to simply marginalise over the effect of $\beta(r)$, using the stellar kinematics as a robust measure of $M(r_{1/2})$ (see \S\ref{sec:kinematics}). 
+We use the deprojected mass to numerically solve equation
+\ref{eqn:sphericaljeans} for constant $\beta(r)$, assuming either $\beta(r) =
+1$ or $\beta(r) = 0$ at all radii to bracket the two extremum situations. Where
+the data are good enough, these two may be distinguished giving dynamical
+information about $\beta(r)$. In more typical situations, however, we seek to
+simply marginalise over the effect of $\beta(r)$, using the stellar kinematics
+as a robust measure of $M(r_{1/2})$ (see \S\ref{sec:kinematics}). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -726,7 +762,10 @@ We use the deprojected mass to numerically solve equation \ref{eqn:sphericaljean
 
 \section{The mock data}\label{sec:mockdata}
 
-We now present a study of four mock galaxies with known analytic forms. These are used to verify that \Glass\ is able to correctly recover the mass profile, and -- more importantly -- to determine what type and quality of data best constrain the mass profile and shape of a lens.
+We now present a study of four mock galaxies with known analytic forms. These
+are used to verify that \Glass\ is able to correctly recover the mass profile,
+and -- more importantly -- to determine what type and quality of data best
+constrain the mass profile and shape of a lens.
 
 \subsection{The triaxial N-body mock galaxies}
 
@@ -905,14 +944,14 @@ distribution for each of the test configurations with (red) and without stellar 
 In \figref{main results}, the error is defined over radial bins of mass as
 %
 \begin{equation} \label{ferror R}
-  f_R = \frac {\sum_i \left|M_p(i) - \tilde M_p(i)\right| } {\sum \tilde M_p(i)}
+  f_R = \frac {\sum_i \left|M(i) - \tilde M(i)\right| } {\sum \tilde M(i)}
 \end{equation}
 %
-where $M_p$ is the mass in a radial bin and $\tilde M_p$ is the mass from the mock galaxy.
+where $M$ is the mass in bin $i$ and $\tilde M$ is the mass from the mock galaxy.
 In \figref{main results pixel-wise} the error is defined over all the pixels $\vec\theta$
 %
 \begin{equation} \label{ferror theta}
-f_\theta = \frac {\sum_{\vec\theta} \left|M(\vec\theta) - \tilde M(\vec\theta)\right| } {\sum \tilde M(\vec\theta)}
+f_\theta = \frac {\sum_{\vec\theta} \left|M(\vec\theta) - \tilde M(\vec\theta)\right| } {\sum_{\vec\theta} \tilde M(\vec\theta)}
 \end{equation}
 %
 %\begin{equation}
@@ -946,6 +985,33 @@ as before. Error bars show the $1\sigma$ interval of the model ensemble.}
 \label{main results pixel-wise}
 \end{figure*}
 
+With both $f_R$ and $f_\theta$ we only consider mass up to one radial
+position passed the outermost image, since there is no longer any lensing
+information beyond that point.
+
+The abundance of strong lensing data increases from left to right within each
+plot. As a result, there is a general trend for the reconstruction quality to
+increase (and for $f$ to decrease). By adding more measurable information to
+each configuration the quality can also be affected. When both time delays and
+a central image are present the quality is highest. A double is known to
+provide very little constraint on the mass distribution. This is particularly
+evident in galaxies \mockAC{} and \mockBC{} where the mass profile is steepest
+and the reconstruction of the double is poorest. However, the addition of an
+arc from the extended source is sufficient to correct this. \hilight{Mention the saturation of the two panels.}
+
+We can also directly measure the recoverability of the shape of the mass
+distribution by computing the eigenvalues of the inertia tensor. We define our
+shape by the ratio of these eigenvalues $s=\lambda_1/\lambda_2$, where the
+$\lambda_1$ is always the largest value. Again, we only consider mass up to one
+radial position passed the outermost image and compute our the fractional error
+%
+\begin{equation} \label{ferror shape}
+  f_\mathrm{shape} = \left|s - \tilde s\right|  / \tilde s
+\end{equation}
+%
+where $\tilde s$ is the shape of the mock galaxy. The distribution of $f_\mathrm{shape}$
+for each mock galaxy and each test case is shown in \figref{shape results}.
+
 \begin{figure}[h]
 \plottwo{AAExtendedDoubleR1_TmS-shape-hist-11.pdf}{BCZContrastR1R3_TmS-shape-hist-212.pdf}
 \caption{ \hilight{Larger labels.} The two plots in the left most column show sample distributions of
@@ -969,25 +1035,14 @@ We plot the distribution of fractional error compared with the shape of the mock
 \label{shape results}
 \end{figure*}
 
-The abundance of strong lensing data increases from left to right within each plot. As
-a result, there is a general trend for the reconstruction quality to increase
-(and for $f$ to decrease). By adding more measurable information to each
-configuration the quality can also be affected. When both time delays and a
-central image are present the quality is highest. A double is known to provide
-very little constraint on the mass distribution. This is particularly evident in
-galaxies \mockAC{} and \mockBC{} where the mass profile is steepest and the reconstruction of
-the double is poorest. However, the addition of an arc is sufficient to correct
-this.
-
-\hilight{Write about the shape plot and how we measured shape.}
 
 \begin{figure*}
 \includegraphics[width=0.33\textwidth]{BCQuadR1a_Tms_sigp-1.pdf}
 \includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS_sigp-2.pdf}
 \includegraphics[width=0.33\textwidth]{BC_beta.pdf}
 \caption{ \hilight{Larger fonts.} Estimated projected radially averaged velocity dispersion $\sigma_p$
-\eqnrefp{eqn:sphericaljeans} for two \mockBC{} models ZContrastR1R3
-(\textbf{left}) and QuadR1a (\textbf{middle}) assuming an anisotropy $\beta=0$
+\eqnrefp{eqn:sphericaljeans} for a single quad from the \mockBC{} mock galaxy without stellar mass
+(\textbf{left}) and with stellar mass (\textbf{middle}) assuming an anisotropy $\beta=0$
 (blue, solid) and $\beta=1$ (blue, dashed).  The equivalent
 curves are also shown for the projected mock data after using the same analysis routines
 (purple). The solid black line is the actual cylindrically averaged velocity
@@ -1009,9 +1064,10 @@ dark matter and stellar mass components in the potential \eqnrefp{discrete
 potential}. Since each $\kappa_{s,n}$ is just a constant we do not add new,
 separate equations for each pixel. Although we assume a perfect recovery of the stellar mass here, it is straightforward to add errors as the stellar mass constraint remains linear: $\kappa_n = \kappa_{dm,n} + \epsilon \kappa_{s,n}$, where $\epsilon \sim 1$ is an additional error parameter. 
 
+\hilight{This is a bit overstated.}
 With the stellar mass lower bound, the improvement of the reconstruction
-quality shown in \figref{main results} is quite dramatic for the
-steepest mock galaxies (AC and BC). This is because these models are dominated
+quality shown in \figref{main results} is quite dramatic for the doubles in the 
+steepest mock galaxies (\mockAC{} and \mockBC). This is because these models are dominated
 by stars in the inner region. By contrast, the other two galaxies -- where the stars contribute negligibly to the potential -- are unaffected.
 
 \subsection{Stellar kinematics}\label{sec:results_stellar_kinematics}
@@ -1021,13 +1077,12 @@ on the model ensemble which can be used to apply non-linear constraints. As an
 example, we consider here constraints from stellar kinematics. The models in
 the \Glass\ ensemble are processed as described in \S\ref{sec:glasskinematics}.
 To illustrate the power of stellar kinematic constraints, in
-\figref{sigma-beta}, we plot the projected velocity dispersion calculated for
-one model model (extracted from the full ensemble) of the BC Quad with time
-delays and stellar mass (left), and the mean projected velocity dispersion
-\eqnrefp{eqn:virialaverage} as a function of the upper limit of the averaging
-integral (the aperture size), $a_p$ (right). In both cases, we calculate curves
+\figref{fig:sigp}, we plot the projected velocity dispersion calculated for
+one model model (extracted from the full ensemble) of the \mockBC{} Quad with time
+delays and stellar mass (left), and the same but without stellar mass (right).
+In both cases, we calculate curves
 for two extrema velocity anisotropies: $\beta=0$ (green) and $\beta=1$ (red).
-Over-plotted is the correct answer for the BC model (black). The stellar half
+Over-plotted is the correct answer for the \mockBC{} model (black). The stellar half
 mass radius (yellow) Einstein radius (black) are marked by vertical lines. For
 this configuration, these two radii are well-separated.
 
@@ -1046,7 +1101,7 @@ can be seen in the left panel of \figref{sigma-beta}. Here we see that for a
 well-constrained mass model, the $\beta = 1$ curve lies significantly off from
 the true answer that has $\beta(r) \sim 0$. 
 
-\hilight{This paragraph should go.}
+\hilight{This paragraph should be removed.}
 We now consider formally accepting/rejecting models from the full ensemble. We
 consider two regimes of interest: a model with a double where the mass profile
 is poorly constrained \hilight{(XXX)}, and a model where the mass profile is very well
@@ -1058,14 +1113,13 @@ presented for example in \citealt{2002MNRAS.337L...6T}). The results are shown
 in \figref{main results}, blue data points. In the latter case, we ask whether
 the data favour $\beta = 0$ or $\beta = 1$ by obtaining a $\chi^2$ goodness of
 fit measure between the true and modelled $\sigma_p(R)$. We accept/reject
-models from the ensemble above. The results for $\beta$ are shown in Figure
-ZZZ. 
+models from the ensemble above. The results for $\beta$ are shown in the right panel of
+\figref{fig:sigp}. 
 
 The results for stellar kinematics match our expectations from
 \S\ref{sec:kinematics}. Where the lens data already constrain the mass
 distribution at $r \sim r_{1/2}$, stellar kinematics provide valuable
-information about the velocity anisotropy of the stars, $\beta$ (see Figure
-ZZZ). Where the lens data poorly constrain the mass distribution at $r_{1/2}$,
+information about the velocity anisotropy of the stars, $\beta$ (see \figref{fig:sigp}). Where the lens data poorly constrain the mass distribution at $r_{1/2}$,
 we may `integrate out' the effect of unknown $\beta$ to obtain a robust measure
 of $M(r_{1/2})$ from the stellar kinematics. This latter is robust to both
 uncertainties in $\beta(r)$ and to our assumption of spherical symmetry in the
@@ -1117,7 +1171,20 @@ publication.
 
 \section{Conclusions}\label{sec:conclusions}
 
-Various action items.
+We have introduced a new gravitational len modelling tool---\Glass---and used
+it to test the recovery of the mass profile and shape of mock strong lensing
+galaxies. We have also shown that with the addition of stellar mass
+constraints, one can better constrain the inner profile of galaxies,
+particularly in the case of doubles. Furthermore, by we have demonstrated our
+sensitivity to the estimates of the velocity dispersion. Improved measurements
+of the dispersion and, in particular, the velocity anisotropy could be used to
+greatly enhance our lens models.
+
+\section{Acknowledgments}\label{sec:Acknowledgements}
+
+The authors would like to thank Sarah Bryan and Walter Dehnen for creating the
+particle distributions for the mock galaxies. This work has been partially
+funded by \hilight{if we want..}
 
 \subsection{Goodness of recovery}
 
