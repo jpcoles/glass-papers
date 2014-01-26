@@ -94,13 +94,9 @@ constraints as this breaks the well-known mass-sheet or steepness degeneracy;
 of both the mass profile and its shape; (iii) stellar masses -- for lenses
 where the stars dominate the central potential -- can also break the steepness
 degeneracy, giving a recovery almost as good as having time delay data or
-multiple source redshifts; (iv) stellar kinematics are similarly powerful if
-the data extend beyond the half light radius of the stars $r \gg r_{1/2}$
-(required to integrate out the effect of the unknown velocity anisotropy,
-$\beta(r)$); and (v) if the lensing data already probe the mass profile over
-the region $r \sim r_{1/2}$, then stellar kinematic data can be used to probe
-$\beta(r)$ -- an interesting dynamic quantity in its own right. Where
-information on the mass distribution from lensing and other probes becomes
+multiple source redshifts; (iv) stellar kinematics provide a robust measure of the mass at the half light radius of the stars $r \gg r_{1/2}$ that can also break the steepness degeneracy if $r_{1/2} \neq r_E$ -- the Einstein radius; and (v) if $r_E \sim r_{1/2}$, then stellar kinematic data can be used to probe the stellar velocity anisotropy 
+$\beta(r)$ -- an interesting quantity in its own right. Where
+information on the mass distribution from lensing and/or other probes becomes
 redundant, this opens up the possibility of using strong lensing to constrain
 cosmological models. We will study this, and present the first results from
 \Glass\ applied to real data, in forthcoming papers.
@@ -111,34 +107,30 @@ cosmological models. We will study this, and present the first results from
 
 \section{Introduction}\label{sec:intro} %-----------------------------------------------------
 
-Strong gravitational lenses are rare.  The reason is that the line of
-sight to a light source in the universe rarely goes through a region
-such that the projected density in its sky neighbourhood exceeds the
-critical density to produce multiple images.  To date, some $\sim400$
-strong lenses are known,\footnote{See {\tt http://www.masterlens.org}
-  for a catalogue.}  but this number is expected to increase to
-several thousand over the next ten years.  The optimism derives from
-new and upcoming surveys, both
+Strong gravitational lenses are rare. Since the discovery of the first lens Q0957+561 \citep{1979Natur.279..381W}, just $\sim400$ have been discovered to date\footnote{See e.g. {\tt http://www.masterlens.org} for a catalogue.}. However, this number is expected to increase to
+several thousand over the next ten years as new surveys, both
 ground-based\footnote{http://pan-starrs.ifa.hawaii.edu}$^{\rm,}$\footnote{http://www.darkenergysurvey.org}
-and spacecraft,\footnote{http://www.euclid-ec.org} together with a
+and space-based\footnote{http://www.euclid-ec.org} -- together with a
 community of citizen-science volunteers examining the image data for
-candidates.\footnote{http://spacewarps.org}
+candidates\footnote{{\tt http://spacewarps.org}} -- come online. 
 
-Since lensing depends only on gravity, strong lenses are a rather
-unique window on dark matter, and indirectly on the cosmological model
-as well, and hence the thousands of to-be-discovered lenses are
-eagerly awaited \citep{2010CQGra..27w3001B,2012arXiv1206.1225A}.
-Extracting results from lensing, however, will require modelling, and
-it is towards that goal that the present work is directed.
+% since distant light source in the universe rarely goes through a region such that the projected density in its sky neighbourhood exceeds the critical density to produce multiple images.
 
-To see why lens modelling is of crucial importance, let us recall the
+Since lensing depends only on gravity, strong lenses offer a
+unique window onto dark matter and cosmology \citep{2010CQGra..27w3001B,2012arXiv1206.1225A}. However, 
+extracting dark matter properties or cosmological constraints from these lensing data will require sophisticated modelling. In particular, with an unprecedented data set imminent, it is prudent to look again at systematic errors in the lens models to determine what quality of data (in particular complementary data from stellar/gas kinematics, lens time delays and/or stellar mass constraints) are required to address problems of interest. It is towards that goal that this present work is directed.
+
+To see why lens modelling details are of crucial importance, let us recall the
 essential quantities that appear in lensing.  First we have the
-distances: let $D_L$, $D_S$, $D_{LS}$ be the angular-diameter
-distances to the lens, source, and from lens to source; they are all
-strictly $\propto c/H_0$.  Typically
+distances. Let $D_L$, $D_S$, $D_{LS}$ be the angular-diameter
+distances to the lens, source, and from lens to source; these are all proportional to $c/H_0$ (where $c$ is the speed of light in vacuo, and $H_0$ the Hubble constant), with additional terms that depend on the particular choice of cosmology \citep[e.g.][]{1999coph.book.....P}. Typically:
 \begin{equation}
 D_L \approx z \frac c{H_0}\ \hbox{and}\ \frac{D_S}{D_{LS}} \sim 1.
 \end{equation}
+where the second relation follows from the fact that the light deflection angle is maximised when the lens is equidistant between the observer and the source \citep[e.g.][]{1992grle.book.....S}.
+
+GOT TO HERE. 
+
 For multiple images the sky-projected density must exceed the critical
 density of $D_S/D_{LS}$ times
 \begin{equation}
