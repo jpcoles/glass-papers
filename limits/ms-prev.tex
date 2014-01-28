@@ -79,7 +79,7 @@ and Prasenjit Saha$^3$%
 \\
 $^1$Exascale Research Computing Lab, Universit\'e de Versailles Saint-Quentin-en-Yvelines,\\$\quad$55 Avenue des Etats Unis, 78000, Versailles, France\\
 $^2$Department of Physics, University of Surrey, Guildford, Surrey, GU2 7XH, United Kingdom \\
-$^3$Physik-Institut, University of Zurich, 190 Winterthurerstrasse, 8057, Zurich, Switzerland
+$^3$Institute of Physics, University of Zurich, 190 Winterthurerstrasse, 8057, Zurich, Switzerland
 }
 
 \begin{document}
@@ -119,18 +119,17 @@ Since lensing depends only on gravity, strong lenses offer a
 unique window onto dark matter and cosmology \citep{2010CQGra..27w3001B,2012arXiv1206.1225A}. However, 
 extracting dark matter properties or cosmological constraints from these lensing data will require sophisticated modelling. In particular, with an unprecedented data set imminent, it is prudent to look again at systematic errors in the lens models to determine what quality of data (in particular complementary data from stellar/gas kinematics, lens time delays and/or stellar mass constraints) are required to address problems of interest. It is towards that goal that this present work is directed.
 
-To see why lens modelling details are of crucial importance, let us
-recall the essential quantities that appear in lensing.\footnote{These
-  quantities are defined more precisely in \S\ref{sec:lensing_basic}.}
-First we have the distances. Let $D_L$, $D_S$, $D_{LS}$ be the
-angular-diameter distances to the lens, source, and from lens to
-source; these are all proportional to $c/H_0$ but have factors
-that depend on the particular choice of cosmology.  Typically:
+To see why lens modelling details are of crucial importance, let us recall the
+essential quantities that appear in lensing.  First we have the
+distances. Let $D_L$, $D_S$, $D_{LS}$ be the angular-diameter
+distances to the lens, source, and from lens to source; these are all proportional to $c/H_0$ (where $c$ is the speed of light in vacuo, and $H_0$ the Hubble constant), with additional terms that depend on the particular choice of cosmology \citep[e.g.][]{1999coph.book.....P}. Typically:
 \begin{equation}
 D_L \approx z \frac c{H_0}\ \hbox{and}\ \frac{D_S}{D_{LS}} \sim 1.
 \end{equation}
+
 For multiple images, the sky-projected density must exceed the critical
-density
+density \citep[e.g.][]{1992grle.book.....S}:
+
 \begin{equation}
 \Sigma_{\rm crit} = \frac{D_S}{D_{LS}} \Sigma_L = \frac{D_S}{D_{LS}} \frac{c^2}{4\pi G D_L} \sim \frac{1\rm\,kg\,m^{-2}}{z_L}
 \end{equation}
@@ -220,19 +219,16 @@ work:
   \citep{2007ApJ...667..645R,2007MNRAS.380.1729L,2009A&A...500..681M,2009MNRAS.393.1114B,2010ApJ...723.1678C}.
 \end{enumerate}
 
-There are three further key modelling ideas in the literature that we
-will not touch upon in this present work: to use X-ray intensity and
-temperature profiles as a mass constraint
-\citep[e.g.][]{2013ApJ...765...25N}; and to model multiple lenses
-simultaneously, with one or more cosmological parameters variable but
-shared between the lenses. This latter strategy has been used to
-constrain $H_0$ from time delay lenses
-\citep{2006ApJ...652L...5S,2008ApJ...679...17C,2010ApJ...712.1378P}
-and recently the $\Omega$ cosmological parameters as well
-\citep{2014MNRAS.437..600S}.  Third, it is in principle possible to
-estimate the $\Omega$ parameters even from a single lens, if there are
-lensed sources at multiple redshifts \citep{2014MNRAS.437.2461L} or by
-using a strong prior \citep{2010Sci...329..924J,2013arXiv1306.4732S}.
+There are two further key modelling ideas in the literature that we will not touch upon in this present work: to use
+X-ray intensity and temperature profiles as a mass constraint
+\citep[e.g.][]{2013ApJ...765...25N}; and to model
+multiple lenses simultaneously, with one or more cosmological
+parameters variable but shared between the lenses. This latter strategy has
+been used to constrain $H_0$ from time delay lenses 
+\citep{2006ApJ...652L...5S,2008ApJ...679...17C,2010ApJ...712.1378P}.
+(In principle, cosmological parameters can be constrained even from a
+single lens if the data are good enough. Some recent models have attempted this starting from a prior
+based on the Cosmic Microwave Background (CMB) radiation \citep{2010Sci...329..924J,2013arXiv1306.4732S}.)
 
 In this paper, we use a new program -- \Glass\ (Gravitational Lensing AnalysiS Software) -- to determine what
 combination of lensing, stellar mass, and stellar kinematic
@@ -251,9 +247,7 @@ stellar dynamics we will need. In \secref{sec:mockdata}, we describe our mock da
 
 \subsection{Lensing essentials}\label{sec:lensing_basic}
 
-In the following summary, we follow \cite{1986ApJ...310..568B} with
-some differences in notation, in particular putting back the
-speed of light $c$ and the gravitational constant $G$.
+We follow \cite{1986ApJ...310..568B} with minor differences in notation.
 
 The lens equation:
 %
@@ -270,10 +264,9 @@ The lens equation:
 maps an observed image position $\vec\theta$ to a source position
 $\vec\beta$.  The lens can be thought of as a projected surface
 density $\Sigma$ which diverts the path of a photon instantaneously
-through the bending angle $\vec\alpha$.  The $D$ factors, as in the
-previous section, are angular diameter distances, which depend on the
-cosmological density-parameters $\Omega$, the redshifts $z_L,z_S$ of
-the lens and the source, and the Hubble parameter $H_0$, thus
+through the bending angle $\vec\alpha$.  The $D$ factors, as in the previous section, are angular
+diameter distances, which depend on the particular choice of cosmological
+parameters $\Omega$:
 \begin{equation}
 D_{LS} = \frac c{H_0} \frac{1+z_S}{1+z_L} \int_{z_L}^{z_S}
                       \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
@@ -423,22 +416,20 @@ We describe our numerical solution of \eqnref{eqn:sphericaljeans} in
 
 \subsection{A new lens modelling framework: \Glass}
 
-\Glass\ is the Gravitational Lensing AnalysiS Software. It extends and
-develops some of the concepts from the free form modelling tool
-\PixeLens\ \citep{Saha2004,2008ApJ...679...17C}, but with all new
-code.  The most compute intensive portion was written in C but Python
-was chosen because of its flexibility as a language and for its large
-scientific library support. The flexibility allows \Glass\ to have
-quite sophisticated behavior while at the same time simplifying the
-user experience and reducing the overall development time. One of the
-striking features is that the input file to \Glass\ is itself a Python
-program.  Understanding Python is not necessary for the most basic
-use, but this allows a user to build complex analysis of a model
-directly into the input file. \Glass\ may also be used as an external
-library to other Python programs.  The software is freely available
-for download or from the author.%
+\Glass\ is the Gravitational Lensing AnalysiS Software. It is an evolution of the concepts employed by the free form modelling tool
+\PixeLens\ but completely rewritten in Python and C. 
+The most compute intensive
+portion was written in C but Python was chosen because of its flexibility as a 
+language and for its large scientific library support. The flexibility allows 
+\Glass\ to have quite sophisticated behavior while at the same time simplifying the 
+user experience and reducing the overall development time. One of the striking
+features is that the input file to \Glass\ is itself a Python program.
+Understanding Python is not necessary for the most basic use, but this allows
+a user to build complex analysis of a model directly into the input file. \Glass\
+may also be used as an external library to other Python programs.  The software
+is freely available for download or from the author%
 %
-\footnote{http://www.jpcoles.com/glass}
+\footnote{http://www.jpcoles.com.}.
 
 The key scientific and technical improvements are:
 %
@@ -501,17 +492,16 @@ mass profile.
   \item Point or extended mass objects can be placed in the field.
 \end{enumerate}
 %
-A shear term can be added to the potential, as shown later in
-\eqnref{shear}, to account for mass external to the modelled
-region. This is useful to capture the gross effects of a distant
-neighbour. \Glass\ also allows further analytic potential components
-to be included. This can be used to model substructure or multiple
-neighbours close to the main lens. The substructure may have only a
-small effect if the lens is a single galaxy, but if the lens is a
-group then a potential can be added for each of the galaxies. A few
-standard functions are already included in \Glass\ including those for
-a point mass, a power law distribution, or an isothermal (a particular
-case of the power law).
+\PixeLens\ only allows for a shear term to be added to the potential (as shown
+later in \eqnref{shear}) to account for mass external to the modelled region. This
+is useful to capture the gross effects of a distant neighbour. \Glass\ also
+has a shear term but additionally allows for analytic potentials to
+be included. This can be used to model substructure or multiple neighbours close
+to the main lens. The substructure may have only a small effect if the lens is
+a single galaxy, but if the lens is a group then a potential can be added for
+each of the galaxies. A few standard functions are already included in \Glass\
+including those for a point mass, a power law distribution, or an isothermal (a
+particular case of the power law).
 %
 \begin{enumerate}
   \setcounter{enumi}{5}
@@ -533,14 +523,15 @@ $N$-body simulation file. To load the simulation data, \Glass\ relies on the
 \textsc{Pynbody} library \citep{pynbody} and can thus load any file supported by that package.
 
 \subsection{Discrete models}\label{sec:discrete}
-For this paper, we will restrict ourselves to using a pixelated basis
-set that has been employed in previous work. The algorithm for
-generating models in \Glass\ samples a convex polytope in a high
-dimensional space whose interior points are solutions to the lens
-equation and satisfy other physically motivated linear priors.  We
-therefore formulate all of our equations as equations linear in the
-unknowns. We describe the density distribution $\kappa$ as a set of
-discrete grid cells or pixels $\kappa_i$ and rewrite the potential
+For this paper, we will restrict ourselves to using the pixelated basis set that
+has been employed in previous work and is implemented in \PixeLens. Here we
+will briefly review the main ideas. The algorithm for generating models in
+\Glass\ samples a convex polytope in a high dimensional space whose interior
+points are solutions to the lens equation and satisfy other physically
+motivated linear priors (the sampling algorithm in \Glass\ is \emph{not} the same as
+employed in \PixeLens).  We therefore formulate all of our equations as
+equations linear in the unknowns. We describe the density distribution $\kappa$
+as a set of discrete grid cells or pixels $\kappa_i$ and rewrite the potential
 \eqnrefp{lensing potential} as
 %
 \begin{equation}
@@ -584,7 +575,7 @@ explained in \cite{2008ApJ...679...17C}, but can be summarised as
 \item The local gradient everywhere must point within $45^{\circ}$ of the center.
 \item Density variations must be smooth.
 \item Image parity is enforced.
-\item The density is inversion symmetric. (Optional)
+\item The density is radially symmetric. (Optional)
 \end{enumerate}
 
 Prior (ii) is necessary to prevent rings from forming where the inner region is
@@ -678,13 +669,15 @@ constrain the mass profile and shape of a lens.
 
 We generate four two-component mock galaxies, where the dark matter and stellar
 profiles are allowed to be both steep and shallow.  
+%The enclosed mass in all cases
+%is fixed at $M(a_\star)= 1.8\e{10}$\,M$_\odot$ at the scale radius $a_\star=2$\,kpc. 
 The enclosed mass of the stars and dark matter are both fixed to be 
 $M_{*,\mathrm{DM}} = 1.8 \times 10^{10}$\,M$_\odot$ at the stellar scale radius 
 $a_* = 2$\,kpc, such that the stars and dark matter contribute equally to the total
 mass at $a_*$. The dark matter scale length is fixed for all models at $a_\mathrm{DM}
 = 20$\,kpc.
 These
-values were chosen to closely resemble the lensing galaxy PG1115+080 \citep{1980Natur.285..641W}. We place the galaxy at
+values were chosen to closely resemble the lensing galaxy B1115 \citep{1980Natur.285..641W}. We place the galaxy at
 a redshift of $z_L = 0.31$ for lensing.  Throughout, we assume a cosmology
 where $H_0^{-1}=13.7$ Gyr, $\Omega_M=0.28$, and $\Omega_\Lambda=0.72$. The
 critical density is $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$.
