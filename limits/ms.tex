@@ -1187,7 +1187,7 @@ In this appendix, we explore the effect of the radial symmetry prior. \figref{fi
 
 \section{Pixel resolution convergence test}\label{pix_convergence_test}
 
-In this Appendix, we present a convergence test of our results with the grid resolution -- pixrad. As default, this is set to 8 pixels from the centre of the mass map to the edge. As can be seen from \figref{fig:pix_convergence_test}, our results are typically well-converged for pixrad$\,\,> 5$. The results for pixrad$\,\,= 5$ become systematically biased away from the central regions (where we have the higher resolution adaptive mesh), because our regularisation prior combined with a low pixrad biases us towards shallow models. This effect diminishes with increasing resolution and is already negligible by pixrad$\,\,= 7$.
+In this Appendix, we present a convergence test of our results with the grid resolution -- pixrad. As default, this is set to 8 pixels from the centre of the mass map to the edge. As can be seen from \figref{fig:pix_convergence_test}, our results are typically well-converged for pixrad$\,\,> 5$. The results for pixrad$\,\,= 5$ become systematically biased away from the central regions (where we have the higher resolution adaptive mesh), because our regularisation prior combined with a low pixrad biases us towards shallow models. This effect diminishes with increasing resolution and is already negligible by pixrad$\,\,= 7$. Notice that the mass increases in size with decreasing resolution. This is because we always demand that there are four pixels beyond the outermost image. 
 
 \begin{figure*}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr10_TmS-a.pdf}
@@ -1202,7 +1202,7 @@ In this Appendix, we present a convergence test of our results with the grid res
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr5_TmS-a.pdf}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr5_TmS-b.pdf}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr5_TmS-c.pdf} \\
-\caption{Changing pixrad. top to bottom: pixrad=10,7,6,5. We use 8 normally.}
+\caption{The effect of changing the grid resolution, pixrad. From top to bottom, the panels show results for a single quad without time delays, but with stellar mass constraints using pixrad$\,\, = 10,7,6,5$, respectively. We use 8 normally.}
 \label{fig:pix_convergence_test}
 \end{figure*}
 
