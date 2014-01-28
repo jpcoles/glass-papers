@@ -78,8 +78,8 @@ and Prasenjit Saha$^3$%
 %
 \\
 $^1$Exascale Research Computing Lab, Universit\'e de Versailles Saint-Quentin-en-Yvelines,\\$\quad$55 Avenue des Etats Unis, 78000, Versailles, France\\
-$^2$\hilight{Department of Physics, University of Surrey, Guildford, Surrey, GU2 7XH, United Kingdom} \\
-$^3$\hilight{Institute of Physics, University of Zurich, 190 Winterthurerstrasse, 8057, Zurich, Switzerland}
+$^2$Department of Physics, University of Surrey, Guildford, Surrey, GU2 7XH, United Kingdom \\
+$^3$Institute of Physics, University of Zurich, 190 Winterthurerstrasse, 8057, Zurich, Switzerland
 }
 
 \begin{document}
@@ -496,7 +496,7 @@ mass profile.
 later in \eqnref{shear}) to account for mass external to the modelled region. This
 is useful to capture the gross effects of a distant neighbour. \Glass\ also
 has a shear term but additionally allows for analytic potentials to
-be included. This can be used to model substructure or multiple neighbors close
+be included. This can be used to model substructure or multiple neighbours close
 to the main lens. The substructure may have only a small effect if the lens is
 a single galaxy, but if the lens is a group then a potential can be added for
 each of the galaxies. A few standard functions are already included in \Glass\
@@ -568,7 +568,7 @@ closed volume in the solution space. We have not imposed any strong constraints
 on the density even so much as to ensure that it is non-negative everywhere. We
 must therefore provide additional linear constraints so that we only sample
 physical models. The explicit implementation for these priors has been
-explained in \cite{2008ApJ...679...17C}, but can be summarized as
+explained in \cite{2008ApJ...679...17C}, but can be summarised as
 \begin{enumerate}
 \item The density must be non-negative everywhere.
 \item The density profile must have a slope everywhere $\le 0$.
@@ -619,7 +619,7 @@ extremely powerful. We find that our gradient prior in \Glass\ (see
 \citeauthor{2006MNRAS.367.1209L}'s null-space prior, but some models can still
 rarely turn up spurious images. We reject these in a post-processing step,
 where we sweep through the model ensemble applying the ray tracing algorithm
-described in \ref{Raytracing}. \hilight{JR. Typically, this results in a rejection rate of XXX\% IS this working? Can we run it once and add the number here?}. 
+described in \ref{Raytracing}.
 
 \subsection{A post-processing module for stellar kinematics}\label{sec:glasskinematics} 
 Similarly to the null-space constraint (\S\ref{sec:glassextraimages}), stellar
@@ -681,7 +681,6 @@ values were chosen to closely resemble the lensing galaxy B1115 \citep{1980Natur
 a redshift of $z_L = 0.31$ for lensing.  Throughout, we assume a cosmology
 where $H_0^{-1}=13.7$ Gyr, $\Omega_M=0.28$, and $\Omega_\Lambda=0.72$. The
 critical density is $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$.
-
 
 The galaxies were generated as three dimensional particle distributions as in
 \citet{2009MNRAS.395.1079D}. Each component follows the profile:
@@ -777,11 +776,7 @@ the sight line to the bright lensing galaxy; in clusters, however, such images
 have been seen -- e.g. \citealt{2005PASJ...57L...7I}). We assumed for all our tests that the
 lensing mass was radially symmetric (Prior vi). For our mock data, this is
 known to be true; it is most often the case with real galaxies, unless there is
-an obvious observed asymmetry. The central pixel was refined into a further
-$5\times5$ pixels (three extra radial positions) to capture any steep rise in
-the profile.  Two of the four mock galaxies have a steeply rising inner
-profile. \hilight{JR.  CAN WE DO THIS? What happens if we don't assume this symmetry? We ought
-to add an appendix showing this for one example case.}
+an obvious observed asymmetry. (We explore the effect of switching off the symmetry prior in Appendix \ref{no_symm_prior}. For the quads, the difference is small; for the doubles -- as expected -- the results are significantly degraded without this prior.) We use, as default, 8 pixels from the centre to the edge of the mass map; the central pixel was further refined into $5\times5$ pixels to capture any steep rise in the profile (two of the four mock galaxies have a steeply rising inner profile). We demonstrate that our results are robust to changing the grid resolution in Appendix \ref{pix_convergence_test}.
 
 In all cases, we additionally assume no external shear. This amounts to an assumption that any such shear field can be constrained by data (e.g. combining weak lensing constraints, or assuming that the shear field correlates with visible galaxies -- e.g. \citealt{2009A&A...500..681M,2011ApJ...726...84W}).
 
@@ -1173,21 +1168,27 @@ where
 %
 \[\tilde Q_n(x,y) = xy(\ln r^2 - 3) + x^2\arctan(y/x) + y^2\arctan(x/y)\]
 
-\section{No symmetric prior}
+\section{No radial symmetry prior}\label{no_symm_prior}
+
+In this appendix, we explore the effect of the radial symmetry prior. \figref{fig:no_symm_prior} shows results for a single quad (top) and an extended double (bottom); both without time delay data or stellar mass constraints. The results for the quad a similarly good to the case with the radial prior (\figref{reconstruction}); for the double, however, the results are significantly degraded as expected.
+
 \begin{figure*}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-kappa.pdf}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-a.pdf}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-b.pdf}
-\includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-c.pdf} \\
+\includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-c.pdf}\\
 \includegraphics[width=0.24\textwidth]{BCExtendedDoubleR1-nosymm_tms-kappa.pdf}
 \includegraphics[width=0.24\textwidth]{BCExtendedDoubleR1-nosymm_tms-a.pdf}
 \includegraphics[width=0.24\textwidth]{BCExtendedDoubleR1-nosymm_tms-b.pdf}
 \includegraphics[width=0.24\textwidth]{BCExtendedDoubleR1-nosymm_tms-c.pdf}
-\caption{No symmetry prior.}
-\label{}
+\caption{Results for a single quad (top) and an extended double (bottom) without the radial symmetry prior; both without time delay data or stellar mass constraints. Figures and symbols are as in \figref{reconstruction} and \figref{2d mass reconstruction}.}
+\label{fig:no_symm_prior}
 \end{figure*}
 
-\section{Pixel resolution convergence test}
+\section{Pixel resolution convergence test}\label{pix_convergence_test}
+
+In this Appendix, we present a convergence test of our results with the grid resolution -- pixrad. As default, this is set to 8 pixels from the centre of the mass map to the edge. As can be seen from \figref{fig:pix_convergence_test}, our results are typically well-converged for pixrad$\,\,> 5$. The results for pixrad$\,\,= 5$ become systematically biased away from the central regions (where we have the higher resolution adaptive mesh), because our regularisation prior combined with a low pixrad biases us towards shallow models. This effect diminishes with increasing resolution and is already negligible by pixrad$\,\,= 7$.
+
 \begin{figure*}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr10_TmS-a.pdf}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr10_TmS-b.pdf}
@@ -1202,32 +1203,29 @@ where
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr5_TmS-b.pdf}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr5_TmS-c.pdf} \\
 \caption{Changing pixrad. top to bottom: pixrad=10,7,6,5. We use 8 normally.}
-\label{}
+\label{fig:pix_convergence_test}
 \end{figure*}
-
-\section{Pixel resolution convergence test}
-\hilight{JR. Need to add an appendix showing convergence with increasing Pixrad.} 
 
 \bibliographystyle{mn2e}
 \bibliography{ms}
 
 \end{document}
 
-\cite{2007ApJ...667..645R} were the first to test the recovery of
-strong lensing surface density profiles using mock data generated from
-N-body models {\bf JR. Is this true?}. They found that when including
-time delays, circularly averaged surface density distributions can
-sufficiently well-recovered to make interesting comparisons with
-theoretical models Cosmological parameters, however, are more
-sensitive. Since then, several groups have used N-body mock data to
-explore the fidelity of strong lensing reconstructions
-\citep{2007MNRAS.380.1729L}. We expand on these earlier works
-by considering not only the recovery of the circularly averaged
-surface density profile of a lens, but also its shape, higher order
-measures of the mass recovery (a pixel-by-pixel comparison), and the
-utility of wrapping in constraints from stellar mass estimates and/or
-stellar kinematics.
-
+%\cite{2007ApJ...667..645R} were the first to test the recovery of
+%strong lensing surface density profiles using mock data generated from
+%N-body models {\bf JR. Is this true?}. They found that when including
+%time delays, circularly averaged surface density distributions can
+%sufficiently well-recovered to make interesting comparisons with
+%theoretical models Cosmological parameters, however, are more
+%sensitive. Since then, several groups have used N-body mock data to
+%explore the fidelity of strong lensing reconstructions
+%\citep{2007MNRAS.380.1729L}. We expand on these earlier works
+%by considering not only the recovery of the circularly averaged
+%surface density profile of a lens, but also its shape, higher order
+%measures of the mass recovery (a pixel-by-pixel comparison), and the
+%utility of wrapping in constraints from stellar mass estimates and/or
+%stellar kinematics.
+%
 
 
 
