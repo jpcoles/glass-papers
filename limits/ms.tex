@@ -250,15 +250,17 @@ stellar dynamics we will need. In \secref{sec:mockdata}, we describe our mock da
 We follow \cite{1986ApJ...310..568B} with minor differences in notation.
 
 The lens equation:
+%
 \begin{equation}
 \begin{aligned}
-\vec\beta &= \vec\theta - \frac{D_{LS}}{D_S}\vec\alpha(\vec\theta) \\
+    \vec\beta &= \vec\theta - \frac{D_{LS}}{D_S}\vec\alpha(\vec\theta) \\
 \vec\alpha(\vec\theta) &= \frac{4G}{c^2D_L} \int \Sigma(\vec\theta')
                           \frac{(\vec\theta - \vec\theta')}
                           {\ |\vec\theta - \vec\theta'|^2} \, d^2\vec\theta'
 \end{aligned}
 \label{eqn:lens_equation}
 \end{equation}
+%
 maps an observed image position $\vec\theta$ to a source position
 $\vec\beta$.  The lens can be thought of as a projected surface
 density $\Sigma$ which diverts the path of a photon instantaneously
@@ -793,7 +795,12 @@ circles and the inferred source position(s) as a diamond. The centre column show
 the radial density profile. The error bars cover a $1\sigma$ range around the
 median; the grey bands show the full ensemble range. The true density profile from the mock data is also plotted for
 comparison. The vertical lines mark the radial position of the images. The
-right column shows the enclosed mass. From top to bottom, the rows correspond to an extended double for \mockBC; an extended double with stellar mass constraints for \mockBC; a quad with time delay data for \mockBC; and a quad with time delays for \mockAA. \figref{2d mass reconstruction} shows an example 2D reconstruction for \mockBC\ for a quad; we discuss shape recovery further in \S\ref{sec:shape}.
+right column shows the enclosed mass. From top to bottom, the rows correspond
+to an extended double for \mockBC; an extended double with stellar mass
+constraints for \mockBC; a quad with time delay data for \mockBC; and a quad
+with time delays for \mockAA. \figref{2d mass reconstruction} shows an example
+2D reconstruction for \mockBC\ for a quad; we discuss shape recovery further in
+\S\ref{sec:shape}.
 
 As expected, the error bars
 are smallest in the region of the images where the most information about the
@@ -900,23 +907,43 @@ arc from the extended source is sufficient to correct this. Notice that, as in \
 
 \subsection{Shape recovery}\label{sec:shape}
 
-\figref{main results pixel-wise} already gives us important information about how well we can recover the {\it shape} of a lens. The trends are very similar to the radial profile recovery in \figref{main results}, suggesting that if the radial profile is well-recovered then, typically, the shape is too. A notable exception is for the \mockBC\ models where adding stellar mass constrains aids the shape recovery, but little-improves the radial mass profile. A visual example of the shape recovery is given in \figref{2d mass reconstruction}.
+\figref{main results pixel-wise} already gives us important information about
+how well we can recover the {\it shape} of a lens. The trends are very similar
+to the radial profile recovery in \figref{main results}, suggesting that if the
+radial profile is well-recovered then, typically, the shape is too. A notable
+exception is for the \mockBC\ models where adding stellar mass constrains aids
+the shape recovery, but little-improves the radial mass profile. A visual
+example of the shape recovery is given in \figref{2d mass reconstruction}.
 
 We can also more directly probe the recovery of the shape of the mass
-distribution by defining a global measure of lens shape. We define this to be the ratio of the eigenvalues of the 2D inertia tensor: 
-
+distribution by defining a global measure of lens shape
+%
 \begin{equation} 
-I_{ij} = \sum_\theta M(\vec\theta) \theta_i\theta_j \,\,\, ; \,\,\, s \equiv \lambda_1/\lambda_2
+    s \equiv \lambda_1/\lambda_2
+\end{equation} 
+%
+where $\lambda_1$ and $\lambda_2$ are the eigenvalues of the 2D inertia tensor
+%
+\begin{equation} 
+    I_{ij} = (-1)^{1-\delta_{ij}}\sum_\theta M(\vec\theta) \theta_i\theta_j 
 \label{eqn:inertia}
 \end{equation}
-where $\lambda_1$ is always taken to be the largest value. As with $f_R$ and $f_\theta$, we only consider mass up to one radial position passed the outermost image and compute the fractional error as:
+%
+where $\delta_{ij}$ is the Kronecker delta. We always take $\lambda_1$ to be the largest value. As with $f_R$ and $f_\theta$, we only consider mass up to one radial position passed the outermost image and compute the fractional error as:
 %
 \begin{equation} \label{ferror shape}
   f_\mathrm{shape} = \left|s - \tilde s\right|  / \tilde s
 \end{equation}
 %
-where $\tilde s$ is the shape of the mock galaxy. The distribution of $f_\mathrm{shape}$
-for each mock galaxy and each test case is shown in \figref{shape results}. Interestingly, for this global shape parameter recovery it appears more important to have time delay data and/or a central image (T/M) than to have a quad or multiple sources with wide redshift separation. In all cases, the stellar mass little-aids the recovery, reflecting the fact that $s$ is heavily weighted towards the shape at the {\it edge} of the mass map, rather than at the centre where the stars may dominate the potential (see equation \ref{eqn:inertia}).
+where $\tilde s$ is the shape of the mock galaxy. The distribution of
+$f_\mathrm{shape}$ for each mock galaxy and each test case is shown in
+\figref{shape results}.  Interestingly, for this global shape parameter
+recovery it appears more important to have time delay data and/or a central
+image (T,M) than to have a quad or multiple sources with wide redshift
+separation. In all cases, the stellar mass little-aids the recovery, reflecting
+the fact that $s$ is heavily weighted towards the shape at the {\it edge} of
+the mass map, rather than at the centre where the stars may dominate the
+potential (see equation \ref{eqn:inertia}).
 
 \begin{figure*}
 \includegraphics[width=0.49\textwidth]{AAferror_shape-1sig.pdf}
