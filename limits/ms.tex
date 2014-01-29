@@ -1019,14 +1019,16 @@ distribution by defining a global measure of lens shape
 %
 where $\lambda_1$ and $\lambda_2$ are the eigenvalues of the 2D inertia tensor
 %
-\begin{equation} 
-    I_{ij} = (-1)^{1-\delta_{ij}}\sum_\theta M(\vec\theta) \theta_i\theta_j 
-\label{eqn:inertia}
-\end{equation}
+\begin{gather}
+    I_{xx} = \sum_{\vec\theta} M(\vec\theta) \theta^2_y \quad ; \quad
+    I_{yy} = \sum_{\vec\theta} M(\vec\theta) \theta^2_x \\
+    I_{xy} = I_{yx} = - \sum_{\vec\theta} M(\vec\theta) \theta_x \theta_y \nonumber
+    \label{eqn:inertia}
+\end{gather}
 %
-and $\delta_{ij}$ is the Kronecker delta. We always take $\lambda_1$ to be the
-largest value. As with $f_R$ and $f_\theta$, we only consider mass up to one
-radial position passed the outermost image and compute the fractional error as:
+We always take $\lambda_1$ to be the largest value. As with $f_R$ and
+$f_\theta$, we only consider mass up to one radial position passed the
+outermost image and compute the fractional error as:
 %
 \begin{equation} \label{ferror shape}
   f_\mathrm{shape} = \left|s - \tilde s\right|  / \tilde s
