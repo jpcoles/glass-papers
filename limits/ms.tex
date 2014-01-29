@@ -204,32 +204,37 @@ suggestions, has introduced some further new ideas.  Four of these are
 important for the present work:
 %
 \begin{enumerate}
-\item {\bf Free-form modelling:} 
-    In `free-form' or non-parametric modelling, there is no specified
-    parametric form for the mass distribution.  There are still assumptions (or
-    priors) on the mass distribution, such as smoothness or being centrally
-    concentrated
-    \citep{1997MNRAS.292..148S,2005MNRAS.360..477D,2009A&A...500..681M,2010ApJ...723.1678C}
-    but these are much less restrictive than parametric forms
-    (\cite{2006MNRAS.367.1209L} implemented a particularly elegant prior, which
-    is that the mass distribution must be non-negative and no extra images are
-    produced). To be concrete, we define from here on: 
+\item {\bf Free-form modelling:} In `free-form' or non-parametric
+  modelling, there is no specified parametric form for the mass
+  distribution.  There are still assumptions (or priors) on the mass
+  distribution, such as smoothness or being centrally concentrated
+  \citep{1997MNRAS.292..148S,2005MNRAS.360..477D,2009A&A...500..681M,2010ApJ...723.1678C}
+  but these are much less restrictive than parametric forms.  A
+  particularly elegant prior is implemented by
+  \cite{2006MNRAS.367.1209L}, requiring that the mass distribution to
+  be non-negative and no extra images allowed. To be concrete, we
+  define from here on:
   
   \begin{quote}
   {\it Non-parametric, or `free-form' $\equiv$ more parameters than data constraints (i.e. deliberately under-constrained)}
   \end{quote}
   
   Being under-constrained, it is then {\it necessary} to explore model
-  degeneracies rather than find a single `best-fit' solution. Free-form models
-  are more commonly used with cluster lenses
+  degeneracies rather than find a single `best-fit'
+  solution. Free-form models are more commonly used with cluster
+  lenses
   \citep{2006ApJ...652L...5S,2009ApJ...690..154S,2009A&A...500..681M,2013arXiv1304.2393S},
-  but can be used with galaxy lenses as well, where their less restrictive
-  assumptions can be important.  For example, in time-delay galaxy lenses,
-  parametric models have historically led to tension with independent measures
-  of the Hubble parameter $H_0$
-  \citep[e.g.][]{2002astro.ph..4043K,2002ApJ...578...25K}; these are resolved
-  once the less restrictive assumptions of free-form models are permitted
-  \citep{2007ApJ...667..645R}.  \item Model ensembles, exploring a diverse
+  but can be used with galaxy lenses as well, where their less
+  restrictive assumptions can be important.  For example, in
+  time-delay galaxy lenses, parametric models have historically led to
+  tension with independent measures of the Hubble parameter $H_0$
+  \citep[e.g.][]{2002astro.ph..4043K,2002ApJ...578...25K}; these are
+  resolved once the less restrictive assumptions of free-form models
+  are permitted \citep{2007ApJ...667..645R}.  Hybrid methods, using a
+  mass grid on top a parametric model, have also been explored
+  \citep[e.g.,][]{2010MNRAS.408.1969V}.
+
+\item Model ensembles, exploring a diverse
   range of possible mass distributions that nonetheless all fit the data,
   are a way of combating the non-uniqueness of models.  Such ensembles are
   possible in parametric models \citep{1999AJ....118...14B} but are more
@@ -237,10 +242,9 @@ important for the present work:
   \citep{2000AJ....119..439W,2009ApJ...690..154S,2012MNRAS.425.3077L}.
 
 \item {\bf Stellar kinematic constraints:} This was first suggested by
-    \citet{2002MNRAS.337L...6T} as a means to break lensing degeneracies and
-    determine cosmological parameters. This works because stellar kinematics
-    can provide an independent estimate of the Einstein radius, via the virial
-    theorem:
+  \citet{2002MNRAS.337L...6T} as a means to break lensing
+  degeneracies. This works because stellar kinematics can provide an
+  independent estimate of the Einstein radius, via the virial theorem:
 %
 \begin{equation}
   \frac{\langle v^2_\mathrm{los}\rangle}{c^2} \approx
@@ -248,10 +252,12 @@ important for the present work:
 \label{eqn:virial}
 \end{equation}
 %
-where $\langle v^2_\mathrm{los}\rangle$ is the projected stellar velocity
-dispersion, and the above relation becomes exact for isothermal lenses.  The
-use of two-dimensional kinematics by \cite{2011MNRAS.415.2215B} is especially
-interesting.
+where $\langle v^2_\mathrm{los}\rangle$ is the projected stellar
+velocity dispersion, and the above relation becomes exact for
+isothermal lenses.  The technique has been applied to many lenses
+\citep{2006ApJ...649..599K,2008ApJ...682..964B}.  Going further, the
+use of two-dimensional kinematics \citep{2011MNRAS.415.2215B} is
+especially interesting.
 
 \item {\bf Stellar mass constraints:} The stellar mass in a lens can be
     inferred from photometry and compared with the total mass
@@ -1019,12 +1025,24 @@ distribution by defining a global measure of lens shape
 %
 where $\lambda_1$ and $\lambda_2$ are the eigenvalues of the 2D inertia tensor
 %
-\begin{gather}
-    I_{xx} = \sum_{\vec\theta} M(\vec\theta) \theta^2_y \quad ; \quad
-    I_{yy} = \sum_{\vec\theta} M(\vec\theta) \theta^2_x \\
-    I_{xy} = I_{yx} = - \sum_{\vec\theta} M(\vec\theta) \theta_x \theta_y \nonumber
+% \begin{gather}
+%    I_{xx} = \sum_{\vec\theta} M(\vec\theta) \theta^2_y \quad ; \quad
+%    I_{yy} = \sum_{\vec\theta} M(\vec\theta) \theta^2_x \\
+%    I_{xy} = I_{yx} = - \sum_{\vec\theta} M(\vec\theta) \theta_x \theta_y \nonumber
+%    \label{eqn:inertia}
+% \end{gather}
+%
+\begin{equation}
+\left(
+\begin{matrix}
+   \sum_{\vec\theta} M(\vec\theta) \theta^2_y 
+    & - \sum_{\vec\theta} M(\vec\theta) \theta_x \theta_y \\
+    - \sum_{\vec\theta} M(\vec\theta) \theta_x \theta_y
+    & \sum_{\vec\theta} M(\vec\theta) \theta^2_x
+\end{matrix}
+\right).
     \label{eqn:inertia}
-\end{gather}
+\end{equation}
 %
 We always take $\lambda_1$ to be the largest value. As with $f_R$ and
 $f_\theta$, we only consider mass up to one radial position passed the
@@ -1370,22 +1388,4 @@ tests.}
 \bibliography{ms}
 
 \end{document}
-
-%\cite{2007ApJ...667..645R} were the first to test the recovery of
-%strong lensing surface density profiles using mock data generated from
-%N-body models {\bf JR. Is this true?}. They found that when including
-%time delays, circularly averaged surface density distributions can
-%sufficiently well-recovered to make interesting comparisons with
-%theoretical models Cosmological parameters, however, are more
-%sensitive. Since then, several groups have used N-body mock data to
-%explore the fidelity of strong lensing reconstructions
-%\citep{2007MNRAS.380.1729L}. We expand on these earlier works
-%by considering not only the recovery of the circularly averaged
-%surface density profile of a lens, but also its shape, higher order
-%measures of the mass recovery (a pixel-by-pixel comparison), and the
-%utility of wrapping in constraints from stellar mass estimates and/or
-%stellar kinematics.
-%
-
-
 
