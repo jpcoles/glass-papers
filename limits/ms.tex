@@ -166,7 +166,7 @@ density in some region:
 \end{equation}
 where $G$ is Newton's gravitational constant. 
 %
-The separation between the lensed images is of order
+The angular separation between the lensed images is of order
 the Einstein radius $\theta_E$, which is related to
 the mass by:
 %
@@ -174,12 +174,12 @@ the mass by:
 \theta_E \sim \frac{R_G}{D_L} \frac{D_{LS}}{D_S}
 \end{equation}
 %
-where $R_G = GM/c^2$ (with $M$ the projected mass enclosed within $\theta_E$) is the gravitational radius. If the source is a
-quasar or otherwise rapidly variable, a time delay $\Delta t$ in the variability
-will be present where:
+where $R_G = GM/c^2$ (with $M$ the projected mass enclosed within $\theta_E$)
+is the gravitational radius. If the source is a quasar or otherwise rapidly
+variable, a time delay $\Delta t$ in the variability will be present where
 %
 \begin{equation}
-\Delta t \sim R_G/c \,.
+\Delta t \sim R_G/c
 \end{equation}
 %
 So in principle, one can not only measure the mass of the lens, one can use the
@@ -709,11 +709,17 @@ $\Sigma(R)$ assuming spherical symmetry
 \citep[e.g.][]{2008gady.book.....B,2008MNRAS.390.1647B}: 
 %
 \begin{eqnarray} 
-    \Mddd(r) & = & 2\pi \int_0^r R \Sigma(R) dR - 4r^2 \int_0^{\pi/2} \Sigma\left(x\right) \left(\frac{1}{\cth[2]} \right. \nonumber \\ 
-    & & \left. - \frac{\sth}{\cth[3]} \arctan\left(\frac{\cth}{\sth}\right) \right) \dth
+    \Mddd(r) & = & M_\mathrm{p}(<r) - 4r^2 \int_0^{\pi/2} \Sigma\left(x\right) \left[\frac{1}{\cth[2]} \right. \nonumber \\ 
+    & & \left. - \frac{\sth}{\cth[3]} \arctan\left(\frac{\cth}{\sth}\right) \right] \dth
 \end{eqnarray}
 %
-where $M(<r)$ is the projected enclosed mass evaluated at 3D radius $r$; and $x = r/\cth$. 
+where 
+%
+\begin{equation}
+    M_\mathrm{p}(<r) = 2\pi \int_0^r R \Sigma(R) dR
+\end{equation}
+%
+is the projected enclosed mass evaluated at 3D radius $r$; and $x = r/\cth$. 
 
 This de-projection algorithm was tested on triaxial figures in
 \citet{2006ApJ...652L...5S}. They found that for triaxialities typical of our
@@ -936,10 +942,11 @@ The cumulative mass. The error bars on all plots are $1\sigma$; the grey bands s
 \begin{figure*}
 \includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-kappa-a.pdf}
 \includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-kappa-b.pdf}
-\caption{ \textbf{Left:} The mock data distribution for \mockBC{} projected onto a coarse grid.
-  \textbf{Right:} The recovered ensemble average $\kappa$ distribution for the single quad. The contours are
-  logarithmic base 10 values, where level 0 corresponds to the critical density. Contours below the critical density
-  are drawn with dashed lines.}
+\caption{ \textbf{Left:} The mock data distribution for \mockBC{} projected
+onto a coarse grid.  \textbf{Right:} The recovered ensemble average $\kappa$
+distribution for the single quad with time delays. The contours are logarithmic
+base 10 values, where level 0 corresponds to the critical density. Contours
+below the critical density are drawn with dashed lines.}
 \label{2d mass reconstruction}
 \end{figure*}
 
@@ -1020,13 +1027,6 @@ distribution by defining a global measure of lens shape:
 %
 where $\lambda_1$ and $\lambda_2$ are the eigenvalues of the 2D inertia tensor:
 %
-% \begin{gather}
-%    I_{xx} = \sum_{\vec\theta} M(\vec\theta) \theta^2_y \quad ; \quad
-%    I_{yy} = \sum_{\vec\theta} M(\vec\theta) \theta^2_x \\
-%    I_{xy} = I_{yx} = - \sum_{\vec\theta} M(\vec\theta) \theta_x \theta_y \nonumber
-%    \label{eqn:inertia}
-% \end{gather}
-%
 \begin{equation}
 \left(
 \begin{matrix}
@@ -1035,7 +1035,7 @@ where $\lambda_1$ and $\lambda_2$ are the eigenvalues of the 2D inertia tensor:
     - \sum_{\vec\theta} M(\vec\theta) \theta_x \theta_y
     & \sum_{\vec\theta} M(\vec\theta) \theta^2_x
 \end{matrix}
-\right).
+\right)
     \label{eqn:inertia}
 \end{equation}
 %
@@ -1181,23 +1181,27 @@ used it to test the recovery of the mass profile and shape of mock strong
 lensing galaxies. Our key findings are as follows: 
 
 \begin{enumerate}
-\item For pure lens data, multiple sources with wide redshift separation give the strongest
-constraints as this breaks the well-known mass-sheet or steepness degeneracy;
+\item For pure lens data, multiple sources with wide redshift separation give
+    the strongest constraints as this breaks the well-known mass-sheet or
+    steepness degeneracy;
 
 \item A single quad with time delays also performs well, giving a good recovery
-of both the mass profile and its shape; 
+    of both the mass profile and its shape; 
 
-\item Stellar masses -- for lenses
-where the stars dominate the central potential -- can also break the steepness
-degeneracy, giving a recovery for doubles almost as good as having a quad with time delay data, or
-multiple source redshifts; 
+\item Stellar masses -- for lenses where the stars dominate the central
+    potential -- can also break the steepness degeneracy, giving a recovery for
+    doubles almost as good as having a quad with time delay data, or multiple
+    source redshifts; 
 
 \item If the radial density profile is well-recovered, so too is the shape of a lens; 
 
-\item Stellar kinematics provide a robust measure of the mass at the half light radius of the stars $M(r_{1/2})$ that can also break the steepness degeneracy if $r_{1/2} \neq r_E$ -- the Einstein radius; and
+\item Stellar kinematics provide a robust measure of the mass at the half light
+    radius of the stars $M(r_{1/2})$ that can also break the steepness
+    degeneracy if $r_{1/2} \neq r_E$ -- the Einstein radius; and
 
-\item If $r_E \sim r_{1/2}$, then stellar kinematic data can be used to probe the stellar velocity anisotropy 
-$\beta$ -- an interesting quantity in its own right. 
+\item If $r_E \sim r_{1/2}$, then stellar kinematic data can be used to probe
+    the stellar velocity anisotropy $\beta$ -- an interesting quantity in its
+    own right. 
 
 \end{enumerate}
 
