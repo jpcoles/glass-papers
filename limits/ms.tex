@@ -117,7 +117,7 @@ where the stars dominate the central potential -- can also break the steepness
 degeneracy, giving a recovery almost as good as having time delay data or
 multiple source redshifts; (iv) stellar kinematics provide a robust measure of
 the mass at the half light radius of the stars $r_{1/2}$ that can also break
-the steepness degeneracy if $r_{1/2} \neq r_E$ -- the Einstein radius; and (v)
+the steepness degeneracy if the Einstein radius $r_E \neq r_{1/2}$; and (v)
 if $r_E \sim r_{1/2}$, then stellar kinematic data can be used to probe the
 stellar velocity anisotropy $\beta$ -- an interesting quantity in its own
 right. Where information on the mass distribution from lensing and/or other
@@ -163,7 +163,7 @@ For multiple images, the sky-projected density must exceed the critical
 density
 %
 \begin{equation}
-\Sigma_\mathrm{crit} = \frac{D_S}{D_{LS}} \Sigma_L = \frac{D_S}{D_{LS}} \frac{c^2}{4\pi G D_L} \sim \frac{1\rm\,kg\,m^{-2}}{z_L}
+\Sigma_\mathrm{crit} = \frac{c^2}{4\pi G D_L} \sim \frac{1\rm\,kg\,m^{-2}}{z_L}
 \end{equation}
 %
 in some region.  The separation between the lensed images is of order
@@ -252,7 +252,7 @@ important for the present work:
 \label{eqn:virial}
 \end{equation}
 %
-where $\langle v^2_\mathrm{los}\rangle$ is the projected stellar
+where $\langle v^2_\mathrm{los}\rangle$ is the line of sight stellar
 velocity dispersion, and the above relation becomes exact for
 isothermal lenses.  The technique has been applied to many lenses
 \citep{2006ApJ...649..599K,2008ApJ...682..964B}.  Going further, the
@@ -361,7 +361,8 @@ We can simplify the above equation by introducing a dimensionless time $\tau$
 and density $\kappa$: 
 %
 \begin{equation}
-\tau(\vec\theta) = \frac{ct(\vec\theta)}{(1+z_L)D_{L}} \quad ; \quad \kappa(\vec\theta) \equiv \frac{\Sigma(\vec\theta)}{\Sigma_L}
+\tau(\vec\theta) = \frac{ct(\vec\theta)}{(1+z_L)D_{L}} \quad ; \quad 
+\kappa(\vec\theta) \equiv \frac{\Sigma(\vec\theta)}{\Sigma_\mathrm{crit}}
 \end{equation}
 %
 and hence rewrite \eqnref{full arrival time} as:
