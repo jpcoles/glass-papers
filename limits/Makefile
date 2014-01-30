@@ -1,6 +1,12 @@
+# Build zip file for submission to MNRAS
+#
+# .pdf dependancies were generated with
+#	pdflatexmk -deps ms | grep "\\.pdf"
+#
+
 DEPS=\
-    ms.pdf\
     ms.tex\
+    ms.bib\
     ms.bbl\
     myaasmacros.sty\
     AAQuadR1a_Tms-a.pdf\
@@ -63,7 +69,10 @@ DEPS=\
     BCferror_shape-1sig.pdf\
     MockGalProfile-a.pdf\
     MockGalProfile-b.pdf\
-    MockGalProfile-c.pdf\
+    MockGalProfile-c.pdf
 
 mnras: $(DEPS)
-	zip ms.zip $?
+	pdflatexmk ms
+	zip ms.zip $(DEPS)
+
+.PHONY: mnras
