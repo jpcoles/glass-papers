@@ -32,6 +32,7 @@
 \newcommand{\Mddd}{\ensuremath{M}}
 %\newcommand{\Mddd}{\ensuremath{M_\mathrm{3D}}}
 \newcommand{\pixrad}{\ensuremath{\mathrm{\tt pixrad}}}
+\newcommand{\url}[1]{\tt #1}
 
 \newcommand{\kpc}{\ensuremath{\mathrm{kpc}}}
 \newcommand{\Msun}{\ensuremath{\mathrm{M}_\odot}}
@@ -129,13 +130,13 @@ to constrain cosmological models.
 
 Strong gravitational lenses are rare. Since the discovery of the first lens
 Q0957+561 \citep{1979Natur.279..381W}, just $\sim400$ have been discovered to
-date\footnote{See e.g. {\tt http://www.masterlens.org} for a catalogue.}.
+date\footnote{See, e.g., {\url{http://masterlens.astro.utah.edu}} for a catalogue.}.
 However, this number is expected to increase to several thousand over the next
 ten years as new surveys, both
-ground-based\footnote{http://pan-starrs.ifa.hawaii.edu}$^{\rm,}$\footnote{http://www.darkenergysurvey.org}
-and space-based\footnote{http://www.euclid-ec.org} -- together with a community
+ground-based\footnote{\url{http://pan-starrs.ifa.hawaii.edu}}$^{\rm,}$\footnote{\url{http://www.darkenergysurvey.org}}
+and space-based\footnote{\url{http://www.euclid-ec.org}} -- together with a community
 of citizen-science volunteers examining the image data for
-candidates\footnote{{\tt http://spacewarps.org}} -- come online. 
+candidates\footnote{\url{http://spacewarps.org}} -- come online. 
 
 Since lensing depends only on gravity, strong lenses offer a unique window onto
 dark matter and cosmology \citep{2010CQGra..27w3001B,2012arXiv1206.1225A}.
@@ -346,7 +347,7 @@ dilation due to a thin lens at redshift $z_L$:
 \begin{aligned}
 \frac{ct(\vec\theta)}{(1+z_L)D_{L}}
 &= {\textstyle\frac12} |\vec\theta - \vec\beta|^2
-   \times \frac{D_{S}}{D_{LS}} \\
+   \cdot \frac{D_{S}}{D_{LS}} \\
 &- \frac{4GD_L}{c^2}
    \int \Sigma(\vec\theta') \ln |\vec\theta-\vec\theta'| \, d^2\vec\theta'
 \label{full arrival time}
@@ -365,7 +366,7 @@ and hence rewrite \eqnref{full arrival time} as:
 %
 \begin{equation}
 \tau(\vec\theta) = {\textstyle\frac12} |\vec\theta - \vec\beta|^2
-                   \times \frac{D_{S}}{D_{LS}}
+                   \cdot \frac{D_{S}}{D_{LS}}
                  - \frac1\pi \int \kappa (\vec\theta')
                    \ln|\vec\theta - \vec\theta'| d^2\vec\theta'
 \label{arrival time}
@@ -505,7 +506,7 @@ the input file. \Glass\ may furthermore be used as an external library to other
 Python programs.  {\it The software is freely available for download or from
 the first author.}%
 %
-\footnote{http://www.jpcoles.com}
+\footnote{\url{http://www.jpcoles.com}}
 
 The key scientific and technical improvements are:
 %
@@ -751,8 +752,8 @@ constrain the mass profile and shape of a lens.
 
 We generate four two-component mock galaxies, where the dark matter and stellar
 profiles are allowed to be both steep and shallow.  The enclosed mass of the
-stars and dark matter are both fixed to be $M_{*,\mathrm{DM}} = 1.8 \times
-10^{10}$\,M$_\odot$ at the stellar scale radius $a_* = 2$\,kpc, such that the
+stars and dark matter are both fixed to be $M_{*,\mathrm{DM}} =
+1.8\e{10}$\,M$_\odot$ at the stellar scale radius $a_* = 2$\,kpc, such that the
 stars and dark matter contribute equally to the total mass at $a_*$. The dark
 matter scale length is fixed for all models at $a_\mathrm{DM} = 20$\,kpc.
 These values were chosen to closely resemble the lensing galaxy PG1115+080
@@ -1213,8 +1214,12 @@ results from \Glass\ applied to real data, in forthcoming papers.
 \section{Acknowledgments}\label{sec:Acknowledgements}
 
 The authors would like to thank Sarah Bryan and Walter Dehnen for creating the
-particle distributions for the mock galaxies. JIR would like to acknowledge
-support from SNF grant PP00P2\_128540/1.
+particle distributions for the mock galaxies, and the anonymous referee for
+many usual suggestions which has improved the manuscript. JIR would like to
+acknowledge support from SNF grant PP00P2\_128540/1.
+
+\bibliographystyle{mn2e}
+\bibliography{ms}
 
 \appendix
 
@@ -1381,8 +1386,6 @@ tests.}
 \label{fig:pix_convergence_test}
 \end{figure*}
 
-\bibliographystyle{mn2e}
-\bibliography{ms}
 
 \end{document}
 
