@@ -201,7 +201,7 @@ example][]{2010GReGr..42.2151K,2011A&ARv..19...47K}.  Second, they pointed out
 the non-uniqueness of lens models -- lensing degeneracies.  Third, they
 suggested combining lensing data with stellar kinematics and X-rays, to reduce
 the effect of the degeneracies.  Later work, as well as following up these
-suggestions, has introduced some further new ideas.  Four of these are
+suggestions, has introduced some further new ideas.  Five of these are
 important for the present work:
 %
 \begin{enumerate}
@@ -324,12 +324,12 @@ The lens equation:
 \end{equation}
 %
 maps an observed image position $\vec\theta$ to a source position
-$\vec\beta$.  The lens can be thought of as a projected surface
-density $\Sigma$ which diverts the path of a photon instantaneously
-through the bending angle $\vec\alpha$.  The $D$ factors, as in the
-previous section, are angular diameter distances, which depend on the
-cosmological density-parameters $\Omega$, the redshifts $z_L,z_S$ of
-the lens and the source, and the Hubble parameter $H_0$, thus
+$\vec\beta$.  Using the thin lens approximation, the lens can be thought of as
+a projected surface density $\Sigma$ which diverts the path of a photon
+instantaneously through the bending angle $\vec\alpha$.  The $D$ factors, as in
+the previous section, are angular diameter distances, which depend on the
+cosmological density-parameters $\Omega$, the redshifts $z_L,z_S$ of the lens
+and the source, and the Hubble parameter $H_0$, thus
 %
 \begin{equation}
 D_{LS} = \frac c{H_0} \frac{1+z_S}{1+z_L} \int_{z_L}^{z_S}
@@ -573,16 +573,18 @@ mass profile.
 %
 A shear term can be added to the potential, as shown later in \eqnref{shear},
 to account for mass external to the modelled region. This is useful to capture
-the gross effects of a distant neighbour. \Glass\ also allows further analytic
-potential components to be included. This can be used to model substructure or
-multiple neighbours close to the main lens. The substructure may have only a
-small effect if the lens is a single galaxy, but if the lens is a group then a
+the gross effects of a distant neighbour, since there is a degeneracy between
+the ellipticity of a lens and shear field: The greater the allowed shear, the
+more circular the lens may be.  \Glass\ also allows further analytic potential
+components to be included. This can be used to model substructure or multiple
+neighbours close to the main lens. The substructure may have only a small
+effect if the lens is a single galaxy, but if the lens is a group then a
 potential can be added for each of the galaxies. A few standard functions are
 already included in \Glass\ including those for a point mass, a power law
 distribution, or an isothermal (a particular case of the power law).
 %
 \begin{enumerate}
-  \setcounter{enumi}{5}
+  \setcounter{enumi}{6}
   \item A new uniform sampling algorithm for high dimensional spaces.
 \end{enumerate}
 %
@@ -670,6 +672,8 @@ the solution space polytope. Using the MCMC sampling strategy described in
 \cite{2012MNRAS.425.3077L} we uniformly sample this space. Collectively, the
 sampled models are referred to as an ensemble $\E = \{\M_i\}$, where we usually
 generate $|\E| \sim 1000$ models.
+\hilight{Referee suggests adding some timing information here. How long does it
+take to generate 1000 models?}
 
 \subsection{Raytracing}\label{Raytracing}
 \Glass\ can also determine the position of images and time delays from
@@ -759,7 +763,7 @@ matter scale length is fixed for all models at $a_\mathrm{DM} = 20$\,kpc.
 These values were chosen to closely resemble the lensing galaxy PG1115+080
 \citep{1980Natur.285..641W}. We place the galaxy at a redshift of $z_L = 0.31$
 for lensing.  Throughout, we assume a cosmology where $H_0^{-1}=13.7$ Gyr,
-$\Omega_M=0.28$, and $\Omega_\Lambda=0.72$. The critical density is
+$\Omega_M=0.28$, and $\Omega_\Lambda=0.72$. The critical lensing density is
 $\kappa_\mathrm{crit}\sim 1.8\e{9}$\Msun/kpc$^2$.
 
 The galaxies were generated as three dimensional particle distributions as in
@@ -830,18 +834,23 @@ described in \secref{Raytracing} to construct 6 basic lensing morphologies:
 The `extended' configurations use multiple point sources at the same redshift
 to simulate an extended source that will produces an arc-like image.
 \figref{arrival surfaces} shows the lens configurations for the \mockBC\
-galaxy.  The configurations for the other galaxies are similar. Within the
-names, the labels R1, R2, R3, refer to the redshift of the sources. We have
-chosen R1=1.72, R2=0.72, and R3=0.51 so that the radial distribution of the
+galaxy. 
+The configurations for the other galaxies are similar. Within the
+names, the labels Z1, Z2, Z3 refer to the redshift of the sources. We have
+chosen Z1=1.72, Z2=0.72, and Z3=0.51 so that the radial distribution of the
 images is nearly equal. For all mocks, we do not apply any external shear field.
+Only the central image of the Z1 source is used to avoid overconstraining
+the models, otherwise all the central images would fall within the central 
+pixel and no solution exists that satisfies all locations simultaneously for
+one pixel value.
 
 \begin{figure*}
 \includegraphics[width=0.85\textwidth]{BCarrival_surfaces}
 \caption{The lens configurations for the six test cases using the \mockBC{}
 mock galaxy. The other mock galaxies produce similar results. Here, the central
 image is shown, although not all tests include it. The naming convention
-indicates the redshift of the sources with R1=1.72, R2=0.72, and R3=0.51.  The
-central image belongs to only to the R1 source to avoid overconstraining the
+indicates the redshift of the sources with Z1=1.72, Z2=0.72, and Z3=0.51.  The
+central image only belongs to the Z1 source to avoid overconstraining the
 models. Image colors represent a common source. Grey circles are a visual aid
 to help determine radial separation between images. The axes are in
 arcseconds.}
@@ -866,9 +875,14 @@ the four mock galaxies have a steeply rising inner profile). We demonstrate
 that our results are robust to changing the grid resolution in 
 \appref{pix_convergence_test}.
 
-In all cases -- despite applying no external shear to the mock lenses -- we allow a broad range of external shear in our lens model reconstructions. \Glass\ correctly returns a small or zero shear in all cases. It is possible that more complex shear fields present in real lensing galaxies could introduce further degeneracies beyond those discussed here. However, any such shear field can, at least in principle, be constrained by data (e.g. combining
-weak lensing constraints, or assuming that the shear field correlates with
-visible galaxies -- e.g. \citealt{2009A&A...500..681M,2011ApJ...726...84W}).
+In all cases -- despite applying no external shear to the mock lenses -- we
+allow a broad range of external shear in our lens model reconstructions.
+\Glass\ correctly returns a small or zero shear in all cases. It is possible
+that more complex shear fields present in real lensing galaxies could introduce
+further degeneracies beyond those discussed here. However, any such shear field
+can, at least in principle, be constrained by data (e.g. combining weak lensing
+constraints, or assuming that the shear field correlates with visible galaxies
+-- e.g. \citealt{2009A&A...500..681M,2011ApJ...726...84W}).
 
 \section{Results}\label{sec:results}
 
@@ -910,34 +924,41 @@ lensing.
 \begin{figure*}
   \plotthree{BCExtendedDoubleR1_tms-a.pdf} {BCExtendedDoubleR1_tms-b.pdf} {BCExtendedDoubleR1_tms-c.pdf}
   \plotthree{BCExtendedDoubleR1_tmS-a-1.pdf} {BCExtendedDoubleR1_tmS-b-1.pdf} {BCExtendedDoubleR1_tmS-c-1.pdf}
-  \plotthree{BCQuadR1a_Tms-a.pdf} {BCQuadR1a_Tms-b.pdf} {BCQuadR1a_Tms-c.pdf}
-  \plotthree{AAQuadR1a_Tms-a.pdf} {AAQuadR1a_Tms-b.pdf} {AAQuadR1a_Tms-c.pdf}
 \caption{
-    Four reconstructed lenses. The first two rows consider the same mock
-    galaxy, \mockBC, for an extended double, and highlight the improved
-    constraints on the mass distribution when a lower bound is given by the
-    stellar mass. For the reconstruction, no time delays were assumed.  The
-    third row uses again the \mockBC{} mock galaxy, but with time delays
-    for a single quad and no stellar mass. With the added information from the
-    quad, the outer regions of the lens are the image radii are better
-    constrained. Finally, the fourth row shows another case of a quad with time
-    delays, but using the \mockAA{} mock galaxy. This galaxy has a shallower
-    stellar density index, and a core in the dark matter. Due to the priors
-    used in \Glass, the modelling favours steep solutions without additional
-    information.
+    Two reconstructions of the mock galaxy \mockBC for an extended
+    double without stellar mass (\textbf{Top}) and with stellar mass
+    (\textbf{Bottom}).  No time delays were assumed.  The improved constraints
+    on the mass distribution when a lower bound is given by the stellar mass is
+    evident in the reduced range of allowable models.  
 \textbf{Left:}
 The ensemble average arrival time surface with just the iso-contours for the
 saddle points drawn. The central diamonds show the reconstructed source
 position.
 \textbf{Middle:}
 The surface density of the dark matter (DM; magenta); the stars (yellow); and the total (blue).
-The original mass model used to create the lens is shown in black.
+The original mass model (with stars) used to create the lens is shown in black.
 The vertical lines mark the radial positions of the images. The higher
 resolution feature of \Glass\ has been used on the central pixel allowing the
 steep profile to be captured.
 \textbf{Right:}
 The cumulative mass. The error bars on all plots are $1\sigma$; the grey bands show the full range of models.}
 \label{reconstruction}
+\end{figure*}
+
+\begin{figure*}
+  \plotthree{BCQuadR1a_Tms-a.pdf} {BCQuadR1a_Tms-b.pdf} {BCQuadR1a_Tms-c.pdf}
+  \plotthree{AAQuadR1a_Tms-a.pdf} {AAQuadR1a_Tms-b.pdf} {AAQuadR1a_Tms-c.pdf}
+\caption{
+    Two further reconstructions similar to \figref{reconstruction}.
+    \textbf{Top:} The mock galaxy \mockBC but including time delays for a
+    single quad and no stellar mass. With the added information from the quad,
+    the outer regions of the lens are the image radii are better constrained.
+    \textbf{Bottom:} A quad with time delays, but using the \mockAA{} mock
+    galaxy. This galaxy has a shallower stellar density index, and a core in
+    the dark matter. Due to the priors used in \Glass, the modelling favours
+    steep solutions without additional information.
+}
+\label{reconstruction 2}
 \end{figure*}
 
 \begin{figure*}
@@ -955,21 +976,24 @@ below the critical density are drawn with dashed lines.}
 our full mock data ensemble. Each subplot corresponds to a different mock
 galaxy, as marked. We show the fractional error of the mass distribution for
 each of the test configurations with (red) and without (black) stellar mass. In
-\figref{main results}, the error is defined over radial bins of mass as:
+\figref{main results} we define the error
 %
 \begin{equation} \label{ferror R}
   f_R = \frac {\sum_i \left|M(i) - \tilde M(i)\right| } {\sum \tilde M(i)}
 \end{equation}
 %
-where $M$ is the mass in bin $i$ and $\tilde M$ is the mass from the mock galaxy.
+based on the mass $M(i)$ of each pixel ring $i$ and the mass $\tilde M$ from the mock galaxy. 
 In \figref{main results pixel-wise} the error is defined over all the pixels $\vec\theta$:
 %
 \begin{equation} \label{ferror theta}
 f_\theta = \frac {\sum_{\vec\theta} \left|M(\vec\theta) - \tilde M(\vec\theta)\right| } {\sum_{\vec\theta} \tilde M(\vec\theta)}
 \end{equation}
-With both $f_R$ and $f_\theta$, we only consider mass up to one radial
-position passed the outermost image, since there is no longer any lensing
-information beyond that point.
+For both $f_R$ and $f_\theta$, we only consider mass up to one pixel length
+passed the outermost image, since there is no longer any lensing information
+beyond that point. This means we typically use 8 bins, linearly spaced,
+ignoring the outermost 3 bins.  The spacing changes, however, at the border
+between the high resolution region in the middle.
+
 
 \begin{figure*}
 \includegraphics[width=0.49\textwidth]{AAferror_profile-1sig.pdf}
@@ -978,7 +1002,7 @@ information beyond that point.
 \includegraphics[width=0.49\textwidth]{BCferror_profile-1sig.pdf}
 \caption{Our main results showing the quality of the radially averaged model recovery \eqnrefp{ferror R} for all our test cases. 
 Within each panel are six groups of results for each of six lens morphologies. Each morphology
-considered the presence of time delays (T=yes,t=no) and a central image (M=yes,m=no). The black markers are for tests
+considered the presence of time delays (TD) and a central image (central). The black markers are for tests
 that did not include the stellar mass as a lower bound constraint, while the red markers
 indicate where the stellar mass has been included. Error bars show the $1\sigma$ range of the model ensemble.}
 \label{main results}
@@ -998,7 +1022,7 @@ as previously. Error bars show the $1\sigma$ range of the model ensemble.}
 The abundance of strong lensing data increases from left to right within each
 plot. As a result, there is a general trend for the reconstruction quality to
 increase (and therefore for $f$ to decrease). When both time delays and a
-central image are present (TM), the quality is highest. A double is known to
+central image are present (TD+central), the quality is highest. A double is known to
 provide very little constraint on the mass distribution. This is particularly
 evident in galaxies \mockAC{} and \mockBC{} where the mass profile is steepest
 and the reconstruction of the double is poorest. However, the addition of an
@@ -1020,7 +1044,10 @@ the shape recovery, but little-improves the radial mass profile. A visual
 example of the shape recovery is given in \figref{2d mass reconstruction}.
 
 We can also more directly probe the recovery of the shape of the mass
-distribution by defining a global measure of lens shape:
+distribution by considering the ratio of the major and minor axes $\lambda_1,
+\lambda_2$ of the inertia ellipse. If they are equal, the mass is distributed
+uniformly on the projected disc. The more dissimilar they are, the more
+elliptical the mass distribution. We define the global measure of lens shape as
 %
 \begin{equation} 
     s \equiv \lambda_1/\lambda_2
@@ -1052,7 +1079,7 @@ where $\tilde s$ is the shape of the mock galaxy. The distribution of
 $f_\mathrm{shape}$ for each mock galaxy and each test case is shown in
 \figref{shape results}.  Interestingly, for this global shape parameter
 recovery it appears more important to have time delay data and/or a central
-image (T,M) than to have a quad or multiple sources with wide redshift
+image (TD,TD+central) than to have a quad or multiple sources with wide redshift
 separation. In all cases, the stellar mass little-aids the recovery, reflecting
 the fact that $s$ is heavily weighted towards the shape at the {\it edge} of
 the mass map, rather than at the centre where the stars may dominate the
@@ -1096,9 +1123,10 @@ writing $\kappa_n = \kappa_{dm,n} + \kappa_{s,n}$ as the sum of the dark matter
 and stellar mass components in the potential \eqnrefp{discrete potential}.
 Since each $\kappa_{s,n}$ is just a constant we do not add new, separate
 equations for each pixel. Although we assume a perfect recovery of the stellar
-mass here, it is straightforward to add errors as the stellar mass constraint
-remains linear: $\kappa_n = \kappa_{dm,n} + \epsilon \kappa_{s,n}$, where
-$\epsilon \sim 1$ is an additional error parameter. 
+mass with no error on the lower mass bound, it is straightforward to add errors
+as the stellar mass constraint remains linear: $\kappa_n = \kappa_{dm,n} +
+\epsilon \kappa_{s,n}$, where $\epsilon \sim 1$ is an additional error
+parameter. 
 
 With the stellar mass lower bound, there is a significant improvement of the
 reconstruction quality shown in \figref{main results} and \figref{main results
@@ -1116,8 +1144,8 @@ kinematics. The models in the \Glass\ ensemble are processed as described in
 \S\ref{sec:glasskinematics}.  To illustrate the power of stellar kinematic
 constraints, in \figref{fig:sigp}, we plot the projected velocity dispersion
 calculated for one model model (extracted from the full ensemble) of the
-\mockBC{} Quad with time delays and stellar mass (left), and the same but
-without stellar mass (right).  In both cases, we calculate curves for two
+\mockBC{} Quad with time delays and no stellar mass (left), and the same but
+with stellar mass (middle).  In both cases, we calculate curves for two
 extrema velocity anisotropies: $\beta=0$ (green) and $\beta=1$ (red).
 Over-plotted is the correct answer for the \mockBC{} model (black). The stellar
 half mass radius (yellow) Einstein radius (black) are marked by vertical lines.
@@ -1317,9 +1345,15 @@ where
 \section{No radial symmetry prior}\label{no_symm_prior}
 
 In this appendix, we explore the effect of the radial symmetry prior.
-\figref{fig:no_symm_prior} shows results for a single quad (top two rows) and an
-extended double (bottom two rows) without the radial prior; in both cases, we do not use the stellar mass
-constraints. The bottom row of each group uses time delay data. Without time delay data or the radial symmetry prior, the results for the quad are poor -- particularly the shape recovery. Including time delays, the results are similar to the case with the radial prior (\figref{reconstruction} and \figref{2d mass reconstruction}). Similarly, for the extended double the results without time delays are poor. Even with time delays, the shape is not well recovered without the radial prior, as expected.
+\figref{fig:no_symm_prior} shows results for a single quad (top two rows) and
+an extended double (bottom two rows) without the radial prior; in both cases,
+we do not use the stellar mass constraints. The bottom row of each group uses
+time delay data. Without time delay data or the radial symmetry prior, the
+results for the quad are poor -- particularly the shape recovery. Including
+time delays, the results are similar to the case with the radial prior
+(\figref{reconstruction} and \figref{2d mass reconstruction}). Similarly, for
+the extended double the results without time delays are poor. Even with time
+delays, the shape is not well recovered without the radial prior, as expected.
 
 \begin{figure*}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-appendix-a.pdf}
