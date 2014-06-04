@@ -1,42 +1,3 @@
-% Open Tasks
-%
-% --- General ---
-% - Add keywords
-% - Check universities' names
-% - Correct typos and reformulate some paragraphs
-% - ...
-%
-%
-% --- Introduction ---
-% - Citiations needed in parametric vs. nonparametric comparison part
-% - Citiations needed on effect of environment
-% - Section on how this work might be able to rule out certain alternative gravity models
-% - Describe theoretical expectations (ellipticities of dm halo and luminous part, misalignments, effect of environment)
-% - ...
-%
-%
-% --- Data ---
-% - More detailed description how the baryionic mass distribution was measured
-% - More details needed on galaxies in the sample? I don't think so though
-% - ...
-%
-%
-% --- Method ---
-% - Maybe more details on GLASS and how it works (cite Jonathan's upcoming paper)
-% - Plot showing how well the shape informations is recovered when applied to fake data
-% - Citation on why not monotonically decreasing radial density profiles are instable
-% - Generally look through method part
-% - ...
-%
-%
-% --- Results ---
-% - Interpretation of 
-% - Interpretation of ellipticities plot (why it is relevant that dm halos are significantly rounder)
-% - Interpretation of misalignment versus ellipticity plot ('forbidden region', alignment with semi-minor axis, very elliptical galaxies well aligned)
-
-
-
-
 \documentclass[useAMS,usenatbib]{mn2e}
 \usepackage{myaasmacros}
 \usepackage{graphicx}
@@ -51,7 +12,7 @@
 
 \title[Alignment of Light and Mass in Lensing Galaxies]{Alignment of Light and Mass in Lensing Galaxies}
 
-\author[Bruderer]{Claudio Bruderer$^{1}$\thanks{E-mail: claudio.bruderer@phys.ethz.ch}, J. I. Read$^{2}$, P. Saha$^{3}$, J. Coles$^{4}$\\
+\author[Bruderer]{Claudio Bruderer$^{1}$\thanks{E-mail: claudio.bruderer@phys.ethz.ch}, J. I. Read$^{1,2}$, P. Saha$^{3}$, J. Coles$^{4}$\\
 $^{1}$Institute for Astronomy, Department of Physics, ETH Z\"urich, Wolfgang-Pauli-Strasse 27, CH-8093 Z\"urich, Switzerland\\
 $^{2}$Department of Physics, University of Surrey, Guildford, GU2 7XH, UK\\
 $^{3}$Institute for Theoretical Physics, University of Z\"urich, Winterthurerstrasse 190, 8057 Z\"urich, Switzerland\\
@@ -74,26 +35,35 @@ asdf....
 
 \section{Introduction}\label{sec:introduction}
 
-\textbf{Context/Background/Motivation}
+% \textbf{Context/Background/Motivation}
+% \begin{itemize}
+% \item Why interesting (lensing can constrain mass distribution (enclosed mass constraint independent from model with only few percent uncertainty e.g. Kochanek 1991?, Wambsganss \& Paczyński 1994?), insights into structure formation)
+% \item What is to be expected from theory (dm, alternative gravity)
+% \end{itemize}
+
+% \textbf{Anything done before?}
+% \begin{itemize}
+% \item Surely cite: \cite{1997ApJ...482..604K,1998ApJ...509..561K,2006ApJ...649..599K,2009ApJ...690..670T,2012ApJ...761..170G}
+% \end{itemize}
+
+% \textbf{New here}
+% \begin{itemize}
+% \item Statistics
+% \item Free-form modelling
+% \item group versus stellar misalignment with dm halo
+% \end{itemize}
+\textbf{Content:}
 \begin{itemize}
-\item Why interesting (lensing can constrain mass distribution (enclosed mass constraint independent from model with only few percent uncertainty e.g. Kochanek 1991?, Wambsganss \& Paczyński 1994?), insights into structure formation)
-\item What is to be expected from theory (dm, alternative gravity)
+\item Understand galaxy structure ($\rightarrow$ Links to galaxy evolution?)
+\item Relevant for weak lensing (Intrinsic alignments)
+\item Strong lensing reacts purely due to total mass distribution $\rightarrow$ Can disentangle light and mass
+\item Free-form modelling (or \#constraints $\ll$ \#dof)
 \end{itemize}
 
-
-\textbf{Anything done before?}
+\textbf{To Do:}
 \begin{itemize}
-\item Surely cite: \cite{1997ApJ...482..604K,1998ApJ...509..561K,2006ApJ...649..599K,2009ApJ...690..670T,2012ApJ...761..170G}
+\item Rewrite introduction and change pitch to: Understand mass and light alignment, understand effect on IA
 \end{itemize}
-
-
-\textbf{New here}
-\begin{itemize}
-\item Statistics
-\item Free-form modelling
-\item group versus stellar misalignment with dm halo
-\end{itemize}
-
 
 Gravitational lensing is one of the few phenomena that allow probing the matter distribution directly. It makes no distinction between baryonic and dark matter, both components act on light rays in the same way. Gravitational lensing is therefore somewhat special as it allows to \textit{see} dark matter, if we are able to separate the two components. Therefore studying these effects allows us to probe dark matter and its properties. We are typically interested in measuring its distribution, how it clusters, its connection to structure formation, and of course its nature. With strong gravitational lensing galaxies we are effectively probing the matter distribution on relatively small scales. Thus, much insight could be gained in how galaxies form and how they are structured.
 
@@ -111,9 +81,20 @@ In Section \ref{sec:data} we present the lens sample and important properties of
 
 
 \section{Data}\label{sec:data}
+% \begin{itemize}
+% \item SPS (Ignacio Ferreras, Dominik, etc. \citep{2011ApJ...740...97L})
+% \item Write why specifically these lenses were chosen, where they're from
+% \end{itemize}
+\textbf{Content:}
 \begin{itemize}
-\item SPS (Ignacio Ferreras, Dominik, etc. \citep{2011ApJ...740...97L})
-\item Write why specifically these lenses were chosen, where they're from
+\item Describe data set (why this data set, special features of galaxies (environment: y/n/unknonwn, elliptical/disk))
+\item Maybe lose a couple of words on SPS?
+\end{itemize}
+
+\textbf{To Do:}
+\begin{itemize}
+\item Rephrase
+\item Add maybe something on SPS
 \end{itemize}
 
 
@@ -230,22 +211,22 @@ Further information about the sample can be found in \cite{leier11phd}, \cite{20
 
 
 \section{Method}\label{sec:method}
-\textbf{GLASS}
+\subsection{GLASS}
+% \textbf{GLASS}
+% \begin{itemize}
+% \item Explain GLASS briefly and link to fake data tests
+% \end{itemize}
+\textbf{Content:}
 \begin{itemize}
-\item Explain GLASS briefly and link to fake data tests
+\item Describe code briefly
+\item Mention PixeLens and two other GLASS papers
 \end{itemize}
 
-\subsection{Priors and assumptions}
+\textbf{To Do:}
 \begin{itemize}
-\item Explain what priors were chosen to model the lenses (Basically always pixrad 12, shear left free for quads, shear limited for doubles to 0.01, local gradient 50 degrees, smoothening prior 2, time delays if known. Exceptions are few. For some quads symmetry prior, for one double 0.01 was not possible therefore chose 0.1.)
-\end{itemize}
-
-\textbf{Shape measure}
-\begin{itemize}
-\item Explain shape measure
-\item Link to tests on fake data
-\item Include one plot of fake data test -> Jonathan
-\item Illustrate everything with example lens PG1115.
+\item Rephrase
+\item To avoid repetition, check what is really relevant for this paper, and for what we can just reference the other two GLASS papers
+\item Check that same parameter names are used as in the other papers
 \end{itemize}
 
 In this work we use the new free-form lens modelling framework \textit{GLASS} \citep{2012MNRAS.425.3077L}. As its predecessor \textit{PixeLens} \citep{2004AJ....127.2604S}, it generates a pixelated mass map of a lens reproducing the image positions perfectly. Using pixels the arrival time surface for a source at position $\boldsymbol\theta_{S}$, taking the geometric and Shapiro contributions to the time delay into account, can be expressed in terms of the surface mass density rescaled by the critical density $\Sigma_{crit}$ of the n-th pixel $\kappa_{n}$ and the contribution to the gravitational potential of this pixel $\psi_{n}$ \citep{1997MNRAS.292..148S}
@@ -265,7 +246,22 @@ A fundamental difficulty in mass modelling is the non-uniqueness of solutions. T
 \end{equation}
 where $P(x)$ is the probability distribution samples are drawn from and $Q(x_{i},x_{i+1})$ is the proposal density. As mentioned, all the valid mass configurations have the same probability, thus $P$ is a constant $\equiv1$. $Q$ has to be symmetric for Markov chains. It is usually taken to be a multivariate Gaussian $\mathcal{N}(x,\hat{\boldsymbol\Sigma})$, where $\hat{\boldsymbol\Sigma}$ is an estimate of the true covariance matrix $\boldsymbol\Sigma$. In principle it could be estimated by an adaptive chain during the random walk, but then the chain is no longer Markovian as it loses the reversibility property. Therefore, first an initial adaptive burn-in phase is run to get an good estimate $\hat{\boldsymbol\Sigma}$, before the real MCMC random walk. In this way, a large ensemble of models can be generated. The estimation of the covariance matrix is refined in \textit{GLASS} such that models are much less correlated. Further details and tests of the method can be found in \cite{2012MNRAS.425.3077L}.
 
-\textbf{Priors and assumptions}
+\subsection{Priors and assumptions}
+% \subsection{Priors and assumptions}
+% \begin{itemize}
+% \item Explain what priors were chosen to model the lenses (Basically always pixrad 12, shear left free for quads, shear limited for doubles to 0.01, local gradient 50 degrees, smoothening prior 2, time delays if known. Exceptions are few. For some quads symmetry prior, for one double 0.01 was not possible therefore chose 0.1.)
+% \end{itemize}
+\textbf{Content:}
+\begin{itemize}
+\item Describe what priors and assumptions we used
+\end{itemize}
+
+\textbf{To Do:}
+\begin{itemize}
+\item Rephrase
+\item Maybe merge this subsection with previous subsection
+\end{itemize}
+
 We use different priors and assumptions to eliminate unphysical mass reconstructions of the lens. First of all, the densities $\kappa_{n}$ need to be positive. As mass distributions with positive radial gradients are instable (CITATION NEEDED!), the density must always increase towards the center. Therefore, we require the local density gradient in every pixel except the central one to point towards the center within an angle of $50^{\circ}$. The radial density profile decreases monotonically, as required.
 
 To avoid large fluctuations in the density, we choose to add a smoothing prior. The density in any pixel except the central one is at most twice the average density of its neighboring pixels. If there is reason to expect an invariant distribution under a rotation by $180^{\circ}$ (e.g. for doubles), we impose such a symmetry prior.
@@ -278,50 +274,90 @@ which is added to (\ref{eq:arrival}) and the subsequent equations. We allow $\ga
 
 We further assume that the lens and image positions are perfectly known. As the range of possible models is much larger than the errors on these quantities, this assumption is justified \citep{2006ApJ...650L..17S}. We also fix a time order of the images. Furthermore, we choose a flat concordance cosmology with $\Omega_{m}=0.28$, $\Omega_{\Lambda}=0.72$, and $H_{0}^{-1}=13.7$.
 
-\textbf{Shape measure}
+\subsection{Shape measure}
+% \textbf{Shape measure}
+% \begin{itemize}
+% \item Explain shape measure
+% \item Link to tests on fake data
+% \item Include one plot of fake data test -> Jonathan
+% \item Illustrate everything with example lens PG1115.
+% \end{itemize}
+\textbf{Content:}
+\begin{itemize}
+\item Describe shape measure we use (same one as second GLASS paper)
+\item Say that it has been tested with mock lenses (second GLASS paper)
+\end{itemize}
+
+\textbf{To Do:}
+\begin{itemize}
+\item Rephrase
+\item Add formula how shape is defined
+\item Summarize results of test of second GLASS paper
+\end{itemize}
 
 To get a rough estimate of the shape of the surface mass distribution we use the inverse of the moment of inertia tensor of the mass map. Its eigenvectors and eigenvalues track the shape of the mass distribution. Thus, the shape is defined by two quantities; the ratio of the eigenvalues $\lambda_{1}/\lambda_{2}$, which describes the ellipticity, and the angle of the semi-major axis $\theta$. This seemingly crude measure was tested on fake data and found to be working well. (INPUT HERE FAKE DATA TEST)
 
-Figure \ref{fig:1115rec} shows example plots of the reconstruction of the lens \textit{PG1115} illustrating this shape measure. In this lens system, there is a significant misalignment between the two mass distributions. 1$\sigma$- and 2$\sigma$-uncertainties on the angle estimates are shown. These errors are purely statistical, estimated by the ensemble of models. Figure \ref{fig:1115rec} also shows the arrival time surface and total, dark, and baryonic mass distributions.
+% Figure \ref{fig:1115rec} shows example plots of the reconstruction of the lens \textit{PG1115} illustrating this shape measure. In this lens system, there is a significant misalignment between the two mass distributions. 1$\sigma$- and 2$\sigma$-uncertainties on the angle estimates are shown. These errors are purely statistical, estimated by the ensemble of models. Figure \ref{fig:1115rec} also shows the arrival time surface and total, dark, and baryonic mass distributions.
 
 
 \section{Results}\label{sec:results}
+% \begin{itemize}
+% \item Show some examples (stellar and dm contour plots, image of lens, arrival time surface, included mass)
+% \item Show money plots
+% \item Comment on a few lenses special lenses
+% \item Environmental effect?
+% \end{itemize}
+\textbf{Content:}
 \begin{itemize}
-\item Show some examples (stellar and dm contour plots, image of lens, arrival time surface, included mass)
-\item Show money plots
-\item Comment on a few lenses special lenses
-\item Environmental effect?
+\item Illustrate shape measure and reconstruction on PG1115 (with Tsevtkova time delays)
+\item Describe different misalignment plots
+\item Speculate what the plots could mean
+\end{itemize}
+
+\textbf{To Do:}
+\begin{itemize}
+\item Start from scratch for this section
+\item Use suggested structure (or think about better one)
+\item Selection of plots is probably fine, but both data points for the two different time delay estimates of PG1115
+\end{itemize}
+
+\textbf{Structure of this section}
+\begin{itemize}
+\item Reconstruction of PG1115
+\item Different ellipticities dark matter and stellar distribution
+\item Misalignment stellar and dark matter distributions
+\item Alignment dark matter and group centroid (maybe merge with previous subsection)
 \end{itemize}
 
 \begin{figure*}
  \begin{center}%\hspace{-7mm}\hspace{0.8\textwidth}
-  \includegraphics[height=0.32\textwidth]{Figures/1115_a.eps}
-  \includegraphics[height=0.32\textwidth]{Figures/1115_b.eps}
-  \includegraphics[height=0.32\textwidth]{Figures/1115_c.eps}\\
-  \includegraphics[height=0.32\textwidth]{Figures/1115_d.eps}
-  \includegraphics[height=0.32\textwidth]{Figures/1115_h.eps}\\
+  \includegraphics[height=0.32\textwidth]{Figures/1115_a.pdf}
+  \includegraphics[height=0.32\textwidth]{Figures/1115_b.pdf}
+  \includegraphics[height=0.32\textwidth]{Figures/1115_c.pdf}\\
+  \includegraphics[height=0.32\textwidth]{Figures/1115_d.pdf}
+  \includegraphics[height=0.32\textwidth]{Figures/1115_h.pdf}\\
   \caption{Reconstruction of lens \textit{PG1115}. The plots show the mean model of the generated ensemble of models. The coordinate system is centered on the lens galaxy. (a) shows the arrival time surface. The green dots are the images, the red curves are isochrones, and the black curve are the lemniscate resp. the lima\c{c}on. (b) shows the total matter distribution. The red circle marks the circle of the outermost image. The green resp. cyan ellipses mark the shape of the dark matter resp. stellar distribution. This shape is measured as described in Section 3.3. In this case, the shape of the total matter distribution (black) is indistinguishable from the dark matter distribution. (c) shows the dark matter distribution. The black lines show the median semi-major resp. semi-minor axis with 1$\sigma$- and 2$\sigma$- uncertainties. The solid pink line points to the group centroid with $1\sigma$-uncertainties (dashed). (d) shows the luminous matter distribution.}
   \label{fig:1115rec}
  \end{center}
 \end{figure*}
 
-\begin{figure*}
- \begin{center}%\hspace{-7mm}\hspace{0.8\textwidth}
-  \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_a.eps}
-  \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_b.eps}
-  \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_c.eps}\\
-  \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_d.eps}
-  \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_h.eps}\\
-  \caption{Same as Figure \ref{fig:1115rec} but using time delay estimates from \cite{1997ApJ...489...21B}.}
-  \label{fig:barkana}
- \end{center}
-\end{figure*}
+% \begin{figure*}
+%  \begin{center}%\hspace{-7mm}\hspace{0.8\textwidth}
+%   \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_a.eps}
+%   \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_b.eps}
+%   \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_c.eps}\\
+%   \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_d.eps}
+%   \includegraphics[height=0.32\textwidth]{Figures/1115_barkana_h.eps}\\
+%   \caption{Same as Figure \ref{fig:1115rec} but using time delay estimates from \cite{1997ApJ...489...21B}.}
+%   \label{fig:barkana}
+%  \end{center}
+% \end{figure*}
 
 \begin{figure*}
  \begin{center}
- \includegraphics[height=0.49\textwidth]{Figures/b.eps}
- \includegraphics[height=0.49\textwidth]{Figures/d.eps}
- \includegraphics[height=0.49\textwidth]{Figures/e.eps}\\
+ \includegraphics[height=0.49\textwidth]{Figures/b.pdf}
+ \includegraphics[height=0.49\textwidth]{Figures/d.pdf}
+ \includegraphics[height=0.49\textwidth]{Figures/e.pdf}\\
  \caption{Plots of stellar and dark matter misalignments, ellipticities of the baryonic mass and dark matter distribution and a plot showing the ellipticity of the dark matter halo against the misalignment. Red symbols mark isolated objects or such without environment information, green symbols mark objects with at least one companion galaxy. In the second plot, stars denote the ellipticitie of the baryonic mass distribution, squares the ones of the dark matter halo.}
  \label{fig:moneyplots}
  \end{center}
@@ -329,7 +365,7 @@ Figure \ref{fig:1115rec} shows example plots of the reconstruction of the lens \
 
 \begin{figure}
  \begin{center}
- \includegraphics[height=\linewidth]{Figures/g.eps}
+ \includegraphics[height=\linewidth]{Figures/g.pdf}
  \caption{Misalignment of the dark matter halo and the direction of the centroid of the environment.}
  \label{fig:environmentmisalign}
  \end{center}
@@ -348,13 +384,13 @@ As mentioned in Section \ref{sec:data}, there are different time delay estimates
 % The dark matter distribution in \textit{SBS1520} shows a very interesting behaviour. As can be seen in Figure \ref{fig:1520}, the dark matter seems to follow the baryonic mass distribution. Further out however, the dark matter distribution is rotated slightly. There is a significant misalignment between the dark matter distribution and the baryonic distribution. Without the central part, the misalignment would be even larger. This behaviour could be due to the potential disc \cite{2008ApJ...673..778A}, or caused by the many structures on the line of sight.
 
 
-\textbf{Misalignments between stellar and dark matter distributions}
+\subsection{Misalignments between stellar and dark matter distributions}
 Figure \ref{fig:moneyplots} shows the differences between the angles of the stellar and the dark matter semi-major axes versus the ratio of the included dark matter and total mass. For lenses with a significant stellar component inside the outermost image radius, the distributions seem to be rather aligned. It seems that if the luminous mass is comparable to the dark matter mass, the distributions align. For a smaller stellar contribution this is not necessarily the case. The scatter increases and there can be significant misalignments, which can be seen especially clearly in the systems \textit{PG1115} (also Figure \ref{fig:1115rec}) and \textit{RXJ0911}. While alignments between the distributions are preferred, they do not seem to be the rule.
 
 The environment might also play a role. Red are the systems, which are isolated and/or no group resp. cluster environment has been found yet, green the ones in such an environment. The misaligned systems are mainly the lenses with a known environment. Therefore, misalignments could be caused by the external effects.
 
 
-\textbf{Ellipticities of stellar and dark matter distributions}
+\subsection{Ellipticities of stellar and dark matter distributions}
 The ellipticities of the distributions versus the mass ratio are shown in Figure \ref{fig:ellipticities}. We see that every dark matter halo has a lower ellipticity $\lambda_{1}/\lambda_{2}$ and is thus closer to sphericity than the luminous part of the galaxy. The systems \textit{B0712}, \textit{B1152} \textit{HE1104}, and \textit{MG2016} show especially large differences. It is not clear what could cause these discrepancies.
 
 Figure \ref{fig:misalignmentellipticities} shows the misalignment versus the ellipticity of the dark matter halo. It is possible to roughly subdivide it into five different regions. Almost spherical halos with good alignment of the semi-major axes, almost spherical halos with good alignment of semi-major and semi-minor axes (maximum misalignment between the semi-major axes), more elliptical, alligned halos, a seemingly 'forbidden' region for misalignments in between, and the upper right triangle, i.e. larger ellipticities and misalignments, which also seems forbidden. Understanding Figure \ref{fig:misalignmentellipticities} is certainly not trivial. Alignment with the semi-minor axis might be a stable configuration for almost spherical halos, while slightly smaller misalignments are unstable. The systems \textit{Q0957}, \textit{PG1115}, \textit{B1422}, \textit{MG2016}, and \textit{HE2149} should be studied more closely as they could hold valuable information to decipher these relations.
@@ -364,7 +400,7 @@ Figure \ref{fig:misalignmentellipticities} shows the misalignment versus the ell
 
 
 
-\textbf{Misalignments between the dark matter distributions and environment}
+\subsection{Misalignments between the dark matter distributions and environment}
 Figure \ref{fig:environment} we look at the alignment of the semi-major axes of the dark matter halos and vectors pointing to the centroid of the group or cluster or a companion galaxy. Although the error bars are huge, we see that five of these ten lenses, \textit{Q0047}, \textit{B0712}, \textit{Q0957}, \textit{PG1115}, and \textit{B1422}, are probably aligned or at least consistent with the environment. The other half show slight misalignment.
 
 Having a closer look at these lenses shows however that at least two of them might in fact be aligned. For \textit{RXJ0911} and \textit{HE2149} there are no errors on the estimates of the centroid. Otherwise they would probably agree very well. \textit{Q0047} does not seem to be aligned with the direction of the group centroid. The halo of \textit{B1030} is almost spherical, so the apparent misalignment could maybe be explained. \textit{MG2016} also has a known environment, is however not shown in this Figure as no estimate of the cluster centroid is given. There is however a high galaxy density towards the south-east, where also the cluster centroid probably lies. The halo seems to be roughly aligned with the cluster centroid. %Add figure of this lens
@@ -375,10 +411,18 @@ We conclude that lenses in groups or cluster are probably aligned with the centr
 
 
 \section{Conclusion}\label{sec:conclusion}
+\textbf{Content:}
 \begin{itemize}
-\item Recapitulate what were the main results
-\item Answer whether this method is promising
+\item Quick overview of what was presented
+\item State again main results
+\item Say why this results are interesting
 \item What is needed to understand such misalignments better (-> Surely need to understand environment effects better, ...)
+\end{itemize}
+
+\textbf{To Do:}
+\begin{itemize}
+\item Rephrase
+\item Maybe wait for final results
 \end{itemize}
 
 We used a nonparametric modelling method to reconstruct a total of 15 lenses. Using previously measured light maps, then converted to luminous mass maps \cite{leier11phd}, we were able to isolate the dark matter distribution. We used the eigenvalues and eigenvectors of the inverse of the moment of inertia tensor to characterize the shape of the light and mass distributions. This allowed us to analyze the alignment between these distributions and the relation between the ellipticities. Furthermore, we included environment information, which we related the to the misalignment.
@@ -433,3 +477,41 @@ JIR would like to acknowledge support from SNF grant PP00P2\_128540/1.
 \end{table*}
 
 \end{document}
+
+
+%%%%%%%% IGNORE THIS %%%%%%%%%%
+% Open Tasks
+%
+% --- General ---
+% - Add keywords
+% - Correct typos and reformulate some paragraphs
+% - ...
+%
+%
+% --- Introduction ---
+% - Citiations needed in parametric vs. nonparametric comparison part
+% - Citiations needed on effect of environment
+% - Section on how this work might be able to rule out certain alternative gravity models
+% - Describe theoretical expectations (ellipticities of dm halo and luminous part, misalignments, effect of environment)
+% - ...
+%
+%
+% --- Data ---
+% - More detailed description how the baryionic mass distribution was measured
+% - More details needed on galaxies in the sample? I don't think so though
+% - ...
+%
+%
+% --- Method ---
+% - Maybe more details on GLASS and how it works (cite Jonathan's upcoming paper)
+% - Plot showing how well the shape informations is recovered when applied to fake data
+% - Citation on why not monotonically decreasing radial density profiles are instable
+% - Generally look through method part
+% - ...
+%
+%
+% --- Results ---
+% - Interpretation of 
+% - Interpretation of ellipticities plot (why it is relevant that dm halos are significantly rounder)
+% - Interpretation of misalignment versus ellipticity plot ('forbidden region', alignment with semi-minor axis, very elliptical galaxies well aligned)
+
