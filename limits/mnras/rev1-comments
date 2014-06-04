@@ -44,9 +44,13 @@ If resolved in your models, wouldn't any significant subhalo violate these?
 Prior 4 from Coles et al. 2008: "The density of a pixel must be no more than
 twice the average density of its neighbors."  If so, please state that here.
 
+*** FIXED ***
+
 And just to clarify, does (ii) really apply to every pixel, or is it possible you meant:
 "(ii) The azimuthally averaged density profile..."
 which is less restrictive but would still disallow larger subhalos.
+
+*** FIXED ***
 
 Rather than enforcing these priors rigidly ("profile *must* have..."), why not
 *prefer* solutions which are smooth, etc. (as in regularization methods) while
@@ -54,6 +58,8 @@ still allowing for substructure when required by the data?  Is this a
 limitation of the method, that absolutes are required?  If so, please state
 that.  Or might the user relax these priors easily using your modular Python
 framework?
+
+*** FIXED ***
 
 Have you already tried modeling lenses with significant substructure and found
 GLASS works well?  If so, please include some discussion of these results in
@@ -63,6 +69,8 @@ roughly symmetric lenses with minimal substructure?
 
 
 Medium comment:
+
+*** FIXED ***
 
 The introduction is interesting but a bit long and, I believe, fails to make a
 key point to motivate reading further:  Why do we need another strong lensing
@@ -115,9 +123,13 @@ multiplied everywhere by some constant and then another constant added.
 
 Section 3.1
 
-*** FIXED *** There are two entries labeled (vi).
+*** FIXED *** 
+
+There are two entries labeled (vi).
 
 Section 3.3
+
+*** FIXED ***
 
 How fast is GLASS?  You mention ensembles of ~ 1000 models.  How long does this take to run?
 
