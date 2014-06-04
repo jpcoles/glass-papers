@@ -27,6 +27,8 @@ clear.  Below are my comments and suggested improvements.
 
 Major comment:
 
+*** FIXED ***
+
 In this paper, GLASS is tested on individual ellipsoidal galaxies.  It is
 claimed GLASS can also model galaxy clusters.  However, some of the rigid
 priors described in Section 3.3 do not seem to allow for significant

@@ -288,18 +288,22 @@ the $\Omega$ parameters even from a single lens, if there are lensed sources at
 multiple redshifts \citep{2014MNRAS.437.2461L} or by using additional priors 
 \citep{2010Sci...329..924J,2013arXiv1306.4732S}.
 
-In this paper, we use a new program -- \Glass\ (Gravitational Lensing AnalysiS
-Software) -- to determine what combination of lensing, stellar mass, and
+In this paper we demonstrate which combination of lensing, stellar mass, and
 stellar kinematic constraints best constrain the projected mass profile and
-shape of several gravitational lens produced from mock data.  The
-compute-intensive core of \Glass\ is a parallel implementation of the
-high-dimensional sampling algorithm from \cite{2012MNRAS.425.3077L}.  Around
-that core, \Glass\ has extensible code (in software terminology, a framework)
-in Python, encoding the lens equation, a basis and priors for the mass
-distribution, and various post-processing and visualisation modules.  \Glass\
-is described in \secref{sec:glass}.  In \secref{sec:theory}, we review the key
-elements of lensing theory, stellar population synthesis, and stellar dynamics
-we will need. In \secref{sec:mockdata}, we describe our mock data. In
+shape of several gravitational lens produced from mock data. In particular,
+we introduce the idea of using estimates of the stellar mas content to place
+lower bounds on the lensing mass.
+We also introduce a new lens modeling framework  -- \Glass\ (Gravitational
+Lensing AnalysiS Software). The compute-intensive core of \Glass\ is a parallel
+implementation of the high-dimensional sampling algorithm from
+\cite{2012MNRAS.425.3077L}.  Around that core, \Glass\ has extensible code (in
+software terminology, a framework) in Python, encoding the lens equation, a
+basis and priors for the mass distribution, and various post-processing and
+visualisation modules.  
+
+\Glass\ is described in \secref{sec:glass}.  In \secref{sec:theory}, we review
+the key elements of lensing theory, stellar population synthesis, and stellar
+dynamics we will need. In \secref{sec:mockdata}, we describe our mock data. In
 \secref{sec:results}, we present our results from applying \Glass\ to these
 mock data. Finally, in \secref{sec:conclusions} we present our conclusions. 
 
@@ -647,33 +651,60 @@ Unfortunately, the lens equation and the arrival times alone are not enough to
 form a closed volume in the solution space. We have not imposed any strong
 constraints on the density even so much as to ensure that it is non-negative
 everywhere. We must therefore provide additional linear constraints so that we
-only sample physical models. The explicit implementation for these priors has
+only sample physical models. Below we list typical constraints that \Glass\
+provides. The explicit implementation for these priors has
 been explained in \cite{2008ApJ...679...17C}, but can be summarised as
 %
 \begin{enumerate}
 \item The density must be non-negative everywhere.
-\item The density profile must have a slope everywhere $\le 0$.
+\item The azimuthally averaged density profile must have a slope everywhere $\le 0$.
+\item Image parity is enforced.
 \item The local gradient everywhere must point within $45^{\circ}$ of the center.
 \item Density variations must be smooth.
-\item Image parity is enforced.
-\item The density is inversion symmetric. (Optional)
+\item The density is inversion symmetric.
 \end{enumerate}
 
-Prior (ii) is necessary to prevent rings from forming where the inner region is
-less dense. This would be unusual for a galaxy or a cluster. Prior (vi)
-enforces a radial symmetry that requires radially opposed pixels (i.e., on
-opposite sides of the center) to be equal. This prior is particularly important
-for modelling doubles which must be symmetric. If a lens is suspected to be
-symmetric this can also significantly improve the modelling time for quads.
+The first three of these priors are very important for creating physically
+meaningful lenses. Prior (ii) is necessary to prevent rings from forming where
+the inner region is less dense. This would be unusual for a galaxy or a
+cluster. Prior (iv) can be relaxed somewhat by increasing the angle. The
+smoothness prior (v) requires pixel values to be less than a constant factor of
+the average neighbor value. This can be relaxed by increasing the constant or
+completely disabled. For this paper, we have chosen \emph{not} to use this
+prior, and therefore allow for the presence of small density substructure.
+Prior (vi) enforces a radial symmetry that requires radially opposed pixels
+(i.e., on opposite sides of the center) to be equal. This prior is particularly
+important for modelling doubles which must be symmetric. If a lens is suspected
+to be symmetric this can also significantly improve the modelling time for
+quads.
+
+While most of these priors have been selected for modelling galaxies, there
+are several ways to address clusters or allow for the presence of substructure.
+As previously described, one can add any number of additional analytic 
+potentials inside or outside the main modelling pixelation area. For instance,
+in a cluster, one can explicitly account for galaxies with power law potentials.
+Furthermore, Priors (iv) and (v) and be relaxed or disabled. We have perfomed
+preliminary testing of these ideas several common clusters and are encouraged
+by the results. We will reserve a full analysis for a future publication.
 
 In the simplest form, a single model for a lens is a tuple $\M = (\vec\kappa,
 \vec\beta, \gamma_1, \gamma_2)$. A single model represents a single point in
 the solution space polytope. Using the MCMC sampling strategy described in
 \cite{2012MNRAS.425.3077L} we uniformly sample this space. Collectively, the
 sampled models are referred to as an ensemble $\E = \{\M_i\}$, where we usually
-generate $|\E| \sim 1000$ models.
-\hilight{Referee suggests adding some timing information here. How long does it
-take to generate 1000 models?}
+generate $|\E| \sim 1000$ models. One can choose to further process these
+models to impose further priors that may be difficult to enforce during the
+modeling process. For instance, non-linear constraints, or simply filtering
+of models that do not meet some criteria can be excluded, or weighted against.
+For our current analysis, we do not exclude any models.
+
+The time to generate the model ensemble is mostly a function of the size of the
+parameter space. The MCMC algorithm has a ``warm-up'' phase where it estimates
+the size and shape of each dimension in the solution space.  Once this has been
+completed, the models are sampled very quickly. In fact, there is little
+difference between generating 1,000 or 10,000 models. For our problems, the
+typical ``warm-up'' time was about 4s, and the modelling time was 20s using a
+parallel shared-memory machine with 40 cores.
 
 \subsection{Raytracing}\label{Raytracing}
 \Glass\ can also determine the position of images and time delays from
@@ -988,6 +1019,7 @@ In \figref{main results pixel-wise} the error is defined over all the pixels $\v
 \begin{equation} \label{ferror theta}
 f_\theta = \frac {\sum_{\vec\theta} \left|M(\vec\theta) - \tilde M(\vec\theta)\right| } {\sum_{\vec\theta} \tilde M(\vec\theta)}
 \end{equation}
+%
 For both $f_R$ and $f_\theta$, we only consider mass up to one pixel length
 passed the outermost image, since there is no longer any lensing information
 beyond that point. This means we typically use 8 bins, linearly spaced,
