@@ -6,7 +6,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 %\usepackage{ulem} % Only necessary for striking out TODO items see \sout
-\usepackage{color} % Only necessary for hilight
+\usepackage[usenames,dvipsnames]{color} % Only necessary for hilight
 
 %-------------------------------------------------------------------------------
 % Macros for journal style.
@@ -16,7 +16,7 @@
 %-------------------------------------------------------------------------------
 % Macros for notes.
 %-------------------------------------------------------------------------------
-\newcommand{\hilight}[1]{{\bf \color{red} #1}}
+\newcommand{\hilight}[1]{{\bf \color{OliveGreen} #1}}
 
 %-------------------------------------------------------------------------------
 % Macros for common use cases.
@@ -695,18 +695,20 @@ the solution space polytope. Using the MCMC sampling strategy described in
 \cite{2012MNRAS.425.3077L} we uniformly sample this space. Collectively, the
 sampled models are referred to as an ensemble $\E = \{\M_i\}$, where we usually
 generate $|\E| \sim 1000$ models. One can choose to further process these
-models to impose further priors that may be difficult to enforce during the
+models to impose priors that may be difficult to enforce during the
 modeling process. For instance, non-linear constraints, or simply filtering
 of models that do not meet some criteria can be excluded, or weighted against.
-For our current analysis, we do not exclude any models.
+For the current analysis, we do not exclude any models and treat all models
+as equally likely.
 
 The time to generate the model ensemble is mostly a function of the size of the
 parameter space. The MCMC algorithm has a ``warm-up'' phase where it estimates
 the size and shape of each dimension in the solution space.  Once this has been
 completed, the models are sampled very quickly. In fact, there is little
-difference between generating 1,000 or 10,000 models. For our problems, the
-typical ``warm-up'' time was about 4s, and the modelling time was 20s using a
-parallel shared-memory machine with 40 cores.
+difference between generating 1,000 or 10,000 models, although we find little
+statistical difference after 1,000 models. For the mock lenses, the typical
+``warm-up'' time was about 4s, and the modelling time was 20s using a parallel
+shared-memory machine with 40 cores.
 
 \subsection{Raytracing}\label{Raytracing}
 \Glass\ can also determine the position of images and time delays from
@@ -868,14 +870,14 @@ The `extended' configurations use multiple point sources at the same redshift
 to simulate an extended source that will produces an arc-like image.
 \figref{arrival surfaces} shows the lens configurations for the \mockBC\
 galaxy. 
-The configurations for the other galaxies are similar. Within the
-names, the labels Z1, Z2, Z3 refer to the redshift of the sources. We have
-chosen Z1=1.72, Z2=0.72, and Z3=0.51 so that the radial distribution of the
-images is nearly equal. For all mocks, we do not apply any external shear field.
-Only the central image of the Z1 source is used to avoid overconstraining
-the models, otherwise all the central images would fall within the central 
-pixel and no solution exists that satisfies all locations simultaneously for
-one pixel value.
+The configurations for the other galaxies are similar.  The labels Z1, Z2, Z3
+within the names refer to the redshift of the sources. We have chosen Z1=1.72,
+Z2=0.72, and Z3=0.51 so that the radial distribution of the images is roughly
+equally spaced. For all mocks, we do not apply any external shear field.  Only
+the central image of the Z1 source is used to avoid overconstraining the
+models, otherwise all the central images would fall within the central pixel
+and no solution exists that satisfies all locations simultaneously for one
+pixel value.
 
 \begin{figure*}
 \includegraphics[width=0.85\textwidth]{BCarrival_surfaces}
@@ -1022,11 +1024,15 @@ In \figref{main results pixel-wise} the error is defined over all the pixels $\v
 f_\theta = \frac {\sum_{\vec\theta} \left|M(\vec\theta) - \tilde M(\vec\theta)\right| } {\sum_{\vec\theta} \tilde M(\vec\theta)}
 \end{equation}
 %
-For both $f_R$ and $f_\theta$, we only consider mass up to one pixel length
-passed the outermost image, since there is no longer any lensing information
-beyond that point. This means we typically use 8 bins, linearly spaced,
-ignoring the outermost 3 bins.  The spacing changes, however, at the border
-between the high resolution region in the middle.
+Since both error measurements consider the mass of each pixel, we are
+implicitly weighting the recovered density by the varying size of the pixels.
+The value $f_R$ emphasizes the error one would see from radial profiles, while
+$f_\theta$ is useful as a measure of how well each individual pixel is recovered.
+For both $f_R$ and $f_\theta$, we only consider mass up to one pixel length passed the
+outermost image, since there is no longer any lensing information beyond that
+point. This means we typically use 8 bins, linearly spaced, ignoring the
+outermost 3 bins.  The spacing changes, however, at the border between the high
+resolution region in the middle.
 
 
 \begin{figure*}
