@@ -86,7 +86,8 @@
 %-------------------------------------------------------------------------------
 %-------------------------------------------------------------------------------
 
-\title[Lens Recovery with \Glass]{Gravitational Lens Recovery with \Glass: Measuring the mass profile and shape of a lens}
+%\title[Lens Recovery with \Glass]{Gravitational Lens Recovery with \Glass: Measuring the mass profile and shape of a lens}
+\title[Lens Recovery with \Glass]{Stellar Mass and Stellar Kinematics Can Constrain Gravitational Lens Models}
 \author[J.~P.~Coles~et~al.]{%
 Jonathan P.~Coles,$^{1,3}$\thanks{jonathan@exascale-computing.eu}%
 \newauthor%
@@ -294,8 +295,21 @@ stellar kinematic constraints best constrain the projected mass profile and
 shape of several gravitational lens produced from mock data. In particular,
 we introduce the idea of using estimates of the stellar mas content to place
 lower bounds on the lensing mass.
-We also introduce a new lens modeling framework  -- \Glass\ (Gravitational
-Lensing AnalysiS Software). The compute-intensive core of \Glass\ is a parallel
+We have also developed a new lens modeling framework  -- \Glass\ (Gravitational
+Lensing AnalysiS Software) which improves upon the earlier techniques. The
+key developments are
+
+\begin{enumerate}
+\item A modular framework that allows new priors to be added and modified easily.
+\item The basis functions approximating a model can be changed.
+\item Non-linear constraints can be imposed in an automated post-processing step.
+\item The central region can have a higher resolution to capture steep models.
+\item Stellar density can be used as an additional constraint.
+\item Point or extended mass objects can be placed in the field.
+\item A new uniform sampling algorithm for high dimensional spaces.
+\end{enumerate}
+
+The compute-intensive core of \Glass\ is a parallel
 implementation of the high-dimensional sampling algorithm from
 \cite{2012MNRAS.425.3077L}.  Around that core, \Glass\ has extensible code (in
 software terminology, a framework) in Python, encoding the lens equation, a
@@ -649,13 +663,12 @@ where the stellar potential is a known constant of the form \eqnref{discrete
 potential}, e.g., $\kappa_n = \kappa_{\mathrm{dm},n} + \kappa_{s,n}$ for a
 two-component model.
 
-Unfortunately, the lens equation and the arrival times alone are not enough to
-form a closed volume in the solution space. We have not imposed any strong
-constraints on the density even so much as to ensure that it is non-negative
-everywhere. We must therefore provide additional linear constraints so that we
-only sample physical models. Below we list typical constraints that \Glass\
-provides. The explicit implementation for these priors has
-been explained in \cite{2008ApJ...679...17C}, but can be summarised as
+The lens equation and the arrival times alone are not enough to form a closed
+volume in the solution space. The data alone do not even constraint the density
+to be non-negative everywhere. We therefore provide additional linear
+constraints so that only physical models are sampled. 
+\Glass\ provides a number of typical constraints similar to those discussed in
+\cite{2008ApJ...679...17C}: 
 %
 \begin{enumerate}
 \item The density must be non-negative everywhere.
@@ -670,15 +683,15 @@ The first three of these priors are very important for creating physically
 meaningful lenses. Prior (ii) is necessary to prevent rings from forming where
 the inner region is less dense. This would be unusual for a galaxy or a
 cluster. Prior (iv) can be relaxed somewhat by increasing the angle. The
-smoothness prior (v) requires pixel values to be less than a constant factor of
-the average neighbor value. This can be relaxed by increasing the constant or
-completely disabled. For this paper, we have chosen \emph{not} to use this
-prior, and therefore allow for the presence of small density substructure.
-Prior (vi) enforces a radial symmetry that requires radially opposed pixels
-(i.e., on opposite sides of the center) to be equal. This prior is particularly
-important for modelling doubles which must be symmetric. If a lens is suspected
-to be symmetric this can also significantly improve the modelling time for
-quads.
+smoothness prior (v) requires pixel values to be less than a constant factor
+(normally 2) of the average neighbor value. This can be relaxed by increasing
+the constant or completely disabled. For this paper, we have chosen \emph{not}
+to use this prior, and therefore allow for the presence of small density
+substructure.  Prior (vi) enforces a radial symmetry that requires radially
+opposed pixels (i.e., on opposite sides of the center) to be equal. This prior
+is particularly important for modelling doubles which must be symmetric. If a
+lens is suspected to be symmetric this can also significantly improve the
+modelling time for quads.
 
 While most of these priors have been selected for modelling galaxies, there
 are several ways to address clusters or allow for the presence of substructure.
@@ -886,7 +899,9 @@ mock galaxy. The other mock galaxies produce similar results. Here, the central
 image is shown, although not all tests include it. The naming convention
 indicates the redshift of the sources with Z1=1.72, Z2=0.72, and Z3=0.51.  The
 central image only belongs to the Z1 source to avoid overconstraining the
-models. Image colors represent a common source. Grey circles are a visual aid
+models. Images of the same color share a common source. The extended source examples have been
+contructed so that the images will form arclets.
+Grey circles are a visual aid
 to help determine radial separation between images. The axes are in
 arcseconds.}
 \label{arrival surfaces}
@@ -1014,14 +1029,14 @@ each of the test configurations with (red) and without (black) stellar mass. In
 \figref{main results} we define the error
 %
 \begin{equation} \label{ferror R}
-  f_R = \frac {\sum_i \left|M(i) - \tilde M(i)\right| } {\sum \tilde M(i)}
+  f_R = \frac {\sum_i \left|M(i) - \widehat M(i)\right| } {\sum \widehat M(i)}
 \end{equation}
 %
-based on the mass $M(i)$ of each pixel ring $i$ and the mass $\tilde M$ from the mock galaxy. 
+based on the mass $M(i)$ of each pixel ring $i$ and the mass $\widehat M$ from the mock galaxy. 
 In \figref{main results pixel-wise} the error is defined over all the pixels $\vec\theta$:
 %
 \begin{equation} \label{ferror theta}
-f_\theta = \frac {\sum_{\vec\theta} \left|M(\vec\theta) - \tilde M(\vec\theta)\right| } {\sum_{\vec\theta} \tilde M(\vec\theta)}
+f_\theta = \frac {\sum_{\vec\theta} \left|M(\vec\theta) - \widehat M(\vec\theta)\right| } {\sum_{\vec\theta} \widehat M(\vec\theta)}
 \end{equation}
 %
 Since both error measurements consider the mass of each pixel, we are
@@ -1112,10 +1127,10 @@ $f_\theta$, we only consider mass up to one radial position passed the
 outermost image and compute the fractional error as:
 %
 \begin{equation} \label{ferror shape}
-  f_\mathrm{shape} = \left|s - \tilde s\right|  / \tilde s
+  f_\mathrm{shape} = \left|s - \widehat s\right|  / \widehat s
 \end{equation}
 %
-where $\tilde s$ is the shape of the mock galaxy. The distribution of
+where $\widehat s$ is the shape of the mock galaxy. The distribution of
 $f_\mathrm{shape}$ for each mock galaxy and each test case is shown in
 \figref{shape results}.  Interestingly, for this global shape parameter
 recovery it appears more important to have time delay data and/or a central
