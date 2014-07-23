@@ -1,0 +1,316 @@
+We would like to thank the referee for their constructive and helpful report and the assistant editor for their helpful comments. We have now addressed all of these and hope that the paper is ready for publication. We give a detailed response point by point, next. Our responses are highlighted by the text "*** response ***" and indented.
+
+****** JUSTIN MARKS THINGS STILL TO DO WITH $$$ ****** 
+
+------------------------------------------------------------------------------------------------
+Assistant Editor's Comments:
+
+This paper is missing keywords. Select between one and six from the list at
+http://oxfordjournals.org/our_journals/mnrasl/for_authors/mnraskeywords.pdf and
+insert them below the abstract.
+
+	*** response ***
+	We thank the assistant editor for spotting this. Keywords have now been added.
+
+As noted by the referee, http://www.masterlens.org/ is not a suitable URL to
+give in the paper because it is not publicly accessible.
+
+	*** response ***
+	This is now corrected. The website link used previously was out of date. 
+	It should be: http://masterlens.astro.utah.edu
+
+Appendices should be placed after the list of references.
+
+	*** response ***
+	This is now corrected.
+
+References to arxiv preprints need to include the preprint number e.g.
+arxiv:0123.4567
+
+	*** response ***
+	This is now corrected.
+
+------------------------------------------------------------------------------------------------
+Reviewer's Comments:
+
+This paper presents GLASS, a new strong lensing analysis package loosely based
+on PixeLens developed in part by these same authors.  In addition to strongly
+lensed galaxy images, GLASS accepts stellar mass and kinematics data as inputs
+to constrain the lensing galaxy's mass distribution.  Tests on mock data are
+presented to demonstrate the method's accuracy given various inputs.
+
+The paper is generally clear and well written.  Some of the figures are less
+clear.  Below are my comments and suggested improvements.
+
+Major comment:
+
+In this paper, GLASS is tested on individual ellipsoidal galaxies.  It is
+claimed GLASS can also model galaxy clusters.  However, some of the rigid
+priors described in Section 3.3 do not seem to allow for significant
+substructure, namely:
+
+(ii) The density profile must have a slope everywhere <= 0
+(iii) The local gradient everywhere must point within 45 degrees of the center
+(iv) Density variations must be smooth
+
+If resolved in your models, wouldn't any significant subhalo violate these?
+
+	*** response ***
+	These has been a fair amount of discussion on this in the literature from 
+	PixeLens which uses an identical prior. There are three key points to note:
+
+	i) Given good enough data, these priors can be switched off or changed. 
+	We are looking into when/whether this is possible given the many images 
+	seen in clusters and will explore this in future work. It can even be switched 
+	off simply for some parts of the mass map (i.e. near to the images or near to 
+	known galaxies within the cluster) where we might expect data constraints 
+	to be stronger. 
+
+	ii) Even with the prior, we are able to detect multiple "plateaus" in the mass
+	distribution, even if we are not able to detect multiple peaks. Two examples 
+	are the merger system B1608 (e.g. Read et al. 2007) where using this prior, 
+	we clearly resolve the fact that there are two galaxies merging in the mass 
+	map; and Saha et al. 2007 where, again with this prior switched on, they
+	successfully detected "meso-structure" in two strong lensing clusters. We 
+	have now added more discussion to the text to highlight these important
+	points.
+
+	iii) Note that GLASS also allows point mass and/or other potentials to be 
+	added at locations where there are known substructures (e.g. galaxies 
+	within a lensing cluster). This is now used as standard for modelling 
+	galaxy clusters; we will present such models in forthcoming papers. 
+
+	$$$ GOT TO HERE. NEED TO UPDATE/CHECK/CHANGE TEXT. 
+
+(iv) is a bit vague; please clarify in the text.  I guess you are referring to
+Prior 4 from Coles et al. 2008: "The density of a pixel must be no more than
+twice the average density of its neighbors."  If so, please state that here.
+
+	*** response ***
+	This is correct and has now been clarified in the text.
+
+And just to clarify, does (ii) really apply to every pixel, or is it possible you meant:
+"(ii) The azimuthally averaged density profile..."
+which is less restrictive but would still disallow larger subhalos.
+
+	*** response ***
+	This should have read "azimuthally averaged", yes. This is now fixed. Note
+	that all such priors are only our default choice and can be switched off
+ 	if the data are sufficiently good to warrant it (c.f. comment, above). 
+
+Rather than enforcing these priors rigidly ("profile *must* have..."), why not
+*prefer* solutions which are smooth, etc. (as in regularization methods) while
+still allowing for substructure when required by the data?  Is this a
+limitation of the method, that absolutes are required?  If so, please state
+that.  Or might the user relax these priors easily using your modular Python
+framework?
+
+*** FIXED ***
+
+Have you already tried modeling lenses with significant substructure and found
+GLASS works well?  If so, please include some discussion of these results in
+the manuscript to alleviate my concerns.  Otherwise, it may be worth
+emphasizing this limitation in the text: perhaps that GLASS is intended for
+roughly symmetric lenses with minimal substructure?
+
+
+Medium comment:
+
+*** FIXED ***
+
+The introduction is interesting but a bit long and, I believe, fails to make a
+key point to motivate reading further:  Why do we need another strong lensing
+analysis method?  It would be useful to briefly mention other methods
+(especially PixeLens) and how GLASS improves on them and/or complements them.
+For example, in the last paragraph, which of these aspects are being done for
+the first time with GLASS?
+
+
+Minor comments:
+
+
+Section 1
+
+*** FIXED *** 
+
+The link http://www.masterlens.org requires a password.  You might replace it with http://admin.masterlens.org which also allows new users to sign up.
+
+*** FIXED ***
+
+"Four of these are important for the present work:"
+->
+"Five of these…”
+
+"Such ensembles are possible in parametric models (Bernstein & Fischer 1999)
+but are more common in free-form models..." Ensembles have become more common
+in parametric modeling since 1999.  For example, Jullo et al. 2010 used a
+Bayesian MCMC implementation of Lenstool to model Abell 1689 and constrain
+cosmology.  Also note all of the Frontier Fields lens modelers contributed
+ensembles of models based on both "parametric" and "non-parametric" methods.
+
+
+Section 2
+
+*** FIXED *** 
+
+"The lens can be thought of as a projected surface density"
+->
+"Using the thin lens approximation, the lens..."
+
+*** FIXED ***
+
+I suggest not using the \times symbol in equations 8 and 10, reserving it instead for vector cross products.
+
+Regarding the mass-sheet degeneracy, please clarify: "rescaling the surface
+density at the images kappa(theta)".  I read this as multiplying kappa by some
+constant only at the image positions.  This should be corrected to: kappa
+multiplied everywhere by some constant and then another constant added.
+
+
+Section 3.1
+
+*** FIXED *** 
+
+There are two entries labeled (vi).
+
+Section 3.3
+
+*** FIXED ***
+
+How fast is GLASS?  You mention ensembles of ~ 1000 models.  How long does this take to run?
+
+
+Section 4.1
+
+*** FIXED ***
+
+critical density
+->
+critical lensing density
+(not to be confused with Omega)
+
+
+Section 4.2:  Figure 2
+
+"The ‘extended’ configurations use multiple point sources at the same redshift to simulate an extended source that will produces an arc-like image.  Figure 2 shows..."
+
+That description does not match what I see in Figure 2.  That is, I do not see multiple points lensed to form arc-like images.
+
+"R1, R2, R3" suggest radii, not redshifts.  I suggest renaming them and also tying them to colors in the plot:
+Z1 = 0.51 (blue)
+Z2 = 0.72 (green)
+Z3 = 1.72 (red)
+(Different symbols could be used for multiple sources at the same redshift.)
+
+Then you might refer to the six test cases as:
+DoubleZ3
+ExtendedDoubleZ3
+ExtendedQuadZ3
+QuadZ3
+QuadZ2Z3
+QuadZ1Z3
+
+In the top right panel, it's not clear to me how three sources can be lensed to form images at the locations shown.  Can you please double check this?  And in what direction is the ellipsoidal lens oriented in this plot?
+
+*** FIXED ***
+
+Figure 2 caption:
+"The central image belongs to only to the R1 source to avoid overconstraining the models."
+Please clarify:
+"Central image constraints are only provided for the R1 source..."
+And is this simply meant to reflect realistic data sets (that central images are difficult to identify)?  Or are you saying GLASS performs oddly (over-constraining models) when multiple central images are given as input?
+
+
+Results:
+
+*** FIXED *** Discussed in 3.1, item vi.
+
+Section 4.2
+"GLASS correctly returns a small or zero shear in all cases."
+Could you briefly discuss possible model degeneracies between shear and ellipticity?
+
+
+Section 5
+
+*** FIXED ** Added a small (somewhat unnecessary comment)
+
+Strongly lensed images constrain the lensing galaxy's total mass (dark matter +
+stellar).  But in several places, you seem to suggest GLASS is modeling the
+dark matter component only.  For example, in Figure 3 you label the model
+results "DM".  And in Section 5.3, when stellar mass is used as a constraint,
+you say "we assume a perfect recovery of the stellar mass".  I would rephrase
+this to say the input stellar mass sets a lower limit to the total mass in the
+lensing model.
+
+Regarding Figure 3 (which I find confusing), in the middle and right columns, I would plot the following with modified labels and colors such as:
+- Input: magenta
+- Stars: yellow (where used as a lower limit constraint: second row)
+- Result: black with gray error band
+
+I expect the gray shaded region to correspond to the black line (similar colors).  I believe your "result" is always total mass (DM + stars) as constrained by the model.  In your current plots, however, the result line (always banded by gray) is usually magenta (DM only) except in the second row when it's blue (total mass).  I see no need for a separate DM-only result line.
+
+You might label the vertical lines to emphasize them as the range of image radii where results are expected to be best.
+
+I further suggest breaking Figure 3 into two figures.  The top two rows make one point: that the prior on stellar mass improves the model.  The bottom two rows make another point: the GLASS priors favor steeper slopes.  A separate figure for each point would make all of this easier to digest.
+
+
+Section 5.1
+
+I suggest beginning by emphasizing and quantifying how well GLASS recovers what
+strong lensing constrains best: mass enclosed within the Einstein radius or so
+(where lensed images are found), while noting this is different from the
+results plotted in Figures 5 and 6.  Hopefully you can also say your range of
+ensemble models always includes the true M(<R).
+
+It would also be useful to show (if not here, then in future work) how well
+GLASS recovers the mass profile slope near the image positions (one of the keys
+to constraining cosmology with time delays).
+
+"the error bars are smallest in the region of the images"
+->
+"the accuracies and precisions are best in the range of radii with lensed images"
+
+
+Section 5.1
+
+I find your two "main results" plots (Figures 5 and 6) redundant (although you
+say later in Section 5.2 that this is making a point about the shape recovery).
+
+Please use more consistent y-axis limits for the plots.  For example, you might set all lower limits to zero and the upper limits to one of the following for each plot: 0.5, 0.9, or 3.5.
+
+*** FIXED ***
+
+For f_R, please briefly state how many bins you used with what spacing (linear? log? equal numbers of pixels?).
+
+*** FIXED ***
+
+I find the T/t, M/m notation confusing.  In place of (TM, Tm, tM, tm), I suggest something like:
+TD+central
+TD
+central
+neither
+
+Section 5.2
+
+*** FIXED ***
+
+Please briefly describe in words the meaning of your shape parameter "s".  Is it related to ellipticity?
+
+Section 5.4
+
+*** FIXED ***
+
+"with time delays and stellar mass (left), and the same but without stellar mass (right)."
+->
+"with time delays and stellar mass (middle), and the same but without stellar mass (left)."
+
+
+Figure 8 caption:
+Note (as you do in the text) that the gray shaded regions correspond to the
+full ensemble distributions for beta = 0 and 1, respectively.  I suggest using
+different colors for the two bands.  As is, it looks more like a plot of, say,
+68% (darker) and 95% (lighter) confidence regions.
+
+
+I don't expect you to necessarily implement every minor suggestion I've made,
+but I hope you will agree most or all will be useful to improve the manuscript.
