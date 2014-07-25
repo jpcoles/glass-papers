@@ -247,7 +247,9 @@ QuadZ3
 QuadZ2Z3
 QuadZ1Z3
 
-In the top right panel, it's not clear to me how three sources can be lensed to form images at the locations shown.  Can you please double check this?  And in what direction is the ellipsoidal lens oriented in this plot?
+In the top right panel, it's not clear to me how three sources can be lensed to
+form images at the locations shown.  Can you please double check this?  And in
+what direction is the ellipsoidal lens oriented in this plot?
 
 	*** response ***
 	We have now changed the labels as requested. We also plot the source 
@@ -332,7 +334,9 @@ Section 5.1
 I find your two "main results" plots (Figures 5 and 6) redundant (although you
 say later in Section 5.2 that this is making a point about the shape recovery).
 
-Please use more consistent y-axis limits for the plots.  For example, you might set all lower limits to zero and the upper limits to one of the following for each plot: 0.5, 0.9, or 3.5.
+Please use more consistent y-axis limits for the plots.  For example, you might
+set all lower limits to zero and the upper limits to one of the following for
+each plot: 0.5, 0.9, or 3.5.
 
 	*** response ***
 	$$$ JONATHAN TO FIX THE IMAGES. NEED SOME TEXT TO RESPOND TO ]
