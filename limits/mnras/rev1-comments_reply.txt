@@ -259,6 +259,14 @@ what direction is the ellipsoidal lens oriented in this plot?
 	I LIKE THE REFEREE IDEA OF USING COLOURS AND SYMBOLS. CAN WE 
 	DO THAT ALSO PLEASE?  
 
+        In the top right panel, the circles and the triangles have a
+        different time-ordering from the squares.  The ordering for
+        the circles and triangles are ordered bottom-top-right-left,
+        whereas the squares are bottom-top-left-right.  This is the
+        origin of the somewhat curious image configuration.
+
+        The lens is roughly left-right elliptical.
+
 Figure 2 caption:
 "The central image belongs to only to the R1 source to avoid overconstraining the models."
 Please clarify:
