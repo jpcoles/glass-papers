@@ -328,6 +328,9 @@ to constraining cosmology with time delays).
 
 	*** response ***
 	$$$ DID WE DO OR SAY SOMETHING HERE? 
+  JPC: We don't say anything explicitly and we have done any tests that look at
+  the slope recovery around individual lenses. From the radial profiles the
+  slope is best constrained around the images.
 
 Section 5.1
 

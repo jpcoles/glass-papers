@@ -888,13 +888,17 @@ pixel value.
 \includegraphics[width=0.85\textwidth]{BCarrival_surfaces}
 \caption{The lens configurations for the six test cases using the \mockBC{}
 mock galaxy. The other mock galaxies produce similar results. Here, the central
-image is shown, although not all tests include it. The naming convention
-indicates the redshift of the sources with Z1=1.72, Z2=0.72, and Z3=0.51.  The
-central image only belongs to the Z1 source to avoid over-constraining the
-models (see \secref{sec:lensconfig} for further details). Images of the same colour share a common source. The extended source examples have been constructed so that the images will form arclets.
-Grey circles are a visual aid
-to help determine radial separation between images. The axes are in
-arcseconds.}
+image is shown, although not all tests include it. 
+The naming convention indicates the redshift of the
+sources with Z1=1.72, Z2=0.72, and Z3=0.51.  The central image only belongs to
+the Z1 source to avoid over-constraining the models (see
+\secref{sec:lensconfig} for further details). 
+Small diamonds identify the location of the source(s) and images of the same shape share a
+common source. The extended source examples have been constructed so that the
+images will form arclets.  The maximum separation of the sources in the source plane
+is 2.23 kpc in the extended double and 0.92 kpc in the extended quad. Grey
+circles are a visual aid to help determine radial separation between images.
+The axes are in arcseconds.}
 \label{arrival surfaces}
 \end{figure*}
 
@@ -966,7 +970,7 @@ lensing.
   \plotthree{BCExtendedDoubleR1_tms-a.pdf} {BCExtendedDoubleR1_tms-b.pdf} {BCExtendedDoubleR1_tms-c.pdf}
   \plotthree{BCExtendedDoubleR1_tmS-a-1.pdf} {BCExtendedDoubleR1_tmS-b-1.pdf} {BCExtendedDoubleR1_tmS-c-1.pdf}
 \caption{
-    Two reconstructions of the mock galaxy \mockBC for an extended
+    Two reconstructions of the mock galaxy \mockBC\ for an extended
     double without stellar mass (\textbf{Top}) and with stellar mass
     (\textbf{Bottom}).  No time delays were assumed.  The improved constraints
     on the mass distribution when a lower bound is given by the stellar mass is
@@ -974,10 +978,10 @@ lensing.
 \textbf{Left:}
 The ensemble average arrival time surface with just the iso-contours for the
 saddle points drawn. The central diamonds show the reconstructed source
-position.
+positions.
 \textbf{Middle:}
-The surface density of the dark matter (DM; magenta); the stars (yellow); and the total (blue).
-The original mass model (with stars) used to create the lens is shown in black.
+The surface density of the dark matter (DM; magenta); the stars (yellow); and the total (black).
+The original $N$-body mass model (with stars) used to create the lens is shown in green.
 The vertical lines mark the radial positions of the images. The higher
 resolution feature of \Glass\ has been used on the central pixel allowing the
 steep profile to be captured.
@@ -1402,10 +1406,10 @@ the extended double the results without time delays are poor. Even with time
 delays, the shape is not well recovered without the radial prior, as expected.
 
 \begin{figure*}
-\includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-appendix-a.pdf}
-\includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-appendix-b.pdf}
-\includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-appendix-c.pdf}
-\includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-appendix-d.pdf}\\
+\includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_tms-appendix-a.pdf}
+\includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_tms-appendix-b.pdf}
+\includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_tms-appendix-c.pdf}
+\includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_tms-appendix-d.pdf}\\
 %
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-appendix-a-1.pdf}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-nosymm_Tms-appendix-b-1.pdf}
@@ -1445,22 +1449,25 @@ four pixels beyond the outermost image.
 \begin{figure*}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr10_TmS-a.pdf}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr10_TmS-b.pdf}
-\includegraphics[width=0.24\textwidth]{BCQuadR1a-pr10_TmS-c.pdf} \\
+\includegraphics[width=0.24\textwidth]{BCQuadR1a-pr10_TmS-c.pdf}\\
+%
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr7_TmS-a.pdf}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr7_TmS-b.pdf}
-\includegraphics[width=0.24\textwidth]{BCQuadR1a-pr7_TmS-c.pdf} \\
+\includegraphics[width=0.24\textwidth]{BCQuadR1a-pr7_TmS-c.pdf}\\
+%
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr6_TmS-a.pdf}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr6_TmS-b.pdf}
-\includegraphics[width=0.24\textwidth]{BCQuadR1a-pr6_TmS-c.pdf} \\
+\includegraphics[width=0.24\textwidth]{BCQuadR1a-pr6_TmS-c.pdf}\\
+%
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr5_TmS-a.pdf}
 \includegraphics[width=0.24\textwidth]{BCQuadR1a-pr5_TmS-b.pdf}
-\includegraphics[width=0.24\textwidth]{BCQuadR1a-pr5_TmS-c.pdf} \\
+\includegraphics[width=0.24\textwidth]{BCQuadR1a-pr5_TmS-c.pdf}\\
 \caption{The effect of changing the grid resolution parameter \pixrad. From top
     to bottom, the panels show results for a single quad with time delays and
     with stellar mass constraints using $\pixrad = 10,7,6,5$,
     respectively. We always demand that there are four radial bins outside the
     outermost image, which causes the total mass to increase with decreasing
-    \pixrad.  In this paper we have used $\pixrad = 8$ in all the
+    \pixrad, and the plot to shrink with increase pixel size.  In this paper we have used $\pixrad = 8$ in all the
 tests.}
 
 \label{fig:pix_convergence_test}
