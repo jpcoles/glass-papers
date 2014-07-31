@@ -367,7 +367,7 @@ each plot: 0.5, 0.9, or 3.5.
 	*** response ***
         We have changed the plots to use log scaling and adjusted the ranges
         such that each figure is consistent. While the actual range of the
-        errors is less visable the general trends between configurations
+        errors is less visible the general trends between configurations
         remains clear.
 
 For f_R, please briefly state how many bins you used with what spacing (linear? log? equal numbers of pixels?).
