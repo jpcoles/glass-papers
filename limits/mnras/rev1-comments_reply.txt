@@ -1,6 +1,8 @@
-We would like to thank the referee for their constructive and helpful report and the assistant editor for their helpful comments. We have now addressed all of these and hope that the paper is ready for publication. We give a detailed response point by point, next. Our responses are highlighted by the text "*** response ***" and indented.
-
-****** JUSTIN MARKS THINGS STILL TO DO WITH $$$ ****** 
+We would like to thank the referee for their constructive and helpful report
+and the assistant editor for their helpful comments. We have now addressed all
+of these and hope that the paper is ready for publication. We give a detailed
+response point by point, next. Our responses are highlighted by the text 
+"*** response ***" and indented.
 
 ------------------------------------------------------------------------------------------------
 Assistant Editor's Comments:
@@ -229,7 +231,9 @@ critical lensing density
 
 Section 4.2:  Figure 2
 
-"The ‘extended’ configurations use multiple point sources at the same redshift to simulate an extended source that will produces an arc-like image.  Figure 2 shows..."
+"The 'extended' configurations use multiple point sources at
+the same redshift to simulate an extended source that will produces an arc-like
+image.  Figure 2 shows..."
 
 That description does not match what I see in Figure 2.  That is, I do not see multiple points lensed to form arc-like images.
 
@@ -253,19 +257,20 @@ what direction is the ellipsoidal lens oriented in this plot?
 
 	*** response ***
 	We have now changed the labels as requested. We also plot the source 
-	positions for the extended sources and mark their maximum physical
-	separation in the Figure caption $$$ JONATHAN TO DO THIS. MORE HERE
-	ON PHYSICAL MEANING OF SEPARATION. COMMENT ON ARC VISIBILITY. 
-	I LIKE THE REFEREE IDEA OF USING COLOURS AND SYMBOLS. CAN WE 
-	DO THAT ALSO PLEASE?  
-
+	positions for the extended sources and describe their maximum physical
+	separation in the Figure caption. The image positions from the same
+        source are now marked with the same symbols and color differentiates
+        the sources. The arc from the image triplets is hopefully more 
+        visible now.
+        
         In the top right panel, the circles and the triangles have a
         different time-ordering from the squares.  The ordering for
         the circles and triangles are ordered bottom-top-right-left,
         whereas the squares are bottom-top-left-right.  This is the
         origin of the somewhat curious image configuration.
 
-        The lens is roughly left-right elliptical.
+        The lens is roughly left-right elliptical. The 2d projected 
+        density distribution of this lens can be seen in Figure 5.
 
 Figure 2 caption:
 "The central image belongs to only to the R1 source to avoid overconstraining the models."
@@ -326,32 +331,44 @@ strong lensing constrains best: mass enclosed within the Einstein radius or so
 results plotted in Figures 5 and 6.  Hopefully you can also say your range of
 ensemble models always includes the true M(<R).
 
+	*** response ***
+        We have added text to mention that the true M(<R) is always bounded by
+        our ensemble. Thank you.
+
 It would also be useful to show (if not here, then in future work) how well
 GLASS recovers the mass profile slope near the image positions (one of the keys
 to constraining cosmology with time delays).
+
+	*** response ***
+        Thank you for the suggestion. We will leave this for future work.
 
 "the error bars are smallest in the region of the images"
 ->
 "the accuracies and precisions are best in the range of radii with lensed images"
 
 	*** response ***
-	$$$ DID WE DO OR SAY SOMETHING HERE? 
-  JPC: We don't say anything explicitly and we have done any tests that look at
-  the slope recovery around individual lenses. From the radial profiles the
-  slope is best constrained around the images.
+	We have made this change. Thank you. 
 
 Section 5.1
 
 I find your two "main results" plots (Figures 5 and 6) redundant (although you
 say later in Section 5.2 that this is making a point about the shape recovery).
 
+	*** response ***
+        While quite similar, the two figures are important to show that there
+        is a distinct link between recoverability of the lens profile and
+        the global 2d recovery and it's relationship to the shape as we discuss 
+        in the text.
+
 Please use more consistent y-axis limits for the plots.  For example, you might
 set all lower limits to zero and the upper limits to one of the following for
 each plot: 0.5, 0.9, or 3.5.
 
 	*** response ***
-	$$$ JONATHAN TO FIX THE IMAGES. NEED SOME TEXT TO RESPOND TO ]
-	THIS. REFEREE ESSENTIALLY ANSWERS THEIR OWN QUESTION. 
+        We have changed the plots to use log scaling and adjusted the ranges
+        such that each figure is consistent. While the actual range of the
+        errors is less visable the general trends between configurations
+        remains clear.
 
 For f_R, please briefly state how many bins you used with what spacing (linear? log? equal numbers of pixels?).
 
