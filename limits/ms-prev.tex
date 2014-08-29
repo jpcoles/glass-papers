@@ -6,7 +6,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 %\usepackage{ulem} % Only necessary for striking out TODO items see \sout
-\usepackage[usenames,dvipsnames]{color} % Only necessary for hilight
+%\usepackage[usenames,dvipsnames]{color} % Only necessary for hilight
 
 %-------------------------------------------------------------------------------
 % Macros for journal style.
@@ -16,7 +16,7 @@
 %-------------------------------------------------------------------------------
 % Macros for notes.
 %-------------------------------------------------------------------------------
-\newcommand{\hilight}[1]{{\bf \color{OliveGreen} #1}}
+%\newcommand{\hilight}[1]{{\bf \color{OliveGreen} #1}}
 
 %-------------------------------------------------------------------------------
 % Macros for common use cases.
@@ -87,7 +87,6 @@
 %-------------------------------------------------------------------------------
 
 \title[Lens Recovery with \Glass]{Gravitational Lens Recovery with \Glass: Measuring the mass profile and shape of a lens}
-%\title[Lens Recovery with \Glass]{Stellar Mass and Stellar Kinematics Can Constrain Gravitational Lens Models}
 \author[J.~P.~Coles~et~al.]{%
 Jonathan P.~Coles,$^{1,3}$\thanks{jonathan@exascale-computing.eu}%
 \newauthor%
@@ -135,12 +134,12 @@ gravitational lensing: strong, methods: numerical, methods: statistical
 
 Strong gravitational lenses are rare. Since the discovery of the first lens
 Q0957+561 \citep{1979Natur.279..381W}, just $\sim400$ have been discovered to
-date\footnote{See, e.g., {\url{http://masterlens.astro.utah.edu}} for a catalogue.}.
-However, this number is expected to increase to several thousand over the next
-ten years as new surveys, both
+date\footnote{See, e.g., {\url{http://masterlens.astro.utah.edu}} for a
+catalogue.}.  However, this number is expected to increase to several thousand
+over the next ten years as new surveys, both
 ground-based\footnote{\url{http://pan-starrs.ifa.hawaii.edu}}$^{\rm,}$\footnote{\url{http://www.darkenergysurvey.org}}
-and space-based\footnote{\url{http://www.euclid-ec.org}} -- together with a community
-of citizen-science volunteers examining the image data for
+and space-based\footnote{\url{http://www.euclid-ec.org}} -- together with a
+community of citizen-science volunteers examining the image data for
 candidates\footnote{\url{http://spacewarps.org}} -- come online. 
 
 Since lensing depends only on gravity, strong lenses offer a unique window onto
@@ -153,18 +152,21 @@ complementary data from stellar/gas kinematics, lens time delays and/or stellar
 mass constraints) are required to address problems of interest. It is towards
 that goal that this present work is directed.
 
-To see why lens modelling details are of crucial importance, let us
-recall the essential quantities that appear in lensing (see also \S\ref{sec:theory} for a more detailed exposition). First we have the distances. Let $D_L$, $D_S$, $D_{LS}$ be the
-angular-diameter distances to the lens, source, and from lens to
-source; these are all proportional to $c/H_0$ but have factors
-that depend on the particular choice of cosmology\footnote{Here, $c$ is the speed of light in vacuo and $H_0$ is the Hubble parameter.}.  Typically:
+To see why lens modelling details are of crucial importance, let us recall the
+essential quantities that appear in lensing (see also \S\ref{sec:theory} for a
+more detailed exposition). First we have the distances. Let $D_L$, $D_S$,
+$D_{LS}$ be the angular-diameter distances to the lens, source, and from lens
+to source; these are all proportional to $c/H_0$ but have factors that depend
+on the particular choice of cosmology\footnote{Here, $c$ is the speed of light
+in vacuo and $H_0$ is the Hubble parameter.}.  Typically:
 %
 \begin{equation}
 D_L \approx z_L \frac c{H_0}\ \hbox{and}\ \frac{D_S}{D_{LS}} \sim 1.
 \end{equation}
 where $z_L$ is the redshift of the lens. 
 %
-For multiple images, the sky-projected density must exceed the critical lensing density in some region:
+For multiple images, the sky-projected density must exceed the critical lensing
+density in some region:
 %
 \begin{equation}
 \Sigma_\mathrm{crit} = \frac{c^2}{4\pi G D_L} \sim \frac{1\rm\,kg\,m^{-2}}{z_L}
@@ -258,19 +260,24 @@ important for the present work:
 \label{eqn:virial}
 \end{equation}
 %
-where $\langle v^2_\mathrm{los}\rangle$ is the line of sight stellar
-velocity dispersion, and the above relation becomes exact for
-isothermal lenses. This can then be used to probe cosmological parameters if lenses are known to be isothermal \citep[e.g.][]{2012MNRAS.424.2864C}; or to break the steepness degeneracy in the more general situation (see \S\ref{sec:kinematics}). The technique has since been applied to many lenses \citep[e.g.][]{2006ApJ...649..599K,2008ApJ...682..964B}.  Going further, the
-use of two-dimensional kinematics \citep{2011MNRAS.415.2215B} is
-especially interesting.
+where $\langle v^2_\mathrm{los}\rangle$ is the line of sight stellar velocity
+dispersion, and the above relation becomes exact for isothermal lenses. This
+can then be used to probe cosmological parameters if lenses are known to be
+isothermal \citep[e.g.][]{2012MNRAS.424.2864C}; or to break the steepness
+degeneracy in the more general situation (see \S\ref{sec:kinematics}). The
+technique has since been applied to many lenses
+\citep[e.g.][]{2006ApJ...649..599K,2008ApJ...682..964B}.  Going further, the
+use of two-dimensional kinematics \citep{2011MNRAS.415.2215B} is especially
+interesting.
 
 \item {\bf Stellar mass constraints:} The stellar mass in a lens can be
     inferred from photometry and compared with the total mass
-    \citep[e.g.][]{1998ApJ...509..561K,2000ApJ...543..131K,2003ApJ...587..143R,2005ApJ...623L...5F,2008MNRAS.383..857F,2011ApJ...740...97L}.  Since
-    the inferred stellar mass depends on the assumed IMF, lenses in which
+    \citep[e.g.][]{1998ApJ...509..561K,2000ApJ...543..131K,2003ApJ...587..143R,2005ApJ...623L...5F,2008MNRAS.383..857F,2011ApJ...740...97L}.
+    Since the inferred stellar mass depends on the assumed IMF, lenses in which
     stellar mass dominates can be used to derive upper bounds on the stellar
     $M/L$ \citep{2010MNRAS.409L..30F}. Lower bounds on stellar $M/L$ have also
-    recently been claimed by fitting $\Lambda$CDM semi-analytic models to the tilt of the fundamental plane \citep{2013MNRAS.428.3183D}. 
+    recently been claimed by fitting $\Lambda$CDM semi-analytic models to the
+    tilt of the fundamental plane \citep{2013MNRAS.428.3183D}. 
     
 \item {\bf Testing modelling strategies:} Using mock data to see how well a
     given model can recover simulated lenses is increasingly being recognised
@@ -293,34 +300,41 @@ the $\Omega$ parameters even from a single lens, if there are lensed sources at
 multiple redshifts \citep{2014MNRAS.437.2461L} or by using additional priors 
 \citep{2010Sci...329..924J,2013arXiv1306.4732S}.
 
-In this paper, we introduce a new non-parametric lens modelling framework  -- \Glass\ (Gravitational
-Lensing AnalysiS Software). This shares some aspects with an earlier code \PixeLens \citep{Saha2004,2008ApJ...679...17C}. However, \Glass\ -- which contains all new code written from the ground up -- significantly improves upon \PixeLens\ in several key ways: 
+In this paper, we introduce a new non-parametric lens modelling framework  --
+\Glass\ (Gravitational Lensing AnalysiS Software). This shares some aspects
+with an earlier code \PixeLens \citep{Saha2004,2008ApJ...679...17C}. However,
+\Glass\ -- which contains all new code written from the ground up --
+significantly improves upon \PixeLens\ in several key ways: 
 
 \begin{enumerate}
-\item At the heart of \Glass\ is a new uniform sampling algorithm for high dimensional spaces \citep{2012MNRAS.425.3077L}. This allows for large ensembles of $>10,000$ models to be efficiently generated. 
-\item \Glass\ provides a modular framework that allows new priors to be added and modified easily.
-\item The basis functions approximating a model can be easily changed (in this paper, we assume pixels as in \PixeLens). 
-\item With so many models in the final ensemble, we can afford to apply non-linear constraints (for example stellar kinematic data; or the removal of models with spurious extra images) to accept/reject models in a post-processing step.
-\item The central region of the mass map can have a higher resolution to more efficiently capture steep models.
+\item At the heart of \Glass\ is a new uniform sampling algorithm for high
+    dimensional spaces \citep{2012MNRAS.425.3077L}. This allows for large
+    ensembles of $>10,000$ models to be efficiently generated. 
+\item \Glass\ provides a modular framework that allows new priors to be added
+    and modified easily.
+\item The basis functions approximating a model can be easily changed (in this
+    paper, we assume pixels as in \PixeLens). 
+\item With so many models in the final ensemble, we can afford to apply
+    non-linear constraints (for example stellar kinematic data; or the removal of
+    models with spurious extra images) to accept/reject models in a post-processing
+    step.
+\item The central region of the mass map can have a higher resolution to more
+    efficiently capture steep models.
 \item Stellar density can be used as an additional constraint on the models. 
 \item Point or extended mass objects can be placed in the field.
 \end{enumerate}
-As a first application, we use \Glass\ on mock data to determine which combination of lensing, stellar mass and/or 
-stellar kinematic constraints best constrain the projected mass profile and
-shape of a gravitational lens. We will apply \Glass\ to real lens data in a series of forthcoming papers. 
+%
+As a first application, we use \Glass\ on mock data to determine which
+combination of lensing, stellar mass and/or stellar kinematic constraints best
+constrain the projected mass profile and shape of a gravitational lens. We will
+apply \Glass\ to real lens data in a series of forthcoming papers. 
 
-%The compute-intensive core of \Glass\ is a parallel
-%implementation of the high-dimensional sampling algorithm from
-%\cite{2012MNRAS.425.3077L}.  Around that core, \Glass\ has extensible code (in
-%software terminology, a framework) in Python, encoding the lens equation, a
-%basis and priors for the mass distribution, and various post-processing and
-%visualisation modules.
-
-This paper is organised as follows. In \secref{sec:glass}, we describe the \Glass\ code. In \secref{sec:theory}, we review
-the key elements of lensing theory, stellar population synthesis, and stellar
-dynamics we will need. In \secref{sec:mockdata}, we describe our mock data. In
-\secref{sec:results}, we present our results from applying \Glass\ to these
-mock data. Finally, in \secref{sec:conclusions} we present our conclusions. 
+This paper is organised as follows. In \secref{sec:glass}, we describe the
+\Glass\ code. In \secref{sec:theory}, we review the key elements of lensing
+theory, stellar population synthesis, and stellar dynamics we will need. In
+\secref{sec:mockdata}, we describe our mock data. In \secref{sec:results}, we
+present our results from applying \Glass\ to these mock data. Finally, in
+\secref{sec:conclusions} we present our conclusions. 
 
 \section{Theory}\label{sec:theory}
 
@@ -388,7 +402,7 @@ and hence rewrite \eqnref{full arrival time} as:
                    \cdot \frac{D_{S}}{D_{LS}}
                  - \frac1\pi \int \kappa (\vec\theta')
                    \ln|\vec\theta - \vec\theta'| d^2\vec\theta'
-\label{arrival time}
+\label{arrival time2}
 \end{equation}
 %
 The scaled arrival time $\tau$ is like a solid angle. It is of order the area
@@ -414,19 +428,18 @@ of lensing degeneracies.  While the non-uniqueness of lens models noted by
 first derived by \cite{1985ApJ...289L...1F}.  The most important is the
 so-called mass-sheet degeneracy, which is that image positions remain invariant
 if $\tau(\vec\theta)$ is multiplied by an arbitrary constant.  
-\hilight{This corresponds
-to rescaling the surface density at the images $\kappa(\vec\theta)$.} In fact
-there are infinitely many degeneracies \citep{2000AJ....120.1654S} because any
-transformation of the arrival-time surface away from the images has no effect
-on the lensing observables.  In particular, there are degeneracies that involve
-the shape of the mass distribution
-\citep{2006ApJ...653..936S,2013arXiv1306.4675S}.  Degeneracies tend to be
-suppressed if there are sources at very different redshifts or `redshift
-contrast' \citep{1998AJ....116.1541A,2009ApJ...690..154S}, because the presence
-of different factors of $D_S/D_{LS}$ in the image plane makes it more difficult
-to change the mass distribution and the arrival-time surface without affecting
-the lensing observables. But degeneracies are still present with multiple
-source redshifts \citep{2008MNRAS.386..307L,2014arXiv1406.6152S}.
+This corresponds to rescaling the surface density at the images
+$\kappa(\vec\theta)$. In fact there are infinitely many degeneracies
+\citep{2000AJ....120.1654S} because any transformation of the arrival-time
+surface away from the images has no effect on the lensing observables.  In
+particular, there are degeneracies that involve the shape of the mass
+distribution \citep{2006ApJ...653..936S,2013arXiv1306.4675S}.  Degeneracies
+tend to be suppressed if there are sources at very different redshifts or
+`redshift contrast' \citep{1998AJ....116.1541A,2009ApJ...690..154S}, because
+the presence of different factors of $D_S/D_{LS}$ in the image plane makes it
+more difficult to change the mass distribution and the arrival-time surface
+without affecting the lensing observables. But degeneracies are still present
+with multiple source redshifts \citep{2008MNRAS.386..307L,2014arXiv1406.6152S}.
 
 \subsection{Stellar populations} 
 
@@ -570,8 +583,10 @@ Once \Glass\ has generated an ensemble of models given the linear constraints,
 any number of post processing functions can be applied. Not only can these
 functions be used to derive new quantities from the mass models, they can also
 be used as a filter to accept or reject a model based on some non-linear
-constraint. For example, we can reject models that have spurious extra images (\secref{sec:glassextraimages}), or models that do not match stellar kinematic constraints (\secref{sec:glasskinematics}). The plotting functions within \Glass\ will correctly display models
-that have been accepted or rejected.
+constraint. For example, we can reject models that have spurious extra images
+(\secref{sec:glassextraimages}), or models that do not match stellar kinematic
+constraints (\secref{sec:glasskinematics}). The plotting functions within
+\Glass\ will correctly display models that have been accepted or rejected.
 %
 \begin{enumerate}
   \setcounter{enumi}{4}
@@ -624,12 +639,19 @@ $N$-body simulation file. To load the simulation data, \Glass\ relies on the
 by that package.
 
 \subsection{Pixelated models}\label{sec:discrete}
-For this paper, we will restrict ourselves to using a pixelated basis set as used by \PixeLens\ \citep{Saha2004,2008ApJ...679...17C}, but note that it is straightforward to add other basis function expansions to \Glass. The algorithm for generating models in
-\Glass\ samples a convex polytope in a high dimensional space whose interior
-points satisfy both the lens equation and other physically
-motivated {\it linear} priors \citep{2012MNRAS.425.3077L}. A limitation of our sampling strategy is that only linear constraints may be applied when building the model ensemble; however, non-linear constraints can be applied in post-processing (see \secref{sec:glassextraimages} and \secref{sec:glasskinematics}). We therefore formulate all of our equations as
-equations linear in the unknowns. We describe the density distribution $\kappa$
-as a set of discrete grid cells or pixels $\kappa_i$ and rewrite the potential
+For this paper, we will restrict ourselves to using a pixelated basis set as
+used by \PixeLens\ \citep{Saha2004,2008ApJ...679...17C}, but note that it is
+straightforward to add other basis function expansions to \Glass. The algorithm
+for generating models in \Glass\ samples a convex polytope in a high
+dimensional space whose interior points satisfy both the lens equation and
+other physically motivated {\it linear} priors \citep{2012MNRAS.425.3077L}.
+A limitation of our sampling strategy is that only linear constraints may
+be applied when building the model ensemble; however, non-linear
+constraints can be applied in post-processing (see
+\secref{sec:glassextraimages} and \secref{sec:glasskinematics}). We
+therefore formulate all of our equations as equations linear in the
+unknowns. We describe the density distribution $\kappa$ as a set of
+discrete grid cells or pixels $\kappa_i$ and rewrite the potential
 \eqnrefp{lensing potential} as:
 %
 \begin{equation}
@@ -664,11 +686,19 @@ two-component model.
 
 \subsubsection{Priors}
 
-The lens equation and the arrival times alone are typically not enough to form a closed
-volume in the solution space. We therefore require additional linear
-constraints -- {\it priors}. Some of these are `physical' in the sense that they are unarguable -- for example demanding that the mass density is everywhere positive; others are more subjective, for example demanding that the mass map is smooth over some region. Such `regularisation' priors may be switched off for all or some of the mass map if the data are sufficiently constraining. 
+The lens equation and the arrival times alone are typically not enough to form
+a closed volume in the solution space. We therefore require additional linear
+constraints -- {\it priors}. Some of these are `physical' in the sense that
+they are unarguable -- for example demanding that the mass density is
+everywhere positive; others are more subjective, for example demanding that the
+mass map is smooth over some region. Such `regularisation' priors may be
+switched off for all or some of the mass map if the data are sufficiently
+constraining. 
 
-The priors built in to \Glass\ are similar to those used in \PixeLens\ \citep{2008ApJ...679...17C}. The physical priors are always used by default; the regularisation priors are used sparingly -- i.e. only if the data are not sufficiently constraining to obtain sensible solutions without them:  
+The priors built in to \Glass\ are similar to those used in \PixeLens\
+\citep{2008ApJ...679...17C}. The physical priors are always used by default;
+the regularisation priors are used sparingly -- i.e. only if the data are not
+sufficiently constraining to obtain sensible solutions without them:  
 
 %
 \vspace{2mm}
@@ -687,10 +717,32 @@ The priors built in to \Glass\ are similar to those used in \PixeLens\ \citep{20
 \item The azimuthally averaged density profile must have a slope everywhere $\le 0$.
 \item The density is inversion symmetric.
 \end{enumerate}
-For typical lens data, the regularisation priors are very important for creating physically
-sensible solutions. Prior (i) demands that the peak in the mass density is at the centre of the mass map. Secondary `plateaus' in the mass map are possible, but not secondary peaks. Note that this prior still successfully allows merging galaxy systems to be correctly captured, provided that the two galaxies are not equally dense in projection (see, for example the \PixeLens\ model of the merger system B1608 in \citealt{2007ApJ...667..645R}); and for the successful detection of `meso-structure' in strong lensing galaxy clusters \citep{2007ApJ...663...29S}. Prior (ii) is arguably a physical prior sense negative azimuthally averaged density slope would be unstable \citep[e.g.][]{2008gady.book.....B}. Note that this prior does not preclude successful modelling of mergers or substructure unless the total projected mass in substructure is comparable to the projected mass of the host in an azimuthal annulus \citep{2007ApJ...667..645R,2007ApJ...663...29S}. Prior (iii) is only used for doubles that ought to be inversion symmetric and quads where inversion symmetry is clear from the image configuration.
+%
+For typical lens data, the regularisation priors are very important for
+creating physically sensible solutions. Prior (i) demands that the peak in the
+mass density is at the centre of the mass map. Secondary `plateaus' in the mass
+map are possible, but not secondary peaks. Note that this prior still
+successfully allows merging galaxy systems to be correctly captured, provided
+that the two galaxies are not equally dense in projection (see, for example the
+\PixeLens\ model of the merger system B1608 in \citealt{2007ApJ...667..645R});
+and for the successful detection of `meso-structure' in strong lensing galaxy
+clusters \citep{2007ApJ...663...29S}. Prior (ii) is arguably a physical prior
+sense negative azimuthally averaged density slope would be unstable
+\citep[e.g.][]{2008gady.book.....B}. Note that this prior does not preclude
+successful modelling of mergers or substructure unless the total projected mass
+in substructure is comparable to the projected mass of the host in an azimuthal
+annulus \citep{2007ApJ...667..645R,2007ApJ...663...29S}. Prior (iii) is only
+used for doubles that ought to be inversion symmetric and quads where inversion
+symmetry is clear from the image configuration.
 
-Finally, we remind the reader that all of the regularisation priors can be switched off or changed/improved depending on the data quality available. For clusters, substructure can be explicitly modelled by adding analytic potentials at the known locations of galaxies; furthermore the above priors can be relaxed in regions of the mass map where the data are particularly constraining (for example near the images). We will apply \Glass\ to a host of strong lensing clusters in forthcoming work, where we will explicitly test the prior on mock data that has significant substructure.
+Finally, we remind the reader that all of the regularisation priors can be
+switched off or changed/improved depending on the data quality available. For
+clusters, substructure can be explicitly modelled by adding analytic potentials
+at the known locations of galaxies; furthermore the above priors can be relaxed
+in regions of the mass map where the data are particularly constraining (for
+example near the images). We will apply \Glass\ to a host of strong lensing
+clusters in forthcoming work, where we will explicitly test the prior on mock
+data that has significant substructure.
 
 \subsection{Building the model ensemble} 
 
@@ -700,11 +752,11 @@ the solution space polytope. Using the MCMC sampling strategy described in
 \cite{2012MNRAS.425.3077L} we uniformly sample this space. Collectively, the
 sampled models are referred to as an ensemble $\E = \{\M_i\}$, where we usually
 generate $|\E| \sim 1000$ models. One can choose to further process these
-models to impose priors that may be difficult to enforce during the
-modeling process. For instance, non-linear constraints, or simply filtering
-of models that do not meet some criteria can be excluded, or weighted against as discussed previously.
-In this paper, we do not exclude any models and treat all models
-as equally likely.
+models to impose priors that may be difficult to enforce during the modeling
+process. For instance, non-linear constraints, or simply filtering of models
+that do not meet some criteria can be excluded, or weighted against as
+discussed previously.  In this paper, we do not exclude any models and treat
+all models as equally likely.
 
 The time to generate the model ensemble is mostly a function of the size of the
 parameter space. The MCMC algorithm has a ``warm-up'' phase where it estimates
@@ -713,7 +765,11 @@ completed, the models are sampled very quickly. In fact, there is little
 difference between generating 1,000 or 10,000 models, although we find little
 statistical difference after 1,000 models. For the mock lenses, the typical
 ``warm-up'' time was about 4s, and the modelling time was 20s using a parallel
-shared-memory machine with 40 cores. The ability to rapidly generate so many models is what allows us to then accept/reject models to apply non-linear constraints (see \secref{sec:glassextraimages} and \secref{sec:glasskinematics}). This is a key advantage over our earlier pixelated strong lens tool \PixeLens. 
+shared-memory machine with 40 cores. The ability to rapidly generate so many
+models is what allows us to then accept/reject models to apply non-linear
+constraints (see \secref{sec:glassextraimages} and
+\secref{sec:glasskinematics}). This is a key advantage over our earlier
+pixelated strong lens tool \PixeLens. 
 
 \subsection{Raytracing}\label{Raytracing}
 \Glass\ can also determine the position of images and time delays from
@@ -935,8 +991,8 @@ constraints, or assuming that the shear field correlates with visible galaxies
 
 \figref{reconstruction} shows some example reconstructions of the radial
 profile of our mock lenses. The left column shows the ensemble average arrival
-time surface with images marked as circles and the inferred source position(s)
-as a diamond. The centre column shows the radial density profile. The error
+time surface with images marked as circles and the inferred source positions
+as diamonds. The centre column shows the radial density profile. The error
 bars cover a $1\sigma$ range around the median; the grey bands show the full
 ensemble range. The true density profile from the mock data is also plotted for
 comparison. The vertical lines mark the radial position of the images. The
@@ -947,10 +1003,15 @@ with time delays for \mockAA. \figref{2d mass reconstruction} shows an example
 2D reconstruction for \mockBC\ for a quad; we discuss shape recovery further in
 \secref{sec:shape}.
 
-As expected, the error bars are smallest in the region of the images where the
-most information about the lens is present. In all cases, there is a dip in the
-profile at large $R$ due to the cut off in mass in the lensing map. This is of
-little importance, though, as there is no lensing information there. 
+As expected, the accuracies and precisions are best in the range of radii with
+lensed images where the most information about the lens is present. Even in the
+weakly constrained case of the extended double where the radial profile is
+poor, the true enclosed mass $M(<R)$ is well recovered at the image radii and
+our ensemble always encompasses it. We have verified this is the case in all of
+our tests, although for brevity we have not included the plots here. In all
+cases, there is a dip in the profile at large $R$ due to the cut off in mass in
+the lensing map. This is of little importance, though, as there is no lensing
+information there. 
 
 Notice that the extended double (top row) gives the poorest constraints, as
 expected. Adding stellar mass (second row) significantly improves the
@@ -1007,8 +1068,8 @@ The cumulative mass. The error bars on all plots are $1\sigma$; the grey bands s
 \end{figure*}
 
 \begin{figure*}
-\includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-kappa-a.pdf}
 \includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-kappa-b.pdf}
+\includegraphics[width=0.33\textwidth]{BCQuadR1a_TmS-kappa-a.pdf}
 \caption{ \textbf{Left:} The mock data distribution for \mockBC{} projected
 onto a coarse grid.  \textbf{Right:} The recovered ensemble average $\kappa$
 distribution for the single quad with time delays. The contours are logarithmic
@@ -1089,7 +1150,7 @@ like \mockBC\ over shallower models like \mockAA\ (see also
 how well we can recover the {\it shape} of a lens. The trends are very similar
 to the radial profile recovery in \figref{main results}, suggesting that if the
 radial profile is well-recovered then, typically, the shape is too. A notable
-exception is for the \mockBC\ models where adding stellar mass constrains aids
+exception is for the \mockBC\ models where adding stellar mass constraints aids
 the shape recovery, but little-improves the radial mass profile. A visual
 example of the shape recovery is given in \figref{2d mass reconstruction}.
 
@@ -1153,10 +1214,10 @@ We plot the distribution of fractional error compared with the shape of the mock
 \caption{ Estimated projected radially averaged velocity dispersion $\sigma_p$
 \eqnrefp{eqn:sphericaljeans} for a single quad from the \mockBC{} mock galaxy
 without stellar mass (\textbf{left}) and with stellar mass (\textbf{middle})
-assuming an anisotropy $\beta=0$ (black, solid) and $\beta=1$ (black, dashed).
-Error bars are $1\sigma$ and hatched areas indicate the full range of models.
+assuming an anisotropy $\beta=0$ (black triangles) and $\beta=1$ (black squares).
+Error bars are $1\sigma$ and two overlapping hatched areas indicate the full range of models.
 The equivalent curves are also shown for the projected mock data after using
-the same analysis routines (purple). The solid green line is the actual
+the same analysis routines (green). The solid blue line is the actual
 cylindrically averaged velocity dispersion of the original mock particle data.
 The stellar half mass radius (orange) Einstein radius (black) are marked by
 vertical lines. For this configuration, these two radii are well-separated. The
@@ -1369,7 +1430,7 @@ In particular we want
 %
 where $Q_n$ is the logarithm evaluated over the $n$th pixel at position
 $\vec\theta_n = (x_n, y_n)$. Let the pixel side length be $a$.  Instead of
-working with a position vector $\vec\theta$ we work in cartesian coordinates
+working with a position vector $\vec\theta$ we work in Cartesian coordinates
 where 
 %
 $|\vec\theta| = r = \sqrt{x^2 + y^2}$. The integral now becomes
