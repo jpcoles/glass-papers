@@ -38,6 +38,7 @@ Our results provide a new constraint on galaxy formation models that must explai
 Gravitational lensing: strong --- galaxies: structure
 \end{keywords}
 
+
 \section{Introduction}\label{sec:introduction}
 
 The ellipticity and shape of stars relative to their host dark matter halo encodes information both about our cosmological model ($\Lambda$CDM) and galaxy formation \citep[e.g.][]{1994ApJ...431..617D,2001ApJ...551..294I,2004ApJ...611L..73K,2007MNRAS.378...55M,2007arXiv0707.0737D,2012MNRAS.424L..16L,2014JPhG...41f3101R}. `Dark-matter-only' (DMO) simulations in $\Lambda$CDM predict dark matter halos that are triaxial \citep{1991ApJ...378..496D,1992ApJ...399..405W,1996ApJ...462..563N,2002ApJ...574..538J}, with mean `shape parameter' $\langle q \rangle = (b+c)/2a \sim 0.8$ (where $a > b > c$ are the long, intermediate and short axes of the figure; \citealt{2007MNRAS.378...55M}). This corresponds to a typically {\it prolate} halo. However, including `baryons' (stars and gas) in the models produces halos that are significantly rounder and -- at least for disc galaxies -- well-aligned with the light distribution \citep{1991ApJ...377..365K,1994ApJ...431..617D,2007arXiv0707.0737D}. Halo shapes and alignments also constrain alternative gravity models \citep{2001MNRAS.327..552M,2004ApJ...610L..97H,2005MNRAS.361..971R,2012PhRvD..86h3507F,2013MNRAS.434.2971D}. If the visible light is the only source of gravity in a galaxy, then we expect the light and mass distribution to be highly correlated; if dark matter is present, however, such correlations can, at least in principle, be broken.
@@ -49,6 +50,7 @@ Weak lensing can also be used to probe the shape and alignment between light and
 Recently, we introduced a new non-parametric lens tool, \Glass\  \citep{2014arXiv1401.7990C}. Applying this to a large suite of mock data, we showed that mass and light can only reliably be disentangled in strong lensing systems if: i) there are at least four images; and ii) time delay data are available and/or the stellar mass dominates the potential over the region of the images. In this paper, we collate data of the above quality, compiling a sample of 11 strong lens galaxies. We apply \Glass\ to these lenses to non-parametrically measure the shape and alignment of the stars and {\it dark matter}  in these lensing galaxies, for the first time. This differs from previous works that have all compared the light distribution with the total mass, rather than the dark matter. Since the stars often dominate the central potential, the total mass naturally correlates with the light, potentially masking theoretically interesting results about the dark matter distribution. Our comparison between light and dark is made possible by the fact that \Glass\ uses the light distribution as a prior on the mass map, ensuring that the dark matter mass is always positive.
 
 This paper is organised as follows. In \S\ref{sec:glass}, we briefly review the \Glass\ code. In \S\ref{sec:data}, we present our data compilation with references. In \S\ref{sec:results}, we present our results. Finally, in \S\ref{sec:conclusions} we discuss the implications of these results and we present our main conclusions.
+
 
 \section{\Glass: A non-parametric lens tool}\label{sec:glass}
 
@@ -78,10 +80,22 @@ significantly improves upon \PixeLens\ in several key ways:
 \Glass\ is described in detail in the code paper: \citet{2014arXiv1401.7990C}. Here, we simple list the default priors we use to model each lens. Where the priors differ from these defaults for any given lens, this is spelled out in data Table \ref{tab:lensmodelling}: 
 
 \begin{enumerate} 
+\item Observational priors (redshifts, image positions relative to lens position).
+\item Image parity is enforced.
+\item Reconstructed stellar mass map.
+\item Local density gradient is always pointing within 50$^{\circ}$ to the center and the slope is at most 0 everywhere. In other words, the density profile peaks in the center.
+\item Fixed cosmology: $\Omega_{m} = 0.28$, $\Omega_{\Lambda} = 0.72$, $\Omega_{k} = 0$, $H_{0}^{-1} = 13.7$ Gyr.
+\item A flat prior on the magnitude of the external shear $|\gamma|$ on $[0,1)$.
+\end{enumerate}
 
-\item {\bf JR. CLAUDIO TO ADD PRIORS HERE.} 
+In case of more information, the following priors can be turned on:
 
-\end{enumerate} 
+\begin{enumerate}
+\item[(vii)] A flat prior on measured time delays within the $\pm 1\sigma$-interval.
+\item[(viii)] External point masses to model satellite galaxies outside but close to the Einstein radius.
+\item[(ix)] Point symmetry $\kappa(x,y) = \kappa(-x,-y)$ in case there is reason to assume the surface mass profile to be symmetric (3+1 quad configurations and the double \textit{Q0957}).
+\end{enumerate}
+
 
 \section{Data}\label{sec:data}
 
@@ -94,25 +108,83 @@ significantly improves upon \PixeLens\ in several key ways:
 \item {\bf JR. Claudio to add this bit?} 
 \end{itemize}
 
+\textit{Q0047-2808} (hereafter \textit{Q0047} or \textit{0047}) is a luminous early-type galaxy \citep{1996MNRAS.278..139W}. \cite{2011ApJ...726...84W} find a group of 9 members all of which they spectroscopically confirm.
+
+\textit{MG0414+0534} (hereafter \textit{0414}) is a passively evolving early-type galaxy \citep{1999AJ....117.2034T}. \cite{1993AJ....105....1S} find a very close luminous satellite galaxy north-west of the lens. Due to the proximity of this satellite, we include it as a point mass in our analysis.
+
+\textit{B0712+472} (hereafter \textit{0712}) is an early-type galaxy \citep{1998AJ....115..377F}. Another galaxy, 102'' to the south-east seems to be at a similar redshift \citep{2002AJ....123..627F}. There is also a group of 10 galaxies at a lower redshift.
+
+\textit{RXJ0911+0551} (hereafter \textit{0911}) is an almost circular early-type galaxy \citep{2012A&A...538A..99S}. It has measured time delays \citep{2002ApJ...572L..11H}. It lies on the outskirts of a cluster \citep{2001ApJ...555....1M}. This cluster seems to be rather complex and especially it is not spherical. Possibly it is not dynamically relaxed, although X-ray emission can be detected. Analysis of this emission yields a temperature of 2.3 keV. There is also a satellite galaxy to the north-west direction \citep{2000ApJ...544L..35K}.
+
+\textit{Q0957+561} (hereafter \textit{0957}) is a cD galaxy lying close to the center of a cluster with a high sprial galaxy-fraction (e.g. \cite{1992MNRAS.254P..27G,1994A&A...291..411A,1998ApJ...504..661C}). Due to the large image separation, large physical scales are probed. As listed in Table 3 of \cite{2000ApJ...542...74K}, the position angles to the center of the cluster of earlier lens reconstructions range between 51.8 deg and 67.8 deg measured north-through-east. These results are consistent with the center of the X-ray emission from the cluster \citep{1998ApJ...504..661C}. The lens has a measured time delay, e.g. \citep{2012A&A...540A.132S}. They however also find a three-day lag between the g- and r-bands, and the estimates do not agree at the 2$\sigma$-level. They argue that this effect can be accounted for by the presence of a substructure and chromatic dispersion. We find that the results do not change significantly for either estimate and choose therefore the g-band measurement.
+
+\textit{PG1115+080} (hereafter \textit{1115}) is an early-type galaxy \citep{2005ApJ...626...51Y}. It has measured time delays. We use recent estimates of the time delays by \cite{2010MNRAS.406.2764T} which differ significantly from traditional values by e.g. \cite{1997ApJ...489...21B}. \cite{2006ApJ...641..169M} and \cite{2011ApJ...726...84W} analyzed the environment of the lens thouroughly. It is part of a small group of 13 members. \cite{2004ApJ...610..686G} detect also X-ray emission from the corresponding group, which yields a temperature of 0.8 keV.
+
+\textit{B1422+231} (hereafter \textit{1422}) is an early-type galaxy \citep{1996ApJ...462L..53I}. Although there are measured time delays by \cite{2001MNRAS.326.1403P}, they are probably not to be trusted too much as they deviate significantly from theoretical expectations in \cite{2003AJ....126...29R}. An accurate measurement of the time delays would require time delay measurements on the scale of hours. \cite{2006ApJ...641..169M} find a group environment with 16 spectroscopically confirmed member galaxies. Using newer data, \cite{2011ApJ...726...84W} find an additional member. \cite{2004ApJ...610..686G} also detect X-ray emission from the corresponding group at a temperature of 1.0 keV.
+
+\textit{B1608+656} (hereafter \textit{1608} or \textit{1608}) consists of two merging galaxies. The main galaxy is an early-type galaxy which is disrupted by a smaller, probably late-type galaxy \citep{2003ApJ...584..100S}. The system has measured time delays \citep{2002ApJ...581..823F}. The environment and the mass distribution along the line of sight have been analyzed by \cite{2006ApJ...642...30F}. They find a group with 8 resp. 9 members if the merging galaxies are counted as 2. No significant X-ray emission was detected from the surrounding group \citep{2005ApJ...625..633D}. Along the line of sight seem to be four other groups.
+
+\textit{MG2016+112} (hereafter \textit{2016}) is a giant elliptical galaxy \citep{1984Sci...223...46L,1986AJ.....91..991S}. It is the farthest lens we consider in this sample. It lies in a cluster which consists of 69 probable galaxies \citep{2003MNRAS.344..337T}. The clusters shows a high density of galaxies close to the lens in a south-east direction.
+
+\textit{B2045+265} (hereafter \textit{2045}) is probably an elliptical galaxy \citep{2007MNRAS.378..109M}. \cite{1999AJ....117..658F} initially classified the galaxy as a late-type Sa galaxy, the velocity dispersion however seems too high. As the source redshift is rather low, a large lens mass is needed. \cite{2007MNRAS.378..109M} therefore conclude that it is more likely an elliptical galaxy. To the west of the lens, \cite{1999AJ....117..658F} find that a group at a similar redshift as the lens. \cite{2007MNRAS.378..109M} also find evidence for a dwarf satellite galaxy. As the measurements are not conclusive, we chose to treat the lens as an isolated object.
+
+\textit{Q2237+030} (hereafter \textit{2237}) is a barred spiral \citep{1988AJ.....95.1331Y}. With only a redshift of $z=0.04$, it is the closest lens of the sample. Due to the low redshift, the probed physical scales are quite small. No further inquiries into the environment were made.
+
+Further information about the sample can be found in \cite{leier11phd}, \cite{2011ApJ...740...97L}, and \cite{2012A&A...538A..99S}.
+
 \begin{table*}
   \begin{center}
-    \begin{tabular}{ll}
-       blah & blah 
+    \begin{tabular}{l r r r r l}
+      Lens    & \multicolumn{1}{c}{$z_{L}$} & \multicolumn{1}{c}{$z_{S}$} & \multicolumn{1}{c}{$\Delta\theta$ [kpc]} & \multicolumn{1}{c}{$R_{L}$/$R_{e}$} & Environment \\ \hline
+      0047 & 0.485 & 3.60 & 12.82 & $1.45\pm0.04$ & G(9) \\
+      0414 & 0.960 & 2.64 & 16.01 & $1.85\pm0.05$ & ... \\
+      0712 & 0.410 & 1.34 & 6.82  & $1.15\pm0.03$ & ... \\
+      0911 & 0.769 & 2.8  & 23.16 & $3.09\pm0.05$ & C \\
+      0957 & 0.356 & 1.41 & 29.98 & $3.51\pm0.04$ & C \\
+      1115 & 0.310 & 1.72 & 10.76 & $2.94\pm0.06$ & G(13) \\
+      1422 & 0.337 & 3.62 & 6.02  & $4.49\pm0.06$ & G(17) \\
+      1608 & 0.630 & 1.39 & 13.92 & $1.82\pm0.01$ & !CHECK! \\
+      2016 & 1.010 & 3.3  & 26.22 & $6.12\pm0.14$ & C(69) \\
+      2045 & 0.870 & 1.28 & 14.46 & $1.48\pm0.03$ & !SEE TEXT! \\
+      2237 & 0.039 & 1.7  & 1.40  & $0.89\pm0.01$ & ... \\
     \end{tabular}
-    \caption[width=\linewidth]{Table with lens properties}
+    \caption[width=\linewidth]{Table with lens properties \citep[see][]{2011ApJ...740...97L}. References in Section~\ref{sec:data} \texbf{expand}}
     \label{tab:lensproperties}
   \end{center}
 \end{table*}
 
 \begin{table*}
   \begin{center}
-    \begin{tabular}{ll}
-    blah & blah 
+    \begin{tabular}{l r r r r l l}
+      Lens    & \multicolumn{1}{c}{A ['']} & \multicolumn{1}{c}{B ['']} & \multicolumn{1}{c}{C ['']} & \multicolumn{1}{c}{D ['']} & Time delays [days] & Additional priors \\ \hline
+      0047 & 1.270 & -0.630 & 0.520 & -0.730 & ... & None \\
+           & 0.105 & -0.995 & -1.045 & 0.705 & &  \\
+      0414 & -0.472 & -1.061 & -1.1947 & 0.885 & ... & None \\
+           & 1.277 & -0.661 & -0.255 & -0.361 & &  \\
+      0712 & -0.013 & 0.795 & 0.747 & -0.391 & ... & None \\
+           & -0.804 & -0.156 & -0.292 & 0.307 & &  \\
+      0712 & -0.013 & 0.795 & 0.747 & -0.391 & ... & None \\
+           & -0.804 & -0.156 & -0.292 & 0.307 &  &  \\
+      0957$^{a}$ & 1.408 & 0.182 & 2.860 & -1.540 & $\Delta t_{BA}=416.5^{+1}_{-1}$ & Symm \\
+           & 5.034 & -1.018 & 3.470 & -0.050 &  &  \\
+      1115 & 0.355 & -0.909 & -1.093 & 0.717 & $\Delta t_{BA}=12.0^{+2}_{-2} \ \Delta t_{DC}=4.4^{+3.2}_{-2.4}$ & None \\
+           & 1.322 & -0.714 & -0.260 & -0.627 & &  \\
+      1422 & 1.079 & 0.357 & 0.742 & -0.205 & ... & Symm \\
+           & -0.095 & 0.973 & 0.656 & -0.147 &  &  \\
+      1608 & -1.300 & -0.560 & -1.310 & 0.570 & $\Delta t_{BA}=31.5^{+2}_{-1} \ \Delta t_{CA}=36.0^{+1.5}_{-1.5} \ \Delta t_{DA}=77.0^{+2}_{-1}$ & None \\
+           & -0.800 & 1.160 & 0.700 & -0.080 &  &  \\
+      2016 & -1.735 & 0.335 & 0.437 & 1.268 & ... & None \\
+           & 1.778 & -1.450 & -1.435 & 0.276 &  &  \\
+      2045 & 1.121 & 1.409 & 1.255 & -0.507 & ... & $\gamma(0.1)$, Symm \\
+           & 0.824 & 0.035 & 0.576 & -0.183 &  &  \\
+      2237 & 0.598 & -0.075 & 0.791 & -0.710 & ... & None \\
+              & 0.758 & -0.939 & -0.411 & 0.271 &  &  \\
     \end{tabular}
-    \caption[width=\linewidth]{Table with lens properties relevant for modelling (point masses, positions, time delays)}
+    \caption[width=\linewidth]{Table with lens properties relevant for modelling (positions, time delays) \newline $^{a}$ Images A and B are a pair, C and D the other \texbf{expand}}
     \label{tab:lensmodelling}
   \end{center}
 \end{table*}
+
 
 \section{Results}\label{sec:results}
 
@@ -143,9 +215,11 @@ significantly improves upon \PixeLens\ in several key ways:
   \label{fig:wedgesall}
 \end{figure*}
 
+
 \section{Conclusion}\label{sec:conclusions}
 
 {\bf JR. JUSTIN TO WRITE DISCUSSION/CONCLUSIONS ONCE FINAL PLOTS ARE FINISHED.} 
+
 
 
 \section{Acknowledgements}\label{sec:acknowledgements}
