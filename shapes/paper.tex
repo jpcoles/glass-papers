@@ -96,6 +96,10 @@ In case of more information, the following priors can be turned on:
 \item[(ix)] Point symmetry $\kappa(x,y) = \kappa(-x,-y)$ in case there is reason to assume the surface mass profile to be symmetric (3+1 quad configurations and the double \textit{Q0957}).
 \end{enumerate}
 
+\subsection{Measuring the shape and alignment of a lens}\label{sec:shapemethod}
+
+{\bf JR. WE NEED TO DEFINE OUR SHAPE PARAMETER AND ANALYSIS METHOD HERE.} 
+{\bf JR. WE NEED TO ALSO DEFINE $R_e$ HERE AND EXPLAIN THAT WE AVERAGE SHAPE OVER 1-5$R_e$} 
 
 \section{Data}\label{sec:data}
 
@@ -218,9 +222,19 @@ Further information about the sample can be found in \cite{leier11phd}, \cite{20
 
 \section{Conclusion}\label{sec:conclusions}
 
-{\bf JR. JUSTIN TO WRITE DISCUSSION/CONCLUSIONS ONCE FINAL PLOTS ARE FINISHED.} 
+We have measured the shape and alignment of stars and dark matter in 11 strong lensing galaxies using a new non-parametric lens tool, \Glass. We focussed on lenses that have either time delay data or stellar mass maps that contribute significantly to the central potential, since these have data quality good enough to determine the projected shape of their dark matter halos \citep{2014arXiv1401.7990C}. We measured the shape and alignment using the eigenvalues $\lambda$ and vectors of the 2D moment of inertia tensor of the stars and dark matter, defining a {\it shape parameter} $s = \lambda_{\rm max}/\lambda_{\rm min}$ (\S\ref{sec:shapemethod}). We averaged $s$ over the range 1-5$R_e$, where $R_e$ is the effective radius of the light profile.
 
+Our key results are as follows: 
 
+\begin{itemize}
+\item We found that in all cases the dark matter halos are more elliptical than the light distribution over the range $R_e < R < 5R_e$. As we average over larger radii, the lenses become increasingly elliptical both in their dark matter and stars, but dark matter halos are never more elliptical than $s_{dm} = 1.15$, while their stars can extend to $s_* > 1.4$. 
+
+\item Three systems have very high stellar ellipticity ($s_* > 1.6$) and correspondingly high alignment between light and dark. One of these -- B1608 -- is a known merging pair; we suggest that the other two (B0712 and B2016) may also be recent post-merger systems. 
+
+\item Galaxies with high dark matter ellipticity and weak external shear show very strong alignment between light and dark; those with strong shear ($\gamma \simgt 0.1$) can be very highly misaligned. This is reassuring since isolated misaligned galaxies are expected to be unstable.
+\end{itemize}
+
+Our results provide a new constraint on galaxy formation models that must explain the origin of very round dark matter halos (not expected in pure dark matter only simulations), and highly misaligned systems. Such misalignments also present a new challenge for alternative gravity theories in which the light and dark must necessarily be highly correlated.
 
 \section{Acknowledgements}\label{sec:acknowledgements}
 We would like to thank Dominik Leier for useful discussions. JIR would like to acknowledge support from SNF grant PP00P2\_128540/1.
