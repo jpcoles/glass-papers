@@ -15,7 +15,7 @@ that you read, in which case you should explain why you prefer the preprint
 version).
 
 	*** response ***
-        I have updated the earlier paper with their proper journal references.
+        I have updated the earlier papers with the proper journal references.
         Two of the three new papers suggested by the referee are still in preprint. (See below.)
 
 
@@ -38,6 +38,9 @@ editor and referee to assess the changes.
 	*** response ***
         We are attaching ms-diff.pdf which highlights the changes made.
         Thank you for the suggestion.
+
+        Please note, that the lab address of the first author has changed and
+        has been updated in the text accordingly.
 
 Reviewer's Comments:
 
@@ -74,8 +77,9 @@ density slope would be unstable." I think you meant "since" instead of "sense",
 although I think the sentence would still be a bit confusing.
 
 	*** response ***
-        We have corrected this sentence. There was also the mistake that "negative" should have benn "positive"
-        since it is desired that the slope be negative. It now reads:
+        We have corrected this sentence. There was also the mistake that 
+        "negative" should have been "positive" since it is desired that 
+        the slope be negative. It now reads:
 
 "Prior (ii) is arguably a physical prior since a positive slope in the
 azimuthally averaged density profile would be unstable."

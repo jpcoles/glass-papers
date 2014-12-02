@@ -141,6 +141,7 @@ DEPS=\
 mnras: $(DEPS)
 	pdflatexmk ms
 	pdf2ps ms.pdf
-	zip ms.zip $(DEPS)
+	pdf2ps ms-diff.pdf
+	zip ms.zip $(DEPS) 
 
 .PHONY: mnras
