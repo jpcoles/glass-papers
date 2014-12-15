@@ -62,25 +62,25 @@ Gravitational lensing: strong --- galaxies: structure
 
 The ellipticity and shape of stars relative to their host dark matter halo encodes information both about our cosmological model ($\Lambda$CDM) and galaxy formation \citep[e.g.][]{1994ApJ...431..617D,2001ApJ...551..294I,2004ApJ...611L..73K,2007MNRAS.378...55M,2007arXiv0707.0737D,2012MNRAS.424L..16L,2014JPhG...41f3101R}. `Dark-matter-only' (DMO) simulations in $\Lambda$CDM predict dark matter halos that are triaxial \citep{1991ApJ...378..496D,1992ApJ...399..405W,1996ApJ...462..563N,2002ApJ...574..538J}, with mean `shape parameter' $\langle q \rangle = (b+c)/2a \sim 0.8$ (where $a > b > c$ are the long, intermediate and short axes of the figure; \citealt{2007MNRAS.378...55M}). This corresponds to a typically {\it prolate} halo. However, including `baryons' (stars and gas) in the models produces halos that are significantly rounder and -- at least for disc galaxies -- well-aligned with the light distribution \citep{1991ApJ...377..365K,1994ApJ...431..617D,2007arXiv0707.0737D}. Halo shapes and alignments also constrain alternative gravity models \citep{2001MNRAS.327..552M,2004ApJ...610L..97H,2005MNRAS.361..971R,2012PhRvD..86h3507F,2013MNRAS.434.2971D}. If the visible light is the only source of gravity in a galaxy, then we expect the light and mass distribution to be highly correlated; if dark matter is present, however, such correlations can, at least in principle, be broken.
 
-Strong lensing provides a unique probe of the alignment and shape of the total mass distribution in galaxies \citep[e.g.][]{1986ApJ...310..568B,1992grle.book.....S,1998ApJ...509..561K,2000ApJ...543..131K,2006ApJ...649..599K,2007AJ....134..668A,2008MNRAS.383..857F,2010ApJ...724..511A,2012MNRAS.424..104L}. For `red and dead' ellipticals that are largely devoid of gas, their baryonic content can be mapped through stellar population synthesis modelling of their light distribution \citep[e.g.][]{2005ApJ...623L...5F,2006ApJ...640..662T,2008MNRAS.383..857F}. This opens up the possibility of directly comparing the light and mass in strong lensing systems \citep{1998ApJ...509..561K,2008MNRAS.383..857F,2009ApJ...690..670T,2012A&A...538A..99S}. Previous work in the literature has found that the light and mass are well-aligned (though a mis-match of up to 10$^\circ$ is not uncommon; e.g. \citealt{2012A&A...538A..99S}). However, results on the ellipticity of light and mass agree less well, with \citet{2012A&A...538A..99S} finding a strong correlation and \citet{1998ApJ...509..561K} and \citet{2008MNRAS.383..857F} finding none. It it difficult, however, to compare the results between these different studies because they use different lens modelling techniques; different definitions of ellipticity; and different radii over which the shapes and alignments are probed. Furthermore, none to date have applied their methodology to mock data to determine the robustness of the results.
+Strong lensing provides a unique probe of the alignment and shape of the total mass distribution in galaxies \citep[e.g.][]{1986ApJ...310..568B,1992grle.book.....S,1998ApJ...509..561K,2000ApJ...543..131K,2006ApJ...649..599K,2007AJ....134..668A,2008MNRAS.383..857F,2010ApJ...724..511A,2012MNRAS.424..104L}. For `red and dead' ellipticals that are largely devoid of gas, their baryonic content can be mapped through stellar population synthesis modelling of their light distribution \citep[e.g.][]{2005ApJ...623L...5F,2006ApJ...640..662T,2008MNRAS.383..857F}. This opens up the possibility of directly comparing the light and mass in strong lensing systems \citep{1998ApJ...509..561K,2008MNRAS.383..857F,2009ApJ...690..670T,2012A&A...538A..99S}. Previous work in the literature has found that the light and mass are well-aligned (though a mis-match of up to 10$^\circ$ is not uncommon; e.g. \citealt{2012A&A...538A..99S}). However, results on the ellipticity of light and mass agree less well, with \citet{2012A&A...538A..99S} finding a strong correlation and \citet{1998ApJ...509..561K} and \citet{2008MNRAS.383..857F} finding none. It is difficult, however, to compare the results between these different studies because they use different lens modelling techniques; different definitions of ellipticity; and different radii over which the shapes and alignments are probed. Furthermore, none to date have applied their methodology to mock data to determine the robustness of the results.
 
 Weak lensing can also be used to probe the shape and alignment between light and dark, but only for `stacked' galaxies \citep{2000astro.ph..6281B,2000ApJ...538L.113N}. \citet{2004ApJ...606...67H} applied this idea to data from the Red-Sequence Cluster Survey (RCS) to measure the first weak lensing signal of halo flattening. They found that dark matter halos appear to be rounder then their light distributions, with some weak evidence for alignment. Both measurements are challenging, however, and more recent data appear to be at odds with this early work, favouring dark matter halos that are more elliptical than their stars \citep{2006MNRAS.370.1008M,2007ApJ...669...21P,2012A&A...545A..71V}.
 
-Recently, we introduced a new non-parametric lens tool, \Glass\  \citep{2014arXiv1401.7990C}. Applying this to a large suite of mock data, we showed that mass and light can only reliably be disentangled in strong lensing systems if: i) there are at least four images; and ii) time delay data are available and/or the stellar mass dominates the potential over the region of the images. In this paper, we collate data of the above quality, compiling a sample of 11 strong lens galaxies. We apply \Glass\ to these lenses to non-parametrically measure the shape and alignment of the stars and {\it dark matter}  in these lensing galaxies, for the first time. This differs from previous works that have all compared the light distribution with the total mass, rather than the dark matter. Since the stars often dominate the central potential, the total mass naturally correlates with the light, potentially masking theoretically interesting results about the dark matter distribution. Our comparison between light and dark is made possible by the fact that \Glass\ uses the light distribution as a prior on the mass map, ensuring that the dark matter mass is always positive.
+Recently, we introduced a new non-parametric lens tool, \Glass\  \citep{2014arXiv1401.7990C}. Applying this to a large suite of mock data, we showed that mass and light can only reliably be disentangled in strong lensing systems if: i) there are at least four images; and ii) time delay data are available and/or the stellar mass dominates the potential over the region of the images. {\bf CB. i) is the case for all the lenses, ii) however only for a minority of the sample. This sentence creates therefore some tension that is not addressed however (I don't know whether we should rephrase it or add another sentence).} In this paper, we collate data of the above quality, compiling a sample of 11 strong lens galaxies. We apply \Glass\ to these lenses to non-parametrically measure the shape and alignment of the stars and {\it dark matter}  in these lensing galaxies, for the first time. This differs from previous works that have all compared the light distribution with the total mass, rather than the dark matter. Since the stars often dominate the central potential, the total mass naturally correlates with the light, potentially masking theoretically interesting results about the dark matter distribution. Our comparison between light and dark is made possible by the fact that \Glass\ uses the light distribution as a prior on the mass map, ensuring that the dark matter mass is always positive.
 
 This paper is organised as follows. In \S\ref{sec:glass}, we briefly review the \Glass\ code. In \S\ref{sec:data}, we present our data compilation with references. In \S\ref{sec:results}, we present our results. Finally, in \S\ref{sec:conclusions} we discuss the implications of these results and we present our main conclusions.
 
 
 \section{\Glass: A non-parametric lens tool}\label{sec:glass}
 
-\Glass{} is a new `non-parametric' gravitationl lens modelling framework
+\Glass{} is a new `non-parametric' gravitational lens modelling framework
 \citep{2014arXiv1401.7990C} that is capable of generating a distribution of
 mass models given a set of basic assumptions, or priors.  In this context,
 non-parametric means that  many more parameters than data constraints are used
 such that system of equations describing the lensing mass distribution is
 under-constrained.  \Glass{} shares some aspects with an earlier code
-\PixeLens{} \citep{Saha2004,2008ApJ...679...17C}, but has a completely
-different code base. It key improvements upon \PixeLens{} which are relevant
+\PixeLens{} \citep{2004AJ....127.2604S,2008ApJ...679...17C}, but has a completely
+different code base. Its key improvements upon \PixeLens{} which are relevant
 for this paper include:
 
 \begin{enumerate}
@@ -120,10 +120,10 @@ In cases where more information is available, the following priors are also used
 \begin{enumerate}
 \item[(vii)] A flat prior on measured time delays within the $\pm 1\sigma$-interval.
 
-\item[(viii)] External point masses to model satellite galaxies outside but
+% \item[(viii)] External point masses to model satellite galaxies outside but
 close to the Einstein radius.
 
-\item[(ix)] Point symmetry $\kappa(x,y) = \kappa(-x,-y)$ where 
+\item[(viii)] Point symmetry $\kappa(x,y) = \kappa(-x,-y)$ where 
 the surface mass profile can be assumed to be symmetric (3+1 quad
 configurations and the double \textit{Q0957}).
 
@@ -133,39 +133,35 @@ configurations and the double \textit{Q0957}).
 
 {\bf JR. WE NEED TO DEFINE OUR SHAPE PARAMETER AND ANALYSIS METHOD HERE.} 
 {\bf JR. WE NEED TO ALSO DEFINE $R_e$ HERE AND EXPLAIN THAT WE AVERAGE SHAPE OVER 1-5$R_e$} 
+{\bf CB. I will write this.} 
+
 
 \section{Data}\label{sec:data}
 
-{\bf JR. CLAUDIO TO ADD DATA HERE.} 
+{\bf CB. Do we need to add a bit describing the stellar population synthesis modelling? Can maybe Prasenjit write this?} 
 
-\textbf{Content:}
-\begin{itemize}
-\item Describe data set (why this data set, special features of galaxies (environment: y/n/unknonwn, elliptical/disk))
 
-\item {\bf JR. Claudio to add this bit?} 
-\end{itemize}
+\textit{Q0047-2808} (hereafter \textit{Q0047} or \textit{0047}) is a luminous early-type galaxy \citep{1996MNRAS.278..139W}. \cite{2011ApJ...726...84W} find a group of 9 members all of which are spectroscopically confirmed.
 
-\textit{Q0047-2808} (hereafter \textit{Q0047} or \textit{0047}) is a luminous early-type galaxy \citep{1996MNRAS.278..139W}. \cite{2011ApJ...726...84W} find a group of 9 members all of which they spectroscopically confirm.
+\textit{MG0414+0534} (hereafter \textit{0414}) is a passively evolving early-type galaxy \citep{1999AJ....117.2034T}. \cite{1993AJ....105....1S} find a very close luminous satellite galaxy north-west of the lens. \citep{2011MNRAS.413L..86C} however conclude that it is more likely a foreground object.
 
-\textit{MG0414+0534} (hereafter \textit{0414}) is a passively evolving early-type galaxy \citep{1999AJ....117.2034T}. \cite{1993AJ....105....1S} find a very close luminous satellite galaxy north-west of the lens. Due to the proximity of this satellite, we include it as a point mass in our analysis.
+\textit{B0712+472} (hereafter \textit{0712}) is an early-type galaxy \citep{1998AJ....115..377F}. %Another galaxy, 102'' to the south-east seems to be at a similar redshift \citep{2002AJ....123..627F}. There is also a group of 10 galaxies at a lower redshift.
 
-\textit{B0712+472} (hereafter \textit{0712}) is an early-type galaxy \citep{1998AJ....115..377F}. Another galaxy, 102'' to the south-east seems to be at a similar redshift \citep{2002AJ....123..627F}. There is also a group of 10 galaxies at a lower redshift.
-
-\textit{RXJ0911+0551} (hereafter \textit{0911}) is an almost circular early-type galaxy \citep{2012A&A...538A..99S}. It has measured time delays \citep{2002ApJ...572L..11H}. It lies on the outskirts of a cluster \citep{2001ApJ...555....1M}. This cluster seems to be rather complex and especially it is not spherical. Possibly it is not dynamically relaxed, although X-ray emission can be detected. Analysis of this emission yields a temperature of 2.3 keV. There is also a satellite galaxy to the north-west direction \citep{2000ApJ...544L..35K}.
+\textit{RXJ0911+0551} (hereafter \textit{0911}) is an almost circular early-type galaxy \citep{2012A&A...538A..99S}. It has measured time delays \citep{2002ApJ...572L..11H}. It lies on the outskirts of a cluster \citep{2001ApJ...555....1M}. X-ray emission can be detected and an analysis of which yields a temperature of 2.3 keV. There is also a satellite galaxy to the north-west direction \citep{2000ApJ...544L..35K}. %This cluster seems to be rather complex and especially it is not spherical. Possibly it is not dynamically relaxed, although X-ray emission can be detected.
 
 \textit{Q0957+561} (hereafter \textit{0957}) is a cD galaxy lying close to the center of a cluster with a high sprial galaxy-fraction (e.g. \cite{1992MNRAS.254P..27G,1994A&A...291..411A,1998ApJ...504..661C}). Due to the large image separation, large physical scales are probed. As listed in Table 3 of \cite{2000ApJ...542...74K}, the position angles to the center of the cluster of earlier lens reconstructions range between 51.8 deg and 67.8 deg measured north-through-east. These results are consistent with the center of the X-ray emission from the cluster \citep{1998ApJ...504..661C}. The lens has a measured time delay, e.g. \citep{2012A&A...540A.132S}. They however also find a three-day lag between the g- and r-bands, and the estimates do not agree at the 2$\sigma$-level. They argue that this effect can be accounted for by the presence of a substructure and chromatic dispersion. We find that the results do not change significantly for either estimate and choose therefore the g-band measurement.
 
-\textit{PG1115+080} (hereafter \textit{1115}) is an early-type galaxy \citep{2005ApJ...626...51Y}. It has measured time delays. We use recent estimates of the time delays by \cite{2010MNRAS.406.2764T} which differ significantly from traditional values by e.g. \cite{1997ApJ...489...21B}. \cite{2006ApJ...641..169M} and \cite{2011ApJ...726...84W} analyzed the environment of the lens thouroughly. It is part of a small group of 13 members. \cite{2004ApJ...610..686G} detect also X-ray emission from the corresponding group, which yields a temperature of 0.8 keV.
+\textit{PG1115+080} (hereafter \textit{1115}) is an early-type galaxy \citep{2005ApJ...626...51Y}. It has measured time delays. We use recent estimates of the time delays by \cite{2010MNRAS.406.2764T} which differ from previously found values by e.g. \cite{1997ApJ...489...21B}. \cite{2006ApJ...641..169M} and \cite{2011ApJ...726...84W} analyzed the environment of the lens thouroughly. It is part of a small group of 13 members. \cite{2004ApJ...610..686G} detect also X-ray emission from the corresponding group, which yields a temperature of 0.8 keV.
 
-\textit{B1422+231} (hereafter \textit{1422}) is an early-type galaxy \citep{1996ApJ...462L..53I}. Although there are measured time delays by \cite{2001MNRAS.326.1403P}, they are probably not to be trusted too much as they deviate significantly from theoretical expectations in \cite{2003AJ....126...29R}. An accurate measurement of the time delays would require time delay measurements on the scale of hours. \cite{2006ApJ...641..169M} find a group environment with 16 spectroscopically confirmed member galaxies. Using newer data, \cite{2011ApJ...726...84W} find an additional member. \cite{2004ApJ...610..686G} also detect X-ray emission from the corresponding group at a temperature of 1.0 keV.
+\textit{B1422+231} (hereafter \textit{1422}) is an early-type galaxy \citep{1996ApJ...462L..53I}. Although there are measured time delays by \cite{2001MNRAS.326.1403P}, they seem to deviate significantly from theoretical expectations in \cite{2003AJ....126...29R}. We choose therefore not to include them in the analysis. \cite{2006ApJ...641..169M} find a group environment with 16 spectroscopically confirmed member galaxies. Using newer data, \cite{2011ApJ...726...84W} find an additional member. \cite{2004ApJ...610..686G} also detect X-ray emission from the corresponding group at a temperature of 1.0 keV.
 
-\textit{B1608+656} (hereafter \textit{1608} or \textit{1608}) consists of two merging galaxies. The main galaxy is an early-type galaxy which is disrupted by a smaller, probably late-type galaxy \citep{2003ApJ...584..100S}. The system has measured time delays \citep{2002ApJ...581..823F}. The environment and the mass distribution along the line of sight have been analyzed by \cite{2006ApJ...642...30F}. They find a group with 8 resp. 9 members if the merging galaxies are counted as 2. No significant X-ray emission was detected from the surrounding group \citep{2005ApJ...625..633D}. Along the line of sight seem to be four other groups.
+\textit{B1608+656} (hereafter \textit{1608} or \textit{1608}) consists of two merging galaxies. The main galaxy is an early-type galaxy which is disrupted by a smaller, probably late-type galaxy \citep{2003ApJ...584..100S}. The system has measured time delays \citep{2002ApJ...581..823F}. The environment and the mass distribution along the line of sight have been analyzed by \cite{2006ApJ...642...30F}. They find a group with 8 (9 if merging galaxies are counted individually). No significant X-ray emission was detected from the surrounding group \citep{2005ApJ...625..633D}. The data seems to indicate four other groups along the line of sight.
 
 \textit{MG2016+112} (hereafter \textit{2016}) is a giant elliptical galaxy \citep{1984Sci...223...46L,1986AJ.....91..991S}. It is the farthest lens we consider in this sample. It lies in a cluster which consists of 69 probable galaxies \citep{2003MNRAS.344..337T}. The clusters shows a high density of galaxies close to the lens in a south-east direction.
 
-\textit{B2045+265} (hereafter \textit{2045}) is probably an elliptical galaxy \citep{2007MNRAS.378..109M}. \cite{1999AJ....117..658F} initially classified the galaxy as a late-type Sa galaxy, the velocity dispersion however seems too high. As the source redshift is rather low, a large lens mass is needed. \cite{2007MNRAS.378..109M} therefore conclude that it is more likely an elliptical galaxy. To the west of the lens, \cite{1999AJ....117..658F} find that a group at a similar redshift as the lens. \cite{2007MNRAS.378..109M} also find evidence for a dwarf satellite galaxy. As the measurements are not conclusive, we chose to treat the lens as an isolated object.
+\textit{B2045+265} (hereafter \textit{2045}) is probably an elliptical galaxy \citep{2007MNRAS.378..109M}. \cite{1999AJ....117..658F} initially classified the galaxy as a late-type Sa galaxy, the velocity dispersion however seems too high. As the source redshift is rather low, a large lens mass is required. \cite{2007MNRAS.378..109M} therefore conclude that it is more likely an elliptical galaxy. To the west of the lens, \cite{1999AJ....117..658F} find a group at a similar redshift as the lens. \cite{2007MNRAS.378..109M} also find evidence for a dwarf satellite galaxy. As the measurements are inconclusive, we choose to not include this satellite.
 
-\textit{Q2237+030} (hereafter \textit{2237}) is a barred spiral \citep{1988AJ.....95.1331Y}. With only a redshift of $z=0.04$, it is the closest lens of the sample. Due to the low redshift, the probed physical scales are quite small. No further inquiries into the environment were made.
+\textit{Q2237+030} (hereafter \textit{2237}) is a barred spiral \citep{1988AJ.....95.1331Y}. With only a redshift of $z=0.04$, it is the closest lens of the sample. Due to the low redshift, the probed physical scales are small. No further inquiries into the environment were made.
 
 Further information about the sample can be found in \cite{leier11phd}, \cite{2011ApJ...740...97L}, and \cite{2012A&A...538A..99S}.
 
@@ -180,12 +176,12 @@ Further information about the sample can be found in \cite{leier11phd}, \cite{20
       0957 & 0.356 & 1.41 & 29.98 & $3.51\pm0.04$ & C \\
       1115 & 0.310 & 1.72 & 10.76 & $2.94\pm0.06$ & G(13) \\
       1422 & 0.337 & 3.62 & 6.02  & $4.49\pm0.06$ & G(17) \\
-      1608 & 0.630 & 1.39 & 13.92 & $1.82\pm0.01$ & !CHECK! \\
+      1608 & 0.630 & 1.39 & 13.92 & $1.82\pm0.01$ & G(8) \\
       2016 & 1.010 & 3.3  & 26.22 & $6.12\pm0.14$ & C(69) \\
-      2045 & 0.870 & 1.28 & 14.46 & $1.48\pm0.03$ & !SEE TEXT! \\
+      2045 & 0.870 & 1.28 & 14.46 & $1.48\pm0.03$ & ... \\
       2237 & 0.039 & 1.7  & 1.40  & $0.89\pm0.01$ & ... \\
     \end{tabular}
-    \caption[width=\linewidth]{Table with lens properties \citep[see][]{2011ApJ...740...97L}. References in Section~\ref{sec:data} \textbf{expand}}
+    \caption[width=\linewidth]{The most relevant lens properties for this work are listed \citep[for an expanded version of this table see][]{2011ApJ...740...97L}. References can be found in \S\ref{sec:data}.}
     \label{tab:lensproperties}
   \end{center}
 \end{table*}
@@ -217,7 +213,7 @@ Further information about the sample can be found in \cite{leier11phd}, \cite{20
       2237 & 0.598 & -0.075 & 0.791 & -0.710 & ... & \\
               & 0.758 & -0.939 & -0.411 & 0.271 &  &  \\
     \end{tabular}
-    \caption[width=\linewidth]{Table with lens properties relevant for modelling (positions, time delays) \newline $^{a}$ Images A and B are a pair, C and D the other \textbf{expand}}
+    \caption[width=\linewidth]{The lens properties relevant for modelling the lenses are listed (positions and time delay information). The images are ordered in terms of arrival time (image A has the shortest arrival time, image D the longest). \newline $^{a}$ The source lensed by 0957 has different component. Images A and B are a double associated with the main galaxy component, images C and D are associated with lensed substructure.}
     \label{tab:lensmodelling}
   \end{center}
 \end{table*}
@@ -241,14 +237,14 @@ Further information about the sample can be found in \cite{leier11phd}, \cite{20
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{Figures/wedges_shears.pdf}
-  \caption[width=.65\linewidth]{}
+  \caption[width=.65\linewidth]{The reconstructed lenses are displayed according to the reconstructed total shapes of the dark matter halo $s_{dm}$ and the stellar component $s_{*}$. The wedges display the alignment of the semi-major axes of the components. In case of alignment of the semi-major axes (Aligned), the wedges are vertical. In case of alignment of the semi-major with the semi-minor axes (Anti-Aligned), the wedges are horizontal. The opening angle displays the error in the shape estimate of the dark matter halo. The lenses are additional color-coded in terms of the required external shear in modelling the lens.}
   \label{fig:wedges}
 \end{figure}
 
 \begin{figure*}
   \centering
   \includegraphics[width=.8\linewidth]{Figures/wedges.pdf}
-  \caption[width=.65\linewidth]{}
+  \caption[width=.65\linewidth]{Similar to Figure~\ref{fig:wedges}. In each of the subfigures however we only consider pixels within 1, 2, 3, 4, or 5 $R_e$. If a lens does not extend to these limiting radii, it is dropped from the analysis in this and subsequent subfigures.}
   \label{fig:wedgesall}
 \end{figure*}
 
@@ -260,11 +256,11 @@ We have measured the shape and alignment of stars and dark matter in 11 strong l
 Our key results are as follows: 
 
 \begin{itemize}
-\item We found that in all cases the dark matter halos are more elliptical than the light distribution over the range $R_e < R < 5R_e$. As we average over larger radii, the lenses become increasingly elliptical both in their dark matter and stars, but dark matter halos are never more elliptical than $s_{dm} = 1.15$, while their stars can extend to $s_* > 1.4$. 
+\item We found that in all cases the dark matter halos are rounder than the light distribution over the range $R_e < R < 5R_e$. As we average over larger radii, the lenses become increasingly elliptical both in their dark matter and stars, but dark matter halos are never more elliptical than $s_{dm} = 1.15$, while their stars can extend to $s_* > 1.4$. 
 
 \item Three systems have very high stellar ellipticity ($s_* > 1.6$) and correspondingly high alignment between light and dark. One of these -- B1608 -- is a known merging pair; we suggest that the other two (B0712 and B2016) may also be recent post-merger systems. 
 
-\item Galaxies with high dark matter ellipticity and weak external shear show very strong alignment between light and dark; those with strong shear ($\gamma \simgt 0.1$) can be very highly misaligned. This is reassuring since isolated misaligned galaxies are expected to be unstable.
+\item Galaxies with high dark matter ellipticity and weak external shear show strong alignment between light and dark; those with strong shear ($\gamma \simgt 0.1$) can be highly misaligned. This is reassuring since isolated misaligned galaxies are expected to be unstable.
 \end{itemize}
 
 Our results provide a new constraint on galaxy formation models that must explain the origin of very round dark matter halos (not expected in pure dark matter only simulations), and highly misaligned systems. Such misalignments also present a new challenge for alternative gravity theories in which the light and dark must necessarily be highly correlated.
