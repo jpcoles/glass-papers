@@ -1,7 +1,7 @@
 \documentclass[useAMS,usenatbib]{mn2e}
 \usepackage{myaasmacros}
 \usepackage{graphicx}
-\usepackage{ulem}
+\usepackage[normalem]{ulem}
 \usepackage{amsmath}
 \usepackage{multirow}
 \usepackage{color}
@@ -54,61 +54,92 @@ Strong lensing provides a unique probe of the alignment and shape of the total m
 
 Weak lensing can also be used to probe the shape and alignment between the luminous and dark matter distributions, but only for `stacked' galaxies \citep{2000astro.ph..6281B,2000ApJ...538L.113N}. \citet{2004ApJ...606...67H} applied this idea to data from the Red-Sequence Cluster Survey (RCS) to measure the first weak lensing signal of halo flattening. They found that dark matter haloes appear to be rounder than the stellar mass distribution, with some weak evidence for alignment. Both measurements are challenging however, and more recent data appear to be at odds with this early work, at least for galaxies in general. They however are in agreement concerning `red' galaxies, which are predominantly early-type galaxies, also favouring dark matter haloes that are more elliptical than their stellar mass components \citep{2006MNRAS.370.1008M,2007ApJ...669...21P,2012A&A...545A..71V}.
 
-Recently, \cite{2014arXiv1401.7990C} introduced a new non-parametric lens tool, \Glass. Applying this to a large suite of mock data, we showed that mass and light can only reliably be disentangled in lens systems if: i) there are at least four images; and ii) time delay data are available and/or the stellar mass contributes significantly to the potential. In this paper, we collate data of the above quality, compiling a sample of 11 strong lens galaxies. We apply \Glass\ to these lenses to non-parametrically measure the shape and alignment of the stars and {\it dark matter} in these lens galaxies, for the first time. This differs from previous works that have all compared the light distribution with the total mass, rather than the dark matter. Since the stellar component often dominates the central potential, the total mass naturally correlates with the light, potentially masking theoretically interesting results about the dark matter distribution. Our comparison between the stellar and dark matter components is made possible by the fact that \Glass\ uses the stellar mass distribution as a prior on the mass map, ensuring that the dark matter map is always positive.
+Recently, \cite{2014MNRAS.445.2181C} introduced a new non-parametric lens tool, \Glass. Applying this to a large suite of mock data, we showed that mass and light can only reliably be disentangled in lens systems if: i) there are at least four images; and ii) time delay data are available and/or the stellar mass contributes significantly to the potential. In this paper, we collate data of the above quality, compiling a sample of 11 strong lens galaxies. We apply \Glass\ to these lenses to non-parametrically measure the shape and alignment of the stars and {\it dark matter} in these lens galaxies, for the first time. This differs from previous works that have all compared the light distribution with the total mass, rather than the dark matter. Since the stellar component often dominates the central potential, the total mass naturally correlates with the light, potentially masking theoretically interesting results about the dark matter distribution. Our comparison between the stellar and dark matter components is made possible by the fact that \Glass\ uses the stellar mass distribution as a prior on the mass map, ensuring that the dark matter map is always positive.
 
-This paper is organised as follows. In \S\ref{sec:glass}, we briefly review the \Glass\ code and define our method to assess shape and alignment of lens galaxies. In \S\ref{sec:data}, we present our data compilation with references. In \S\ref{sec:results}, we present our results. Finally, in \S\ref{sec:conclusions} we discuss the implications of these results and we present our main conclusions.
+This paper is organised as follows. In \S\ref{sec:shapemethod}, we briefly review the \Glass\ code and define our method to assess shape and alignment of lens galaxies. In \S\ref{sec:data}, we present our data compilation with references. In \S\ref{sec:results}, we present our results. Finally, in \S\ref{sec:conclusions} we discuss the implications of these results and we present our main conclusions.
 
 
-\section{\Glass: A non-parametric lens tool}\label{sec:glass}
+\section{The lens models}\label{sec:shapemethod}
 
-\Glass\ is a new `non-parametric' gravitational lens modelling framework \citep{2014arXiv1401.7990C} that generates a distribution of mass models given a set of basic assumptions, or priors. Hence, \Glass\ does not yield the most probable mass model. Rather, it calculates an ensemble of all allowed models given the data and assumed priors. In this context, `non-parametric' really just means that many more parameters than data constraints are used such that the system of equations describing the lensing mass distribution is under-constrained. \Glass\ shares some aspects with an earlier code \PixeLens\ \citep{2004AJ....127.2604S,2008ApJ...679...17C}, but has a completely different code base. Its key improvements upon \PixeLens{} relevant for this paper include:
+While it is possible to compute shape parameters for a lensing galaxy
+by fitting to a parametric shape to the lens, it would make the
+definition of a shape estimate dependent on the which parametric form
+was being used.  Moreover, the commonly-used parametric forms for
+modelling lensing galaxies \citep[see e.g.,][]{2001astro.ph..2341K} do
+not allow for features like twisting isodensity contours, which can
+arise from projection of triaxial ellipsoids with no intrinsic twists
+\citep[e.g.][and references therein]{1978ComAp...8...27B}.  To avoid
+these problems, we use non-parametric ellipticity estimators, defined
+as follows.
 
-\begin{enumerate}
-\item A new uniform sampling algorithm for high dimensional spaces \citep{2012MNRAS.425.3077L} is employed. This allows for large ensembles of $\gtrsim$10,000 models to be efficiently generated. 
-\item With so many models in the final ensemble, we can afford to apply non-linear constraints (for example stellar kinematic data; or the removal of models with spurious extra images) to accept/reject models in a post-processing step.
-\item The central region of the mass map can have a higher resolution to more efficiently capture steep models.
-\item Stellar density can be used as an additional lower-bound constraint on the models. 
-\end{enumerate} 
-
-In this paper, the default priors used to model each lens are listed below. Table \ref{tab:lenspriors} identifies lenses for which we have modified these defaults. For each lens we assume:
-
-\begin{enumerate} 
-\item Observational priors (redshifts, image positions relative to lens position).
-\item Image parity to be enforced.
-\item A reconstructed stellar mass map that provides a lower mass bound to each pixel.
-\item The local density gradient to be always pointing within 50$^{\circ}$ of the centre of the distribution, and the circularly-averaged density to never increase outwards.
-\item The fixed, flat cosmology with matter density $\Omega_{m} = 0.28$, the dark energy density $\Omega_{\Lambda} = 0.72$, and the inverse Hubble constant $H_{0}^{-1} = 13.7$ Gyr.
-\item A flat prior on the magnitude of the external shear $|\gamma|$ on $[0,1)$.
-\item The radius of the lens to be set to 12 pixels.
-\end{enumerate}
-
-In cases where more information is available, the following priors are also used:
-
-\begin{enumerate}
-\item[(viii)] A flat prior on measured time delays within the $\pm 1\sigma$-interval.
-\item[(ix)] Point symmetry $\kappa(x,y) = \kappa(-x,-y)$, where the surface mass profile can be assumed to be symmetric ((3+1)-quad configurations and the double \textit{Q0957+561}).
-
-\end{enumerate}
-
-\subsection{Measuring the shape and alignment of a lens}\label{sec:shapemethod}
-We employ a shape definition related to the definition used by \cite{2014arXiv1401.7990C}. The ellipticity parameter $e$ is defined as
+Lenses are modelled as free-form mass distributions, consisting of
+mass tiles or pixels.  Such lens models are also called
+non-parametric, which really just means that many more parameters than
+data constraints are used.  Thus the lens models are non-unique, and
+hence in fact ensembles of these free-form mass distributions are
+used.  From such a mass map, an inertia tensor is defined as
+\begin{equation}\label{eq:inertiatensor}
+\begin{pmatrix}
+ \sum_\theta M(\boldsymbol{\theta})\theta^{2}_{y} & -\sum_\theta M(\boldsymbol{\theta})\theta_{x}\theta_{y} \\
+-\sum_\theta M(\boldsymbol{\theta})\theta_{x}\theta_{y} & \sum_\theta M(\boldsymbol{\theta})\theta^{2}_{x}
+\end{pmatrix}
+\end{equation}
+where the sum is over mass pixels, and $M(\boldsymbol{\theta})$ is the
+mass in a pixel.  The eigenvectors of this inertia tensor give the
+ellipticity axes, and our ellipticity estimator is
 \begin{equation}\label{eq:shapeestimate}
     e \equiv 1 - \frac{\lambda_{2}}{\lambda_{1}},
 \end{equation}
-where $\lambda_{1}$ and $\lambda_{2}$ ($\lambda_{1} \geq \lambda_{2}$) are the eigenvalues of the inertia tensor $I$ of the mass distribution $M(\boldsymbol{\theta})$. It is defined as
-\begin{equation}\label{eq:inertiatensor}
-    I = \begin{pmatrix} \sum_\theta M(\boldsymbol{\theta})\theta^{2}_{y} & -\sum_\theta M(\boldsymbol{\theta})\theta_{x}\theta_{y} \\
-                        -\sum_\theta M(\boldsymbol{\theta})\theta_{x}\theta_{y} & \sum_\theta M(\boldsymbol{\theta})\theta^{2}_{x} \end{pmatrix}.
-\end{equation}
-We use these estimators to quantify the shape of the stellar mass distribution and the dark matter distribution. We estimate the latter by reconstructing the total mass distribution with a lower mass prior from the stellar mass distribution and then subtracting the latter off. The shapes of the distributions are computed for all the pixels up to the outermost lensed image and for the pixels within different multiples of $R_e$, defined as the half-light radius measured with respect to the Petrosian flux. As terms in Eq.~\ref{eq:inertiatensor} are weighted with $r^2$, the outer pixels tend to dominate the estimate of the averaged shape within the considered radius. The shape estimates do not necessarily need to be the same within different radii -- e.g. effects such as isophotal twist \citep[e.g.][and references therein]{1978ComAp...8...27B} can cause differences in the shape estimates between the central and the outer parts of the system.
+where $\lambda_{1}$ and $\lambda_{2}$ ($\lambda_{1} \geq \lambda_{2}$)
+are the eigenvalues.  We use this ellipticity estimators to quantify
+the shapes both of the stellar-mass distribution and of the
+dark-matter distribution.  For the dark matter, only the mass
+distribution out to the radius of the outermost image is used; for the
+stellar part, the distribution with within different multiples of
+$R_e$ (defined as the half-light radius measured with respect to the
+Petrosian flux) is used.  It is necessary to have a cutoff for the
+regions used to compute the inertia tensor, or else it would be
+dominated by the outer regions where there is little information.  The
+mass pixels used in this work are at most 4\% of the diameter of the
+the full mass map.  The central region has smaller pixels, to allow
+for a density cusp at the centre.  Each model ensemble had $10^4$
+models.
 
-Throughout this paper, we generate in each case an ensemble of 10,000 mass models. Each of these models is analysed individually, yielding a distribution of constrained quantities.
+The non-parametric mass models themselves are constructed using the
+\Glass\ framework for modelling multiple-image lenses
+\citep{2014MNRAS.445.2181C}.  \Glass\ produces ensembles of mass maps,
+each of which reproduces exactly the observed image positions and
+image parities; also time delays, if measured.  The lensing data must
+be in the form of point images, which could be quasars or simply
+point-like features in otherwise extended images, but this was not a
+problem for the lenses studied in this work.  The estimated stellar
+mass (explained below in Section~\ref{sec:data}) is taken as a lower
+limit on the total mass.  The additional mass that needs to be put on
+top, in order to reproduce the lensing observables, is interpreted as
+dark matter.  (Some of that mass may actually be gas, but very little
+is expected in the early-type galaxies used in this work.)  The
+criteria of lensing observables and non-negative dark matter by
+themselves would leave the mass distribution too under-determined.
+Hence, an additional prior is used, requiring the mass distribution to
+be centrally concentrated, with the same centre as the galaxy light
+(but not necessarily the shape shape).  The precise formulation of the
+prior is given in Section~3 of \cite{2014MNRAS.445.2181C}.  Tests of
+how well the shape estimator can be recovered from lensing data are
+given in Section~5.2 and Figure~8 of that paper.
 
+We remark that \Glass\ is closely related to an earlier code
+\PixeLens\ \citep{2004AJ....127.2604S,2008ApJ...679...17C}, but has a
+completely different code base.  An important improvement is a better
+sampling algorithm for high dimensional spaces
+\citep{2012MNRAS.425.3077L} that eliminates the excessive weight
+\PixeLens\ tended to give to extreme models. \Glass\ has also been
+adapted for lens modelling in citizen science
+\citep{2015MNRAS.447.2170K}.
 
 \section{Data}\label{sec:data}
 Stellar mass maps are taken from \cite{2011ApJ...740...97L}. In that work, the surface brightness distribution of the galaxy images in all available HST bands was first fitted using {\sc Galfit v2.03b} \citep{2002AJ....124..266P}, and with the resulting flux maps stellar mass maps using the synthesis of the stellar-population (SPS) models of \cite{2003MNRAS.344.1000B} were obtained. The population synthesis is marginalised over the star formation epoch and time scales and over the stellar metallicity. The initial mass function (IMF) was taken to be the log-normal form given by \cite{2003PASP..115..763C}; a more bottom-heavy IMF would change the mass normalisation \citep[cf.][]{2014ApJ...793...96S} but not the shape of the inferred stellar mass distribution \citep[unless the IMF presents significant intrinsic deviations locally, see e.g.][]{2015MNRAS.447.1033M}. We note that the effect of recent claims towards a non-universal IMF on stellar mass-to-light ratio (M/L) is still under debate. While for massive elliptical galaxies, dynamical studies seem to point at contributions at the level of the Salpeter IMF or slightly heavier \citep{2013MNRAS.432.1862C}, spectral line strength constraints can still accommodate a wider range of the stellar M/L depending on the functional form of the IMF \citep{2013MNRAS.429L..15F}. For at least one lens in our sample, \textit{Q2237+030}, the lensing estimates on the mass distribution are inconsistent with a Salpeter IMF \citep{2010MNRAS.409L..30F}. We additionally tested varying the IMF for one lens ({\it B1422+231}), finding that Salpeter IMF is too heavy and gives no solutions. We will perform a more systematic study of the IMF and varying stellar M/L in a forthcoming publication.
 
-The original sample we consider, is presented in \cite{2011ApJ...740...97L} and consists of 21 lens systems. It is a subsample of the CfA-Arizona Space Telescope LEns Survey\footnote{http://www.cfa.harvard.edu/castles/} (CASTLES) sample. As shown in \cite{2014arXiv1401.7990C}, the recovery of the shape information of the lens is only good if there are at least four images. Therefore, we only consider the quad lenses and the twin double \textit{Q0957+561}. This yields a sample consisting of 11 lenses. We discuss each of these systems, next.
+The original sample we consider, is presented in \cite{2011ApJ...740...97L} and consists of 21 lens systems. It is a subsample of the CfA-Arizona Space Telescope LEns Survey\footnote{http://www.cfa.harvard.edu/castles/} (CASTLES) sample. As shown in \cite{2014MNRAS.445.2181C}, the recovery of the shape information of the lens is only good if there are at least four images. Therefore, we only consider the quad lenses and the twin double \textit{Q0957+561}. This yields a sample consisting of 11 lenses. We discuss each of these systems, next.
 
 \textit{Q0047-2808} (hereafter \textit{0047}) is a luminous early-type galaxy \citep{1996MNRAS.278..139W}. It is part of a group of 9 members, all of which are spectroscopically confirmed \citep{2011ApJ...726...84W}.
 
@@ -170,11 +201,18 @@ Further information on the sample can be found in \citet{2011ApJ...740...97L} an
       1608 & $\Delta t_{BA}=31.5^{+2}_{-1}$ & ...\\
            & $\Delta t_{CA}=36.0^{+1.5}_{-1.5}$ & \\
            & $\Delta t_{DA}=77.0^{+2}_{-1}$ & \\
-      2016 & ... & PixRad(16) \\
-      2045 & ... & $\gamma(0.1)$, Symm \\
+      2016 & ... & Smaller pixels \\
+      2045 & ... & $\gamma\leq 0.1$, Symm \\
       2237 & ... & ...\\
     \end{tabular}
-    \caption[width=\linewidth]{Additional priors to the base set described in \S\ref{sec:glass} are listed. $\Delta t_{BA}$ denotes the difference in arrival time $t_{B}-t_{A}$ between light from the images B and A. The images are defined in Table~\ref{tab:lenspositions}. $\gamma(\cdot)$ denotes a prior on the maximum allowed external shear $|\gamma|$. `Symm' denotes that a point-symmetry prior is employed. `PixRad(16)' indicates that the pixel radius was set to 16 pixels.}
+    \caption[width=\linewidth]{Lenses where additional data or priors
+      were used (cf.~\S\ref{sec:shapemethod}). $\Delta t_{BA}$ and so
+      on denote time delays between images as labelled in
+      Table~\ref{tab:lenspositions}; $\gamma$ refers to the allowed
+      external shear; `Symm' means that the mass map was symmetric
+      under rotation by $180^\circ$; `Smaller pixels' indicates that
+      the pixel size was 3\% rather than 4\% of the diameter of the
+      whole mass map.}
     \label{tab:lenspriors}
   \end{center}
 \end{table}
@@ -207,7 +245,7 @@ Figure~\ref{fig:wedgesradii} is similar to Figure~\ref{fig:wedgesall} with the d
 
 
 \section{Conclusions}\label{sec:conclusions}
-We have measured the shape and alignment of the stellar and dark matter distributions in 11 lens systems using a new non-parametric lens tool, \Glass. We focussed on lenses that have either time delay data or stellar mass maps that contribute significantly to the central potential to determine the projected shape of their dark matter haloes \citep{2014arXiv1401.7990C}. We measured the shape and alignment using the eigenvalues $\lambda_i$ and eigenvectors of the 2D moment of inertia tensor of the stellar and dark matter distributions, defining a {\it shape parameter} $e = 1 - \lambda_{2}/\lambda_{1}$ ($\lambda_{1} \geq \lambda_{2}$; see \S\ref{sec:shapemethod}). We averaged $e$ over the range 1-5$R_e$, where $R_e$ is the effective radius of the light profile.
+We have measured the shape and alignment of the stellar and dark matter distributions in 11 lens systems using a new non-parametric lens tool, \Glass. We focussed on lenses that have either time delay data or stellar mass maps that contribute significantly to the central potential to determine the projected shape of their dark matter haloes \citep{2014MNRAS.445.2181C}. We measured the shape and alignment using the eigenvalues $\lambda_i$ and eigenvectors of the 2D moment of inertia tensor of the stellar and dark matter distributions, defining a {\it shape parameter} $e = 1 - \lambda_{2}/\lambda_{1}$ ($\lambda_{1} \geq \lambda_{2}$; see \S\ref{sec:shapemethod}). We averaged $e$ over the range 1-5$R_e$, where $R_e$ is the effective radius of the light profile.
 
 Our key results are as follows:
 
