@@ -1,61 +1,112 @@
+----------
 The manuscript entitled “Light versus dark in strong-lens galaxies: Dark matter halos that are rounder than their stars” by Bruderer et al. was sent to me for review. The topic of the manuscript, the degree to which dark matter mass and stellar light, trace each other within galaxies is particularly timely and the authors present some thought provoking results. However, the manuscript suffers from a number of major problems that prevent me from recommending it for publication in its current state. I will go into the problems in detail below, but in summary they are: a lack of clarity over all, insufficient description of background information, misinterpretations of previously published work, not putting these results in context with similar, previously published work, and not making a compelling case (at least in the present manuscript) that their method yields reliable results for the quantities that are sought (e.g., the shape of the dark matter mass distribution and its orientation).
 
 
 Examples of lack of clarity:
+---------- Justin ----------
 - The authors state that “isolated misaligned galaxies are expected to be unstable” but they do not cite any references. What do the authors mean by misalignment (e.g., mass or angular momentum)? Debattista et al. (2013) showed that disc galaxies with their spins along the intermediate axis aren’t stable, but they also showed that when gas is present a disc can survive for a very long time if it is off of one of the symmetry planes of the halo. Debattista et al. (2015, arXiv:1502.03429) simulated disc formation with gas and found that discs can have essentially arbitrary orientations. There is some observational evidence from the observed locations of satellite galaxies (e.g., Agustsson & Brainerd 2010) and the intrinsic alignments of galaxies (e.g., Singh et al. 2014, arXiv:1411.1755 and references therein) that dark matter mass and light may not be well aligned in disc galaxies (i.e., the intrinsic alignment signal is most robustly detected for red galaxies, not blue galaxies).
 
+...
 
+
+---------- Prasenjit ----------
 - The authors say that they assume “the local density gradient to be always pointing within 50 degree of the centre of the distribution”. What does this mean? They also say that “the radius of the lens is set to be 12 pixels”. What does this mean? What is the radius of the lens? (The optical radius perhaps?) Presumably the pixels refer to what is used in the lens reconstruction but this is not stated sufficiently clearly.
 
+Changes: Section 2 significantly rephrased
 
+
+---------- Claudio ----------
 - The authors do not specify the physical radii over which they are attempting to constrain the dark matter mass. How does the scale being probed compare to, say, the virial radius that might be expected?
 
+...
+Add table with virial masses and corresponding virial radii. Scales of lenses are given in Table 1
 
+
+---------- Claudio ----------
 - It is not clear what form the best-fitting gravitational potentials of the dark matter halos turn out to be. Are they consistent with some reasonable expectation for galaxy formation (say, elliptical NFW or elliptical isothermal), or are they something completely different to naïve theoretical expectations?
 
+...
+Add Figure with the kappa profiles
 
+
+---------- Prasenjit ----------
 - It is not clear how the best-fitting values for the halo shape and degree of alignment with the stellar light are determined. Similarly it is not clear how the error bars on these values (and their significance) were determined.
 
+...
 
+
+---------- Claudio ----------
 - Regarding 0957, the authors say “the position angles to the center of the cluster of earlier lens constructions ...” which is too vague. What the authors mean is the position angle of the external shear. Throughout, the authors need to specify “the position angle of _______” (i.e., by explicitly filling in the blank) so that readers can understand what they’re trying to say.
 
+...
 
+
+---------- Claudio ----------
 - Figure 1 attempts to compile all of the main results into one figure, and it is extraordinarily difficult to disentangle this information. The bulk of the data points lie on top of each other and it’s not even possible to tell which point and error bar corresponds to which lens system. At a minimum, the authors need to include an additional table that lists, for each lens, the values and error bars for e*, edm, the offset between the major axis of the light and the major axis of the dark matter halo, and the external shear.
 
+...
+Made a new Figure, will add additional with ellipticities, their ratios, etc.
 
+
+---------- Prasenjit/Claudio ----------
 - The authors do not make clear (with a statement of a value for γ) for what they consider to be a “weak” external shear. To me, a shear of more than a few percent is a relatively large external shear, suggesting the presence of a larger mass concentration within which the primary lens is embedded. That is, it seems that even where no cluster/group members are currently known, there is an external shear that could be explained by the presence of a group/cluster environment (if I’m reading the colors in Figure 1 correctly).
 
+...
+Prasenjit: Changes in the text on the values of the external shear we see for these lenses
+Claudio: Update plot and color map
 
+
+---------- Claudio ----------
 - The authors do not address how the direction of the external shear compares to the orientation of the dark matter halo of the lens galaxy, nor is there a full discussion how the magnitude of the external shear compares with the inferred shape of the dark matter halo.
+
+...
+Claudio: Shear and dark matter misalignment plot for Appendix
 
 
 Misinterpretation of previously published work:
+---------- Claudio ----------
 - It’s not correct that weak lensing can directly probe the orientation of the dark matter mass relative to the luminous lens galaxies. The only way in which one can even search for an anisotropy in the shear profile is to use the symmetry axes of the luminous lens galaxies because you don’t know the orientation of the symmetry axes of the dark matter. That is, the only sensible way to stack the lenses is to use the major axes of the luminous galaxies. If the signal you observe is isotropic, this could be telling you that the halos are round or it could be telling you that mass and light are not well aligned in your lens galaxies. You can’t disentangle those two possibilities from the observations alone.
-
 
 - It’s not correct that Hoekstra et al. (2004) found “some weak evidence for alignment”. Hoekstra et al. (2004) concluded that there must be quite good alignment of mass and light for them to have detected a signal at all (for the reason stated above). This is stated in their abstract.
 
-
 - It’s not correct that Mandelbaum et al. (2006) found that the halos of red galaxies were flatter than their stellar distributions. They found the halos to be rounder than the luminous galaxies in all cases (power law and NFW mass models). This is stated in their abstract.
-
 
 - Given that Parker et al. (2007) do not quote error bars on their estimates of the halo ellipticity, it’s not correct to say that they concluded the halos of red galaxies were flatter than their stellar distributions. All of their halo ellipticities are quoted with a “tilde” out front (e.g., ~0.3 and ~0.4). If a proper error analysis were done, it could easily be found that these approximate central values were consistent with the ellipticities of the stellar distributions. Parker et al. (2007) put error bars on the shear anisotropy only and, properly, their “2σ” statement in the abstract refers to their constraint on the shear anisotropy, not the inferred halo ellipticity. In the full text they make it clear that they find a 2σ detection of “non-sphericity”, which is not the same as a 2σ measurement of a value of the projected ellipticity.
 
+...
+Will split up paragraph in introduction in two to talk about this.
+
 
 Additional Comments
+---------- Prasenjit ----------
 - The authors have not provided a sufficient description of GLASS and its reliability
 for the reader. As it stands, the reader needs to go to Coles et al. (2014) for too much relevant information. Manuscripts need to be sufficiently independent of one another that an “educated” reader need not be intimately familiar with a preceding manuscript in order to understand and evaluate the present manuscript.
 
+Changes: Section 2 significantly rephrased
 
+
+
+---------- Prasenjit/Justin/Claudio ----------
 - Nowhere in this manuscript do the authors make a compelling case (through, e.g., model testing) that GLASS yields reliable results for the quantities they seek. Perhaps that has been done in another manuscript but, if so, such tests have not been referenced here explicitly. Because most of the lenses are clearly not isolated, there is a concern about how the inferred external shear may correlate with the inferred halo shape and orientation. The authors need to demonstrate with reasonable theoretical models that the magnitude and orientation of external shears in the range of, say, 0.0 to 0.25 do not significantly affect the conclusions regarding the shape and orientation of the dark matter halo of the lens galaxy.
 
+...
+Claudio: Plot for the appendix containing: Scatter plot of angle of DM and all the angles of the dark matter profiles, convincing the referee that this is not a problem
 
+
+---------- Justin ----------
 - In the concluding section, the authors restate their results but do not discuss them in context with previous, similar work and known theoretical expectations. This is important, and needs to be done – even when different techniques are used in the observational analyses.
 
+...
+Claudio: Will link it better to weak lensing results, so it will be easier to write this
 
+
+---------- Justin/Prasenjit ----------
 - Figure 2 is not terribly useful. None of the panels is independent, and it appears from the error bars that most of the points that were computed using a larger radius are not much different from the points that were computed using a smaller radius. While it would be terrific to know how the ellipticity and alignments vary with distance from the lens, that question needs to be answered with independent data points (i.e., independent annuli in the analysis) and I don’t think the authors’ data is sufficient for the task.
 
+...
 
+
+---------- Justin ----------
 - The authors posit that 0712 and 2016 are post merger-systems, but that seems to be based solely on their lensing reconstructions and nothing else. Such an extrapolation from one known post-merger lensing system with similar properties (1608) doesn’t seem warranted.
 
-
+...
