@@ -14,6 +14,8 @@ Examples of lack of clarity:
 ...
 Changes: Section 2 significantly rephrased
 
+Claudio: Hmmm.... What should now happen to Table 2 however? It is not referenced anymore.
+
 
 ---------- Justin ----------
 - The authors do not specify the physical radii over which they are attempting to constrain the dark matter mass. How does the scale being probed compare to, say, the virial radius that might be expected?
@@ -29,25 +31,19 @@ Changes: Delta Theta (separation of images) in kpc, thus physical scale probed, 
 Changes: Added Figure with kappa profiles and quickly commented on it.
 
 
----------- Claudio ----------
 - It is not clear how the best-fitting values for the halo shape and degree of alignment with the stellar light are determined. Similarly it is not clear how the error bars on these values (and their significance) were determined.
 
-...
-Claudio: Already changed in the paper; still need to add it in the reply though.
+We have reworked Section 2 significantly to explictly describe our estimators and the statistical uncertainties for the shape and orientation of the distribution. These quantities are estimated, as now explained in detail in the text, by computing the eigenvalues and eigenvectors of the inertia tensor (see Eq. 1). Shape and orientation (resp. misalignment) are then estimated by combining the two eigenvalues resp. the angle of the eigenvector corresponding to the larger eigenvalue relative to the x-axis (see Eq. 2 and 3). As Glass gives an ensemble of solutions, these quantities are estimated for each solution. Based on these distributions, the quantites are then constrained and the statistical uncertainty is estimated.
 
 
----------- Claudio ----------
 - Regarding 0957, the authors say “the position angles to the center of the cluster of earlier lens constructions ...” which is too vague. What the authors mean is the position angle of the external shear. Throughout, the authors need to specify “the position angle of _______” (i.e., by explicitly filling in the blank) so that readers can understand what they’re trying to say.
 
-...
-Claudio: Already changed in the paper; still need to add it in the reply though.
+We have made clear by reworking this Section that throughout all the position angles are the ones of the group/cluster center. Furthermore, we give the values of the position angles explicitly, as this information is relevant in understanding potential sources of external shear required when modeling the lenses.
 
 
----------- Claudio ----------
 - Figure 1 attempts to compile all of the main results into one figure, and it is extraordinarily difficult to disentangle this information. The bulk of the data points lie on top of each other and it’s not even possible to tell which point and error bar corresponds to which lens system. At a minimum, the authors need to include an additional table that lists, for each lens, the values and error bars for e*, edm, the offset between the major axis of the light and the major axis of the dark matter halo, and the external shear.
 
-...
-Claudio: Already changed in the paper; still need to add it in the reply though.
+We thank the referee for the suggestions on how to avoid this slight over-compression of information in this key Figure. We have made several changes to improve this. First, we have added a second panel to this Figure, zooming into the region where the most points lie. Second, by changing the color scheme, understanding this third dimension in this Figure (external shear) becomes easier. Third, we provide the reader, as suggested, with all the values (Table 3). The ellipticities, for which we give the statistical uncertainties (see above), are converted into the ellipticity definition e=(a-b)/(a+b), which is more common in weak lensing. The reason is that we also provide the ratios of the ellipticities of the luminous and dark matter, and the projected ellipticity onto the light distribution of the latter as well, to help the comparison with the weak lensing results (see below).
 
 
 ---------- Prasenjit ----------
@@ -65,7 +61,6 @@ Changes: Added Appendix B. No comment on magnitude of external shear vs shape th
 
 
 Misinterpretation of previously published work:
----------- Claudio ----------
 - It’s not correct that weak lensing can directly probe the orientation of the dark matter mass relative to the luminous lens galaxies. The only way in which one can even search for an anisotropy in the shear profile is to use the symmetry axes of the luminous lens galaxies because you don’t know the orientation of the symmetry axes of the dark matter. That is, the only sensible way to stack the lenses is to use the major axes of the luminous galaxies. If the signal you observe is isotropic, this could be telling you that the halos are round or it could be telling you that mass and light are not well aligned in your lens galaxies. You can’t disentangle those two possibilities from the observations alone.
 
 - It’s not correct that Hoekstra et al. (2004) found “some weak evidence for alignment”. Hoekstra et al. (2004) concluded that there must be quite good alignment of mass and light for them to have detected a signal at all (for the reason stated above). This is stated in their abstract.
@@ -74,8 +69,7 @@ Misinterpretation of previously published work:
 
 - Given that Parker et al. (2007) do not quote error bars on their estimates of the halo ellipticity, it’s not correct to say that they concluded the halos of red galaxies were flatter than their stellar distributions. All of their halo ellipticities are quoted with a “tilde” out front (e.g., ~0.3 and ~0.4). If a proper error analysis were done, it could easily be found that these approximate central values were consistent with the ellipticities of the stellar distributions. Parker et al. (2007) put error bars on the shear anisotropy only and, properly, their “2σ” statement in the abstract refers to their constraint on the shear anisotropy, not the inferred halo ellipticity. In the full text they make it clear that they find a 2σ detection of “non-sphericity”, which is not the same as a 2σ measurement of a value of the projected ellipticity.
 
-...
-Claudio: Already changed in the paper; still need to add it in the reply though.
+We thank the referee for these good points of criticism. To give a more adequate description of the difficulties of this measurement and the results on data, we have added an additional paragraph, as linking the weak and strong lensing results is highly relevant. The first paragraph focuses on what can be constrained, which is as pointed out by the referee the projected dark matter ellipticity and thus cannot be directly interpreted as the ellipticity of the dark matter halo. The second paragraph, describes the observational constraints including the papers submitted in the meantime by Clampitt & Jain, 2015 and Schrabback et al., 2015.
 
 
 Additional Comments
@@ -85,7 +79,6 @@ for the reader. As it stands, the reader needs to go to Coles et al. (2014) for 
 
 ...
 Changes: Section 2 significantly rephrased
-
 
 
 ---------- Prasenjit/Justin ----------
@@ -98,8 +91,11 @@ Claudio: Plot for the appendix containing: Scatter plot of angle of DM and all t
 ---------- Justin ----------
 - In the concluding section, the authors restate their results but do not discuss them in context with previous, similar work and known theoretical expectations. This is important, and needs to be done – even when different techniques are used in the observational analyses.
 
-...
-Claudio: Added a discussion in the results section. Is this enough? Do we need to add something in the results section as well?
+We agree that the paper can be improved in comparing our results to results using different techniques. To satisfy this, we have included a subsection comparing our results explicitly to Schrabback et al., 2015, submitted to MNRAS a short time ago, which is the most recent weak lensing measurement of halo ellipticity/misalignment, and furthermore studies the expected signal using the Milennium simulations.
+
+Furthermore, we include the values of f_h = e_dm / e_s, where e_dm is the dark ellipticity in direction of the light distribution and e_s is the ellipticity of the latter, as mentioned above. The weak lensing results constrain this ratio, thus the results are directly comparable. Our constraints are broadly consistent with the most recent measurement on CFHTLenS data and the predictions from the Milennium simulation.
+
+Claudio: Is this enough? Or do we really need to reiterate this? I don't really feel like it.
 
 
 ---------- Justin/Prasenjit ----------
@@ -112,3 +108,5 @@ Claudio: Added a discussion in the results section. Is this enough? Do we need t
 - The authors posit that 0712 and 2016 are post merger-systems, but that seems to be based solely on their lensing reconstructions and nothing else. Such an extrapolation from one known post-merger lensing system with similar properties (1608) doesn’t seem warranted.
 
 ...
+
+Claudio: I've weakened down our claim and replaced "suggest" with "speculate". What do you think?
