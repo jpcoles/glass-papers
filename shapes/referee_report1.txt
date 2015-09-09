@@ -8,11 +8,24 @@ Examples of lack of clarity:
 ...
 
 
----------- Prasenjit ----------
-- The authors say that they assume “the local density gradient to be always pointing within 50 degree of the centre of the distribution”. What does this mean? They also say that “the radius of the lens is set to be 12 pixels”. What does this mean? What is the radius of the lens? (The optical radius perhaps?) Presumably the pixels refer to what is used in the lens reconstruction but this is not stated sufficiently clearly.
+| - The authors say that they assume “the local density gradient to be
+|   always pointing within 50 degree of the centre of the
+|   distribution”. What does this mean? They also say that “the radius
+|   of the lens is set to be 12 pixels”. What does this mean? What is
+|   the radius of the lens? (The optical radius perhaps?) Presumably
+|   the pixels refer to what is used in the lens reconstruction but
+|   this is not stated sufficiently clearly.
 
-...
-Changes: Section 2 significantly rephrased
+Section 2 (which describes the method) has been rewritten.  The new
+version concentrates more on general ideas.  For points which, though
+important, can be omitted without losing clarity, we give references
+to particular sections in earlier papers.
+
+The unclear part about the local density gradient has been replaced
+with detailed references.
+
+On the mass-pixel size, we now explain that they are at most 4% of the
+diameter of the full mass map.
 
 Claudio: Hmmm.... What should now happen to Table 2 however? It is not referenced anymore.
 

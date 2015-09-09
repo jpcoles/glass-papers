@@ -84,7 +84,7 @@ where the sum is over mass pixels, and $M(\boldsymbol{\theta})$ is the mass in a
 \begin{equation}\label{eq:shapeestimate}
     s \equiv 1 - \frac{\lambda_{2}}{\lambda_{1}},
 \end{equation}
-where $\lambda_{1}$ and $\lambda_{2}$ ($\lambda_{1} \geq \lambda_{2}$) are the eigenvalues. We use this ellipticity estimators to quantify the shapes both of the stellar-mass distribution and of the dark-matter distribution. For the dark matter, only the mass distribution out to the radius of the outermost image is used; for the stellar part, the distribution with within different multiples of $R_e$ (defined as the half-light radius measured with respect to the Petrosian flux) is used. It is necessary to have a cutoff for the regions used to compute the inertia tensor, or else it would be dominated by the outer regions where there is little information \textbf{[CLAUDIO: Actually, I estimate the shapes for the luminous and dark matter in the same way. I only consider different Petrosian radii in Figure 3, setting different multiples of $R_e$ as a limit for both distributions. Figure 3 gives a sense of how much the estimates change if the distributions are analyzed only within a certain region...]}. The mass pixels used in this work are at most 4\% of the diameter of the the full mass map. The central region has smaller pixels, to allow for a density cusp at the centre.
+where $\lambda_{1}$ and $\lambda_{2}$ ($\lambda_{1} \geq \lambda_{2}$) are the eigenvalues. We use this ellipticity estimators to quantify the shapes both of the stellar-mass distribution and of the dark-matter distribution. For the dark matter, only the mass distribution out to the radius of the outermost image is used; for the stellar part, the distribution with within different multiples of $R_e$ (defined as the half-light radius measured with respect to the Petrosian flux) is used. It is necessary to have a cutoff for the regions used to compute the inertia tensor, or else it would be dominated by the outer regions where there is little information \textbf{[CLAUDIO: Actually, I estimate the shapes for the luminous and dark matter in the same way. I only consider different Petrosian radii in Figure 3, setting different multiples of $R_e$ as a limit for both distributions. Figure 3 gives a sense of how much the estimates change if the distributions are analyzed only within a certain region...]}. The mass pixels used in this work are larger than image pixels, but at most 4\% of the diameter of the the full mass map. The central region has smaller pixels, to allow for a density cusp at the centre.
 
 We estimate the orientation of the distributions of luminous and dark matter by computing the angles $\theta_{*}$ resp. $\theta_{dm}$ of the eigenvector corresponding to the eigenvalue $\lambda_{1}$ ($\lambda_{1} \geq \lambda_{2}$) relative to the x-axis. The misalignment angle $\Delta\theta$ between the distributions is then defined as
 \begin{equation}
@@ -93,9 +93,9 @@ We estimate the orientation of the distributions of luminous and dark matter by 
 
 Each model ensemble consists of $10^4$ models, for all of which we apply our estimators for the shape and the alignment of the distributions. By identifying the median value and the range 68\% of all the values lie within of this distribution of estimated values, these quantities are constrained and the statistical uncertainties estimated.
 
-The non-parametric mass models themselves are constructed using the \Glass\ framework for modelling multiple-image lenses \citep{2014MNRAS.445.2181C}. \Glass\ produces ensembles of mass maps, each of which reproduces exactly the observed image positions and image parities; also time delays, if measured. The lensing data must be in the form of point images, which could be quasars or simply point-like features in otherwise extended images, but this was not a problem for the lenses studied in this work. The estimated stellar mass (explained below in Section~\ref{sec:data}) is taken as a lower limit on the total mass. The additional mass that needs to be put on top, in order to reproduce the lensing observables, is interpreted as dark matter. \textbf{(Some of that mass may actually be gas, but very little is expected in the early-type galaxies used in this work.) [IS THIS SUPPOSED TO BE IN HERE?]} The criteria of lensing observables and non-negative dark matter by themselves would leave the mass distribution too under-determined. Hence, an additional prior is used, requiring the mass distribution to be centrally concentrated, with the same centre as the galaxy light (but not necessarily the shape shape). The precise formulation of the prior is given in Section~3 of \citet{2014MNRAS.445.2181C}. Tests of how well the shape estimator can be recovered from lensing data are given in Section~5.2 and Figure~8 of that paper.
+The non-parametric mass models themselves are constructed using the \Glass\ framework for modelling multiple-image lenses \citep{2014MNRAS.445.2181C}. \Glass\ produces ensembles of mass maps, each of which reproduces exactly the observed image positions and image parities; also time delays, if measured. The lensing data must be in the form of point images, which could be quasars or simply point-like features in otherwise extended images, but this was not a problem for the lenses studied in this work. The estimated stellar mass (explained below in Section~\ref{sec:data}) is taken as a lower limit on the total mass. The additional mass that needs to be put on top, in order to reproduce the lensing observables, is interpreted as dark matter. \textbf{(Some of that mass may actually be gas, but very little is expected in the early-type galaxies used in this work.) [IS THIS SUPPOSED TO BE IN HERE?]} The criteria of lensing observables and non-negative dark matter by themselves would leave the mass distribution too under-determined. Hence, an additional prior is used, requiring the mass distribution to be centrally concentrated, with the same centre as the galaxy light (but not necessarily the shape). The precise formulation of the prior is given in Section~3 of \citet{2014MNRAS.445.2181C}.\footnote{Alternatively, see \citep{2015MNRAS.447.2170K} for a more intuitive account of \Glass.  Section~3.2 therein summarises the prior.} Tests of how well the shape estimator can be recovered from lensing data are given in Section~5.2 and Figure~8 of that paper.
 
-We remark that \Glass\ is closely related to an earlier code \PixeLens\ \citep{2004AJ....127.2604S,2008ApJ...679...17C}, but has a completely different code base. An important improvement is a better sampling algorithm for high dimensional spaces \citep{2012MNRAS.425.3077L} that eliminates the excessive weight \PixeLens\ tended to give to extreme models. \Glass\ has also been adapted for lens modelling in citizen science \citep{2015MNRAS.447.2170K}.
+\Glass\ is closely related to an earlier code \PixeLens\ \citep{2004AJ....127.2604S,2008ApJ...679...17C}, but has a completely different code base. An important improvement is a better sampling algorithm for high dimensional spaces \citep{2012MNRAS.425.3077L} that eliminates the excessive weight \PixeLens\ tended to give to extreme models.
 
 \section{Data}\label{sec:data}
 \begin{table}
@@ -120,25 +120,24 @@ We remark that \Glass\ is closely related to an earlier code \PixeLens\ \citep{2
 \end{table}
 
 \begin{table}
-  \begin{center}
-    \begin{tabular}{l l l}
-      Lens & Time delays [days] & Additional priors \\ \hline
-      0047 & ... & ...\\
-      0414 & ... & ...\\
-      0712 & ... & ...\\
-      0911 & $\Delta t_{BA}=146^{+4}_{-4}$ & Symm\\
-      0957 & $\Delta t_{BA}=416.5^{+1}_{-1}$ & Symm \\
-      1115 & $\Delta t_{BA}=12.0^{+2}_{-2}$ & ...\\
+  \begin{center} \begin{tabular}{l l l l}
+      Lens & Time delays [days] & Symmetric? & Comments \\ \hline
+      0047 &  & \\
+      0414 &  & \\
+      0712 &  & \\
+      0911 & $\Delta t_{BA}=146^{+4}_{-4}$ & yes\\
+      0957 & $\Delta t_{BA}=416.5^{+1}_{-1}$ & yes \\
+      1115 & $\Delta t_{BA}=12.0^{+2}_{-2}$ & \\
            & $\Delta t_{DC}=4.4^{+3.2}_{-2.4}$ & \\
-      1422 & ... & Symm \\
-      1608 & $\Delta t_{BA}=31.5^{+2}_{-1}$ & ...\\
+      1422 &  & yes \\
+      1608 & $\Delta t_{BA}=31.5^{+2}_{-1}$ & \\
            & $\Delta t_{CA}=36.0^{+1.5}_{-1.5}$ & \\
            & $\Delta t_{DA}=77.0^{+2}_{-1}$ & \\
-      2016 & ... & Smaller pixels \\
-      2045 & ... & $\gamma\leq 0.1$, Symm \\
-      2237 & ... & ...\\
+      2016 &  & & Smaller pixels \\
+      2045 &  & yes & $\gamma\leq 0.1$ \\
+      2237 &  & \\
     \end{tabular}
-    \caption[width=\linewidth]{Lenses where additional data or priors were used (cf.~Section~\ref{sec:shapemethod}). $\Delta t_{BA}$ and so on denote time delays between images as labelled in Table~\ref{tab:lenspositions}; $\gamma$ refers to the allowed external shear; `Symm' means that the mass map was symmetric under rotation by $180^\circ$; `Smaller pixels' indicates that the pixel size was 3\% rather than 4\% of the diameter of the whole mass map.}
+    \caption[width=\linewidth]{Lenses where additional data or priors were used (cf.~Section~\ref{sec:shapemethod}). $\Delta t_{BA}$ and so on denote time delays between images as labelled in Table~\ref{tab:lenspositions}; $\gamma$ refers to the allowed external shear; Symmetric `yes' means the mass map is symmetric under rotation by $180^\circ$; `Smaller pixels' indicates that the mass pixels are 3\% (rather than 4\%) of the diameter of the whole mass map.}
     \label{tab:lenspriors}
   \end{center}
 \end{table}
