@@ -101,44 +101,46 @@ The non-parametric mass models themselves are constructed using the \Glass\ fram
 \Glass\ is closely related to an earlier code \PixeLens\ \citep{2004AJ....127.2604S,2008ApJ...679...17C}, but has a completely different code base. An important improvement is a better sampling algorithm for high dimensional spaces \citep{2012MNRAS.425.3077L} that eliminates the excessive weight \PixeLens\ tended to give to extreme models.
 
 \section{Data}\label{sec:data}
+\setlength\tabcolsep{5pt}
 \begin{table}
   \begin{center}
-    \begin{tabular}{l r r r r l}
-      Lens & \multicolumn{1}{c}{$z_{L}$} & \multicolumn{1}{c}{$z_{S}$} & \multicolumn{1}{c}{$\Delta\theta$ [kpc]} & \multicolumn{1}{c}{$R_{L}$/$R_{e}$} & Environment \\ \hline
-      0047 & 0.485 & 3.60 & 12.82 & $1.45\pm0.04$ & G(9) \\
+    \begin{tabular}{l l l l l l}
+      Lens & $z_{L}$ & $z_{S}$ & $\Delta\phi$ [kpc] & $R_{L}/R_{e}$ & Environment \\ \hline
+      0047 & 0.485 & 3.60 & 12.82 & $1.45\pm0.04$ & G(9)$^{a}$ \\
       0414 & 0.960 & 2.64 & 16.01 & $1.85\pm0.05$ & ... \\
       0712 & 0.410 & 1.34 & 6.82  & $1.15\pm0.03$ & ... \\
-      0911 & 0.769 & 2.8  & 23.16 & $3.09\pm0.05$ & C \\
-      0957 & 0.356 & 1.41 & 29.98 & $3.51\pm0.04$ & C \\
-      1115 & 0.310 & 1.72 & 10.76 & $2.86\pm0.06$ & G(13) \\
-      1422 & 0.337 & 3.62 & 6.02  & $4.49\pm0.06$ & G(17) \\
-      1608 & 0.630 & 1.39 & 13.92 & $1.82\pm0.01$ & G(8) \\
-      2016 & 1.010 & 3.3  & 26.22 & $6.12\pm0.14$ & C(69) \\
+      0911 & 0.769 & 2.8  & 23.16 & $3.09\pm0.05$ & C$^{b}$ \\
+      0957 & 0.356 & 1.41 & 29.98 & $3.51\pm0.04$ & C$^{c}$ \\
+      1115 & 0.310 & 1.72 & 10.76 & $2.86\pm0.06$ & G(13)$^{a}$ \\
+      1422 & 0.337 & 3.62 & 6.02  & $4.49\pm0.06$ & G(17)$^{a}$ \\
+      1608 & 0.630 & 1.39 & 13.92 & $1.82\pm0.01$ & G(8)$^{d}$ \\
+      2016 & 1.010 & 3.3  & 26.22 & $6.12\pm0.14$ & C(69)$^{e}$ \\
       2045 & 0.870 & 1.28 & 14.46 & $1.48\pm0.03$ & ... \\
       2237 & 0.039 & 1.7  & 1.40  & $0.89\pm0.01$ & ... \\
     \end{tabular}
-    \caption[width=\linewidth]{The most relevant lens properties for this work are listed \citep[for an expanded version of this table see][]{2011ApJ...740...97L}. References can be found in Section~\ref{sec:data}. The columns are from left to right: the lens redshift $z_L$; the redshift of the source $z_S$; the maximum angular separation between two images $\Delta\theta$; the ratio of the radius of the outermost image $R_L$ and the effective Petrosian half-light radius of the lens $R_e$; and information on the environment of the lens. C and G denote a known cluster or group environment, respecitvely. The number in the brackets is the number of confirmed members. Ellipses indicate lens galaxies with no group members identified so far.}
+    \caption[width=\linewidth]{The most relevant lens properties for this work are listed \citep[for an expanded version of this table see][]{2011ApJ...740...97L}. References can be found in Section~\ref{sec:data}. The columns are from left to right: the lens redshift $z_L$; the redshift of the source $z_S$; the maximum angular separation between two images $\Delta\theta$; the ratio of the radius of the outermost image $R_L$ and the effective Petrosian half-light radius of the lens $R_e$; and information on the environment of the lens. C and G denote a known cluster or group environment, respecitvely. The number in the brackets is the number of confirmed members. Ellipses indicate lens galaxies with no group members identified so far. \newline $^{a}$ \citet{2011ApJ...726...84W}; $^{b}$ \citet{2001ApJ...555....1M}; $^{c}$ e.g. \citet{1992MNRAS.254P..27G}; $^{d}$ \citet{2006ApJ...642...30F}; $^{e}$ \citet{2003MNRAS.344..337T}.}
     \label{tab:lensproperties}
   \end{center}
 \end{table}
+\setlength\tabcolsep{6pt}
 
 \begin{table}
   \begin{center} \begin{tabular}{l l l l}
       Lens & Time delays [days] & Symmetric? & Comments \\ \hline
-      0047 &  & \\
-      0414 &  & \\
-      0712 &  & \\
-      0911 & $\Delta t_{BA}=146^{+4}_{-4}$ & yes\\
-      0957 & $\Delta t_{BA}=416.5^{+1}_{-1}$ & yes \\
-      1115 & $\Delta t_{BA}=12.0^{+2}_{-2}$ & \\
-           & $\Delta t_{DC}=4.4^{+3.2}_{-2.4}$ & \\
-      1422 &  & yes \\
-      1608 & $\Delta t_{BA}=31.5^{+2}_{-1}$ & \\
+      0047 & ... & ... & ... \\
+      0414 & ... & ... & ... \\
+      0712 & ... & ... & ... \\
+      0911 & $\Delta t_{BA}=146^{+4}_{-4}$ & yes & ... \\
+      0957 & $\Delta t_{BA}=416.5^{+1}_{-1}$ & yes & ... \\
+      1115 & $\Delta t_{BA}=12.0^{+2}_{-2}$ & ... & ... \\
+           & $\Delta t_{DC}=4.4^{+3.2}_{-2.4}$ & ... & ... \\
+      1422 & ... & yes & ... \\
+      1608 & $\Delta t_{BA}=31.5^{+2}_{-1}$ & ... & ... \\
            & $\Delta t_{CA}=36.0^{+1.5}_{-1.5}$ & \\
            & $\Delta t_{DA}=77.0^{+2}_{-1}$ & \\
-      2016 &  & & Smaller pixels \\
-      2045 &  & yes & $\gamma\leq 0.1$ \\
-      2237 &  & \\
+      2016 & ... & ... & Smaller pixels \\
+      2045 & ... & yes & $\gamma\leq 0.1$ \\
+      2237 & ... & ... & ... \\
     \end{tabular}
     \caption[width=\linewidth]{Lenses where additional data or priors were used (cf.~Section~\ref{sec:shapemethod}). $\Delta t_{BA}$ and so on denote time delays between images as labelled in Table~\ref{tab:lenspositions}; $\gamma$ refers to the allowed external shear; Symmetric `yes' means the mass map is symmetric under rotation by $180^\circ$; `Smaller pixels' indicates that the mass pixels are 3\% (rather than 4\%) of the diameter of the whole mass map.}
     \label{tab:lenspriors}
@@ -189,41 +191,42 @@ Further information on the sample can be found in \citet{2011ApJ...740...97L} an
   \label{fig:wedgesall}
 \end{figure*}
 
-\begin{landscape}
- \begin{table*}
+\setlength\tabcolsep{5pt}
+\begin{table*}
   \begin{center}
     \begin{tabular}{l l l l l l l l l l l l l}
-      % Lens & $s_{*}$ & $s_{dm}$ & $\Delta\theta$ [$^{\circ}$] & $e_{*}$ & $e_{dm}$ & $e_{dm}/e_{*}$ & $f_h$ & $|\gamma|$ & $\theta_{g}$ [$^{\circ}$] & $R_{vir}$ [kpc] & $M_{vir} \ [10^{12} \ M_{\odot}]$ & Env \\ \hline
-      % 0047 & 0.27 & 0.04$\pm$0.02 & -41$\pm$33 & 0.15 & 0.02$\pm$0.01 & 0.13$\pm$0.07 & 0.02$\pm$0.15 & 0.07$\pm$0.01 & 120$\pm$5 & 360.7  & 9.98 & G(9) \\
-      % 0414 & 0.19 & 0.06$\pm$0.03 & 50$\pm$15 & 0.10 & 0.03$\pm$0.01 & 0.30$\pm$0.14 & -0.05$\pm$0.15 & 0.17$\pm$0.02 & 166$\pm$4 & 256.9  & 12.38 & ... \\
-      % 0712 & 0.43 & 0.08$\pm$0.03 & -0$\pm$10 & 0.28 & 0.04$\pm$0.01 & 0.15$\pm$0.05 & 0.15$\pm$0.05 & 0.17$\pm$0.01 & 141$\pm$3 & 446.5  & 15.45 & ... \\
-      % 0911 & 0.22 & 0.07$\pm$0.02 & 25$\pm$14 & 0.12 & 0.04$\pm$0.01 & 0.29$\pm$0.10 & 0.19$\pm$0.12 & 0.28$\pm$0.02 & 99$\pm$2 & 369.1  & 22.66 & C \\
-      % 0957 & 0.19 & 0.10$\pm$0.03 & 4$\pm$11 & 0.10 & 0.05$\pm$0.01 & 0.49$\pm$0.14 & 0.49$\pm$0.14 & 0.09$\pm$0.03 & 159$\pm$8 & 1053.1 & 175.16 & C \\
-      % 1115 & 0.30 & 0.11$\pm$0.02 & -75$\pm$7 & 0.18 & 0.06$\pm$0.01 & 0.32$\pm$0.07 & -0.28$\pm$0.08 & 0.11$\pm$0.01 & 154$\pm$3 & 616.8  & 31.06 & G(13) \\
-      % 1422 & 0.05 & 0.06$\pm$0.03 & -51$\pm$18 & 0.03 & 0.03$\pm$0.01 & 1.03$\pm$0.51 & -0.23$\pm$0.65 & 0.26$\pm$0.01 & 39$\pm$1 & 450.8  & 13.05 & G(17) \\
-      % 1608 & 0.47 & 0.28$\pm$0.01 & -12$\pm$1 & 0.31 & 0.16$\pm$0.01 & 0.53$\pm$0.03 & 0.48$\pm$0.03 & 0.19$\pm$0.01 & 145$\pm$2 & 317.1  & 9.99 & G(8) \\
-      % 2016 & 0.47 & 0.12$\pm$0.02 & 20$\pm$6 & 0.30 & 0.06$\pm$0.01 & 0.21$\pm$0.04 & 0.16$\pm$0.04 & 0.14$\pm$0.02 & 42$\pm$4 & 299.3  & 22.14 & C(69) \\
-      % 2045 & 0.17 & 0.03$\pm$0.02 & -4$\pm$20 & 0.09 & 0.02$\pm$0.01 & 0.19$\pm$0.11 & 0.19$\pm$0.11 & 0.11$\pm$0.02 & 23$\pm$7 & 562.8  & 103.97 & ... \\
-      % 2237 & 0.24 & 0.05$\pm$0.03 & -7$\pm$19 & 0.13 & 0.03$\pm$0.01 & 0.21$\pm$0.10 & 0.20$\pm$0.11 & 0.06$\pm$0.01 & 159$\pm$4 & 1961.0 & 485.26 & ... \\
-      Lens & $s_{*}$ & $s_{dm}$ & $\Delta\theta$ [$^{\circ}$] & $e_{*}$ & $e_{dm}$ & $e_{dm}/e_{*}$ & $f_h$ & $|\gamma|$ & $\theta_{g}$ [$^{\circ}$] & $R_{vir}$ [kpc] & $M_{vir} \ [10^{12} \ M_{\odot}]$ & Env \\ \hline
-      0047 & 0.27 & 0.04$\pm$0.02 & -41$\pm$33 & 0.15 & 0.02$\pm$0.01 & 0.13$\pm$0.07 & 0.02$\pm$0.15 & 0.07$\pm$0.01 & 120$\pm$5 & 360.7  & 9.98 & G(9) \\
-      0414 & 0.19 & 0.06$\pm$0.03 & 50$\pm$15 & 0.10 & 0.03$\pm$0.01 & 0.30$\pm$0.14 & -0.05$\pm$0.15 & 0.17$\pm$0.02 & 166$\pm$4 & 256.9  & 12.38 & ... \\
-      0712 & 0.43 & 0.08$\pm$0.03 & -0$\pm$10 & 0.28 & 0.04$\pm$0.01 & 0.15$\pm$0.05 & 0.15$\pm$0.05 & 0.17$\pm$0.01 & 141$\pm$3 & 446.5  & 15.45 & ... \\
-      0911 & 0.22 & 0.07$\pm$0.02 & 25$\pm$14 & 0.12 & 0.04$\pm$0.01 & 0.29$\pm$0.10 & 0.19$\pm$0.12 & 0.28$\pm$0.02 & 99$\pm$2 & 369.1  & 22.66 & C \\
-      0957 & 0.19 & 0.10$\pm$0.03 & 4$\pm$11 & 0.10 & 0.05$\pm$0.01 & 0.49$\pm$0.14 & 0.49$\pm$0.14 & 0.09$\pm$0.03 & 159$\pm$8 & 1053.1 & 175.16 & C \\
-      1115 & 0.30 & 0.11$\pm$0.02 & -75$\pm$7 & 0.18 & 0.06$\pm$0.01 & 0.32$\pm$0.07 & -0.28$\pm$0.08 & 0.11$\pm$0.01 & 154$\pm$3 & 616.8  & 31.06 & G(13) \\
-      1422 & 0.05 & 0.06$\pm$0.03 & -51$\pm$18 & 0.03 & 0.03$\pm$0.01 & 1.03$\pm$0.51 & -0.23$\pm$0.65 & 0.26$\pm$0.01 & 39$\pm$1 & 450.8  & 13.05 & G(17) \\
-      1608 & 0.47 & 0.28$\pm$0.01 & -12$\pm$1 & 0.31 & 0.16$\pm$0.01 & 0.53$\pm$0.03 & 0.48$\pm$0.03 & 0.19$\pm$0.01 & 145$\pm$2 & 317.1  & 9.99 & G(8) \\
-      2016 & 0.47 & 0.12$\pm$0.02 & 20$\pm$6 & 0.30 & 0.06$\pm$0.01 & 0.21$\pm$0.04 & 0.16$\pm$0.04 & 0.14$\pm$0.02 & 42$\pm$4 & 299.3  & 22.14 & C(69) \\
-      2045 & 0.17 & 0.03$\pm$0.02 & -4$\pm$20 & 0.09 & 0.02$\pm$0.01 & 0.19$\pm$0.11 & 0.19$\pm$0.11 & 0.11$\pm$0.02 & 23$\pm$7 & 562.8  & 103.97 & ... \\
-      2237 & 0.24 & 0.05$\pm$0.03 & -7$\pm$19 & 0.13 & 0.03$\pm$0.01 & 0.21$\pm$0.10 & 0.20$\pm$0.11 & 0.06$\pm$0.01 & 159$\pm$4 & 1961.0 & 485.26 & ... \\
+      % \multirow{2}{*}{Lens} & \multirow{2}{*}{$s_{*}$} & \multirow{2}{*}{$s_{dm}$} & \multirow{2}{*}{$\Delta\theta$ [$^{\circ}$]} & \multirow{2}{*}{$e_{*}$} & \multirow{2}{*}{$e_{dm}$} & \multirow{2}{*}{$e_{dm}/e_{*}$} & \multirow{2}{*}{$f_h$} & \multirow{2}{*}{$|\gamma|$} & \multirow{2}{*}{$\theta_{g}$ [$^{\circ}$]} & $R_{vir}$ & $M_{vir}$ & \multirow{2}{*}{Env} \\
+      %  & & & & & & & & & & [kpc] & $[10^{12} \ M_{\odot}]$ & \\ \hline
+      % 0047 & 0.27 & 0.04$\pm$0.02 & -41$\pm$33 & 0.15 & 0.02$\pm$0.01 & 0.13$\pm$0.07 & 0.02$\pm$0.15 & 0.07$\pm$0.01 & 120$\pm$5 & 360.7  & 10.0 & G(9) \\
+      % 0414 & 0.19 & 0.06$\pm$0.03 & 50$\pm$15 & 0.10 & 0.03$\pm$0.01 & 0.30$\pm$0.14 & -0.05$\pm$0.15 & 0.17$\pm$0.02 & 166$\pm$4 & 256.9  & 12.4 & ... \\
+      % 0712 & 0.43 & 0.08$\pm$0.03 & -0$\pm$10 & 0.28 & 0.04$\pm$0.01 & 0.15$\pm$0.05 & 0.15$\pm$0.05 & 0.17$\pm$0.01 & 141$\pm$3 & 446.5  & 15.5 & ... \\
+      % 0911 & 0.22 & 0.07$\pm$0.02 & 25$\pm$14 & 0.12 & 0.04$\pm$0.01 & 0.29$\pm$0.10 & 0.19$\pm$0.12 & 0.28$\pm$0.02 & 99$\pm$2 & 369.1  & 22.7 & C \\
+      % 0957 & 0.19 & 0.10$\pm$0.03 & 4$\pm$11 & 0.10 & 0.05$\pm$0.01 & 0.49$\pm$0.14 & 0.49$\pm$0.14 & 0.09$\pm$0.03 & 159$\pm$8 & 1053.1 & 175.2 & C \\
+      % 1115 & 0.30 & 0.11$\pm$0.02 & -75$\pm$7 & 0.18 & 0.06$\pm$0.01 & 0.32$\pm$0.07 & -0.28$\pm$0.08 & 0.11$\pm$0.01 & 154$\pm$3 & 616.8  & 31.1 & G(13) \\
+      % 1422 & 0.05 & 0.06$\pm$0.03 & -51$\pm$18 & 0.03 & 0.03$\pm$0.01 & 1.03$\pm$0.51 & -0.23$\pm$0.65 & 0.26$\pm$0.01 & 39$\pm$1 & 450.8  & 13.0 & G(17) \\
+      % 1608 & 0.47 & 0.28$\pm$0.01 & -12$\pm$1 & 0.31 & 0.16$\pm$0.01 & 0.53$\pm$0.03 & 0.48$\pm$0.03 & 0.19$\pm$0.01 & 145$\pm$2 & 317.1  & 10.0 & G(8) \\
+      % 2016 & 0.47 & 0.12$\pm$0.02 & 20$\pm$6 & 0.30 & 0.06$\pm$0.01 & 0.21$\pm$0.04 & 0.16$\pm$0.04 & 0.14$\pm$0.02 & 42$\pm$4 & 299.3  & 22.1 & C(69) \\
+      % 2045 & 0.17 & 0.03$\pm$0.02 & -4$\pm$20 & 0.09 & 0.02$\pm$0.01 & 0.19$\pm$0.11 & 0.19$\pm$0.11 & 0.11$\pm$0.02 & 23$\pm$7 & 562.8  & 104.0 & ... \\
+      % 2237 & 0.24 & 0.05$\pm$0.03 & -7$\pm$19 & 0.13 & 0.03$\pm$0.01 & 0.21$\pm$0.10 & 0.20$\pm$0.11 & 0.06$\pm$0.01 & 159$\pm$4 & 1961.0 & 485.3 & ... \\
+      \multirow{2}{*}{Lens} & \multirow{2}{*}{Env} & $R_{vir}$ & $M_{vir}$ & \multirow{2}{*}{$|\gamma|$} & \multirow{2}{*}{$\theta_{g}$ [$^{\circ}$]} &  \multirow{2}{*}{$s_{*}$} & \multirow{2}{*}{$s_{dm}$} & \multirow{2}{*}{$\Delta\theta$ [$^{\circ}$]} & \multirow{2}{*}{$e_{*}$} & \multirow{2}{*}{$e_{dm}$} & \multirow{2}{*}{$e_{dm}/e_{*}$} & \multirow{2}{*}{$f_h$} \\
+       & & [kpc] & $[10^{12} \ M_{\odot}]$ & & & & & & & & & \\ \hline
+      0047 & G(9) & 360.7 & 10.0 & 0.07$\pm$0.01 & 120$\pm$5 & 0.27 & 0.04$\pm$0.02 & -41$\pm$33 & 0.15 & 0.02$\pm$0.01 & 0.13$\pm$0.07 & 0.02$\pm$0.15 \\
+      0414 & ... & 256.9 & 12.4 & 0.17$\pm$0.02 & 166$\pm$4 & 0.19 & 0.06$\pm$0.03 & 50$\pm$15 & 0.10 & 0.03$\pm$0.01 & 0.30$\pm$0.14 & -0.05$\pm$0.15 \\
+      0712 & ... & 446.5 & 15.5 & 0.17$\pm$0.01 & 141$\pm$3 & 0.43 & 0.08$\pm$0.03 & -0$\pm$10 & 0.28 & 0.04$\pm$0.01 & 0.15$\pm$0.05 & 0.15$\pm$0.05 \\
+      0911 & C & 369.1 & 22.7 & 0.28$\pm$0.02 & 99$\pm$2 & 0.22 & 0.07$\pm$0.02 & 25$\pm$14 & 0.12 & 0.04$\pm$0.01 & 0.29$\pm$0.10 & 0.19$\pm$0.12 \\
+      0957 & C & 1053.1 & 175.2 & 0.09$\pm$0.03 & 159$\pm$8 & 0.19 & 0.10$\pm$0.03 & 4$\pm$11 & 0.10 & 0.05$\pm$0.01 & 0.49$\pm$0.14 & 0.49$\pm$0.14 \\
+      1115 & G(13) & 616.8 & 31.1 & 0.11$\pm$0.01 & 154$\pm$3 & 0.30 & 0.11$\pm$0.02 & -75$\pm$7 & 0.18 & 0.06$\pm$0.01 & 0.32$\pm$0.07 & -0.28$\pm$0.08 \\
+      1422 & G(17) & 450.8 & 13.0 & 0.26$\pm$0.01 & 39$\pm$1 & 0.05 & 0.06$\pm$0.03 & -51$\pm$18 & 0.03 & 0.03$\pm$0.01 & 1.03$\pm$0.51 & -0.23$\pm$0.65 \\
+      1608 & G(8) & 317.1 & 10.0 & 0.19$\pm$0.01 & 145$\pm$2 & 0.47 & 0.28$\pm$0.01 & -12$\pm$1 & 0.31 & 0.16$\pm$0.01 & 0.53$\pm$0.03 & 0.48$\pm$0.03 \\
+      2016 & C(69) & 299.3 & 22.1 & 0.14$\pm$0.02 & 42$\pm$4 & 0.47 & 0.12$\pm$0.02 & 20$\pm$6 & 0.30 & 0.06$\pm$0.01 & 0.21$\pm$0.04 & 0.16$\pm$0.04 \\
+      2045 & ... & 562.8 & 104.0 & 0.11$\pm$0.02 & 23$\pm$7 & 0.17 & 0.03$\pm$0.02 & -4$\pm$20 & 0.09 & 0.02$\pm$0.01 & 0.19$\pm$0.11 & 0.19$\pm$0.11 \\
+      2237 & ... & 1961.0 & 485.3 & 0.06$\pm$0.01 & 159$\pm$4 & 0.24 & 0.05$\pm$0.03 & -7$\pm$19 & 0.13 & 0.03$\pm$0.01 & 0.21$\pm$0.10 & 0.20$\pm$0.11 \\
     \end{tabular}
-    % \caption[width=\linewidth]{The ellipticity values of the stellar and dark matter components of the reconstructed strong lens galaxies and their corresponding ratios. The ellipticities $s_{*}$ and $s_{dm}$ are defined by Eq.~\ref{eq:shapeestimate}, while $e_{*}$ and $e_{dm}$ are converted using $e = (\lambda_1-\lambda_2)/(\lambda_1+\lambda_2)$; $\Delta\theta=\theta_{dm}-\theta_{*}$ refers to the misalignment angle between the distributions of luminous and dark matter; $e_{dm}/e_{*}$ denotes the ratio of the ellipticities of the dark matter relative to the stellar distribution; $f_h=(e_{dm}/e_{*})\cdot\mathrm{cos} 2\Delta\theta$ refers to the ratio of the ellipticity component of the dark matter distribution projected along the stellar distribution; $|\gamma|$ and $\theta_{g}$ denote magnitude and direction of the required external shear in the modeling of the strong lens galaxy.}
-    \caption{The ellipticity values of the stellar and dark matter components of the reconstructed strong lens galaxies and their corresponding ratios. The ellipticities $s_{*}$ and $s_{dm}$ are defined by Eq.~\ref{eq:shapeestimate}, while $e_{*}$ and $e_{dm}$ are converted using $e = (\lambda_1-\lambda_2)/(\lambda_1+\lambda_2)$; $\Delta\theta=\theta_{dm}-\theta_{*}$ refers to the misalignment angle between the distributions of luminous and dark matter; $e_{dm}/e_{*}$ denotes the ratio of the ellipticities of the dark matter relative to the stellar distribution; $f_h=(e_{dm}/e_{*})\cdot\mathrm{cos} 2\Delta\theta$ refers to the ratio of the ellipticity component of the dark matter distribution projected along the stellar distribution; $|\gamma|$ and $\theta_{g}$ denote magnitude and direction of the required external shear in the modeling of the strong lens galaxy.}
+    \caption{Fitted virial masses and radii and the ellipticity values of the stellar and dark matter components of the reconstructed strong lens galaxies and their corresponding ratios. `Env' is the `Environment' column in Table~\ref{tab:lensproperties}; $R_{vir}$ and $M_{vir}$ are the virial radii and masses of the fitted NFW-profiles (see Section~\ref{sec:radialprofiles}); $|\gamma|$ and $\theta_{g}$ denote magnitude and induced position angle of the required external shear in the modeling of the strong lens galaxy; the ellipticities $s_{*}$ and $s_{dm}$ are defined by Eq.~\ref{eq:shapeestimate}, while $e_{*}$ and $e_{dm}$ are converted using $e = (\lambda_1-\lambda_2)/(\lambda_1+\lambda_2)$; $\Delta\theta=\theta_{dm}-\theta_{*}$ refers to the misalignment angle between the distributions of luminous and dark matter; $e_{dm}/e_{*}$ denotes the ratio of the ellipticities of the dark matter relative to the stellar distribution; and $f_h=(e_{dm}/e_{*})\cdot\mathrm{cos} 2\Delta\theta$ refers to the ratio of the ellipticity component of the dark matter distribution projected along the stellar distribution.}
     \label{tab:ellipratios}
   \end{center}
- \end{table*}
-\end{landscape}
+\end{table*}
+\setlength\tabcolsep{6pt}
 
 % \begin{table}
 %   \begin{center}
@@ -245,28 +248,6 @@ Further information on the sample can be found in \citet{2011ApJ...740...97L} an
 %     \label{tab:virialmasses}
 %   \end{center}
 % \end{table}
-
-
-% \begin{table*}
-%   \begin{center}
-%     \begin{tabular}{l | l l l l l l l l l}
-%       Lens & $s_{*}$ & $s_{dm}$ & $\Delta\theta$ [$^{\circ}$] & $e_{*}$ & $e_{dm}$ & $e_{dm}/e_{*}$ & $f_h$ & $|\gamma|$ & $\theta_{g}$ [$^{\circ}$] \\ \hline
-%       0047 & 0.27 & 0.04$\pm$0.02 & 0.15 & 0.02$\pm$0.01 & 0.13$\pm$0.07 & 0.10$\pm$0.07 & 0.07$\pm$0.01 & 120$\pm$5 \\
-%       0414 & 0.19 & 0.06$\pm$0.03 & 0.10 & 0.03$\pm$0.01 & 0.30$\pm$0.14 & 0.20$\pm$0.11 & 0.17$\pm$0.02 & 166$\pm$4 \\
-%       0712 & 0.43 & 0.08$\pm$0.03 & 0.28 & 0.04$\pm$0.01 & 0.15$\pm$0.05 & 0.15$\pm$0.05 & 0.17$\pm$0.01 & 141$\pm$3 \\
-%       0911 & 0.22 & 0.07$\pm$0.02 & 0.12 & 0.04$\pm$0.01 & 0.29$\pm$0.10 & 0.27$\pm$0.10 & 0.28$\pm$0.02 & 99$\pm$2 \\
-%       0957 & 0.19 & 0.10$\pm$0.03 & 0.10 & 0.05$\pm$0.01 & 0.49$\pm$0.14 & 0.49$\pm$0.14 & 0.09$\pm$0.03 & 159$\pm$8 \\
-%       1115 & 0.30 & 0.11$\pm$0.02 & 0.18 & 0.06$\pm$0.01 & 0.32$\pm$0.07 & 0.08$\pm$0.04 & 0.11$\pm$0.01 & 154$\pm$3 \\
-%       1422 & 0.05 & 0.06$\pm$0.03 & 0.03 & 0.03$\pm$0.01 & 1.03$\pm$0.51 & 0.64$\pm$0.41 & 0.26$\pm$0.01 & 39$\pm$1 \\
-%       1608 & 0.47 & 0.28$\pm$0.01 & 0.31 & 0.16$\pm$0.01 & 0.53$\pm$0.03 & 0.52$\pm$0.03 & 0.19$\pm$0.01 & 145$\pm$2 \\
-%       2016 & 0.47 & 0.12$\pm$0.02 & 0.30 & 0.06$\pm$0.01 & 0.21$\pm$0.04 & 0.20$\pm$0.04 & 0.14$\pm$0.02 & 42$\pm$4 \\
-%       2045 & 0.17 & 0.03$\pm$0.02 & 0.09 & 0.02$\pm$0.01 & 0.19$\pm$0.11 & 0.19$\pm$0.11 & 0.11$\pm$0.02 & 23$\pm$7 \\
-%       2237 & 0.24 & 0.05$\pm$0.03 & 0.13 & 0.03$\pm$0.01 & 0.21$\pm$0.10 & 0.21$\pm$0.10 & 0.06$\pm$0.01 & 159$\pm$4 \\
-%     \end{tabular}
-%     \caption[width=\linewidth]{The ellipticity values of the stellar and dark matter components of the reconstructed strong lens galaxies and their corresponding ratios. The ellipticities $s_{*}$ and $s_{dm}$ are defined by Eq.~\ref{eq:shapeestimate}, while $e_{*}$ and $e_{dm}$ are converted using $e = (\lambda_1-\lambda_2)/(\lambda_1+\lambda_2)$; $\Delta\theta=\theta_{dm}-\theta_{*}$ refers to the misalignment angle between the distributions of luminous and dark matter; $e_{dm}/e_{*}$ denotes the ratio of the ellipticities of the dark matter relative to the stellar distribution; $f_h=(e_{dm}/e_{*})\cdot\mathrm{cos} 2\Delta\theta$ refers to the ratio of the ellipticity component of the dark matter distribution projected along the stellar distribution; $|\gamma|$ and $\theta_{g}$ denote magnitude and direction of the required external shear in the modeling of the strong lens galaxy.} % $e = \frac{\lambda_1-\lambda_2}{\lambda_1+\lambda_2}$
-%     \label{tab:ellipratios}
-%   \end{center}
-% \end{table*}
 
 \begin{figure*}
   \centering
@@ -277,28 +258,7 @@ Further information on the sample can be found in \citet{2011ApJ...740...97L} an
 
 We have applied \Glass\ to the data set described in Section~\ref{sec:data} consisting of 11 lenses. The reconstructed stellar and dark mass maps for each individual lens are given in the Appendix.
 
-% \begin{table}
-%   \begin{center}
-%     \begin{tabular}{l | l l}
-%       Lens & $R_{vir}$ [kpc] & $M_{vir} \ [10^{12} \ M_{\odot}]$ \\ \hline
-%       0047 & 360.7  & 9.98   \\
-%       0414 & 256.9  & 12.38  \\
-%       0712 & 446.5  & 15.45  \\
-%       0911 & 369.1  & 22.66  \\
-%       0957 & 1053.1 & 175.16 \\
-%       1115 & 616.8  & 31.06  \\
-%       1422 & 450.8  & 13.05  \\
-%       1608 & 317.1  & 9.99   \\
-%       2016 & 299.3  & 22.14  \\
-%       2045 & 562.8  & 103.97 \\
-%       2237 & 1961.0 & 485.26 \\
-%     \end{tabular}
-%     \caption[width=\linewidth]{\textbf{[TEMPORARY; IF WE KEEP THIS IN SOME FORM, PROBABLY AS ADDITIONAL COLUMNS TO TABLE~\ref{tab:ellipratios}]}}
-%     \label{tab:virialmasses}
-%   \end{center}
-% \end{table}
-
-\subsection{Radial dark matter profiles}
+\subsection{Radial dark matter profiles}\label{sec:radialprofiles}
 We compare the profiles of the reconstructed dark matter distributions of the individual strong lens galaxies with Navarro-Frenk-White-profiles \citep[NFW;][]{1996ApJ...462..563N} truncated at the virial radius $R_{vir}$ \citep{2011ApJ...740..102K}
 \begin{equation}\label{eq:nfw}
    \frac{\rho(R)}{\rho_{crit}} = \frac{\delta_{c}}{(cR/R_{vir})(1+cR/R_{vir})},
@@ -313,7 +273,7 @@ where $c_{0}(z)$ and $M_{0}(z)$ are fitting parameters. The relation is constrai
 
 As the virial radius $R_{vir}$ is related to the virial mass $M_{vir}$ and the concentration parameter $c$, which we however set with Equation~\ref{eq:concentration}, there is only one degree of freedom, $M_{vir}$. We calibrate the mass in order for the derived convergence profiles $\langle\kappa(R)\rangle$ of the reconstructed dark matter distribution and the NFW-profile to match at one pixel past the last image radius.
 
-Figure~\ref{fig:kappaplot} displays the results, while the masses are given in Table~\ref{tab:virialmasses}. \textbf{[HERE SOME COMMENT ON THE MASSES WE HAVE FIT; I'VE INCLUDED THEM TEMPORARILY (!) IN TABLE~\ref{tab:virialmasses} TO DECIDE WHAT WE DO WITH THEM AND HOW WE COMMENT ON THAT SOME OF THESE MASSES ARE RATHER LARGE]}. Except for \textit{0047}, where only the bulge is probed and significant deviations are expected, the profiles agree broadly. There are slight differences in some systems ... \textbf{[HERE WHY WE DON'T WORRY; MAYBE LINK TO FEI LI'S RESULTS?].}
+Figure~\ref{fig:kappaplot} displays the results, while the masses are given in Table~\ref{tab:ellipratios}. \textbf{[HERE SOME COMMENT ON THE MASSES WE HAVE FIT; I'VE INCLUDED THEM TEMPORARILY (!) IN TABLE~\ref{tab:ellipratios} TO DECIDE WHAT WE DO WITH THEM AND HOW WE COMMENT ON THAT SOME OF THESE MASSES ARE RATHER LARGE]}. Except for \textit{0047}, where only the bulge is probed and significant deviations are expected, the profiles agree broadly. There are slight differences in some systems ... \textbf{[HERE WHY WE DON'T WORRY; MAYBE LINK TO FEI LI'S RESULTS?].}
 
 \subsection{Shape and alignment of the dark matter halos}
 Figure~\ref{fig:wedgesall} shows our results for the shapes (see Section~\ref{sec:shapemethod}) and alignments of the dark matter and stellar mass distributions. In this Figure, the full distribution up to one pixel past the last-image radius $R_{L}$ is probed. There are several key points to note. Firstly, the reconstructed dark matter distribution of all lenses considered here is rounder than the stellar distribution. Secondly, most lenses lie in the bottom-left corner: the dark matter distributions have typically low eccentricities, while the stellar distributions can be rather elliptical. Thirdly, 3 out of the 11 systems, {\it0712}, {\it2016}, and {\it1608}, stand out due to their larger stellar ellipticity ($s_* > 0.4$). At the same time, they show a very strong alignment between their stellar and dark matter distributions. One of these lenses ({\it1608}) is an known merger of an early-type galaxy with a probable late-type galaxy \citep{2003ApJ...584..100S}. We suggest that the other two systems, {\it0712} and {\it2016}, may also be post-merger systems, explaining their similarities with {\it1608}.
@@ -437,7 +397,7 @@ We note in Figure~\ref{fig:lensreconstruction2}, specifically for {\it0957} and 
 \begin{figure*}
   \centering
   \includegraphics[width=.9\linewidth]{Figures/theta_scatter.pdf}
-  \caption[width=\linewidth]{The two-dimensional distribution of the position angles of the dark matter distribution $\theta_{dm}$ and the direction of the required external shear $\theta_{g}$ of each reconstructed mass distribution. The panels display this distribution, which traces the degeneracy of the two parameters, for each reconstructed strong lens galaxy in the ensemble of solutions. Here, the angles are rotated to be measured north through east.}
+  \caption[width=\linewidth]{The two-dimensional distribution of the position angles of the dark matter distribution $\theta_{dm}$ and the induced position angle of the required external shear $\theta_{g}$ of each reconstructed mass distribution. The panels display this distribution, which traces the degeneracy of the two parameters, for each reconstructed strong lens galaxy in the ensemble of solutions. Here, the angles are rotated to be measured north through east.}
   \label{fig:thetascatter}
 \end{figure*}
 
