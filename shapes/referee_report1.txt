@@ -42,9 +42,9 @@
 |   this is not stated sufficiently clearly.
 
 Section 2 (which describes the method) has been rewritten.  The new
-version concentrates more on general ideas.  For points which, though
-important, can be omitted without losing clarity, we give references
-to particular sections in earlier papers.
+version concentrates more on general ideas.  For points that, though
+important, can be omitted without loss clarity, we give references to
+particular sections in earlier papers.
 
 The unclear part about the local density gradient has been replaced
 with detailed references.
@@ -104,28 +104,27 @@ We have made clear by reworking this Section that throughout all the position an
 We thank the referee for the suggestions on how to avoid this slight over-compression of information in this key Figure. We have made several changes to improve this. First, we have added a second panel to this Figure, zooming into the region where the most points lie. Second, by changing the color scheme, understanding this third dimension in this Figure (external shear) becomes easier. Third, we provide the reader, as suggested, with all the values (Table 3). The ellipticities, for which we give the statistical uncertainties (see above), are converted into the ellipticity definition e=(a-b)/(a+b), which is more common in weak lensing. The reason is that we also provide the ratios of the ellipticities of the luminous and dark matter, and the projected ellipticity onto the light distribution of the latter as well, to help the comparison with the weak lensing results (see below).
 
 
----------- Prasenjit ----------
-| - The authors do not make clear (with a statement of a value for γ) for what
-|   they consider to be a “weak” external shear. To me, a shear of more than a few
-|   percent is a relatively large external shear, suggesting the presence of a larger
-|   mass concentration within which the primary lens is embedded. That is, it seems
-|   that even where no cluster/group members are currently known, there is an external
-|   shear that could be explained by the presence of a group/cluster environment (if
-|   I’m reading the colors in Figure 1 correctly).
-
-...
-Prasenjit: Changes in the text on the values of the external shear we see for these lenses
+| - The authors do not make clear (with a statement of a value for γ)
+|   for what they consider to be a “weak” external shear. To me, a
+|   shear of more than a few percent is a relatively large external
+|   shear, suggesting the presence of a larger mass concentration
+|   within which the primary lens is embedded. That is, it seems that
+|   even where no cluster/group members are currently known, there is
+|   an external shear that could be explained by the presence of a
+|   group/cluster environment (if I’m reading the colors in Figure 1
+|   correctly).
 
 
----------- Prasenjit ----------
-| - The authors do not address how the direction of the external shear compares to
-|   the orientation of the dark matter halo of the lens galaxy, nor is there a full
-|   discussion how the magnitude of the external shear compares with the inferred
-|   shape of the dark matter halo.
 
-...
-Changes: Added Appendix B. No comment on magnitude of external shear vs shape though...
+| - The authors do not address how the direction of the external shear
+|   compares to the orientation of the dark matter halo of the lens
+|   galaxy, nor is there a full discussion how the magnitude of the
+|   external shear compares with the inferred shape of the dark matter
+|   halo.
 
+Appendix B has been added to discuss the degeneracy between DM ellipticity
+and external-shear.  Figure B1 plots the scatter (over the model
+ensemble of each lens) of the orientations of DM vs external-shear
 
 | Misinterpretation of previously published work:
 
@@ -166,29 +165,40 @@ We thank the referee for these good points of criticism. To give a more adequate
 
 
 | Additional Comments
----------- Prasenjit ----------
-| - The authors have not provided a sufficient description of GLASS and its reliability
-|   for the reader. As it stands, the reader needs to go to Coles et al. (2014) for too
-|   much relevant information. Manuscripts need to be sufficiently independent of one
-|   another that an “educated” reader need not be intimately familiar with a preceding
-|   manuscript in order to understand and evaluate the present manuscript.
 
-...
-Changes: Section 2 significantly rephrased
+| - The authors have not provided a sufficient description of GLASS
+|   and its reliability for the reader. As it stands, the reader needs
+|   to go to Coles et al. (2014) for too much relevant
+|   information. Manuscripts need to be sufficiently independent of
+|   one another that an “educated” reader need not be intimately
+|   familiar with a preceding manuscript in order to understand and
+|   evaluate the present manuscript.
+
+As noted above, Section has been rewritten to be more self-contained.
+It still refers the reader to Coles et al (2014) for precise
+formulations and tests, but without making it essential to consult
+the earlier work.
 
 
----------- Prasenjit/Justin ----------
-| - Nowhere in this manuscript do the authors make a compelling case (through, e.g.,
-|   model testing) that GLASS yields reliable results for the quantities they seek.
-|   Perhaps that has been done in another manuscript but, if so, such tests have not
-|   been referenced here explicitly. Because most of the lenses are clearly not isolated,
-|   there is a concern about how the inferred external shear may correlate with the
-|   inferred halo shape and orientation. The authors need to demonstrate with reasonable
-|   theoretical models that the magnitude and orientation of external shears in the range
-|   of, say, 0.0 to 0.25 do not significantly affect the conclusions regarding the shape
-|   and orientation of the dark matter halo of the lens galaxy.
+| - Nowhere in this manuscript do the authors make a compelling case
+|   (through, e.g., model testing) that GLASS yields reliable results
+|   for the quantities they seek.  Perhaps that has been done in
+|   another manuscript but, if so, such tests have not been referenced
+|   here explicitly. Because most of the lenses are clearly not
+|   isolated, there is a concern about how the inferred external shear
+|   may correlate with the inferred halo shape and orientation. The
+|   authors need to demonstrate with reasonable theoretical models
+|   that the magnitude and orientation of external shears in the range
+|   of, say, 0.0 to 0.25 do not significantly affect the conclusions
+|   regarding the shape and orientation of the dark matter halo of the
+|   lens galaxy.
 
-...
+The revised Section 2 refers to Section 5.2 and Figure 8 of Coles et al (2014)
+which tests recovery of the shape estimators.
+
+As noted above, Appendix B has been added to discuss DM ellipticity
+vs external shear.
+
 Claudio: Plot for the appendix containing: Scatter plot of angle of DM and all the angles of the dark matter profiles, convincing the referee that this is not a problem
 
 
