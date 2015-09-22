@@ -31,6 +31,7 @@
 |   robustly detected for red galaxies, not blue galaxies).
 
 ...
+Done.
 
 
 | - The authors say that they assume “the local density gradient to be
@@ -52,19 +53,17 @@ with detailed references.
 On the mass-pixel size, we now explain that they are at most 4% of the
 diameter of the full mass map.
 
-Claudio: Hmmm.... What should now happen to Table 2 however? It is not referenced anymore.
 
-
----------- Justin ----------
+---------- Claudio ----------
 | - The authors do not specify the physical radii over which they are
 |   attempting to constrain the dark matter mass. How does the scale being
 |   probed compare to, say, the virial radius that might be expected?
 
 ...
-Changes: Delta Theta (separation of images) in kpc, thus physical scale probed, is given in Table 1. AT THE MOMENT, virial masses and corresponding virial radii of fit are given in Table 4 (can add them to Table 3 maybe?). However, there is the issue of Group/Cluster, and thus the masses seem really high (most of them). What to do?
+Done
 
 
----------- Justin ----------
+---------- Claudio ----------
 | - It is not clear what form the best-fitting gravitational potentials of
 |   the dark matter halos turn out to be. Are they consistent with some
 |   reasonable expectation for galaxy formation (say, elliptical NFW or
@@ -72,7 +71,7 @@ Changes: Delta Theta (separation of images) in kpc, thus physical scale probed, 
 |   naïve theoretical expectations?
 
 ...
-Changes: Added Figure with kappa profiles and quickly commented on it.
+Done
 
 
 | - It is not clear how the best-fitting values for the halo shape and
@@ -104,6 +103,7 @@ We have made clear by reworking this Section that throughout all the position an
 We thank the referee for the suggestions on how to avoid this slight over-compression of information in this key Figure. We have made several changes to improve this. First, we have added a second panel to this Figure, zooming into the region where the most points lie. Second, by changing the color scheme, understanding this third dimension in this Figure (external shear) becomes easier. Third, we provide the reader, as suggested, with all the values (Table 3). The ellipticities, for which we give the statistical uncertainties (see above), are converted into the ellipticity definition e=(a-b)/(a+b), which is more common in weak lensing. The reason is that we also provide the ratios of the ellipticities of the luminous and dark matter, and the projected ellipticity onto the light distribution of the latter as well, to help the comparison with the weak lensing results (see below).
 
 
+---------- Prasenjit ----------
 | - The authors do not make clear (with a statement of a value for γ)
 |   for what they consider to be a “weak” external shear. To me, a
 |   shear of more than a few percent is a relatively large external
@@ -114,6 +114,7 @@ We thank the referee for the suggestions on how to avoid this slight over-compre
 |   group/cluster environment (if I’m reading the colors in Figure 1
 |   correctly).
 
+Changes: We now state that a shear larger than 0.1 is large. Do we need more here?
 
 
 | - The authors do not address how the direction of the external shear
@@ -125,6 +126,7 @@ We thank the referee for the suggestions on how to avoid this slight over-compre
 Appendix B has been added to discuss the degeneracy between DM ellipticity
 and external-shear.  Figure B1 plots the scatter (over the model
 ensemble of each lens) of the orientations of DM vs external-shear
+
 
 | Misinterpretation of previously published work:
 
@@ -199,10 +201,8 @@ which tests recovery of the shape estimators.
 As noted above, Appendix B has been added to discuss DM ellipticity
 vs external shear.
 
-Claudio: Plot for the appendix containing: Scatter plot of angle of DM and all the angles of the dark matter profiles, convincing the referee that this is not a problem
 
-
----------- Justin ----------
+---------- Claudio ----------
 | - In the concluding section, the authors restate their results but do not discuss them
 |   in context with previous, similar work and known theoretical expectations. This is
 |   important, and needs to be done – even when different techniques are used in the
@@ -212,7 +212,6 @@ We agree that the paper can be improved in comparing our results to results usin
 
 Furthermore, we include the values of f_h = e_dm / e_s, where e_dm is the dark ellipticity in direction of the light distribution and e_s is the ellipticity of the latter, as mentioned above. The weak lensing results constrain this ratio, thus the results are directly comparable. Our constraints are broadly consistent with the most recent measurement on CFHTLenS data and the predictions from the Milennium simulation.
 
-Claudio: Is this enough? Or do we really need to reiterate this? I don't really feel like it.
 
 
 ---------- Justin/Prasenjit ----------
@@ -225,14 +224,13 @@ Claudio: Is this enough? Or do we really need to reiterate this? I don't really 
 |   analysis) and I don’t think the authors’ data is sufficient for the task.
 
 ...
+Changes: Now saying that we investigate the effect of averaging over different multiples of R_e.
 
 
----------- Justin ----------
+---------- Claudio ----------
 | - The authors posit that 0712 and 2016 are post merger-systems, but that seems
 |   to be based solely on their lensing reconstructions and nothing else. Such an
 |   extrapolation from one known post-merger lensing system with similar properties
 |   (1608) doesn’t seem warranted.
 
-...
-
-Claudio: I've weakened down our claim and replaced "suggest" with "speculate". What do you think?
+Done
