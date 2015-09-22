@@ -54,24 +54,20 @@ On the mass-pixel size, we now explain that they are at most 4% of the
 diameter of the full mass map.
 
 
----------- Claudio ----------
 | - The authors do not specify the physical radii over which they are
 |   attempting to constrain the dark matter mass. How does the scale being
 |   probed compare to, say, the virial radius that might be expected?
 
-...
-Done
+We have included an additional Figure (Figure 1), which besides adressing other questions as well, illustrates the range in physical scales probed for every lens system. Furthermore, as we elaborate below, we have calibrated NFW profiles to match the convergence profile of the reconstructed distribution at the Einstein radius. The necessary virial masses and the corresponding virial radii are now given in Table 3.
 
 
----------- Claudio ----------
 | - It is not clear what form the best-fitting gravitational potentials of
 |   the dark matter halos turn out to be. Are they consistent with some
 |   reasonable expectation for galaxy formation (say, elliptical NFW or
 |   elliptical isothermal), or are they something completely different to
 |   naïve theoretical expectations?
 
-...
-Done
+Thank you for your suggestion. We address this issue by including several new Sections and Figures: First, Section 4.1 was added. It discusses how we calibrate NFW profiles to match individual lens systems and how the radial profiles compare. Second, Figure 1 was included displaying the reconstructed azimuthally averaged convergence and the NFW profiles as a comparison. The necessary virial masses and radii are, third, given in Table 3.
 
 
 | - It is not clear how the best-fitting values for the halo shape and
@@ -79,7 +75,7 @@ Done
 |   it is not clear how the error bars on these values (and their significance)
 |   were determined.
 
-We have reworked Section 2 significantly to explictly describe our estimators and the statistical uncertainties for the shape and orientation of the distribution. These quantities are estimated, as now explained in detail in the text, by computing the eigenvalues and eigenvectors of the inertia tensor (see Eq. 1). Shape and orientation (resp. misalignment) are then estimated by combining the two eigenvalues resp. the angle of the eigenvector corresponding to the larger eigenvalue relative to the x-axis (see Eq. 2 and 3). As Glass gives an ensemble of solutions, these quantities are estimated for each solution. Based on these distributions, the quantites are then constrained and the statistical uncertainty is estimated.
+We have reworked Section 2 significantly to explictly describe our estimators and the statistical uncertainties for the shape and orientation of the distribution. These quantities are estimated, as now explained in the text, by computing the eigenvalues and eigenvectors of the inertia tensor (see Eq. 1). Shape and orientation (resp. misalignment) are then estimated by combining the two eigenvalues resp. the angle of the eigenvector corresponding to the larger eigenvalue relative to the x-axis (see Eq. 2 and 3). As Glass gives an ensemble of solutions, these quantities are estimated for each solution. Based on these distributions, the quantites are  constrained and the statistical uncertainties estimated.
 
 
 | - Regarding 0957, the authors say “the position angles to the center of
@@ -100,10 +96,9 @@ We have made clear by reworking this Section that throughout all the position an
 |   values and error bars for e*, edm, the offset between the major axis of the
 |   light and the major axis of the dark matter halo, and the external shear.
 
-We thank the referee for the suggestions on how to avoid this slight over-compression of information in this key Figure. We have made several changes to improve this. First, we have added a second panel to this Figure, zooming into the region where the most points lie. Second, by changing the color scheme, understanding this third dimension in this Figure (external shear) becomes easier. Third, we provide the reader, as suggested, with all the values (Table 3). The ellipticities, for which we give the statistical uncertainties (see above), are converted into the ellipticity definition e=(a-b)/(a+b), which is more common in weak lensing. The reason is that we also provide the ratios of the ellipticities of the luminous and dark matter, and the projected ellipticity onto the light distribution of the latter as well, to help the comparison with the weak lensing results (see below).
+We thank the referee for the suggestions on how to avoid this slight over-compression of information in this key Figure. We have made several changes to improve this. First, we have added a second panel to this Figure, zooming into the region where the most points lie. Second, by changing the color scheme, understanding this third dimension in this Figure (external shear) becomes easier. Third, we provide the reader, as suggested, with all the values (Table 3). The ellipticities, for which we give the statistical uncertainties (see above), are now given using the ellipticity definition e=(a-b)/(a+b), which is more common in weak lensing. By changing the employed ellipticity definition, the comparison with the weak lensing results is facilitated (see below).
 
 
----------- Prasenjit ----------
 | - The authors do not make clear (with a statement of a value for γ)
 |   for what they consider to be a “weak” external shear. To me, a
 |   shear of more than a few percent is a relatively large external
@@ -114,9 +109,12 @@ We thank the referee for the suggestions on how to avoid this slight over-compre
 |   group/cluster environment (if I’m reading the colors in Figure 1
 |   correctly).
 
-Changes: We now state that a shear larger than 0.1 is large. Do we need more here?
+The corresponding Sections have been adjusted and we now state cleary (see e.g. Abstract) that an external shear larger than >~0.1 is considered strong. Thus, the lens sample splits into two subsets, i.e. 6 lenses with a strong external shear, 5 with weak and intermediate external shear (see Table 3). For the lenses with a known and constrained environment, the direction of external shear (see Table 3) is consistent with the centre of the group/cluster (see Table 2).
+
+!!! CB: Do we need to say this in the text more clearly or is that good enough??
 
 
+------ -------
 | - The authors do not address how the direction of the external shear
 |   compares to the orientation of the dark matter halo of the lens
 |   galaxy, nor is there a full discussion how the magnitude of the
@@ -126,6 +124,8 @@ Changes: We now state that a shear larger than 0.1 is large. Do we need more her
 Appendix B has been added to discuss the degeneracy between DM ellipticity
 and external-shear.  Figure B1 plots the scatter (over the model
 ensemble of each lens) of the orientations of DM vs external-shear
+
+!!! CB: We probably need to say more on this one, no?
 
 
 | Misinterpretation of previously published work:
@@ -202,16 +202,16 @@ As noted above, Appendix B has been added to discuss DM ellipticity
 vs external shear.
 
 
----------- Claudio ----------
 | - In the concluding section, the authors restate their results but do not discuss them
 |   in context with previous, similar work and known theoretical expectations. This is
 |   important, and needs to be done – even when different techniques are used in the
 |   observational analyses.
 
-We agree that the paper can be improved in comparing our results to results using different techniques. To satisfy this, we have included a subsection comparing our results explicitly to Schrabback et al., 2015, submitted to MNRAS a short time ago, which is the most recent weak lensing measurement of halo ellipticity/misalignment, and furthermore studies the expected signal using the Milennium simulations.
+We agree that the paper can be improved in comparing our results to results using different techniques. To satisfy this, we have included a Discussion Section (Section 5). In this Section, we elaborate on the constraints from weak lensing. Especially, we compare our results explicitly to the study by Schrabback et al., 2015, submitted to MNRAS a short time ago, which is the most recent weak lensing measurement of halo ellipticity/misalignment, and furthermore studies the expected signal using the Milennium simulations. We facilitate this comparison furthermore by computing the combination of ellipticities weak lensing can probe, i.e. f_h = e_dm / e_s, where e_dm is the dark ellipticity in direction of the light distribution and e_s is the ellipticity of the latter.
 
-Furthermore, we include the values of f_h = e_dm / e_s, where e_dm is the dark ellipticity in direction of the light distribution and e_s is the ellipticity of the latter, as mentioned above. The weak lensing results constrain this ratio, thus the results are directly comparable. Our constraints are broadly consistent with the most recent measurement on CFHTLenS data and the predictions from the Milennium simulation.
+As we elaborate in the first Subsection 5.1, our constraints are broadly consistent with the most recent measurement on CFHTLenS data and the predictions from the Milennium simulation.
 
+In a second Subsection, we discuss the theoretical expectations of misalignments in isolated galaxies. We find that the lenses requiring a weak external shear, even though some do have a known environment, are not misaligned, consistent with theoretical considerations.
 
 
 ---------- Justin/Prasenjit ----------
@@ -227,10 +227,9 @@ Furthermore, we include the values of f_h = e_dm / e_s, where e_dm is the dark e
 Changes: Now saying that we investigate the effect of averaging over different multiples of R_e.
 
 
----------- Claudio ----------
 | - The authors posit that 0712 and 2016 are post merger-systems, but that seems
 |   to be based solely on their lensing reconstructions and nothing else. Such an
 |   extrapolation from one known post-merger lensing system with similar properties
 |   (1608) doesn’t seem warranted.
 
-Done
+We agree with the referee that the paper in its previous form may have put too much emphasis on this statement. We make now clear in the Conclusions, where we reiterate on our results, that this is a speculation based on the close similarities to the known merger system 1608.
