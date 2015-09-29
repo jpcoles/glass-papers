@@ -176,9 +176,9 @@ In a second Subsection, we discuss the theoretical expectations of misalignments
 |   answered with independent data points (i.e., independent annuli in the
 |   analysis) and I don’t think the authors’ data is sufficient for the task.
 
-...
-Changes: Now saying that we investigate the effect of averaging over different multiples of R_e.
- [PRASENJIT TO WRITE HERE] 
+As the inertia tensor depends on the square of the radius, changes in the estimated shape are conceivable when changing the radius of enclosure (different multiples of R_e). Thus, this Figure serve to some degree to assess the robustness of the estimated shape.
+
+While we agree with the Referee that our data is not sufficient to conclusively identify the trend of the increasing ellipticity of the stellar distribution with increasing radius we observe, it is interesting to find out whether it persists.
 
 | - The authors posit that 0712 and 2016 are post merger-systems, but that seems
 |   to be based solely on their lensing reconstructions and nothing else. Such an
