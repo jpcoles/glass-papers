@@ -87,7 +87,7 @@ The corresponding Sections have been adjusted and we now state clearly (see e.g.
 |   external shear compares with the inferred shape of the dark matter
 |   halo.
 
-Appendix B has been added to discuss the degeneracy between DM ellipticity and external-shear. Figure B1 now plots the scatter (over the model ensemble of each lens) of the orientations of DM vs external-shear. As can be seen, while there is some degeneracy between shape and shear, the degeneracy is largely broken and we are able to obtain good estimates of both. This and also the the dependence of the shape estimation on the shear prior are discussed explicitly in Section 4.2.
+Appendix B has been added to discuss the degeneracy between DM ellipticity and external-shear. Figure B1 now plots the scatter (over the model ensemble of each lens) of the orientations of DM vs external-shear. As can be seen, while there is some degeneracy between shape and shear, the degeneracy is largely broken and we are able to obtain good estimates of both. This finding and the dependence of the shape estimation on the shear prior are discussed explicitly in Section 4.2.
 
 
 | Misinterpretation of previously published work:
@@ -125,7 +125,7 @@ Appendix B has been added to discuss the degeneracy between DM ellipticity and e
 |   a 2σ detection of “non-sphericity”, which is not the same as a 2σ measurement of a
 |   value of the projected ellipticity.
 
-We thank the referee for these good points of criticism. To give a more adequate description of the difficulties of this measurement and the results on data, we have added an additional paragraph, as linking the weak and strong lensing results is highly relevant. The first paragraph focuses on what can be constrained, which is as pointed out by the referee the projected dark matter ellipticity and thus cannot be directly interpreted as the ellipticity of the dark matter halo. The second paragraph, describes the observational constraints including the papers submitted in the meantime by Clampitt & Jain, 2015 and Schrabback et al., 2015.
+We thank the referee for these good points of criticism. We have revised the whole paragraph to give a more adequate description of the difficulties of this measurement and the results on data. We now describe what exactly can be constrained, which is, as pointed out by the referee, the projected dark matter ellipticity and thus cannot be directly interpreted as the ellipticity of the dark matter halo. Furthermore, the most recent observational constraints including the papers submitted in the meantime by Clampitt & Jain, 2015 and Schrabback et al., 2015 are presented.
 
 
 | Additional Comments
@@ -162,7 +162,7 @@ As noted above, Appendix B has been added to discuss relation between the orient
 |   important, and needs to be done – even when different techniques are used in the
 |   observational analyses.
 
-We agree that the paper can be improved in comparing our results to results using different techniques. To satisfy this, we have included a Discussion Section (Section 5). In this Section, we elaborate on the constraints from weak lensing. Especially, we compare our results explicitly to the study by Schrabback et al., 2015, submitted to MNRAS a short time ago, which is the most recent weak lensing measurement of halo ellipticity/misalignment, and furthermore studies the expected signal using the Milennium simulations. We facilitate this comparison furthermore by computing the combination of ellipticities weak lensing can probe, i.e. f_h = e_dm / e_s, where e_dm is the dark ellipticity in direction of the light distribution and e_s is the ellipticity of the latter.
+We agree that the paper can be improved in comparing our results to results using different techniques. To satisfy this, we have included a Discussion Section (Section 5). In this Section, we elaborate on the constraints from weak lensing. Especially, we compare our results explicitly to the study by Schrabback et al., 2015, submitted to MNRAS a short time ago, which is the most recent weak lensing measurement of halo ellipticity/misalignment, and furthermore studies the expected signal using the Milennium simulations. We facilitate this comparison furthermore by consistently using the same ellipticity definition as in Schrabback et al (see above), and computing the combination of ellipticities weak lensing can probe, i.e. f_h = e_dm / e_s, where e_dm is the dark ellipticity in direction of the light distribution and e_s is the ellipticity of the latter.
 
 As we elaborate in the first Subsection 5.1, our constraints are broadly consistent with the most recent measurement on CFHTLenS data and the predictions from the Milennium simulation.
 
@@ -178,7 +178,7 @@ In a second Subsection, we discuss the theoretical expectations of misalignments
 
 As the inertia tensor depends on the square of the radius, changes in the estimated shape are conceivable when changing the radius of enclosure (different multiples of R_e). Thus, this Figure serve to some degree to assess the robustness of the estimated shape.
 
-While we agree with the Referee that our data is not sufficient to conclusively identify the trend of the increasing ellipticity of the stellar distribution with increasing radius we observe, it is interesting to find out whether it persists.
+While we agree with the referee that our data is not sufficient to conclusively identify the trend of the increasing ellipticity of the stellar distribution with increasing radius we observe, it is interesting to find out whether it persists.
 
 | - The authors posit that 0712 and 2016 are post merger-systems, but that seems
 |   to be based solely on their lensing reconstructions and nothing else. Such an
